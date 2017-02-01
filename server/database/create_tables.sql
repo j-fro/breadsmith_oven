@@ -1,15 +1,15 @@
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    email VARCHAR UNIQUE NOT NULL,
-    role VARCHAR(10)
-    customer_id INTEGER REFERENCES customers(id) ON DELETE SET NULL
-);
-
 CREATE TABLE customers (
     id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
     address VARCHAR,
     last_order_date DATE
+);
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR UNIQUE NOT NULL,
+    role VARCHAR(10)
+    customer_id INTEGER REFERENCES customers(id) ON DELETE SET NULL
 );
 
 CREATE TABLE products (
@@ -21,14 +21,14 @@ CREATE TABLE products (
 
 CREATE TABLE regular_products (
     id SERIAL PRIMARY KEY,
-    customer_id INTEGER NOT NULL,
-    product_id INTEGER NOT NULL
+    customer_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
+    product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE
 );
 
 CREATE TABLE permitted_products (
     id SERIAL PRIMARY KEY,
-    customer_id INTEGER NOT NULL,
-    product_id INTEGER NOT NULL
+    customer_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
+    product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE
 );
 
 CREATE TABLE orders (
@@ -43,7 +43,7 @@ CREATE TABLE orders (
 
 CREATE TABLE order_items (
     id SERIAL PRIMARY KEY,
-    order_id INTEGER NOT NULL,
-    product_id INTEGER NOT NULL,
+    order_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
+    product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE
     qty INTEGER NOT NULL
 );
