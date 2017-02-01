@@ -3,3 +3,4 @@ notes.md
 .DS_Store
 nodemon.json
 .jshintrc
+node_modules
