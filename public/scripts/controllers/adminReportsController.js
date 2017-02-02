@@ -1,7 +1,7 @@
 
 myApp.controller('adminReportsController', ['$scope', '$http', '$window',
     function($scope, $http, $window) {
-        console.log('in index controller');
+        console.log('in adminReportsController');
         $scope.XYZ = function() {
             $http({
                 method: 'POST',

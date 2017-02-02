@@ -1,6 +1,6 @@
 myApp.controller('clientController', ['$scope', '$http', '$window',
     function($scope, $http, $window) {
-        console.log('in index controller');
+        console.log('in clientController');
         $scope.XYZ = function() {
             $http({
                 method: 'POST',
