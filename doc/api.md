@@ -30,57 +30,63 @@ Gets information for all customers (for a privileged account) or a specific cust
 * **Success Response:**
 * **Code:** 200 <br />
     **Content if client account or id supplied:**
-        {
-            id: [integer]
-            address: [string],
-            phone: [string],
-            email: [
-                [string]
-            ],
-            permitted_products: [{
-                id: [integer],
-                type: [string],
-                variety: [string],
-                price: [float]
-            }],
-            regular_products: [{
-                id: [integer],
-                type: [string],
-                variety: [string],
-                price: [float]
-            }]
-        }
+    ```
+    {
+        id: [integer]
+        address: [string],
+        phone: [string],
+        email: [
+            [string]
+        ],
+        permitted_products: [{
+            id: [integer],
+            type: [string],
+            variety: [string],
+            price: [float]
+        }],
+        regular_products: [{
+            id: [integer],
+            type: [string],
+            variety: [string],
+            price: [float]
+        }]
+    }
+    ```
 * **Code:** 200 <br />
     **Content if privileged account:**
-        [{
-            id: [integer]
-            address: [string],
-            phone: [string],
-            email: [
-                [string]
-            ],
-            permitted_products: [{
-                id: [integer],
-                type: [string],
-                variety: [string],
-                price: [float]
-            }],
-            regular_products: [{
-                id: [integer],
-                type: [string],
-                variety: [string],
-                price: [float]
-            }]
-        }, etc..]
+    ```
+    [{
+        id: [integer]
+        address: [string],
+        phone: [string],
+        email: [
+            [string]
+        ],
+        permitted_products: [{
+            id: [integer],
+            type: [string],
+            variety: [string],
+            price: [float]
+        }],
+        regular_products: [{
+            id: [integer],
+            type: [string],
+            variety: [string],
+            price: [float]
+        }]
+    }, etc..]
+    ```
 * **Error Response:**
     * **Code:** 401 UNAUTHORIZED <br />
     OR
     * **Code:** 500 SERVER ERROR <br />
 * **Sample Call:**
-        $http({
-          url: '/customer',
-          type: 'GET'
-        })
+```
+    $http({
+      url: '/customer',
+      type: 'GET'
+    })
+    ```
 ----
 **Add New Customer**
 ----
@@ -90,46 +96,49 @@ Endpoint for customer accounts. Creates a new customer with the information supp
 * **Method:**
     `POST`
 * **Data Params**
-        {
-            name: [string],
-            address: [string],
-            phone: [string],
-            email: [
-                [string]
-            ],
-            permitted_products: [{
-                id: [integer],
-            }],
-            regular_products: [{
-                id: [integer]
-            }]
-        }
+```
+    {
+        name: [string],
+        address: [string],
+        phone: [string],
+        email: [
+            [string]
+        ],
+        permitted_products: [{
+            id: [integer],
+        }],
+        regular_products: [{
+            id: [integer]
+        }]
+    }
+    ```
 * **Success Response:**
     * **Code:** 201 <br />
 * **Error Response:**
     * **Code:** 401 UNAUTHORIZED <br />
     OR
     * **Code:** 500 SERVER ERROR <br />
-
 * **Sample Call:**
-        $http({
-            type: 'POST',
-            url: '/customer',
-            data: {
-                name: 'Frank's Hotel',
-                address: '221 Hotel Ave, Hotelville MN 55123',
-                email: ['frank@franks.com'],
-                permitted_products: [
-                    2,
-                    17,
-                    24
-                ],
-                regular_products: [
-                    2,
-                    17
-                ]
-            }
-        })
+```
+    $http({
+        type: 'POST',
+        url: '/customer',
+        data: {
+            name: 'Frank's Hotel',
+            address: '221 Hotel Ave, Hotelville MN 55123',
+            email: ['frank@franks.com'],
+            permitted_products: [
+                2,
+                17,
+                24
+            ],
+            regular_products: [
+                2,
+                17
+            ]
+        }
+    })
+    ```
 ----
 **Update Existing Customer**
 ----
@@ -139,24 +148,26 @@ Endpoint for customer accounts. Updates an existing customer with all of the opt
 * **Method:**
     `PUT`
 * **Data Params**
-        {
+```
+    {
+        id: [integer],
+        // All optional:
+        name: [string],
+        address: [string],
+        phone: [string],
+        // If supplied, _all_ emails are required
+        email: [
+            [string]
+        ],
+        // If supplied, _all_ products are required
+        permitted_products: [{
             id: [integer],
-            // All optional:
-            name: [string],
-            address: [string],
-            phone: [string],
-            // If supplied, _all_ emails are required
-            email: [
-                [string]
-            ],
-            // If supplied, _all_ products are required
-            permitted_products: [{
-                id: [integer],
-            }],
-            regular_products: [{
-                id: [integer]
-            }]
-        }
+        }],
+        regular_products: [{
+            id: [integer]
+        }]
+    }
+    ```
 * **Success Response:**
     * **Code:** 200 <br />
 * **Error Response:**
@@ -164,20 +175,22 @@ Endpoint for customer accounts. Updates an existing customer with all of the opt
     OR
     * **Code:** 500 SERVER ERROR <br />
 * **Sample Call:**
-        $http({
-            method: 'PUT',
-            url: '/customer',
-            data: {
-                id: 7
-                name: 'Frank's Grand Hotel',
-                permitted_products: [
-                    2,
-                    17,
-                    24,
-                    32
-                ]
-            }
-        })
+```
+    $http({
+        method: 'PUT',
+        url: '/customer',
+        data: {
+            id: 7
+            name: 'Frank's Grand Hotel',
+            permitted_products: [
+                2,
+                17,
+                24,
+                32
+            ]
+        }
+    })
+    ```
 ----
 **Delete Existing Customer**
 ----
@@ -196,10 +209,12 @@ Endpoint for customer accounts. Deletes an existing customer that matches the su
     OR
     * **Code:** 500 SERVER ERROR <br />
 * **Sample Call:**
-        $http({
-            method: 'DELETE',
-            url: '/customer/7'
-        })
+```
+    $http({
+        method: 'DELETE',
+        url: '/customer/7'
+    })
+    ```
 ----
 **View Products**
 ----
@@ -214,30 +229,36 @@ Gets information for all products or a specific product if an id is supplied
 * **Success Response:**
     * **Code:** 200 <br />
         **Content if id supplied:**
-            {
-                id: [integer],
-                type: [string],
-                variety: [string],
-                price: [float]
-            }
-* **Code:** 200 <br />
-    **Content without id:**
-        [{
+        ```
+        {
             id: [integer],
             type: [string],
             variety: [string],
             price: [float]
-        }, etc..]
+        }
+        ```
+* **Code:** 200 <br />
+    **Content without id:**
+    ```
+    [{
+        id: [integer],
+        type: [string],
+        variety: [string],
+        price: [float]
+    }, etc..]
+    ```
 * **Error Response:**
     * **Code:** 401 UNAUTHORIZED <br />
     OR
     * **Code:** 500 SERVER ERROR <br />
 * **Sample Call:**
-        http({
-          url: '/product',
-          type: 'GET'
-        })
-
+```
+    http({
+      url: '/product',
+      type: 'GET'
+    })
+    ```
+----
 **Add New Product**
 ----
 Creates a new product with the information supplied.
@@ -246,11 +267,13 @@ Creates a new product with the information supplied.
 * **Method:**
     `POST`
 * **Data Params**
-        {
-            type: [string],
-            variety: [string],
-            price: [float]
-        }
+```
+    {
+        type: [string],
+        variety: [string],
+        price: [float]
+    }
+    ```
 * **Success Response:**
     * **Code:** 201 <br />
 * **Error Response:**
@@ -259,15 +282,17 @@ Creates a new product with the information supplied.
     * **Code:** 500 SERVER ERROR <br />
 
 * **Sample Call:**
-        $http({
-            type: 'POST',
-            url: '/product',
-            data: {
-                type: 'French bread',
-                variety: '1/2" slice',
-                price: 3.65
-            }
-        })
+```
+    $http({
+        type: 'POST',
+        url: '/product',
+        data: {
+            type: 'French bread',
+            variety: '1/2" slice',
+            price: 3.65
+        }
+    })
+    ```
 ----
 **Update Existing Product**
 ----
@@ -277,13 +302,15 @@ Updates an existing product with all of the optional supplied information.
 * **Method:**
     `PUT`
 * **Data Params**
-        {
-            id: [integer],
-            // Optional:
-            type: [string],
-            variety: [string],
-            price: [float]
-        }
+```
+    {
+        id: [integer],
+        // Optional:
+        type: [string],
+        variety: [string],
+        price: [float]
+    }
+    ```
 * **Success Response:**
     * **Code:** 200 <br />
 * **Error Response:**
@@ -291,14 +318,16 @@ Updates an existing product with all of the optional supplied information.
     OR
     * **Code:** 500 SERVER ERROR <br />
 * **Sample Call:**
-        $http({
-            method: 'PUT',
-            url: '/product',
-            {
-                id: 32,
-                price: 3.75
-            }
-        })
+```
+    $http({
+        method: 'PUT',
+        url: '/product',
+        {
+            id: 32,
+            price: 3.75
+        }
+    })
+    ```
 ----
 **Delete Existing Product**
 ----
@@ -317,7 +346,9 @@ Deletes an existing product that matches the supplied id parameter
     OR
     * **Code:** 500 SERVER ERROR <br />
 * **Sample Call:**
-        $http({
-            method: 'DELETE',
-            url: '/product/32'
-        })
+```
+    $http({
+        method: 'DELETE',
+        url: '/product/32'
+    })
+    ```
