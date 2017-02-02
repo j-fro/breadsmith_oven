@@ -7,11 +7,6 @@
 * PUT /order -> {a whole order} + 200/401/500
 * PUT /order/confirm/id -> 200/401/500
 * DELETE /order/id -> 200/401/500
-* GET /user -> [{id, email}] + 200/401/500
-* GET /user/id -> {id, name, email, role} + 200/401/500
-* PUT /user {id, name, email, role} -> 200/401/500
-* DELETE /user/id -> 200/401/500
-* POST /user {name, email role} -> 201/401/500
 * GET /report/production -> file.CSV
 * GET /report/invoice -> file.CSV
 
@@ -42,13 +37,8 @@ Gets information for all customers (for a privileged account) or a specific cust
             id: [integer],
             type: [string],
             variety: [string],
-            price: [float]
-        }],
-        regular_products: [{
-            id: [integer],
-            type: [string],
-            variety: [string],
-            price: [float]
+            price: [float],
+            regular: [boolean]
         }]
     }
 ```
@@ -66,13 +56,8 @@ Gets information for all customers (for a privileged account) or a specific cust
             id: [integer],
             type: [string],
             variety: [string],
-            price: [float]
-        }],
-        regular_products: [{
-            id: [integer],
-            type: [string],
-            variety: [string],
-            price: [float]
+            price: [float],
+            regular: [boolean]
         }]
     }, etc..]
 ```
@@ -106,9 +91,7 @@ Endpoint for customer accounts. Creates a new customer with the information supp
         ],
         permitted_products: [{
             id: [integer],
-        }],
-        regular_products: [{
-            id: [integer]
+            regular: [boolean]
         }]
     }
 ```
@@ -128,13 +111,9 @@ Endpoint for customer accounts. Creates a new customer with the information supp
             address: '221 Hotel Ave, Hotelville MN 55123',
             email: ['frank@franks.com'],
             permitted_products: [
-                2,
-                17,
-                24
-            ],
-            regular_products: [
-                2,
-                17
+                {id: 2, regular: true},
+                {id: 17, regular: true},
+                {id: 24, regular: false}
             ]
         }
     })
@@ -162,9 +141,7 @@ Endpoint for customer accounts. Updates an existing customer with all of the opt
         // If supplied, _all_ products are required
         permitted_products: [{
             id: [integer],
-        }],
-        regular_products: [{
-            id: [integer]
+            boolean: [true]
         }]
     }
 ```
@@ -183,10 +160,10 @@ Endpoint for customer accounts. Updates an existing customer with all of the opt
             id: 7
             name: 'Frank's Grand Hotel',
             permitted_products: [
-                2,
-                17,
-                24,
-                32
+                {id: 2, regular: true},
+                {id: 17, regular: false},
+                {id: 24, regular: true}
+                {id: 32, regular: false}
             ]
         }
     })
@@ -350,5 +327,138 @@ Deletes an existing product that matches the supplied id parameter
     $http({
         method: 'DELETE',
         url: '/product/32'
+    })
+```
+----
+**View Users**
+----
+Gets information for all users or a specific user if an id is supplied
+* **URL**
+    `/user` or `/user/id`
+* **Method:**
+    `GET`
+*  **URL Params**
+    **Optional:**
+    `id=[integer]`
+* **Success Response:**
+    * **Code:** 200 <br />
+        **Content if id supplied:**
+    ```
+        {
+            id: [integer],
+            email: [string],
+            name: [string]
+        }
+    ```
+* **Code:** 200 <br />
+    **Content without id:**
+```
+    [{
+        id: [integer],
+        email: [string],
+        name: [string]
+    }, etc..]
+```
+* **Error Response:**
+    * **Code:** 401 UNAUTHORIZED <br />
+    OR
+    * **Code:** 500 SERVER ERROR <br />
+* **Sample Call:**
+```
+    http({
+      url: '/user',
+      type: 'GET'
+    })
+```
+----
+**Add New User**
+----
+Creates a new user with the information supplied.
+* **URL**
+    `/user`
+* **Method:**
+    `POST`
+* **Data Params**
+```
+    {
+        email: [string],
+        // Optional
+        name: [string]
+    }
+```
+* **Success Response:**
+    * **Code:** 201 <br />
+* **Error Response:**
+    * **Code:** 401 UNAUTHORIZED <br />
+    OR
+    * **Code:** 500 SERVER ERROR <br />
+
+* **Sample Call:**
+```
+    $http({
+        type: 'POST',
+        url: '/user',
+        data: {
+            email: 'frank@franks.com',
+            name: 'Frank Bank'
+        }
+    })
+```
+----
+**Update Existing User**
+----
+Updates an existing user with all of the optional supplied information.
+* **URL**
+    `/product`
+* **Method:**
+    `PUT`
+* **Data Params**
+```
+    {
+        id: [integer],
+        // All optional:
+        email: [string],
+        name: [string]
+    }
+```
+* **Success Response:**
+    * **Code:** 200 <br />
+* **Error Response:**
+    * **Code:** 401 UNAUTHORIZED <br />
+    OR
+    * **Code:** 500 SERVER ERROR <br />
+* **Sample Call:**
+```
+    $http({
+        method: 'PUT',
+        url: '/user',
+        {
+            id: 2,
+            name: 'Franklin Bank'
+        }
+    })
+```
+----
+**Delete Existing User**
+----
+Deletes an existing user that matches the supplied id parameter
+* **URL**
+    `/user/:id`
+* **Method:**
+    `DELETE`
+    *  **URL Params**
+        **Optional:**
+        `id=[integer]`
+* **Success Response:**
+    * **Code:** 200 <br />
+* **Error Response:**
+    * **Code:** 401 UNAUTHORIZED <br />
+    OR
+    * **Code:** 500 SERVER ERROR <br />
+* **Sample Call:**
+```
+    $http({
+        method: 'DELETE',
+        url: '/user/2'
     })
 ```
