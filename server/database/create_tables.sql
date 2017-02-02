@@ -47,3 +47,11 @@ CREATE TABLE order_items (
     product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE
     qty INTEGER NOT NULL
 );
+
+CREATE TABLE recurring_order_items (
+    id SERIAL PRIMARY KEY,
+    customer_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
+    product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+    qty INTEGER NOT NULL,
+    recur_day VARCHAR(10)
+);
