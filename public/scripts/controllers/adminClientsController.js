@@ -1,4 +1,4 @@
-myApp.controller('managerController', ['$scope', '$http', '$window',
+myApp.controller('adminController', ['$scope', '$http', '$window',
     function($scope, $http, $window) {
         console.log('in index controller');
         $scope.XYZ = function() {
