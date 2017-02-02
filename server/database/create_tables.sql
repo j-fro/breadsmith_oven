@@ -19,16 +19,11 @@ CREATE TABLE products (
     price REAL NOT NULL
 );
 
-CREATE TABLE regular_products (
-    id SERIAL PRIMARY KEY,
-    customer_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
-    product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE
-);
-
 CREATE TABLE permitted_products (
     id SERIAL PRIMARY KEY,
     customer_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
     product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE
+    regular BOOLEAN NOT NULL DEFAULT false
 );
 
 CREATE TABLE orders (
