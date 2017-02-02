@@ -16,7 +16,7 @@ CREATE TABLE products (
     id SERIAL PRIMARY KEY,
     type VARCHAR NOT NULL,
     variety VARCHAR,
-    price REAL
+    price REAL NOT NULL
 );
 
 CREATE TABLE regular_products (
