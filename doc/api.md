@@ -30,7 +30,7 @@ Gets information for all customers (for a privileged account) or a specific cust
 * **Success Response:**
 * **Code:** 200 <br />
     **Content if client account or id supplied:**
-    ```
+```
     {
         id: [integer]
         address: [string],
@@ -51,10 +51,10 @@ Gets information for all customers (for a privileged account) or a specific cust
             price: [float]
         }]
     }
-    ```
+```
 * **Code:** 200 <br />
     **Content if privileged account:**
-    ```
+```
     [{
         id: [integer]
         address: [string],
@@ -75,7 +75,7 @@ Gets information for all customers (for a privileged account) or a specific cust
             price: [float]
         }]
     }, etc..]
-    ```
+```
 * **Error Response:**
     * **Code:** 401 UNAUTHORIZED <br />
     OR
@@ -86,7 +86,7 @@ Gets information for all customers (for a privileged account) or a specific cust
       url: '/customer',
       type: 'GET'
     })
-    ```
+```
 ----
 **Add New Customer**
 ----
@@ -111,7 +111,7 @@ Endpoint for customer accounts. Creates a new customer with the information supp
             id: [integer]
         }]
     }
-    ```
+```
 * **Success Response:**
     * **Code:** 201 <br />
 * **Error Response:**
@@ -138,7 +138,7 @@ Endpoint for customer accounts. Creates a new customer with the information supp
             ]
         }
     })
-    ```
+```
 ----
 **Update Existing Customer**
 ----
@@ -167,7 +167,7 @@ Endpoint for customer accounts. Updates an existing customer with all of the opt
             id: [integer]
         }]
     }
-    ```
+```
 * **Success Response:**
     * **Code:** 200 <br />
 * **Error Response:**
@@ -190,7 +190,7 @@ Endpoint for customer accounts. Updates an existing customer with all of the opt
             ]
         }
     })
-    ```
+```
 ----
 **Delete Existing Customer**
 ----
@@ -214,7 +214,7 @@ Endpoint for customer accounts. Deletes an existing customer that matches the su
         method: 'DELETE',
         url: '/customer/7'
     })
-    ```
+```
 ----
 **View Products**
 ----
@@ -229,24 +229,24 @@ Gets information for all products or a specific product if an id is supplied
 * **Success Response:**
     * **Code:** 200 <br />
         **Content if id supplied:**
-        ```
+    ```
         {
             id: [integer],
             type: [string],
             variety: [string],
             price: [float]
         }
-        ```
+    ```
 * **Code:** 200 <br />
     **Content without id:**
-    ```
+```
     [{
         id: [integer],
         type: [string],
         variety: [string],
         price: [float]
     }, etc..]
-    ```
+```
 * **Error Response:**
     * **Code:** 401 UNAUTHORIZED <br />
     OR
@@ -257,7 +257,7 @@ Gets information for all products or a specific product if an id is supplied
       url: '/product',
       type: 'GET'
     })
-    ```
+```
 ----
 **Add New Product**
 ----
@@ -273,7 +273,7 @@ Creates a new product with the information supplied.
         variety: [string],
         price: [float]
     }
-    ```
+```
 * **Success Response:**
     * **Code:** 201 <br />
 * **Error Response:**
@@ -292,7 +292,7 @@ Creates a new product with the information supplied.
             price: 3.65
         }
     })
-    ```
+```
 ----
 **Update Existing Product**
 ----
@@ -310,7 +310,7 @@ Updates an existing product with all of the optional supplied information.
         variety: [string],
         price: [float]
     }
-    ```
+```
 * **Success Response:**
     * **Code:** 200 <br />
 * **Error Response:**
@@ -327,7 +327,7 @@ Updates an existing product with all of the optional supplied information.
             price: 3.75
         }
     })
-    ```
+```
 ----
 **Delete Existing Product**
 ----
@@ -351,4 +351,4 @@ Deletes an existing product that matches the supplied id parameter
         method: 'DELETE',
         url: '/product/32'
     })
-    ```
+```
