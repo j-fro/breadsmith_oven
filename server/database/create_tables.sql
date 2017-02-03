@@ -8,7 +8,7 @@ CREATE TABLE customers (
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR UNIQUE NOT NULL,
-    role VARCHAR(10)
+    role VARCHAR(10),
     customer_id INTEGER REFERENCES customers(id) ON DELETE SET NULL
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE orders (
 CREATE TABLE order_items (
     id SERIAL PRIMARY KEY,
     order_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
-    product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,2
+    product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
     qty INTEGER NOT NULL
 );
 
