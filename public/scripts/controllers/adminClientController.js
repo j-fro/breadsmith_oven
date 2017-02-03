@@ -143,9 +143,9 @@ myApp.controller('adminClientController', ['$scope', '$http', '$window',
         };
 
         $scope.viewUser = function() {
-          http({
-            type: 'GET',
-            url: '/user',
+            http({
+                type: 'GET',
+                url: '/user',
             }).then(function successCallback(response) {
                 console.log(response);
             }, function errorCallback(error) {
@@ -154,14 +154,14 @@ myApp.controller('adminClientController', ['$scope', '$http', '$window',
         };
 
         $scope.addUser = function() {
-          var data = {
-              email: 'frank@franks.com',
-              name: 'Frank Bank'
-          };
-          http({
-            type: 'POST',
-            url: '/user',
-            data: data,
+            var data = {
+                email: 'frank@franks.com',
+                name: 'Frank Bank'
+            };
+            http({
+                type: 'POST',
+                url: '/user',
+                data: data,
             }).then(function successCallback(response) {
                 console.log(response);
             }, function errorCallback(error) {
@@ -170,14 +170,14 @@ myApp.controller('adminClientController', ['$scope', '$http', '$window',
         };
 
         $scope.updateUser = function() {
-          var data = {
-              id: 2,
-              name: 'Franklin Bank'
-          };
-          http({
-            method: 'PUT',
-            url: '/user',
-            data: data,
+            var data = {
+                id: 2,
+                name: 'Franklin Bank'
+            };
+            http({
+                method: 'PUT',
+                url: '/user',
+                data: data,
             }).then(function successCallback(response) {
                 console.log(response);
             }, function errorCallback(error) {
@@ -186,21 +186,16 @@ myApp.controller('adminClientController', ['$scope', '$http', '$window',
         };
 
         $scope.deleteUser = function() {
-          http({
-            method: 'DELETE',
-            url: '/user/:id',
-            data: data,
+            http({
+                method: 'DELETE',
+                url: '/user/:id',
+                data: data,
             }).then(function successCallback(response) {
                 console.log(response);
             }, function errorCallback(error) {
                 console.log('error', error);
             });
         };
-
-
-
-
-
 
     } //end
 ]);
