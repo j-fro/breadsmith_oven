@@ -23,8 +23,37 @@ function getCustomerById(custId) {
     });
 }
 
+function addCustomer(customer) {
+    return new Promise((resolve, reject) => {
+        let inserts = [];
+        knex
+            .insert({
+                name: req.body.name,
+                address: req.body.address
+            })
+            .into('customers')
+            .then(id => {
+                req.body.products.forEach(prod => {
+                    inserts.push(
+                        knex
+                            .insert({
+                                customer_id: id,
+                                product_id: prod.id,
+                                regular: prod.regular
+                            })
+                            .into('permitted_products')
+                    );
+                });
+                Promise.all(inserts)
+                    .then(() => resolve())
+                    .catch(err => reject(err));
+            });
+    });
+}
+
 module.exports = {
-    getCustomerById: getCustomerById
+    getCustomerById: getCustomerById,
+    addCustomer: addCustomer
 };
 
 function aggregateCustomer(results) {
