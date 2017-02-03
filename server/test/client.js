@@ -8,7 +8,6 @@ const TEST_CUSTOMER_1 = {
     address: '221 Hotel Ave, Hotelville MN 55123',
     last_order_date: new Date()
 };
-
 const TEST_PRODUCT_1 = {
     id: 1000,
     type: 'wheat bread',
@@ -21,17 +20,28 @@ const TEST_PRODUCT_2 = {
     variety: 'dozen',
     price: 4.75
 };
+const TEST_PRODUCT_3 = {
+    id: 1002,
+    type: 'dinner roll',
+    variety: '',
+    price: 4.25
+};
 const TEST_CUSTOMER_2 = {
     name: "Joey's Bistro",
     address: '7000 Joe Way, Joeville CA 90210',
     products: [TEST_PRODUCT_1, TEST_PRODUCT_2]
+};
+const TEST_CUSTOMER_2_V2 = {
+    id: 1003,
+    name: "Joseph's Bistro",
+    products: [TEST_PRODUCT_2, TEST_PRODUCT_3]
 };
 
 describe('Client router', () => {
     before(done => {
         let insertCust = knex.insert(TEST_CUSTOMER_1).into('customers');
         let insertProd = knex
-            .insert([TEST_PRODUCT_1, TEST_PRODUCT_2])
+            .insert([TEST_PRODUCT_1, TEST_PRODUCT_2, TEST_PRODUCT_3])
             .into('products');
         Promise.all([insertCust, insertProd])
             .then(() => {
@@ -116,15 +126,39 @@ describe('Client router', () => {
                 .catch(err => console.log(err));
         });
     });
-    after(done => {
-        let deletecust = knex.from('customers').delete();
-        let delete1000 = knex.from('products').where('id', 1000).delete();
-        let delete1001 = knex.from('products').where('id', 1001).delete();
-        Promise.all([deletecust, delete1000, delete1001])
-            .then(() => done())
-            .catch(err => {
-                console.log(err);
+    describe('Update a customer', () => {
+        before(done => {
+            lib.addCustomer(TEST_CUSTOMER_2).then(id => {
+                TEST_CUSTOMER_2_V2.id = id;
                 done();
             });
+        });
+        it('Updates a customer in the DB', done => {
+            lib
+                .editCustomer(TEST_CUSTOMER_2_V2)
+                .then(() => {
+                    lib
+                        .getCustomerById(TEST_CUSTOMER_2_V2.id)
+                        .then(customer => {
+                            expect(customer.name).to.equal(
+                                TEST_CUSTOMER_2_V2.name
+                            );
+                            expect(customer.products[0].id).to.equal(1001);
+                            expect(customer.products[1].id).to.equal(1002);
+                            done();
+                        })
+                        .catch(err => console.log(err));
+                })
+                .catch(err => console.log(err));
+        });
+    });
+    after(done => {
+        let deletecust = knex.from('customers').delete();
+        let delete1000 = knex.from('products').delete();
+        // let delete1001 = knex.from('products').where('id', 1001).delete();
+        Promise.all([deletecust, delete1000]).then(() => done()).catch(err => {
+            console.log(err);
+            done();
+        });
     });
 });
