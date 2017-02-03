@@ -27,17 +27,20 @@ function addCustomer(customer) {
     return new Promise((resolve, reject) => {
         let inserts = [];
         knex
-            .insert({
-                name: req.body.name,
-                address: req.body.address
-            })
+            .insert(
+                {
+                    name: customer.name,
+                    address: customer.address
+                },
+                'id'
+            )
             .into('customers')
             .then(id => {
-                req.body.products.forEach(prod => {
+                customer.products.forEach(prod => {
                     inserts.push(
                         knex
                             .insert({
-                                customer_id: id,
+                                customer_id: id[0],
                                 product_id: prod.id,
                                 regular: prod.regular
                             })
@@ -45,7 +48,7 @@ function addCustomer(customer) {
                     );
                 });
                 Promise.all(inserts)
-                    .then(() => resolve())
+                    .then(() => resolve(id[0]))
                     .catch(err => reject(err));
             });
     });
