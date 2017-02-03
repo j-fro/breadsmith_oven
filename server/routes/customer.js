@@ -19,16 +19,22 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    // Not implemented
-    res.sendStatus(501);
+    lib.addCustomer(req.body).then(() => res.sendStatus(201)).catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+    });
 });
 
 router.put('/', (req, res) => {
-    // Not implemented
-    res.sendStatus(501);
+    lib.editCustomer(req.body).then(() => res.sendStatus(200)).catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+    });
 });
 
 router.delete('/:id', (req, res) => {
     // Not implemented
     res.sendStatus(501);
 });
+
+module.exports = router;
