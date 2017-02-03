@@ -11,8 +11,8 @@
     <script src="../scripts/index.js" charset="utf-8"></script>
 </head>
 
-<body>
-  <div class="container-fluid">
+<body ng-app="myApp">
+  <div ng-controller="indexController" ng-init= 'login();' class="container-fluid">
     <h1>Login</h1>
     <label for="username"></label>
     <input type="text" name="username" value="" placeholder="username">

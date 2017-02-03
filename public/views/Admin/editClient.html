@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Breadsmith - Admin - Edit Client</title>
+    <title>Breadsmith - Admin - Create Client</title>
     <meta name="Description" content="Breadsmith uses the highest quality ingredients to create hand-crafted breads made from scratch and baked fresh daily." />
     <meta name="Keywords" content="Breadsmith, Minnesota, bread, muffins, scones, rolls, whole wheat, sourdough, ciabatta, baguette, boule, Challah, Babka, stollen, soda bread, rye, pumperknickel, st paul, saint paul, Minnetonka, edina, Wayzata, bakery, dough, cookies"
     />
@@ -18,7 +18,6 @@
 <body ng-app="myApp">
     <div class="container-fluid" ng-controller="adminClientController">
         <div id="wrapperall">
-
             <div id="banner">
                 <a href="index.html"><img src="../../images/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo"></a>
                 <div id="topwrapper">
@@ -26,7 +25,6 @@
                     <!-- <div id="location"><a href="edina.html">EDINA</a> | <a href="minnetonka.html">MINNETONKA</a> | <a href="stpaul.html">ST. PAUL</a></div> -->
                 </div>
             </div>
-
             <div id="nav">
                 <ul>
                     <li><a href="index.html">HOME</a></li>
@@ -39,8 +37,28 @@
                     <li><a href="contact.html">CONTACT</a></li>
                 </ul>
             </div>
-
             <div id="wrapper">
+
+                <table style="width:100%" ng-repeat="customer in customers">
+                    <tr>
+                        <th>Client</th>
+                        <!-- <th>Lastname</th>
+    <th>Age</th> -->
+                    </tr>
+                    <tr>
+                        <td>Jill {{customer.name}}</td>
+                        <!-- <td>Smith</td>
+    <td>50</td> -->
+                    </tr>
+                    <tr>
+                        <!-- <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td> -->
+                    </tr>
+                </table>
+
+                <label for="addClient"></label>
+                <input type="button" name="addClient" value="Add Customer" ng-click="">
 
 
 
