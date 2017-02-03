@@ -54,9 +54,40 @@ function addCustomer(customer) {
     });
 }
 
+function editCustomer(customer) {
+    return new Promise((resolve, reject) => {
+        let deletePermitted = knex
+            .from('permitted_products')
+            .where('customer_id', customer.id)
+            .del();
+        let addPermitted = knex
+            .insert(
+                customer.products.map(prod => {
+                    return {
+                        product_id: prod.id,
+                        customer_id: customer.id,
+                        regular: prod.regular
+                    };
+                })
+            )
+            .into('permitted_products');
+        customer.products = undefined;
+        let updateCustomer = knex
+            .update(customer)
+            .from('customers')
+            .where('id', customer.id);
+        Promise.all([deletePermitted, updateCustomer])
+            .then(() => {
+                addPermitted.then(() => resolve()).catch(err => reject(err));
+            })
+            .catch(err => reject(err));
+    });
+}
+
 module.exports = {
     getCustomerById: getCustomerById,
-    addCustomer: addCustomer
+    addCustomer: addCustomer,
+    editCustomer: editCustomer
 };
 
 function aggregateCustomer(results) {
