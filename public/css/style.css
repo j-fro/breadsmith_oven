@@ -237,7 +237,7 @@ color:#fff;
 }
 
 #nav li a:hover {
-	color:#2a1f09;	
+	color:#2a1f09;
 }
 
 #nav li.last {
@@ -351,7 +351,7 @@ color:#594c28;
            list-style: none;
 		   font-size:16px;
        }
-	   
+
         #twitter_update_list li a:hover {
            color: #31353d;
        }
@@ -403,10 +403,10 @@ display:block;
 color:#005288;
 text-decoration:none;
 letter-spacing:1px;
-margin-left:5px; 
+margin-left:5px;
 }
 #sidebar a.on{
-margin-left:0px; 
+margin-left:0px;
 }
 #sidebar a:hover{
 color:#594c28;
@@ -454,7 +454,7 @@ color:#594c28;
 text-decoration:none;
 display:block;
 font-family:"Trebuchet MS", helvetica, sans-serif;
-font-weight:normal; 
+font-weight:normal;
 line-height:15px;
 margin-left:0px;
 letter-spacing:0px;
@@ -893,75 +893,75 @@ heighth:215px;
 float:left;
 }
 #content #merch #five {
-    border: 5px solid #fff;  
+    border: 5px solid #fff;
     height: 100%;
     float: left;
 	margin-right: 8px;
-	position: relative; 
-    width: 272px; 
-    -webkit-box-shadow: 1px 1px 1px 1px #ccc;  
-    -moz-box-shadow: 1px 1px 1px 1px #ccc;  
-    box-shadow: 1px 1px 1px 1px #ccc;  
+	position: relative;
+    width: 272px;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -moz-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
 }
 #content #merch #six {
-    border: 5px solid #fff;  
+    border: 5px solid #fff;
     height: 100%;
     float: left;
 	margin-right: 8px;
-    position: relative; 
-    width: 272px;  
-    -webkit-box-shadow: 1px 1px 1px 1px #ccc;  
-    -moz-box-shadow: 1px 1px 1px 1px #ccc;  
-    box-shadow: 1px 1px 1px 1px #ccc;  
+    position: relative;
+    width: 272px;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -moz-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
 }
 #content #merch #seven {
-    border: 5px solid #fff;  
-    height: 100%;  
-    float: left;  
+    border: 5px solid #fff;
+    height: 100%;
+    float: left;
     margin-right: 5px;
-    position: relative;  
-    width: 562px;  
-    -webkit-box-shadow: 1px 1px 1px 1px #ccc;  
-    -moz-box-shadow: 1px 1px 1px 1px #ccc;  
-    box-shadow: 1px 1px 1px 1px #ccc;  
+    position: relative;
+    width: 562px;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -moz-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
 }
 #content #merch #eight {
-    border: 5px solid #fff;  
+    border: 5px solid #fff;
     height: 100%;
     float: left;
 	margin-right: 8px;
-	position: relative; 
-    width: 396px; 
-    -webkit-box-shadow: 1px 1px 1px 1px #ccc;  
-    -moz-box-shadow: 1px 1px 1px 1px #ccc;  
-    box-shadow: 1px 1px 1px 1px #ccc;  
+	position: relative;
+    width: 396px;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -moz-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
 }
 
 
-.box {  
-    border: 5px solid #fff;  
-    cursor: pointer;  
-    height: 350px;  
-    float: left;  
+.box {
+    border: 5px solid #fff;
+    cursor: pointer;
+    height: 350px;
+    float: left;
     margin-right: 5px;
-    position: relative;  
-    overflow: hidden;  
-    width: 562px;  
-    -webkit-box-shadow: 1px 1px 1px 1px #ccc;  
-    -moz-box-shadow: 1px 1px 1px 1px #ccc;  
-    box-shadow: 1px 1px 1px 1px #ccc;  
+    position: relative;
+    overflow: hidden;
+    width: 562px;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -moz-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
 }
-  
+
 .box img {
-    position: absolute;  
-    left: 0;  
-    -webkit-transition: all 300ms ease-out;  
-    -moz-transition: all 300ms ease-out;  
-    -o-transition: all 300ms ease-out;  
-    -ms-transition: all 300ms ease-out;  
-    transition: all 300ms ease-out;  
-} 
-   
+    position: absolute;
+    left: 0;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+}
+
 .box .caption {
     background-color: #005288;
     position: absolute;
@@ -984,25 +984,25 @@ float:left;
     text-align: center;
 }
 
-.box:hover .simple-caption {  
-    -moz-transform: translateY(-100%);  
-    -o-transform: translateY(-100%);  
-    -webkit-transform: translateY(-100%);  
-    transform: translateY(-100%);  
+.box:hover .simple-caption {
+    -moz-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
 }
 
-.box-2 {  
-    border: 5px solid #fff;  
-    cursor: pointer;  
-    height: 300px;  
+.box-2 {
+    border: 5px solid #fff;
+    cursor: pointer;
+    height: 300px;
     float: left;
 	margin-right: 8px;
-    position: relative;  
-    overflow: hidden;  
-    width: 272px;  
-    -webkit-box-shadow: 1px 1px 1px 1px #ccc;  
-    -moz-box-shadow: 1px 1px 1px 1px #ccc;  
-    box-shadow: 1px 1px 1px 1px #ccc;  
+    position: relative;
+    overflow: hidden;
+    width: 272px;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -moz-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
 }
 
 .box-2 img {
@@ -1013,8 +1013,8 @@ float:left;
 	-o-transition: all 300ms ease-out;
 	-ms-transition: all 300ms ease-out;
 	transition: all 300ms ease-out;
-} 
-   
+}
+
 .box-2 .caption {
     background-color: #005288;
     position: absolute;
@@ -1037,36 +1037,36 @@ float:left;
     text-align: center;
 }
 
-.box-2:hover .simple-caption {  
-    -moz-transform: translateY(-100%);  
-    -o-transform: translateY(-100%);  
-    -webkit-transform: translateY(-100%);  
-    transform: translateY(-100%);  
+.box-2:hover .simple-caption {
+    -moz-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
 }
 
-.box-3 {  
-    border: 5px solid #fff;  
-    cursor: pointer;  
-    height: 300px;  
-    float: left; 
-    position: relative;  
-    overflow: hidden;  
-    width: 272px;  
-    -webkit-box-shadow: 1px 1px 1px 1px #ccc;  
-    -moz-box-shadow: 1px 1px 1px 1px #ccc;  
-    box-shadow: 1px 1px 1px 1px #ccc;  
+.box-3 {
+    border: 5px solid #fff;
+    cursor: pointer;
+    height: 300px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 272px;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -moz-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
 }
 
 .box-3 img {
-    position: absolute;  
-    left: 0;  
-    -webkit-transition: all 300ms ease-out;  
-    -moz-transition: all 300ms ease-out;  
-    -o-transition: all 300ms ease-out;  
-    -ms-transition: all 300ms ease-out;  
-    transition: all 300ms ease-out;  
-} 
-   
+    position: absolute;
+    left: 0;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+}
+
 .box-3 .caption {
     background-color: #005288;
     position: absolute;
@@ -1089,33 +1089,33 @@ float:left;
     text-align: center;
 }
 
-.box-3:hover .simple-caption {  
-    -moz-transform: translateY(-100%);  
-    -o-transform: translateY(-100%);  
-    -webkit-transform: translateY(-100%);  
-    transform: translateY(-100%);  
+.box-3:hover .simple-caption {
+    -moz-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
 }
 
-div.wrapper{  
-    float:left; /* important */  
-    position:relative; /* important(so we can absolutely position the description div */  
-}  
-div.description{  
-    position:absolute; /* absolute position (so we can position it where we want)*/  
-    bottombottom:0px; /* position will be on bottom */  
-    left:0px;  
-    width:100%;  
-    /* styling bellow */  
-    background-color:black;  
-    font-family: 'tahoma';  
-    font-size:15px;  
-    color:white;  
-    opacity:0.6; /* transparency */  
-    filter:alpha(opacity=60); /* IE transparency */  
-}  
-p.description_content{  
-    padding:10px;  
-    margin:0px;  
+div.wrapper{
+    float:left; /* important */
+    position:relative; /* important(so we can absolutely position the description div */
+}
+div.description{
+    position:absolute; /* absolute position (so we can position it where we want)*/
+    bottombottom:0px; /* position will be on bottom */
+    left:0px;
+    width:100%;
+    /* styling bellow */
+    background-color:black;
+    font-family: 'tahoma';
+    font-size:15px;
+    color:white;
+    opacity:0.6; /* transparency */
+    filter:alpha(opacity=60); /* IE transparency */
+}
+p.description_content{
+    padding:10px;
+    margin:0px;
 }
 
 
