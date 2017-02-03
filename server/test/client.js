@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const knex = require('../database/dbConfig');
-const lib = require('../lib/clientlib');
+const lib = require('../lib/customerlib');
 
 const TEST_CUSTOMER_1 = {
     id: 1000,
@@ -114,7 +114,7 @@ describe('Client router', () => {
             lib
                 .addCustomer(TEST_CUSTOMER_2)
                 .then(id => {
-                    console.log('ID', id);
+                    console.log('Posting happened');
                     lib.getCustomerById(id).then(customer => {
                         expect(customer.name).to.equal(TEST_CUSTOMER_2.name);
                         expect(customer.address).to.equal(
@@ -137,6 +137,7 @@ describe('Client router', () => {
             lib
                 .editCustomer(TEST_CUSTOMER_2_V2)
                 .then(() => {
+                    console.log('Update happened');
                     lib
                         .getCustomerById(TEST_CUSTOMER_2_V2.id)
                         .then(customer => {
@@ -150,6 +151,29 @@ describe('Client router', () => {
                         .catch(err => console.log(err));
                 })
                 .catch(err => console.log(err));
+        });
+    });
+    describe('Delete a customer', () => {
+        it('Deletes a customer from the DB', done => {
+            lib
+                .deleteCustomer(1000)
+                .then(() => {
+                    console.log('Deleted happened');
+                    lib
+                        .getCustomerById(1000)
+                        .then(customer => {
+                            expect(customer).to.be.empty;
+                            done();
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            done();
+                        });
+                })
+                .catch(err => {
+                    console.log(err);
+                    done();
+                });
         });
     });
     after(done => {
