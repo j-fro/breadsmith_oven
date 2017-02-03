@@ -16,6 +16,8 @@ app.listen(app.get('port'), () => {
 
 //require routers
 const indexRouter = require('./routes/index');
+const productRouter = require('./routes/product');
 
 //routers
 app.use('/', indexRouter);
+app.use('/', productRouter);
