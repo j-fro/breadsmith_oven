@@ -1,5 +1,5 @@
 const express = require('express');
-const lib = require('../lib/clientlib');
+const lib = require('../lib/customerlib');
 
 let router = express.Router();
 
@@ -33,8 +33,13 @@ router.put('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    // Not implemented
-    res.sendStatus(501);
+    lib
+        .deleteCustomer(req.params.id)
+        .then(() => res.sendStatus(200))
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;
