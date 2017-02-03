@@ -1,7 +1,7 @@
 myApp.controller('clientController', ['$scope', '$http', '$window',
     function($scope, $http, $window) {
         console.log('in clientController');
-        $scope.XYZ = function() {
+        $scope.order = function() {
             $http({
                 method: 'GET',
                 url: '/',
