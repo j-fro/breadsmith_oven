@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
             price: req.body.price
         }).into('products')
         .then(function() {
-            sendStatus(200);
+            res.sendStatus(200);
         }).catch(function(error) {
             console.log('error in post:', error);
             res.sendStatus(500);
@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
 }); //end router.post
 
 router.put('/', (req, res) => {
-
+  console.log('updating:');
 }); //end router.put
 
 router.delete('/:id', (req, res) => {
