@@ -31,7 +31,14 @@ router.post('/', (req, res) => {
 }); //end router.post
 
 router.put('/', (req, res) => {
-  console.log('updating:');
+  console.log('updating:', req.body.id);
+  knex.update(req.body).where('id', req.body.id).from('products')
+  .then(function(){
+    res.sendStatus(200);
+  }).catch(function(error){
+    console.log('error updating:', error);
+    res.sendStatus(500);
+  });
 }); //end router.put
 
 router.delete('/:id', (req, res) => {
