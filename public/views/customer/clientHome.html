@@ -7,8 +7,9 @@
   <body ng-controller = 'clientController'>
     <h1>'breadsmith logo'</h1>
     <h3 id='welcomeBack'>Welcome back {{customers.name}}!</h3>
-
-
+    <div ng-repeat='product in products'>
+      {{product.name}}{{product.quantity}}
+    </div>
     <input type="text" placeholer="comments/questions">
     <button type="button" ng-click=""></button>
 
