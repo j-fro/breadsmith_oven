@@ -15,7 +15,7 @@ app.listen(app.get('port'), () => {
 });
 
 //require routers
-const indexRouter = require('.routes/index');
+const indexRouter = require('./routes/index');
 
 
 //routers
