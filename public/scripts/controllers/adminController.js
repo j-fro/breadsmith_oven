@@ -1,11 +1,12 @@
 myApp.controller('adminController', ['$scope', '$http', '$window',
     function($scope, $http, $window) {
         console.log('in adminController');
-        $scope.XYZ = function() {
+        var data = "data";
+        $scope.data = function() {
             $http({
                 method: 'POST',
                 url: '/',
-                data: XYZ
+                data: data,
             }).then(function successCallback(response) {
                 console.log(response);
             }, function errorCallback(error) {
