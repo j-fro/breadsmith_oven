@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     lib
-        .getCustomerById(custId)
+        .getCustomerById(req.params.id)
         .then(customer => res.send(customer))
         .catch(err => {
             console.log(err);
