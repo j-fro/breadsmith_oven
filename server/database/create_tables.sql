@@ -22,7 +22,7 @@ CREATE TABLE products (
 CREATE TABLE permitted_products (
     id SERIAL PRIMARY KEY,
     customer_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
-    product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE
+    product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
     regular BOOLEAN NOT NULL DEFAULT false
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE orders (
 CREATE TABLE order_items (
     id SERIAL PRIMARY KEY,
     order_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
-    product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE
+    product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,2
     qty INTEGER NOT NULL
 );
 
