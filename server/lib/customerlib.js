@@ -84,10 +84,22 @@ function editCustomer(customer) {
     });
 }
 
+function deleteCustomer(custId) {
+    return new Promise((resolve, reject) => {
+        knex
+            .from('customers')
+            .where('id', custId)
+            .delete()
+            .then(() => resolve())
+            .catch(err => reject(err));
+    });
+}
+
 module.exports = {
     getCustomerById: getCustomerById,
     addCustomer: addCustomer,
-    editCustomer: editCustomer
+    editCustomer: editCustomer,
+    deleteCustomer: deleteCustomer
 };
 
 function aggregateCustomer(results) {
