@@ -3,7 +3,7 @@ myApp.controller('clientController', ['$scope', '$http', '$window',
         console.log('in clientController');
         $scope.XYZ = function() {
             $http({
-                method: 'POST',
+                method: 'GET',
                 url: '/',
                 data: XYZ
             }).then(function successCallback(response) {

@@ -11,7 +11,6 @@
 * GET /report/invoice -> file.CSV
 
 
-
 **View Customers**
 ----
 Gets information for all customers (for a privileged account) or a specific customer associated with a client account
