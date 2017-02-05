@@ -4,8 +4,10 @@ const lib = require('../lib/customerlib');
 let router = express.Router();
 
 router.get('/', (req, res) => {
-    // Not implemented
-    res.sendStatus(501);
+    lib.getAllCustomers().then(customers => res.send(customers)).catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+    });
 });
 
 router.get('/:id', (req, res) => {
