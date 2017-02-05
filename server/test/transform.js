@@ -1,3 +1,5 @@
+/* global describe it */
+
 const expect = require('chai').expect;
 const transform = require('../util/transform');
 
@@ -117,11 +119,7 @@ describe('Data transforms', () => {
                     }
                 ];
                 let transformed = transform.transformOrders(testInput);
-                for (let i = 0; i < transformed.length; i++) {
-                    console.log('Transformed:', transformed[i]);
-                    console.log('Testing:', testOutput[i]);
-                    expect(transformed[i]).to.equal(testOutput[i]);
-                }
+                expect(transformed).to.deep.equal(testOutput);
             }
         );
     });
