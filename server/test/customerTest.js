@@ -3,10 +3,10 @@ const knex = require('../database/dbConfig');
 const lib = require('../lib/customerlib');
 
 const TEST_CUSTOMER_1 = {
-    id: 1000,
     name: "Frank's Hotel",
     address: '221 Hotel Ave, Hotelville MN 55123',
-    last_order_date: new Date()
+    id: 1000,
+    last_order_date: null
 };
 const TEST_PRODUCT_1 = {
     id: 1000,
@@ -36,10 +36,18 @@ const TEST_CUSTOMER_2_V2 = {
     name: "Joseph's Bistro",
     products: [TEST_PRODUCT_2, TEST_PRODUCT_3]
 };
+const TEST_CUSTOMER_3 = {
+    name: "Amos's Diner",
+    address: '1234 Five Street',
+    id: 1004,
+    last_order_date: null
+};
 
-describe('Client router', () => {
+describe('Customer router', () => {
     before(done => {
-        let insertCust = knex.insert(TEST_CUSTOMER_1).into('customers');
+        let insertCust = knex
+            .insert([TEST_CUSTOMER_1, TEST_CUSTOMER_3])
+            .into('customers');
         let insertProd = knex
             .insert([TEST_PRODUCT_1, TEST_PRODUCT_2, TEST_PRODUCT_3])
             .into('products');
@@ -57,6 +65,11 @@ describe('Client router', () => {
                             id: 1001,
                             customer_id: 1000,
                             product_id: 1001,
+                            regular: true
+                        },
+                        {
+                            customer_id: 1004,
+                            product_id: 1000,
                             regular: false
                         }
                     ])
@@ -72,35 +85,86 @@ describe('Client router', () => {
                 done();
             });
     });
+    describe('Get all customers', () => {
+        it('Gets all customers from the DB', done => {
+            let testCustomer = {
+                id: 1000,
+                name: "Frank's Hotel",
+                address: '221 Hotel Ave, Hotelville MN 55123',
+                last_order_date: null,
+                products: [
+                    {
+                        id: 1000,
+                        type: 'wheat bread',
+                        variety: '',
+                        price: 3.65,
+                        regular: true
+                    },
+                    {
+                        id: 1001,
+                        type: 'dinner roll',
+                        variety: 'dozen',
+                        price: 4.75,
+                        regular: true
+                    }
+                ]
+            };
+            let testCustomer2 = {
+                id: 1004,
+                name: "Amos's Diner",
+                address: '1234 Five Street',
+                last_order_date: null,
+                products: [
+                    {
+                        id: 1000,
+                        type: 'wheat bread',
+                        variety: '',
+                        price: 3.65,
+                        regular: false
+                    }
+                ]
+            };
+            lib
+                .getAllCustomers()
+                .then(customers => {
+                    console.log('Get all happened');
+                    expect(customers).to.deep.equal([
+                        testCustomer,
+                        testCustomer2
+                    ]);
+                    done();
+                })
+                .catch(err => console.log(err));
+        });
+    });
     describe('Get /1000', () => {
         it('Gets a customer with id 1000', done => {
             let testCustomer = {
                 id: 1000,
                 name: "Frank's Hotel",
                 address: '221 Hotel Ave, Hotelville MN 55123',
-                last_order_date: new Date(),
+                last_order_date: null,
                 products: [
-                    {id: 1000, type: 'wheat bread', variety: '', price: 3.65},
+                    {
+                        id: 1000,
+                        type: 'wheat bread',
+                        variety: '',
+                        price: 3.65,
+                        regular: true
+                    },
                     {
                         id: 1001,
                         type: 'dinner roll',
                         variety: 'dozen',
-                        price: 4.75
+                        price: 4.75,
+                        regular: true
                     }
                 ]
             };
             lib
                 .getCustomerById(1000)
                 .then(customer => {
-                    expect(customer.id).to.equal(testCustomer.id);
-                    expect(customer.name).to.equal(testCustomer.name);
-                    expect(customer.address).to.equal(testCustomer.address);
-                    expect(customer.products[0].id).to.equal(
-                        testCustomer.products[0].id
-                    );
-                    expect(customer.products[1].id).to.equal(
-                        testCustomer.products[1].id
-                    );
+                    expect(customer).to.deep.equal(testCustomer);
                     done();
                 })
                 .catch(err => {
@@ -153,6 +217,7 @@ describe('Client router', () => {
                 .catch(err => console.log(err));
         });
     });
+
     describe('Delete a customer', () => {
         it('Deletes a customer from the DB', done => {
             lib
@@ -176,6 +241,7 @@ describe('Client router', () => {
                 });
         });
     });
+
     after(done => {
         let deletecust = knex.from('customers').delete();
         let delete1000 = knex.from('products').delete();
