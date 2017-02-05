@@ -23,6 +23,28 @@ function getCustomerById(custId) {
     });
 }
 
+function getAllCustomers() {
+    return new Promise((resolve, reject) => {
+        knex
+            .select(
+                'customers.id',
+                'name',
+                'address',
+                'type',
+                'variety',
+                'price',
+                'regular',
+                'last_order_date',
+                'products.id as product_id'
+            )
+            .from('customers')
+            .join('permitted_products', 'customers.id', 'customer_id')
+            .join('products', 'product_id', 'products.id')
+            .then(customers => resolve(separateCustomers(customers)))
+            .catch(err => reject(err));
+    });
+}
+
 function addCustomer(customer) {
     return new Promise((resolve, reject) => {
         let inserts = [];
@@ -97,10 +119,32 @@ function deleteCustomer(custId) {
 
 module.exports = {
     getCustomerById: getCustomerById,
+    getAllCustomers: getAllCustomers,
     addCustomer: addCustomer,
     editCustomer: editCustomer,
     deleteCustomer: deleteCustomer
 };
+
+function separateCustomers(customers) {
+    customers = customers.reduce(
+        (arr, cust) => {
+            // arr.forEach(row => {
+            //     if (row[0] && row[0].id === cust.id) {
+            //         row.push(cust);
+            //     }
+            // });
+            let customerRow = arr.find(row => row[0].id === cust.id);
+            if (customerRow) {
+                customerRow.push(cust);
+            } else {
+                arr.push([cust]);
+            }
+            return arr;
+        },
+        []
+    );
+    return customers.map(cust => aggregateCustomer(cust));
+}
 
 function aggregateCustomer(results) {
     return results.reduce(
