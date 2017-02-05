@@ -33,7 +33,8 @@ CREATE TABLE orders (
     order_date DATE NOT NULL,
     order_time TIME NOT NULL,
     status VARCHAR(10),
-    comments TEXT
+    comments TEXT,
+    customer_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE
 );
 
 CREATE TABLE order_items (
