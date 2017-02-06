@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec",
+    "test": "export DATABASE_URL=\"postgres://localhost:5432/breadsmith_test\" && ./node_modules/.bin/mocha --reporter spec server/test && export DATABASE_URL=\"\"",
     "start": "node server/app.js"
   },
   "keywords": [],
