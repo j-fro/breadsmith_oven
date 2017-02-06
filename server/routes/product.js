@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
             console.log('error in get:', error);
             res.sendStatus(500);
         });
-}); //end router.get
+}); //end router.get (all)
 
 router.post('/', (req, res) => {
     console.log('adding product', req.body);
