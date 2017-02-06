@@ -92,12 +92,44 @@ describe('Order CRUD functions', () => {
                     lib
                         .getOrders()
                         .then(result => {
+                            expect(result).to.deep.include(TEST_ORDER_1_EDITED);
+                            done();
+                        })
+                        .catch(err => done(err));
+                })
+                .catch(err => done(err));
+        });
+    });
+    describe('confirmOrder', () => {
+        it('Confirms an existing order', done => {
+            lib
+                .confirmOrder(TEST_ORDER_1_EDITED.id)
+                .then(() => {
+                    lib
+                        .getOrders()
+                        .then(result => {
                             let orderToCheck = result.find(
                                 ord => ord.id === TEST_ORDER_1_EDITED.id
                             );
-                            expect(orderToCheck).to.deep.equal(
+                            expect(orderToCheck.status).to.equal('confirmed');
+                            done();
+                        })
+                        .catch(err => done(err));
+                })
+                .catch(err => done(err));
+        });
+    });
+    describe('deleteOrder', () => {
+        it('Deletes an existing order', done => {
+            lib
+                .deleteOrder(TEST_ORDER_1_EDITED.id)
+                .then(() => {
+                    lib
+                        .getOrders()
+                        .then(result => {
+                            expect(result).to.not.deep.include([
                                 TEST_ORDER_1_EDITED
-                            );
+                            ]);
                             done();
                         })
                         .catch(err => done(err));
