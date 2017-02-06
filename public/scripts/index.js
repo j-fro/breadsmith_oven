@@ -3,39 +3,51 @@ console.log("NG");
 myApp.config(["$routeProvider", function($routeProvider){
   $routeProvider
   .when("/admin", {
-    templateUrl: 'views/Admin/adminHome.html',
-    controller : 'adminController'
-  })
-  .when("/newProduct", {
-    templateUrl: 'views/Admin/createProduct.html',
+    templateUrl: 'views/admin/adminHome.html',
     controller : 'adminController'
   })
   .when("/newOrder", {
-    templateUrl: 'views/Admin/createOrder.html',
+    templateUrl: 'views/admin/newOrder.html',
     controller : 'adminController'
   })
-  .when("/editProduct", {
-    templateUrl: 'views/Admin/editProduct.html',
-    controller : 'adminController'
-  })
-  .when("/editOrder", {
-    templateUrl: 'views/Admin/editOrder.html',
-    controller : 'adminController'
-  })
-  .when("/product", {
-    templateUrl: 'views/Admin/product.html',
-    controller : 'adminController'
-  })
-  .when("/orders", {
-    templateUrl: 'views/Admin/orders.html',
+  .when("/existingOrders", {
+    templateUrl: 'views/admin/existingOrders.html',
     controller : 'adminController'
   })
   .when("/reports", {
-    templateUrl: 'views/Admin/reports.html',
+    templateUrl: 'views/admin/reports.html',
+    controller : 'adminController'
+  })
+  .when("/customers", {
+    templateUrl: 'views/admin/customers.html',
+    controller : 'adminController'
+  })
+  .when("/products", {
+    templateUrl: 'views/admin/products.html',
     controller : 'adminController'
   })
   .when("/staff", {
-    templateUrl: 'views/Admin/staff.html',
+    templateUrl: 'views/admin/staff.html',
+    controller : 'adminController'
+  })
+  // .when("/newProduct", {
+  //   templateUrl: 'views/Admin/createProduct.html',
+  //   controller : 'adminController'
+  // })
+  //
+  // .when("/editProduct", {
+  //   templateUrl: 'views/Admin/editProduct.html',
+  //   controller : 'adminController'
+  // })
+  // .when("/editOrder", {
+  //   templateUrl: 'views/Admin/editOrder.html',
+  //   controller : 'adminController'
+  // })
+  //
+  //
+
+  .when("/customer", {
+    templateUrl: 'views/customer/customerHome.html',
     controller : 'adminController'
   })
   .otherwise({
