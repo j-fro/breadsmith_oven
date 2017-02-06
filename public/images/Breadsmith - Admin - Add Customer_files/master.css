@@ -1,0 +1,14 @@
+#wrapperInside {
+  padding:15px 15px 15px 15px;
+  border: 2px #e1dfd7 solid;
+  text-align:center;
+  display: inline-block;
+  margin-top: 25px;
+  width: 890px;
+  /*margin: 100px 50px 50px 50px;*/
+  /*vertical-align:middle;*/
+  /*position:absolute;*/
+  /*top:50%;*/
+  /*right:0;*/
+  /*left:0;*/
+}

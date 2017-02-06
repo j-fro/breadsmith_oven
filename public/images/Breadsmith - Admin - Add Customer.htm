@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- saved from url=(0120)file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/views/Admin/addClient.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <title>Breadsmith - Admin - Add Customer</title>
+    <meta name="Description" content="Breadsmith uses the highest quality ingredients to create hand-crafted breads made from scratch and baked fresh daily.">
+    <meta name="Keywords" content="Breadsmith, Minnesota, bread, muffins, scones, rolls, whole wheat, sourdough, ciabatta, baguette, boule, Challah, Babka, stollen, soda bread, rye, pumperknickel, st paul, saint paul, Minnetonka, edina, Wayzata, bakery, dough, cookies">
+    
+    <link rel="shortcut icon" href="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/images/favicon.ico">
+    <link rel="stylesheet" href="./Breadsmith - Admin - Add Customer_files/master.css">
+    <link rel="stylesheet" href="./Breadsmith - Admin - Add Customer_files/style.css">
+    <link rel="stylesheet" href="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/views/vendors/bootstrap.min.css">
+    <script src="./Breadsmith - Admin - Add Customer_files/angular.min.js" charset="utf-8"></script>
+    <script src="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/scripts/controllers/adminClientController.js" charset="utf-8"></script>
+</head>
+
+<body ng-app="myApp">
+    <div class="container-fluid" ng-controller="adminCustomerController">
+        <div id="wrapperall">
+
+            <div id="banner">
+                <a href="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/views/Admin/index.html"><img src="./Breadsmith - Admin - Add Customer_files/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo"></a>
+                <div id="topwrapper">
+                    <div id="signup"><a href="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/views/Admin/login.html">LOG IN / SIGN UP</a></div>
+                    <!-- <div id="location"><a href="edina.html">EDINA</a> | <a href="minnetonka.html">MINNETONKA</a> | <a href="stpaul.html">ST. PAUL</a></div> -->
+                </div>
+            </div>
+
+            <div id="nav">
+                <ul>
+                    <li><a href="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/views/Admin/index.html">HOME</a></li>
+                    <li><a href="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/views/Admin/neworders.html">NEW ORDERS</a></li>
+                    <li><a href="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/views/Admin/existingorders.html">EXISTING ORDERS</a></li>
+                    <li><a href="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/views/Admin/reports.html">REPORTS </a></li>
+                    <li><a href="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/views/Admin/clients.html">CLIENTS</a></li>
+                    <li><a href="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/views/Admin/products.html">PRODUCTS</a></li>
+                    <li><a href="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/views/Admin/staff.html">STAFF</a></li>
+                    <li><a href="file:///Users/johnamakye/Documents/primeAcademy/groupProjectBreadSmith/breadsmith_oven/public/views/Admin/contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+            <div id="wrapper">
+              <div id="wrapperInside">
+                <!-- <form ng-repeat="customer in customers"> -->
+                <form>
+                    <label for="customerName">Name:</label>
+                    <input type="text" name="customerName" value="" placeholder="Name" ng-model="customerName">
+                    <label for="customerAddress">Address:</label>
+                    <input type="text" name="customerAddress" value="" placeholder="Address" ng-model="customerAddress">
+                    <label for="customerNumber">Number:</label>
+                    <input type="number" name="customerNumber" value="" placeholder="Phone Number" ng-model="customerNumber">
+                    <!-- do we need email if they are already logging in with gmail-->
+                    <label for="customerEmail">Email:</label>
+                    <input type="text" name="customerEmail" value="" placeholder="Email" ng-model="customerEmail">
+                    <input type="button" name="Submit" value="Submit">
+                </form>
+              </div>
+</div>
+
+        </div>
+    </div>
+
+
+
+</body></html>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Breadsmith - Admin - Add Client</title>
+    <title>Breadsmith - Admin - Add Customer</title>
     <meta name="Description" content="Breadsmith uses the highest quality ingredients to create hand-crafted breads made from scratch and baked fresh daily." />
     <meta name="Keywords" content="Breadsmith, Minnesota, bread, muffins, scones, rolls, whole wheat, sourdough, ciabatta, baguette, boule, Challah, Babka, stollen, soda bread, rye, pumperknickel, st paul, saint paul, Minnetonka, edina, Wayzata, bakery, dough, cookies"
     />
@@ -16,7 +16,7 @@
 </head>
 
 <body ng-app="myApp">
-    <div class="container-fluid" ng-controller="adminClientController">
+    <div class="container-fluid" ng-controller="adminCustomerController">
         <div id="wrapperall">
 
             <div id="banner">
@@ -39,8 +39,8 @@
                     <li><a href="contact.html">CONTACT</a></li>
                 </ul>
             </div>
-
             <div id="wrapper">
+              <div id="wrapperInside">
                 <!-- <form ng-repeat="customer in customers"> -->
                 <form>
                     <label for="customerName">Name:</label>
@@ -51,10 +51,11 @@
                     <input type="number" name="customerNumber" value="" placeholder="Phone Number" ng-model="customerNumber"/>
                     <!-- do we need email if they are already logging in with gmail-->
                     <label for="customerEmail">Email:</label>
-                    <input type="number" name="customerEmail" value="" placeholder="Email" ng-model="customerEmail"/>
+                    <input type="text" name="customerEmail" value="" placeholder="Email" ng-model="customerEmail"/>
                     <input type="button" name="Submit" value="Submit"/>
                 </form>
-            </div>
+              </div>
+</div>
 
         </div>
     </div>
