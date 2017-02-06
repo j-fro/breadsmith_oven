@@ -57,9 +57,38 @@ function addOrder(order) {
     });
 }
 
+function editOrder(order) {
+    return new Promise((resolve, reject) => {
+        let delete_items = knex
+            .from('order_items')
+            .where('order_id', order.order_id)
+            .delete();
+        let insert_items = knex
+            .insert(
+                order.products.map(prod => {
+                    return {
+                        order_id: order.order_id,
+                        product_id: prod.id,
+                        qty: prod.qty
+                    };
+                })
+            )
+            .into('order_items');
+        order.products = undefined;
+        let update = knex
+            .update(order)
+            .from('orders')
+            .where('id', order.order_id);
+        Promise.all([delete_items, insert_items, update])
+            .then(() => resolve())
+            .catch(err => reject(err));
+    });
+}
+
 module.exports = {
     addOrder: addOrder,
     getOrders: getOrders,
+    editOrder: editOrder,
     _aggregateOrder: aggregateOrder,
     _separateOrders: separateOrders
 };
@@ -83,7 +112,7 @@ function aggregateOrder(results) {
             });
             return obj;
         },
-        { products: [] }
+        {products: []}
     );
 }
 
