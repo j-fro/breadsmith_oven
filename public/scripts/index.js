@@ -1,5 +1,48 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngRoute']);
 console.log("NG");
+myApp.config(["$routeProvider", function($routeProvider){
+  $routeProvider
+  .when("/admin", {
+    templateUrl: 'views/Admin/adminHome.html',
+    controller : 'adminController'
+  })
+  .when("/newProduct", {
+    templateUrl: 'views/Admin/createProduct.html',
+    controller : 'adminController'
+  })
+  .when("/newOrder", {
+    templateUrl: 'views/Admin/createOrder.html',
+    controller : 'adminController'
+  })
+  .when("/editProduct", {
+    templateUrl: 'views/Admin/editProduct.html',
+    controller : 'adminController'
+  })
+  .when("/editOrder", {
+    templateUrl: 'views/Admin/editOrder.html',
+    controller : 'adminController'
+  })
+  .when("/product", {
+    templateUrl: 'views/Admin/product.html',
+    controller : 'adminController'
+  })
+  .when("/orders", {
+    templateUrl: 'views/Admin/orders.html',
+    controller : 'adminController'
+  })
+  .when("/reports", {
+    templateUrl: 'views/Admin/reports.html',
+    controller : 'adminController'
+  })
+  .when("/staff", {
+    templateUrl: 'views/Admin/staff.html',
+    controller : 'adminController'
+  })
+  .otherwise({
+    redirectTo : "/index.html"
+  });
+
+}]);
 
 myApp.controller('indexController', ['$scope', '$http', '$window',
     function($scope, $http, $window) {
