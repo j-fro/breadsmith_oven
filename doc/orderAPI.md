@@ -1,4 +1,4 @@
-# **View All Orders**
+**View All Orders**<br/>
 Admin viewing all the orders for the day or for a specific date.
 
 - **URL**
@@ -61,7 +61,7 @@ Admin viewing all the orders for the day or for a specific date.
       });
   ```
 --------------------------------------------------------------------------------
-**Submit Order**
+**Submit Order**<br/>
 Submission of new order by client or admin.
 
 - **URL**
@@ -100,7 +100,7 @@ Submission of new order by client or admin.
     });
   ```
 --------------------------------------------------------------------------------
-**Update Order**
+**Update Order**<br/>
 Update client order.
 
 - **URL**
@@ -139,7 +139,7 @@ Update client order.
     });
   ```
 --------------------------------------------------------------------------------
-**Submit Order**
+**Submit Order**<br/>
 Submission of new order by client or admin.
 
 - **URL**
@@ -178,7 +178,7 @@ Submission of new order by client or admin.
     });
   ```
 --------------------------------------------------------------------------------
-**Confirm Order**
+**Confirm Order**<br/>
 Update order status to confirmed on button click.
 
 - **URL**
@@ -216,9 +216,8 @@ Update order status to confirmed on button click.
     });
   ```
 --------------------------------------------------------------------------------
-DELETE /order/:id -> 201/401/500
-**Delete Order**
-Delete order.
+**Delete Order**<br/>
+Delete order by order id.
 
 - **URL**
   `/order/:id`
