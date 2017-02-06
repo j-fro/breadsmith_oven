@@ -2,11 +2,6 @@
 * GET / -> index.html
 * GET /login -> 200/401 + {role}
 * GET /logout -> redirect
-* GET /order -> [{all the things}] + 200/401/500
-* POST /order {customer_id, order_items: [], comments} -> {id} + 200/401/500
-* PUT /order -> {a whole order} + 200/401/500
-* PUT /order/confirm/id -> 200/401/500
-* DELETE /order/id -> 200/401/500
 * GET /report/production -> file.CSV
 * GET /report/invoice -> file.CSV
 
