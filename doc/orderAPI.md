@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-# **View All Orders**
-=======
+
 **View All Orders**<br/>
 >>>>>>> 731d8e8acf072768554200a4aa181d9fd8722b3d
 Admin viewing all the orders for the day or for a specific date.
@@ -64,10 +62,7 @@ Admin viewing all the orders for the day or for a specific date.
       }
       });
   ```
---------------------------------------------------------------------------------
-<<<<<<< HEAD
-**Submit Order**
-=======
+
 **Submit Order**<br/>
 >>>>>>> 731d8e8acf072768554200a4aa181d9fd8722b3d
 Submission of new order by client or admin.
@@ -107,10 +102,7 @@ Submission of new order by client or admin.
       }
     });
   ```
---------------------------------------------------------------------------------
-<<<<<<< HEAD
-**Update Order**
-=======
+
 **Update Order**<br/>
 >>>>>>> 731d8e8acf072768554200a4aa181d9fd8722b3d
 Update client order.
@@ -150,10 +142,7 @@ Update client order.
       }
     });
   ```
---------------------------------------------------------------------------------
-<<<<<<< HEAD
-**Submit Order**
-=======
+
 **Submit Order**<br/>
 >>>>>>> 731d8e8acf072768554200a4aa181d9fd8722b3d
 Submission of new order by client or admin.
@@ -193,10 +182,7 @@ Submission of new order by client or admin.
       }
     });
   ```
---------------------------------------------------------------------------------
-<<<<<<< HEAD
-**Confirm Order**
-=======
+
 **Confirm Order**<br/>
 >>>>>>> 731d8e8acf072768554200a4aa181d9fd8722b3d
 Update order status to confirmed on button click.
@@ -235,12 +221,7 @@ Update order status to confirmed on button click.
       }
     });
   ```
---------------------------------------------------------------------------------
-<<<<<<< HEAD
-DELETE /order/:id -> 201/401/500
-**Delete Order**
-Delete order.
-=======
+
 **Delete Order**<br/>
 Delete order by order id.
 >>>>>>> 731d8e8acf072768554200a4aa181d9fd8722b3d
