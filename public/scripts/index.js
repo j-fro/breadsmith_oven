@@ -20,7 +20,7 @@ myApp.config(["$routeProvider", function($routeProvider){
   })
   .when("/customers", {
     templateUrl: 'views/admin/customers.html',
-    controller : 'adminController'
+    controller : 'adminCustomerController'
   })
   .when("/products", {
     templateUrl: 'views/admin/products.html',
