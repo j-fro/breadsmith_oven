@@ -2,22 +2,23 @@
 <html>
 
 <head>
-    <title>Breadsmith - Admin - Edit Client</title>
+    <title>Breadsmith - Admin - Add Customer</title>
     <meta name="Description" content="Breadsmith uses the highest quality ingredients to create hand-crafted breads made from scratch and baked fresh daily." />
     <meta name="Keywords" content="Breadsmith, Minnesota, bread, muffins, scones, rolls, whole wheat, sourdough, ciabatta, baguette, boule, Challah, Babka, stollen, soda bread, rye, pumperknickel, st paul, saint paul, Minnetonka, edina, Wayzata, bakery, dough, cookies"
     />
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="../../images/favicon.ico" />
-    <link rel="stylesheet" href="../../css/master.css">
+    <link rel="stylesheet" href="../../css/master.css" />
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../vendors/bootstrap.min.css">
     <script src="../../vendors/angular.min.js" charset="utf-8"></script>
-    <script src="../../scripts/controllers/adminClientController.js" charset="utf-8"></script>
+    <script src="../../scripts/controllers/adminCustomerController.js" charset="utf-8"></script>
 </head>
 
 <body ng-app="myApp">
-    <div class="container-fluid" ng-controller="adminClientController">
+    <div class="container-fluid" ng-controller="adminCustomerController">
         <div id="wrapperall">
+
             <div id="banner">
                 <a href="index.html"><img src="../../images/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo"></a>
                 <div id="topwrapper">
@@ -32,38 +33,29 @@
                     <li><a href="neworders.html">NEW ORDERS</a></li>
                     <li><a href="existingorders.html">EXISTING ORDERS</a></li>
                     <li><a href="reports.html">REPORTS </a></li>
-                    <li><a href="clients.html">CLIENTS</a></li>
+                    <li><a href="customer.html">CUSTOMER</a></li>
                     <li><a href="products.html">PRODUCTS</a></li>
                     <li><a href="staff.html">STAFF</a></li>
                     <li><a href="contact.html">CONTACT</a></li>
                 </ul>
             </div>
-
             <div id="wrapper">
-                <!-- <table style="width:100%" ng-repeat="customer in customers"> -->
-                <table style="width:100%">
-                    <tr>
-                        <th>Client</th>
-                        <!-- <th>Lastname</th>
-    <th>Age</th> -->
-                    </tr>
-                    <tr>
-                        <td>Jill {{customer.name}}</td>
-                        <td><label for="select"></label>
-                            <input type="button" name="select" value="Select" ng-click="">
-                        </td>
-                        <!-- <td>Smith</td>
-    <td>50</td> -->
-                    </tr>
-                    <tr>
-                        <!-- <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td> -->
-                    </tr>
-                </table>
-                <label for="editCustomer"></label>
-                <input type="button" name="editCustomer" value="Edit Customer" ng-click="">
-            </div>
+              <div id="wrapperInside">
+                <!-- <form ng-repeat="customer in customers"> -->
+                <form>
+                    <label for="customerName"><h2>Name:</h2></label>
+                    <input type="text" name="customerName" value="" placeholder="Name" ng-model="customerName"/>
+                    <label for="customerAddress"><h2>Address:<h2></label>
+                    <input type="text" name="customerAddress" value="" placeholder="Address" ng-model="customerAddress"/>
+                    <label for="customerNumber"><h2>Number:</h2></label>
+                    <input type="number" name="customerNumber" value="" placeholder="Phone Number" ng-model="customerNumber"/>
+                    <!-- do we need email if they are already logging in with gmail-->
+                    <label for="customerEmail"><h2>Email:</h2></label>
+                    <input type="text" name="customerEmail" value="" placeholder="Email" ng-model="customerEmail"/>
+                    <input type="button" name="Submit" value="Submit"/>
+                </form>
+              </div>
+</div>
 
         </div>
     </div>

@@ -1,9 +1,9 @@
 var myApp = angular.module('myApp', []);
 console.log("NG");
 
-myApp.controller('adminClientController', ['$scope', '$http', '$window',
+myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
     function($scope, $http, $window) {
-        console.log('in adminClientController');
+        console.log('in adminCustomerController');
 
         $scope.viewCustomer = function() {
             $http({
