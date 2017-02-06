@@ -67,6 +67,8 @@ describe('Order CRUD functions', () => {
                         .getOrders()
                         .then(result => {
                             TEST_ORDER_1_POST.id = result[1].id;
+                            TEST_ORDER_1_EDIT.id = result[1].id;
+                            TEST_ORDER_1_EDITED.id = result[1].id;
                             expect(result).to.deep.equal([
                                 TEST_ORDER_2_POST,
                                 TEST_ORDER_1_POST
@@ -84,7 +86,23 @@ describe('Order CRUD functions', () => {
     });
     describe('editOrder', () => {
         it('Edits an order in the DB', done => {
-            lib.editOrder();
+            lib
+                .editOrder(TEST_ORDER_1_EDIT)
+                .then(() => {
+                    lib
+                        .getOrders()
+                        .then(result => {
+                            let orderToCheck = result.find(
+                                ord => ord.id === TEST_ORDER_1_EDITED.id
+                            );
+                            expect(orderToCheck).to.deep.equal(
+                                TEST_ORDER_1_EDITED
+                            );
+                            done();
+                        })
+                        .catch(err => done(err));
+                })
+                .catch(err => done(err));
         });
     });
     after(done => {
@@ -128,12 +146,36 @@ const TEST_PRODUCT_2_QTY = {
     qty: 1
 };
 
+const TEST_PRODUCT_2_QTY_EDITED = {
+    id: 2001,
+    type: 'dinner roll',
+    variety: 'dozen',
+    price: 4.75,
+    qty: 3
+};
+
 const TEST_ORDER_1_PRE = {
     customer_id: 2000,
     created: new Date(2000, 1, 1, 0, 0, 0, 0),
     comments: "I'm a comment",
     status: 'placed',
     products: [TEST_PRODUCT_1_QTY, TEST_PRODUCT_2_QTY]
+};
+
+const TEST_ORDER_1_EDIT = {
+    customer_id: 2000,
+    comments: 'Better comments',
+    products: [TEST_PRODUCT_2_QTY_EDITED]
+};
+
+const TEST_ORDER_1_EDITED = {
+    customer_id: 2000,
+    created: new Date(2000, 1, 1, 0, 0, 0, 0),
+    total_qty: 3,
+    total_cost: 14.25,
+    comments: 'Better comments',
+    status: 'placed',
+    products: [TEST_PRODUCT_2_QTY_EDITED]
 };
 
 const TEST_ORDER_1_POST = {
