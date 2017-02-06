@@ -30,8 +30,7 @@ CREATE TABLE IF NOT EXISTS  orders (
     id SERIAL PRIMARY KEY,
     total_qty INTEGER NOT NULL,
     total_cost REAL NOT NULL,
-    order_date DATE NOT NULL,
-    order_time TIME NOT NULL,
+    created TIMESTAMP,
     status VARCHAR(10),
     comments TEXT,
     customer_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE
