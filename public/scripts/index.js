@@ -3,39 +3,51 @@ console.log("NG");
 myApp.config(["$routeProvider", function($routeProvider){
   $routeProvider
   .when("/admin", {
-    templateUrl: 'views/Admin/adminHome.html',
+    templateUrl: 'views/admin/adminHome.html',
     controller : 'adminController'
   })
+  .when("/viewCustomer", {
+    templateUrl: 'views/admin/viewCustomer.html',
+    controller: 'adminCustomerController'
+  })
+  .when("/addCustomer", {
+    templateUrl: 'views/admin/addCustomer.html',
+    controller: 'adminCustomerController'
+  })
+  .when("/editCustomer", {
+    templateUrl: 'views/admin/editCustomer.html',
+    controller: 'adminCustomerController'
+  })
   .when("/newProduct", {
-    templateUrl: 'views/Admin/createProduct.html',
+    templateUrl: 'views/admin/newProduct.html',
     controller : 'adminController'
   })
   .when("/newOrder", {
-    templateUrl: 'views/Admin/createOrder.html',
+    templateUrl: 'views/admin/createOrder.html',
     controller : 'adminController'
   })
   .when("/editProduct", {
-    templateUrl: 'views/Admin/editProduct.html',
+    templateUrl: 'views/admin/editProduct.html',
     controller : 'adminController'
   })
   .when("/editOrder", {
-    templateUrl: 'views/Admin/editOrder.html',
+    templateUrl: 'views/admin/editOrder.html',
     controller : 'adminController'
   })
   .when("/product", {
-    templateUrl: 'views/Admin/product.html',
+    templateUrl: 'views/admin/product.html',
     controller : 'adminController'
   })
   .when("/orders", {
-    templateUrl: 'views/Admin/orders.html',
+    templateUrl: 'views/admin/orders.html',
     controller : 'adminController'
   })
   .when("/reports", {
-    templateUrl: 'views/Admin/reports.html',
+    templateUrl: 'views/admin/reports.html',
     controller : 'adminController'
   })
   .when("/staff", {
-    templateUrl: 'views/Admin/staff.html',
+    templateUrl: 'views/admin/staff.html',
     controller : 'adminController'
   })
   .otherwise({
