@@ -7,19 +7,15 @@
     <link rel="stylesheet" href="../css/master.css">
     <link rel="stylesheet" href="../css/style.css">
     <!-- <link rel="stylesheet" href="../vendors/bootstrap.min.css"> -->
-    <script src="../vendors/angular.min.js" charset="utf-8"></script>
+    <script src="../vendors/angular.js" charset="utf-8"></script>
+    <script src="../vendors/angular-route.js" charset="utf-8"></script>
     <script src="../scripts/index.js" charset="utf-8"></script>
 </head>
 
-<body>
-  <div class="container-fluid">
-    <h1>Login</h1>
-    <label for="username"></label>
-    <input type="text" name="username" value="" placeholder="username">
-    <label for="password"></label>
-    <input type="text" name="password" value="" placeholder="password">
-    <input type="button" name="" value="submit">
-  </div>
+<body ng-app="myApp">
+  <button type="button" name="button"><a href="#!/admin">admin</a></button>
+  <button type="button" name="button"><a href='#!/customer' >customer</button>
+  <main ng-view></main>
 </body>
 
 </html>
