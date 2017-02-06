@@ -1,5 +1,17 @@
 const knex = require('../database/dbConfig');
 
+function getOrders() {
+    return new Promise((resolve, reject) => {
+        knex
+            .select()
+            .from('orders')
+            .join('order_items', 'orders.id', 'order_id')
+            .join('products', 'product_id', 'products.id')
+            .then(result => resolve(separateOrders(result)))
+            .catch(err => reject(err));
+    });
+}
+
 function addOrder(order) {
     return new Promise((resolve, reject) => {
         knex
@@ -7,13 +19,14 @@ function addOrder(order) {
                 {
                     comments: order.comments,
                     status: order.status,
-                    order_date: order.order_date,
-                    order_time: order.order_time,
+                    created: order.created,
                     total_qty: order.products.reduce(
-                        (sum, prod) => sum + prod.qty
+                        (sum, prod) => sum + prod.qty,
+                        0
                     ),
                     total_cost: order.products.reduce(
-                        (sum, prod) => sum + prod.price * prod.qty
+                        (sum, prod) => sum + prod.price * prod.qty,
+                        0
                     ),
                     customer_id: order.customer_id
                 },
@@ -26,7 +39,7 @@ function addOrder(order) {
                         arr.push(
                             knex
                                 .insert({
-                                    order_id: order_id,
+                                    order_id: order_id[0],
                                     product_id: prod.id,
                                     qty: prod.qty
                                 })
@@ -37,7 +50,7 @@ function addOrder(order) {
                     []
                 );
                 Promise.all(order_items)
-                    .then(() => resolve(order_id))
+                    .then(() => resolve(order_id[0]))
                     .catch(err => reject(err));
             })
             .catch(err => reject(err));
@@ -45,5 +58,47 @@ function addOrder(order) {
 }
 
 module.exports = {
-    addOrder: addOrder
+    addOrder: addOrder,
+    getOrders: getOrders,
+    _aggregateOrder: aggregateOrder,
+    _separateOrders: separateOrders
 };
+
+function aggregateOrder(results) {
+    return results.reduce(
+        (obj, row) => {
+            obj.id = row.order_id;
+            obj.customer_id = row.customer_id;
+            obj.total_qty = row.total_qty;
+            obj.total_cost = row.total_cost;
+            obj.created = row.created;
+            obj.status = row.status;
+            obj.comments = row.comments;
+            obj.products.push({
+                id: row.product_id,
+                qty: row.qty,
+                price: row.price,
+                type: row.type,
+                variety: row.variety
+            });
+            return obj;
+        },
+        { products: [] }
+    );
+}
+
+function separateOrders(results) {
+    let orders = results.reduce(
+        (arr, ord) => {
+            let orderRow = arr.find(row => row[0].order_id === ord.order_id);
+            if (orderRow) {
+                orderRow.push(ord);
+            } else {
+                arr.push([ord]);
+            }
+            return arr;
+        },
+        []
+    );
+    return orders.map(cust => aggregateOrder(cust));
+}
