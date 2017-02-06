@@ -13,10 +13,20 @@ describe('Order CRUD functions', () => {
         );
         Promise.all(testInserts)
             .then(() => {
-                knex.insert;
-                done();
+                knex
+                    .insert(TEST_ORDER_2_PRE, 'id')
+                    .into('orders')
+                    .then(id => {
+                        TEST_ORDER_2_POST.id = id[0];
+                        knex
+                            .insert({order_id: id[0], product_id: 2001, qty: 1})
+                            .into('order_items')
+                            .then(() => done())
+                            .catch(err => done(err));
+                    })
+                    .catch(err => done(err));
             })
-            .catch(err => console.log(err));
+            .catch(err => done(err));
     });
     describe('aggregateOrder', () => {
         it('Combines output rows into an order object', () => {
@@ -31,32 +41,50 @@ describe('Order CRUD functions', () => {
             () => {
                 expect(lib._separateOrders(TEST_ORDER_ROWS)).to.deep.equal([
                     TEST_ORDER_1_POST,
-                    TEST_ORDER_2_POST
+                    TEST_ORDER_3_POST
                 ]);
             }
         );
+    });
+
+    describe('getOrders', () => {
+        it('Gets all orders from the DB', done => {
+            lib
+                .getOrders()
+                .then(result => {
+                    expect(result).to.deep.equal([TEST_ORDER_2_POST]);
+                    done();
+                })
+                .catch(err => done(err));
+        });
     });
     describe('addOrder', () => {
         it('Adds an order to the DB', done => {
             lib
                 .addOrder(TEST_ORDER_1_PRE)
-                .then(() => done())
-                .catch(err => {
-                    console.log(err);
-                    done();
+                .then(() => {
+                    lib
+                        .getOrders()
+                        .then(result => {
+                            TEST_ORDER_1_POST.id = result[1].id;
+                            expect(result).to.deep.equal([
+                                TEST_ORDER_2_POST,
+                                TEST_ORDER_1_POST
+                            ]);
+                            done();
+                        })
+                        .catch(err => {
+                            done(err);
+                        });
                 })
                 .catch(err => {
-                    console.log(err);
-                    done();
+                    done(err);
                 });
         });
     });
-    describe('getOrders', () => {
-        it('Gets all orders from the DB', done => {
-            lib.getOrders().then(result => {
-                console.log(result);
-                done();
-            });
+    describe('editOrder', () => {
+        it('Edits an order in the DB', done => {
+            lib.editOrder();
         });
     });
     after(done => {
@@ -65,8 +93,7 @@ describe('Order CRUD functions', () => {
         deletes.push(knex.delete().from('products'));
         deletes.push(knex.delete().from('customers'));
         Promise.all(deletes).then(() => done()).catch(err => {
-            console.log(err);
-            done();
+            done(err);
         });
     });
 });
@@ -120,7 +147,27 @@ const TEST_ORDER_1_POST = {
     products: [TEST_PRODUCT_1_QTY, TEST_PRODUCT_2_QTY]
 };
 
+const TEST_ORDER_2_PRE = {
+    customer_id: 2000,
+    created: new Date(2001, 1, 1, 0, 0, 0, 0),
+    total_qty: 1,
+    total_cost: 4.75,
+    comments: "I'm a different comment",
+    status: 'placed'
+};
+
 const TEST_ORDER_2_POST = {
+    id: 7,
+    customer_id: 2000,
+    created: new Date(2001, 1, 1, 0, 0, 0, 0),
+    total_qty: 1,
+    total_cost: 4.75,
+    comments: "I'm a different comment",
+    status: 'placed',
+    products: [TEST_PRODUCT_2_QTY]
+};
+
+const TEST_ORDER_3_POST = {
     id: 7,
     customer_id: 2000,
     created: new Date(2000, 1, 1, 0, 0, 0, 0),
