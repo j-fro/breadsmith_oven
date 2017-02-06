@@ -1,49 +1,42 @@
-
-- GET /order -> [{all the things}] + 200/401/500
-- POST /order {customer_id, order_items: [], comments} -> {id} + 200/401/500
-- PUT /order -> {a whole order} + 200/401/500
-- PUT /order/confirm/id -> 200/401/500
-- DELETE /order/id -> 201/401/500
-
 # **View All Orders**
-  Admin viewing all the orders for the day.
+Admin viewing all the orders for the day or for a specific date.
 
 - **URL**
-  `/order` or `/order/:date`
+`/order` or `/order/:date`
 
 - **Method:**
-  `GET`
+`GET`
 
 - **URL Params**
-    **Optional:**
-    `date=DATE`
+  **Optional:**
+  `date=DATE`
 
 - **Data Params**
-   N/A
+  N/A
 
 - **Success Response:**
-  - **Code:** 200<br>
+  - **Code:** 200<br/>
     **Content:**
-    `{ id: SERIAL PRIMARY KEY,
-    total_qty: INTEGER NOT NULL,
-    total_cost: REAL NOT NULL,
-    order_date: DATE NOT NULL,
-    order_time: TIME NOT NULL,
-    status: VARCHAR(10),
-    comments: TEXT
-    };`
-
+    ```
+    { id: [integer],
+      total_qty: [integer],
+      total_cost: [integer]],
+      order_date: [date],
+      order_time: [time],
+      status: [string],
+      comments: [string]
+      };
+    ```
 - **Error Response:**
-  - **Code:** 401 UNAUTHORIZED<br>
+  - **Code:** 401 UNAUTHORIZED<br/>
     **Content:** `{ error : "Unauthorized" }`
-
   OR
-
-  - **Code:** 500 INTERNAL SERVER ERROR<br>
+  - **Code:** 500 INTERNAL SERVER ERROR<br/>
     **Content:** `{ error : "Internal Server Error" }`
 
 - **Sample Call:**
-    `$.ajax({
+  ```
+  $http({
       type: 'GET',
       url: '/order',
       success: function(response){
@@ -52,64 +45,202 @@
       error: function(response){
         console.log('error with get call', response)
       }
-      })`
-- **Notes:**
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend time-stamping and identifying oneself when leaving comments here._>
+      });
+  ```
 
-------------------------------------------------------------------------------------------------------
-POST /order {customer_id, order_items: [], comments} -> {id} + 200/401/500
+  ```
+    $http({
+      type: 'GET',
+      url: '/order/:date',
+      success: function(response){
+        console.log('successful get call', response)
+      },
+      error: function(response){
+        console.log('error with get call', response)
+      }
+      });
+  ```
+--------------------------------------------------------------------------------
 **Submit Order**
-  Submission of order by client or admin.
+Submission of new order by client or admin.
 
-* **URL**
-  
-  <_The URL Structure (path only, no root url)_>
+- **URL**
+  `/order`
 
-* **Method:**
+- **Method:**
+  `POST`
 
-  <_The request type_>
-
-  `GET` | `POST` | `DELETE` | `PUT`
-
-*  **URL Params**
-
-   <_If URL params exist, specify them in accordance with name mentioned in URL section. Separate into optional and required. Document data constraints._>
-
-   **Required:**
-
-   `id=[integer]`
-
-   **Optional:**
-
-   `photo_id=[alphanumeric]`
-
-* **Data Params**
-
-  <_If making a post request, what should the body payload look like? URL Params rules apply here too._>
+- **Data Params**
+  ```
+  {
+    customer_id: [integer],
+    order_items: [array],
+    comments: [string]
+  }
+  ```
 
 * **Success Response:**
-
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
-
-  * **Code:** 200 <br />
-    **Content:** `{ id : 12 }`
+    * **Code:** 201 <br />
 
 * **Error Response:**
+    * **Code:** 401 UNAUTHORIZED <br />
+      OR
+    * **Code:** 500 SERVER ERROR <br />`
 
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
+- **Sample Call:**
+  ```
+    $http({
+    type: 'POST',
+    url: '/order',
+    data: {
+      customer_id: '1',
+      order_items: ['honey wheat', 'pretzel'],
+      comments: ['1/2 inch slices.']
+      }
+    });
+  ```
+--------------------------------------------------------------------------------
+**Update Order**
+Update client order.
 
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Log in" }`
+- **URL**
+  `/order`
 
-  OR
+- **Method:**
+  `PUT`
 
-  * **Code:** 422 UNPROCESSABLE ENTRY <br />
-    **Content:** `{ error : "Email Invalid" }`
+- **Data Params**
+  ```
+  {
+    customer_id: [integer],
+    order_items: [array],
+    comments: [string]
+  }
+  ```
 
-* **Sample Call:**
+* **Success Response:**
+    * **Code:** 201 <br />
 
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._>
+* **Error Response:**
+    * **Code:** 401 UNAUTHORIZED <br />
+      OR
+    * **Code:** 500 SERVER ERROR <br />`
 
-* **Notes:**
+- **Sample Call:**
+  ```
+    $http({
+    type: 'PUT',
+    url: '/order',
+    data: {
+      customer_id: '1',
+      order_items: ['honey wheat', 'pretzel', 'blueberry cornbread'],
+      comments: [string]
+      }
+    });
+  ```
+--------------------------------------------------------------------------------
+**Submit Order**
+Submission of new order by client or admin.
 
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._>
+- **URL**
+  `/order`
+
+- **Method:**
+  `POST`
+
+- **Data Params**
+  ```
+  {
+    customer_id: [integer],
+    order_items: [array],
+    comments: [string]
+  }
+  ```
+
+* **Success Response:**
+    * **Code:** 201 <br />
+
+* **Error Response:**
+    * **Code:** 401 UNAUTHORIZED <br />
+      OR
+    * **Code:** 500 SERVER ERROR <br />`
+
+- **Sample Call:**
+  ```
+    $http({
+    type: 'POST',
+    url: '/order',
+    data: {
+      customer_id: '1',
+      order_items: ['honey wheat', 'pretzel'],
+      comments: ['1/2 inch slices.']
+      }
+    });
+  ```
+--------------------------------------------------------------------------------
+**Confirm Order**
+Update order status to confirmed on button click.
+
+- **URL**
+  `/order/confirm/id`
+
+- **Method:**
+  `PUT`
+
+*  **URL Params**
+  `id=[integer]`
+
+- **Data Params**
+  ```
+  {
+    customer_id: [integer],
+  }
+  ```
+
+* **Success Response:**
+    * **Code:** 201 <br />
+
+* **Error Response:**
+    * **Code:** 401 UNAUTHORIZED <br />
+      OR
+    * **Code:** 500 SERVER ERROR <br />`
+
+- **Sample Call:**
+  ```
+    $http({
+    type: 'PUT',
+    url: '/order/confirm/id',
+    data: {
+      customer_id: '1',
+      }
+    });
+  ```
+--------------------------------------------------------------------------------
+DELETE /order/:id -> 201/401/500
+**Delete Order**
+Delete order.
+
+- **URL**
+  `/order/:id`
+
+- **Method:**
+  `DELETE`
+
+*  **URL Params**
+  `id=[integer]`
+
+* **Success Response:**
+    * **Code:** 201 <br />
+
+* **Error Response:**
+    * **Code:** 401 UNAUTHORIZED <br />
+      OR
+    * **Code:** 500 SERVER ERROR <br />`
+
+- **Sample Call:**
+```
+    $http({
+        method: 'DELETE',
+        url: '/order/1'
+    })
+```
