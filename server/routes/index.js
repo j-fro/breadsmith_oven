@@ -7,4 +7,20 @@ router.get('/', (req, res) => {
     res.sendFile(indexPath);
 });
 
+router.get('/customerHome', (req, res) => {
+    let customerPath = path.join(
+        __dirname,
+        '../../public/views/customer/customerHome.html'
+    );
+    res.sendFile(customerPath);
+});
+
+router.get('/adminHome', (req, res) => {
+    let adminPath = path.join(
+        __dirname,
+        '../../public/views/admin/adminHome.html'
+    );
+    res.sendFile(adminPath);
+});
+
 module.exports = router;
