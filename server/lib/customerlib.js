@@ -128,11 +128,6 @@ module.exports = {
 function separateCustomers(customers) {
     customers = customers.reduce(
         (arr, cust) => {
-            // arr.forEach(row => {
-            //     if (row[0] && row[0].id === cust.id) {
-            //         row.push(cust);
-            //     }
-            // });
             let customerRow = arr.find(row => row[0].id === cust.id);
             if (customerRow) {
                 customerRow.push(cust);
