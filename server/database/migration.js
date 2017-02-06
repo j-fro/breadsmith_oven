@@ -7,13 +7,13 @@ let sql = fs.readFileSync(path.join(__dirname, 'create_tables.sql'), 'utf8');
 knex
     .raw(
         `
-    DROP TABLE customers CASCADE;
-    DROP TABLE users CASCADE;
-    DROP TABLE products CASCADE;
-    DROP TABLE orders CASCADE;
-    DROP TABLE order_items CASCADE;
-    DROP TABLE permitted_products CASCADE;
-    DROP TABLE recurring_order_items CASCADE;
+    DROP TABLE IF EXISTS customers CASCADE;
+    DROP TABLE IF EXISTS users CASCADE;
+    DROP TABLE IF EXISTS products CASCADE;
+    DROP TABLE IF EXISTS orders CASCADE;
+    DROP TABLE IF EXISTS order_items CASCADE;
+    DROP TABLE IF EXISTS permitted_products CASCADE;
+    DROP TABLE IF EXISTS recurring_order_items CASCADE;
     `
     )
     .then(() => {
@@ -22,7 +22,7 @@ knex
             .raw(sql)
             .then(() => {
                 console.log('Created tables');
-                process.exit(1);
+                process.exit(0);
             })
             .catch(err => {
                 console.log(err);
