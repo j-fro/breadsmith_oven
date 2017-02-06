@@ -77,10 +77,12 @@ function editOrder(order) {
         order.total_qty = order.products.reduce(
             (sum, prod) => sum + prod.qty,
             0
-        ), order.total_cost = order.products.reduce(
+        );
+        order.total_cost = order.products.reduce(
             (sum, prod) => sum + prod.price * prod.qty,
             0
-        ), order.products = undefined;
+        );
+        order.products = undefined;
         let update = knex.update(order).from('orders').where('id', order.id);
         Promise.all([delete_items, insert_items, update])
             .then(() => resolve())
@@ -88,10 +90,23 @@ function editOrder(order) {
     });
 }
 
+function confirmOrder(orderId) {
+    return knex
+        .update('status', 'confirmed')
+        .from('orders')
+        .where('id', orderId);
+}
+
+function deleteOrder(orderId) {
+    return knex.from('orders').where('id', orderId).delete();
+}
+
 module.exports = {
     addOrder: addOrder,
     getOrders: getOrders,
     editOrder: editOrder,
+    confirmOrder: confirmOrder,
+    deleteOrder: deleteOrder,
     _aggregateOrder: aggregateOrder,
     _separateOrders: separateOrders
 };
