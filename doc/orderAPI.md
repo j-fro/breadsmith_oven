@@ -27,7 +27,6 @@ Admin viewing all the orders for the day or for a specific date.
       comments: [string]
       };
     ```
-
 - **Error Response:**
   - **Code:** 401 UNAUTHORIZED<br/>
     **Content:** `{ error : "Unauthorized" }`
