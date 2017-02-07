@@ -1,21 +1,27 @@
-myApp.controller('clientController', ['$scope', '$http', '$window',
+var customerApp = angular.module('customerApp', []);
+
+customerApp.controller('CustomerController', ['$scope', '$http', '$window',
     function($scope, $http, $window) {
         console.log('in clientController');
         $scope.displayOrder = function() {
-            $http.get('/order')
+            $http.get('/customer/46')
             .then(function successCallback(response) {
                 console.log('displayOrder', response);
-                $scope.products = response.data;
+                $scope.customer = response.data;
             }, function errorCallback(error) {
                 console.log('displayOrder error', error);
                 $window.location.href='#!/login';
             });
-        };$scope.checkLogin();
+          };
+        // };$scope.checkLogin();
+        $scope.displayOrder();
 
-        $http.postOrder = function(){
+        $scope.postOrder = function(){
           var newOrder = {
-
-
+            status: 'placed',
+            comments: $scope.comments,
+            customer_id: $scope.customer.id,
+            products: $scope.customer.products
           };
         $http.post('/order', newOrder)
         .then(function(response){

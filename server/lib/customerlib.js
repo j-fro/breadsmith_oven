@@ -16,8 +16,8 @@ function getCustomerById(custId) {
             )
             .from('customers')
             .where('customers.id', custId)
-            .join('permitted_products', 'customers.id', 'customer_id')
-            .join('products', 'product_id', 'products.id')
+            .leftOuterJoin('permitted_products', 'customers.id', 'customer_id')
+            .leftOuterJoin('products', 'product_id', 'products.id')
             .then(customers => resolve(aggregateCustomer(customers)))
             .catch(err => reject(err));
     });
