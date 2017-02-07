@@ -12,6 +12,9 @@ function getCustomerById(custId) {
                 'price',
                 'regular',
                 'last_order_date',
+                'email',
+                'phone',
+                'contact_name',
                 'products.id as product_id'
             )
             .from('customers')
@@ -35,6 +38,9 @@ function getAllCustomers() {
                 'price',
                 'regular',
                 'last_order_date',
+                'email',
+                'phone',
+                'contact_name',
                 'products.id as product_id'
             )
             .from('customers')
@@ -53,7 +59,10 @@ function addCustomer(customer) {
             .insert(
                 {
                     name: customer.name,
-                    address: customer.address
+                    address: customer.address,
+                    email: customer.email,
+                    phone: customer.phone,
+                    contact_name: customer.contact_name
                 },
                 'id'
             )
@@ -149,6 +158,9 @@ function aggregateCustomer(results) {
             obj.address = row.address;
             obj.id = row.id;
             obj.last_order_date = row.last_order_date;
+            obj.contact_name = row.contact_name;
+            obj.phone = row.phone;
+            obj.email = row.email;
             if (typeof obj.products !== 'undefined') {
                 obj.products.push({
                     id: row.product_id,

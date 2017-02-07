@@ -16,17 +16,21 @@
     <script src="vendors/angularfire.min.js" charset="utf-8"></script>
     <script src="scripts/index.js" charset="utf-8"></script>
     <script src="scripts/controllers/adminCustomerController.js" charset="utf-8"></script>
+        <script src="scripts/controllers/products.js" charset="utf-8"></script>
   </head>
   <body ng-app="myApp">
     <h1>Admin Home</h1>
     <div>
       <nav class='container-fluid' id="nav">
-        <li><a href='#!/newOrder'>New Order</a></li>
-        <li><a href='#!/existingOrders'>Existing Orders</a></li>
-        <li><a href='#!/reports'>Reports</a></li>
-        <li><a href='#!/customers'>Customers</a></li>
-        <li><a href='#!/products'>Products</a></li>
-        <li><a href='#!/staff'>Staff</a></li>
+        <ul>
+        <li><a href="#!/index">Home</a></li>
+        <li><a href="#!/newOrder">New Order</a></li>
+        <li><a href="#!/existingOrders">Existing Orders</a></li>
+        <li><a href="#!/reports">Reports</a></li>
+        <li><a href="#!/customers">Customers</a></li>
+        <li><a href="#!/products">Products</a></li>
+        <li><a href="#!/staff">Staff</a></li>
+      </ul>
     </nav>
     <main ng-view>
     </main>

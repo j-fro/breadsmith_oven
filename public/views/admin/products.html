@@ -1,5 +1,30 @@
+<h1>Product</h1>
+<script type="text/javascript" src="controllers/products.js"></script>
+<body ng-controller = "productRead">
 
-<div id="wrapper">
-  
-    <h1>Product</h1>
-  </div>
+
+
+<div class="productList">
+  <!-- <table ng-repeat = "product in list"> -->
+<table>
+  <th>
+    <td>Product</td>
+    <td>Variety</td>
+    <td>Price</td>
+  </th>
+  <tr ng-repeat = "product in list" ng-show="show">
+    <td>{{product.type}}</td>
+    <td>{{product.variety}}</td>
+    <td>{{product.price}}</td>
+    <td><button type="button" name="button"> one </button></td>
+    <td><button type="button" name="button"> two </button></td>
+
+  </tr>
+</table>
+</div>
+
+<button type="button" name="button" ng-click="getProducts()">products</button>
+
+
+
+</body>

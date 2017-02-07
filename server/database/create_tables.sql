@@ -2,7 +2,10 @@ CREATE TABLE IF NOT EXISTS customers (
     id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
     address VARCHAR,
-    last_order_date DATE
+    last_order_date DATE,
+    email VARCHAR,
+    phone VARCHAR,
+    contact_name VARCHAR
 );
 
 CREATE TABLE IF NOT EXISTS  users (
