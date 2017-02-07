@@ -998,3 +998,5 @@ insert into permitted_products (id, customer_id, product_id, regular) values (99
 insert into permitted_products (id, customer_id, product_id, regular) values (998, 995, 595, false);
 insert into permitted_products (id, customer_id, product_id, regular) values (999, 416, 753, false);
 insert into permitted_products (id, customer_id, product_id, regular) values (1000, 407, 200, false);
+
+SELECT setval('permitted_products_id_seq', (SELECT MAX(id) FROM permitted_products));

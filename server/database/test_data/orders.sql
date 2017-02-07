@@ -998,3 +998,5 @@ insert into orders (id, total_qty, total_cost, created, status, comments, custom
 insert into orders (id, total_qty, total_cost, created, status, comments, customer_id) values (998, 762, 362.59, '2017-02-05 16:43:04', 'placed', 'maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede', 682);
 insert into orders (id, total_qty, total_cost, created, status, comments, customer_id) values (999, 602, 685.02, '2016-12-04 04:09:12', 'placed', 'porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique', 73);
 insert into orders (id, total_qty, total_cost, created, status, comments, customer_id) values (1000, 609, 594.92, '2016-03-12 18:37:26', 'placed', 'sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh', 733);
+
+SELECT setval('orders_id_seq', (SELECT MAX(id) FROM orders));
