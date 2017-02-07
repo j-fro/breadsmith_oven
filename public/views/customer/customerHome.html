@@ -21,10 +21,12 @@
     <h1>'breadsmith logo'</h1>
     <h3 id='welcomeBack'>Welcome back {{customer.name}}!</h3>
     <div ng-repeat='product in customer.products'>
-      {{product.type}}  {{product.variety}}  {{product.price}}
+      {{product.type}}
+      {{product.variety}}
+      {{product.price}}  <input ng-model="product.qty" type="text" placeholder="qty">
     </div>
-    <input type="text" placeholer="comments/questions">
-    <button type="button" ng-click="postOrder"></button>
+    <input ng-model="comments" type="text" placeholer="comments/questions">
+    <button type="button" ng-click="postOrder()"></button>
 
 
   </body>
