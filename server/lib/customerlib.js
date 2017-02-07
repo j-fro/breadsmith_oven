@@ -12,6 +12,9 @@ function getCustomerById(custId) {
                 'price',
                 'regular',
                 'last_order_date',
+                'email',
+                'phone',
+                'contact_name',
                 'products.id as product_id'
             )
             .from('customers')
@@ -35,6 +38,9 @@ function getAllCustomers() {
                 'price',
                 'regular',
                 'last_order_date',
+                'email',
+                'phone',
+                'contact_name',
                 'products.id as product_id'
             )
             .from('customers')
@@ -53,7 +59,10 @@ function addCustomer(customer) {
             .insert(
                 {
                     name: customer.name,
-                    address: customer.address
+                    address: customer.address,
+                    email: customer.email,
+                    phone: customer.phone,
+                    contact_name: customer.contactName
                 },
                 'id'
             )
