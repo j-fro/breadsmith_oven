@@ -1,5 +1,16 @@
+<h1>Product</h1>
+<script type="text/javascript" src="controllers/products.js"></script>
+<body ng-controller = "productRead">
 
-<div id="wrapper">
-  
-    <h1>Product</h1>
-  </div>
+
+
+<div class="productList">
+  <ul ng-repeat = "product in list">
+    <li>{{product}}</li>
+
+  </ul>
+</div>
+
+<button type="button" name="button" ng-click="prodmod()">clickhereformodal</button>
+
+</body>
