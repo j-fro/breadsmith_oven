@@ -16,10 +16,12 @@ customerApp.controller('CustomerController', ['$scope', '$http', '$window',
         // };$scope.checkLogin();
         $scope.displayOrder();
 
-        $http.postOrder = function(){
+        $scope.postOrder = function(){
           var newOrder = {
-
-
+            status: 'placed',
+            comments: $scope.comments,
+            customer_id: $scope.customer.id,
+            products: $scope.customer.products
           };
         $http.post('/order', newOrder)
         .then(function(response){
