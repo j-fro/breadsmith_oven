@@ -1,10 +1,67 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Customers</title>
-  </head>
-  <body>
-    <h1>Customers</h1>
-  </body>
-</html>
+<div id="wrapper">
+<h1>Breadsith - Admin - Customers</h1>
+<p> This is the customers page from which admin can view customers, add customers, edit customers </p>
+
+</div>
+
+<div id="wrapper">
+    <!-- <table style="width:100%" ng-repeat="customer in customers"> -->
+    <table style="width:100%">
+        <tr>
+            <th><h1>View Customer</h1></th>
+        </tr>
+        <tr>
+            <td>Loews Hotel {{customer.name}}</td>
+            <td><label for="editCustomer"></label>
+              <input type="button" name="editCustomer" value="Edit Customer" ng-click=""/>
+            </td>
+        </tr>
+    </table>
+    <label for="addCustomer"></label>
+    <input type="button" name="addCustomer" value="Add New Customer" ng-click=""/>
+
+</div>
+
+<div id="wrapper">
+    <h1>Edit Customer (Needs Modal)</h1>
+    <!-- <table style="width:100%" ng-repeat="customer in customers"> -->
+    <table style="width:100%">
+        <tr>
+            <td>
+                <h2>Company Name</h2></td>
+            <td>Loews Hotel {{customer.name}} </td>
+        </tr>
+        <tr>
+            <td>
+                <h2>Address</h2></td>
+            <td>574 XYZ Road {{customer.address}}</td>
+        </tr>
+        <tr>
+            <td>
+                <h2>Phone Number</h2></td>
+            <td> 555-555-5555 {{customer.number}} </td>
+        </tr>
+        <tr>
+            <td>
+                <h2>Email Address<h2></td>
+                      <td> chefraekwon@xyz.com {{customer.email}} </td>
+                    </tr>
+                </table>
+                <label for="editCustomer"></label>
+                <input type="button" name="editCustomer" value="Edit Customer" ng-click=""/>
+            </div>
+            <div id="wrapper">
+              <h1> Add Customer (Needs Modal) </h1>
+                <form>
+                    <label for="customerName"><h2>Name:</h2></label>
+                    <h2><input type="text" name="customerName" value="" placeholder="Name" ng-model="customerName"/></h2>
+                    <label for="customerAddress"><h2>Address:<h2></label>
+                    <input type="text" name="customerAddress" value="" placeholder="Address" ng-model="customerAddress"/>
+                    <label for="customerNumber"><h2>Number:</h2></label>
+                    <input type="number" name="customerNumber" value="" placeholder="Phone Number" ng-model="customerNumber"/>
+                    <!-- do we need email if they are already logging in with gmail-->
+                    <label for="customerEmail"><h2>Email:</h2></label>
+                    <input type="text" name="customerEmail" value="" placeholder="Email" ng-model="customerEmail"/>
+                    <input type="button" name="Submit" value="Submit"/>
+                </form>
+            </div>
