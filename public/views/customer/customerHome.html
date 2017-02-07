@@ -3,8 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>clientHome</title>
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/master.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- <link rel="stylesheet" href="../vendors/bootstrap.min.css"> -->
+    <script src="vendors/angular.min.js" charset="utf-8"></script>
+    <script src="vendors/angular-route.js" charset="utf-8"></script>
+    <script src="scripts/index.js" charset="utf-8"></script>
+
+    <script src="scripts/controllers/adminCustomerController.js" charset="utf-8"></script>
   </head>
-  <body ng-controller = 'clientController'>
+  <body ng-app="myApp">
     <h1>'breadsmith logo'</h1>
     <h3 id='welcomeBack'>Welcome back {{customers.name}}!</h3>
     <div ng-repeat='product in products'>
