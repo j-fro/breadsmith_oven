@@ -5,12 +5,26 @@
 
 
 <div class="productList">
-  <ul ng-repeat = "product in list">
-    <li>{{product}}</li>
+  <!-- <table ng-repeat = "product in list"> -->
+<table>
+  <th>
+    <td>Product</td>
+    <td>Variety</td>
+    <td>Price</td>
+  </th>
+  <tr ng-repeat = "product in list" ng-show="show">
+    <td>{{product.type}}</td>
+    <td>{{product.variety}}</td>
+    <td>{{product.price}}</td>
+    <td><button type="button" name="button"> one </button></td>
+    <td><button type="button" name="button"> two </button></td>
 
-  </ul>
+  </tr>
+</table>
 </div>
 
-<button type="button" name="button" ng-click="prodmod()">clickhereformodal</button>
+<button type="button" name="button" ng-click="getProducts()">products</button>
+
+
 
 </body>
