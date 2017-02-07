@@ -16,7 +16,12 @@
 
                 <!-- edit customer btn -->
                 <label for="editCustomer"></label>
-                <input data-toggle="modal" data-target="#editCustomerModal" type="button" name="editCustomer" value="Edit Customer" ng-click="editCustomer(customer)" />
+                <input data-toggle="modal" data-target="#editCustomerModal" type="button" name="editCustomer" value="Edit" ng-click="editCustomer(customer)" />
+            </td>
+            <td>
+              <label for="deleteCustomer"></label>
+              <input type="button" name="deleteCustomer" value="Delete" ng-click="deleteCustomer(customer)" />
+              <!-- <data-toggle="modal" data-target="#deleteCustomerModal"> -->
             </td>
         </tr>
     </table>

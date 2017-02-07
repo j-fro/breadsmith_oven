@@ -10,6 +10,7 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
             }).then(function successCallback(response) {
                 console.log(response);
                 $scope.customers = response.data;
+              console.log("id:", response.data[0].id);
             }, function errorCallback(error) {
                 console.log('error', error);
             });
@@ -55,10 +56,10 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
             });
         }; //end updateExistingCustomer
 
-        $scope.deleteCustomer = function() {
+        $scope.deleteCustomer = function(customer) {
             $http({
                 method: 'DELETE',
-                url: '/customer/:id',
+                url: '/customer/',
             }).then(function successCallback(response) {
                 console.log(response);
             }, function errorCallback(error) {
