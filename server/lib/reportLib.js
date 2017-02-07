@@ -13,12 +13,12 @@ function getOrdersAndExport(filename) {
         .catch(err => console.log(err));
 }
 
-function exportOrderCsv(orders) {
+function exportOrderCsv(orders, filename) {
     console.log(typeof orders[0]);
     let fields = Object.keys(orders[0]);
     let csv = json2csv({data: orders, fields: fields});
     fs.writeFile(
-        path.join(__dirname, '../../reports/order_report.csv'),
+        path.join(__dirname, '../../reports/', filename || 'order_report.csv'),
         csv,
         err => {
             if (err) {
