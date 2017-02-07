@@ -998,3 +998,5 @@ insert into order_items (id, order_id, product_id, qty) values (997, 155, 644.32
 insert into order_items (id, order_id, product_id, qty) values (998, 804, 434.07, 91);
 insert into order_items (id, order_id, product_id, qty) values (999, 862, 831.71, 1);
 insert into order_items (id, order_id, product_id, qty) values (1000, 982, 338.91, 57);
+
+SELECT setval('order_items_id_seq', (SELECT MAX(id) FROM order_items));

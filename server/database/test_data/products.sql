@@ -998,3 +998,5 @@ insert into products (id, type, variety, price) values (997, 'eget', 'mi', 19.2)
 insert into products (id, type, variety, price) values (998, 'vestibulum', 'nec', 11.71);
 insert into products (id, type, variety, price) values (999, 'ut', 'lectus', 11.89);
 insert into products (id, type, variety, price) values (1000, 'eget', 'lectus', 17.31);
+
+SELECT setval('products_id_seq', (SELECT MAX(id) FROM products));

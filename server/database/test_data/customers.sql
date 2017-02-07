@@ -998,3 +998,5 @@ insert into customers (id, name, address, last_order_date) values (997, 'Agivu',
 insert into customers (id, name, address, last_order_date) values (998, 'Eazzy', '3 Anzinger Trail', '2016-10-23 02:56:25');
 insert into customers (id, name, address, last_order_date) values (999, 'Tagfeed', '129 Annamark Street', '2016-07-01 01:20:25');
 insert into customers (id, name, address, last_order_date) values (1000, 'Yakidoo', '519 Gateway Center', '2016-04-11 06:33:54');
+
+SELECT setval('customers_id_seq', (SELECT MAX(id) FROM customers));

@@ -76,13 +76,11 @@ describe('Customer router', () => {
                     .into('permitted_products')
                     .then(() => done())
                     .catch(err => {
-                        console.log(err);
-                        done();
+                        done(err);
                     });
             })
             .catch(err => {
-                console.log(err);
-                done();
+                done(err);
             });
     });
     describe('Get all customers', () => {
@@ -127,14 +125,13 @@ describe('Customer router', () => {
             lib
                 .getAllCustomers()
                 .then(customers => {
-                    console.log('Get all happened');
                     expect(customers).to.deep.equal([
                         testCustomer,
                         testCustomer2
                     ]);
                     done();
                 })
-                .catch(err => console.log(err));
+                .catch(err => done(err));
         });
     });
     describe('Get /1000', () => {
@@ -168,8 +165,7 @@ describe('Customer router', () => {
                     done();
                 })
                 .catch(err => {
-                    console.log(err);
-                    done();
+                    done(err);
                 });
         });
     });
@@ -178,30 +174,36 @@ describe('Customer router', () => {
             lib
                 .addCustomer(TEST_CUSTOMER_2)
                 .then(id => {
-                    console.log('Posting happened');
-                    lib.getCustomerById(id).then(customer => {
-                        expect(customer.name).to.equal(TEST_CUSTOMER_2.name);
-                        expect(customer.address).to.equal(
-                            TEST_CUSTOMER_2.address
-                        );
-                        done();
-                    });
+                    lib
+                        .getCustomerById(id)
+                        .then(customer => {
+                            expect(customer.name).to.equal(
+                                TEST_CUSTOMER_2.name
+                            );
+                            expect(customer.address).to.equal(
+                                TEST_CUSTOMER_2.address
+                            );
+                            done();
+                        })
+                        .catch(err => done(err));
                 })
-                .catch(err => console.log(err));
+                .catch(err => done(err));
         });
     });
     describe('Update a customer', () => {
         before(done => {
-            lib.addCustomer(TEST_CUSTOMER_2).then(id => {
-                TEST_CUSTOMER_2_V2.id = id;
-                done();
-            });
+            lib
+                .addCustomer(TEST_CUSTOMER_2)
+                .then(id => {
+                    TEST_CUSTOMER_2_V2.id = id;
+                    done();
+                })
+                .catch(err => done(err));
         });
         it('Updates a customer in the DB', done => {
             lib
                 .editCustomer(TEST_CUSTOMER_2_V2)
                 .then(() => {
-                    console.log('Update happened');
                     lib
                         .getCustomerById(TEST_CUSTOMER_2_V2.id)
                         .then(customer => {
@@ -212,9 +214,9 @@ describe('Customer router', () => {
                             expect(customer.products[1].id).to.equal(1002);
                             done();
                         })
-                        .catch(err => console.log(err));
+                        .catch(err => done(err));
                 })
-                .catch(err => console.log(err));
+                .catch(err => done(err));
         });
     });
 
@@ -223,7 +225,6 @@ describe('Customer router', () => {
             lib
                 .deleteCustomer(1000)
                 .then(() => {
-                    console.log('Deleted happened');
                     lib
                         .getCustomerById(1000)
                         .then(customer => {
@@ -231,13 +232,11 @@ describe('Customer router', () => {
                             done();
                         })
                         .catch(err => {
-                            console.log(err);
-                            done();
+                            done(err);
                         });
                 })
                 .catch(err => {
-                    console.log(err);
-                    done();
+                    done(err);
                 });
         });
     });
@@ -246,9 +245,8 @@ describe('Customer router', () => {
         let deletecust = knex.from('customers').delete();
         let delete1000 = knex.from('products').delete();
         // let delete1001 = knex.from('products').where('id', 1001).delete();
-        Promise.all([deletecust, delete1000]).then(() => done()).catch(err => {
-            console.log(err);
-            done();
-        });
+        Promise.all([deletecust, delete1000])
+            .then(() => done())
+            .catch(err => done(err));
     });
 });

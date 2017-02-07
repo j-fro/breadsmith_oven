@@ -3,16 +3,28 @@
   <head>
     <meta charset="utf-8">
     <title>Admin Home</title>
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/master.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- <link rel="stylesheet" href="../vendors/bootstrap.min.css"> -->
+    <script src="vendors/angular.min.js" charset="utf-8"></script>
+    <script src="vendors/angular-route.js" charset="utf-8"></script>
+    <script src="scripts/index.js" charset="utf-8"></script>
+
+    <script src="scripts/controllers/adminCustomerController.js" charset="utf-8"></script>
   </head>
-  <body>
+  <body ng-app="myApp">
     <h1>Admin Home</h1>
     <div>
-      <nav class='container-fluid'>
+      <nav class='container-fluid' id="nav">
         <li><a href='#!/newOrder'>New Order</a></li>
         <li><a href='#!/existingOrders'>Existing Orders</a></li>
         <li><a href='#!/reports'>Reports</a></li>
         <li><a href='#!/customers'>Customers</a></li>
         <li><a href='#!/products'>Products</a></li>
         <li><a href='#!/staff'>Staff</a></li>
+    </nav>
+    <main ng-view>
+    </main>
   </body>
 </html>
