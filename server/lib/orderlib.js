@@ -18,7 +18,7 @@ function addOrder(order) {
             .insert(
                 {
                     comments: order.comments,
-                    status: order.status,
+                    status: order.status || 'placed',
                     created: order.created || new Date(),
                     total_qty: order.products.reduce(
                         (sum, prod) => sum + prod.qty,

@@ -13,31 +13,35 @@
     <link rel="stylesheet" href="../vendors/bootstrap.min.css">
     <script src="vendors/angular.js" charset="utf-8"></script>
     <script src="vendors/angular-route.js" charset="utf-8"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
+    <script src="vendors/angularfire.min.js" charset="utf-8"></script>
     <script src="scripts/index.js" charset="utf-8"></script>
 
 
-    <script src="scripts/controllers/adminCustomerController.js" charset="utf-8"></script>
-    <!-- <script src="../vendors/angular.js" charset="utf-8"></script> -->
 
+
+    <script src="scripts/controllers/adminCustomerController.js" charset="utf-8"></script>
+    <script src="scripts/controllers/login.js" charset="utf-8"></script>
+    <!-- <script src="../vendors/angular.js" charset="utf-8"></script> -->
 </head>
 
-<body ng-app="myApp">
+<body ng-controller='loginController' ng-app="myApp">
+    <div id="wrapperall">
 
-  <div id="wrapperall">
+        <div id="banner">
+            <a href="index.html"><img src="../../images/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo"></a>
+            <div id="topwrapper">
+                <div id="signup"><a href="login.html">LOG IN / SIGN UP</a></div>
+                <!-- <div id="location"><a href="edina.html">EDINA</a> | <a href="minnetonka.html">MINNETONKA</a> | <a href="stpaul.html">ST. PAUL</a></div> -->
+            </div>
+        </div>
+        <div id="nav">
+            <button type="button" name="button"><a class="nav-button" href="/adminHome">admin</a></button>
+            <button type="button" name="button"><a class="nav-button" href='/customerHome'>customer</a></button>
+            <button ng-click="login()" type="button" name="button">Login with Google</button>
+        </div>
+    </div>
 
-      <div id="banner">
-          <a href="index.html"><img src="../../images/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo"></a>
-          <div id="topwrapper">
-              <div id="signup"><a href="login.html">LOG IN / SIGN UP</a></div>
-              <!-- <div id="location"><a href="edina.html">EDINA</a> | <a href="minnetonka.html">MINNETONKA</a> | <a href="stpaul.html">ST. PAUL</a></div> -->
-          </div>
-      </div>
-      <div id="nav">
-  <button type="button" name="button"><a class="nav-button" href="/adminHome">admin</a></button>
-  <button type="button" name="button"><a class="nav-button" href="/customerHome">customer</a></button>
-</div>
-
-</div>
 
 </body>
 
