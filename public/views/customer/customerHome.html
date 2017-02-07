@@ -11,13 +11,13 @@
     <script src="vendors/angular-route.js" charset="utf-8"></script>
     <script src="scripts/index.js" charset="utf-8"></script>
 
-    <script src="scripts/controllers/adminCustomerController.js" charset="utf-8"></script>
+    <script src="scripts/controllers/customerController.js" charset="utf-8"></script>
   </head>
-  <body ng-app="myApp">
+  <body ng-app="customerApp" ng-controller="CustomerController">
     <h1>'breadsmith logo'</h1>
-    <h3 id='welcomeBack'>Welcome back {{customers.name}}!</h3>
-    <div ng-repeat='product in products'>
-      {{product.name}}{{product.quantity}}
+    <h3 id='welcomeBack'>Welcome back {{customer.name}}!</h3>
+    <div ng-repeat='product in customer.products'>
+      {{product.type}}  {{product.variety}}  {{product.price}}
     </div>
     <input type="text" placeholer="comments/questions">
     <button type="button" ng-click="postOrder"></button>
