@@ -10,6 +10,7 @@ myApp.controller('loginController', ['$scope', '$http', '$window', '$firebaseAut
             messagingSenderId: "510935484126"
         };
         firebase.initializeApp(config);
+        
         var provider = new firebase.auth.GoogleAuthProvider();
 
         $scope.login = function() {
