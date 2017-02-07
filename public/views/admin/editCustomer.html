@@ -1,71 +1,28 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Breadsmith - Admin - Edit Customer</title>
-    <meta name="Description" content="Breadsmith uses the highest quality ingredients to create hand-crafted breads made from scratch and baked fresh daily." />
-    <meta name="Keywords" content="Breadsmith, Minnesota, bread, muffins, scones, rolls, whole wheat, sourdough, ciabatta, baguette, boule, Challah, Babka, stollen, soda bread, rye, pumperknickel, st paul, saint paul, Minnetonka, edina, Wayzata, bakery, dough, cookies"
-    />
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../../images/favicon.ico" />
-    <link rel="stylesheet" href="../../css/master.css">
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../vendors/bootstrap.min.css">
-    <script src="../../vendors/angular.min.js" charset="utf-8"></script>
-    <script src="../../scripts/controllers/adminCustomerController.js" charset="utf-8"></script>
-</head>
-
-<body ng-app="myApp">
-    <div class="container-fluid" ng-controller="adminCustomerController">
-        <div id="wrapperall">
-            <div id="banner">
-                <a href="index.html"><img src="../../images/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo"></a>
-                <div id="topwrapper">
-                    <div id="signup"><a href="login.html">LOG IN / SIGN UP</a></div>
-                    <!-- <div id="location"><a href="edina.html">EDINA</a> | <a href="minnetonka.html">MINNETONKA</a> | <a href="stpaul.html">ST. PAUL</a></div> -->
-                </div>
-            </div>
-
-            <div id="nav">
-                <ul>
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="neworders.html">NEW ORDERS</a></li>
-                    <li><a href="existingorders.html">EXISTING ORDERS</a></li>
-                    <li><a href="reports.html">REPORTS </a></li>
-                    <li><a href="customer.html">CUSTOMER</a></li>
-                    <li><a href="products.html">PRODUCTS</a></li>
-                    <li><a href="staff.html">STAFF</a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
-                </ul>
-            </div>
-
-            <div id="wrapper">
-              <h1>Edit Customer </h1>
-                <!-- <table style="width:100%" ng-repeat="customer in customers"> -->
-                <table style="width:100%">
-                    <tr>
-                        <td><h2>Company Name</h2></td>
-                        <td>Loews Hotel {{customer.name}} </td>
-                    </tr>
-                    <tr>
-                      <td><h2>Address</h2></td>
-                      <td>574 XYZ Road {{customer.address}}</td>
-                    </tr>
-                    <tr>
-                      <td><h2>Phone Number</h2></td>
-                      <td> 555-555-5555 {{customer.number}} </td>
-                    </tr>
-                    <tr>
-                      <td><h2>Email Address<h2></td>
+<div id="wrapper">
+    <h1>Edit Customer </h1>
+    <!-- <table style="width:100%" ng-repeat="customer in customers"> -->
+    <table style="width:100%">
+        <tr>
+            <td>
+                <h2>Company Name</h2></td>
+            <td>Loews Hotel {{customer.name}} </td>
+        </tr>
+        <tr>
+            <td>
+                <h2>Address</h2></td>
+            <td>574 XYZ Road {{customer.address}}</td>
+        </tr>
+        <tr>
+            <td>
+                <h2>Phone Number</h2></td>
+            <td> 555-555-5555 {{customer.number}} </td>
+        </tr>
+        <tr>
+            <td>
+                <h2>Email Address<h2></td>
                       <td> chefraekwon@xyz.com {{customer.email}} </td>
                     </tr>
                 </table>
                 <label for="editCustomer"></label>
                 <input type="button" name="editCustomer" value="Edit Customer" ng-click=""/>
             </div>
-
-        </div>
-    </div>
-</body>
-
-</html>

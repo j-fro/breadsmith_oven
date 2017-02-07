@@ -16,3 +16,7 @@
   /*right:0;*/
   /*left:0;*/
 }
+
+#nav a.nav-button {
+    color: black
+}
