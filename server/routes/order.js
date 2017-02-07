@@ -11,10 +11,14 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    lib.addOrder(req.body).then(id => res.status(200).send(id)).catch(err => {
-        console.log(err);
-        res.sendStatus(500);
-    });
+    console.log(req.body);
+    lib
+        .addOrder(req.body)
+        .then(id => res.status(201).send({id: id}))
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        });
 });
 
 router.put('/', (req, res) => {
