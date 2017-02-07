@@ -62,7 +62,7 @@ function addCustomer(customer) {
                     address: customer.address,
                     email: customer.email,
                     phone: customer.phone,
-                    contact_name: customer.contactName
+                    contact_name: customer.contact_name
                 },
                 'id'
             )
@@ -158,6 +158,9 @@ function aggregateCustomer(results) {
             obj.address = row.address;
             obj.id = row.id;
             obj.last_order_date = row.last_order_date;
+            obj.contact_name = row.contact_name;
+            obj.phone = row.phone;
+            obj.email = row.email;
             if (typeof obj.products !== 'undefined') {
                 obj.products.push({
                     id: row.product_id,

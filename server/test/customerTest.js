@@ -5,6 +5,8 @@ const lib = require('../lib/customerlib');
 const TEST_CUSTOMER_1 = {
     name: "Frank's Hotel",
     address: '221 Hotel Ave, Hotelville MN 55123',
+    email: 'bob@bob.com',
+    contact_name: 'Frank',
     id: 1000,
     last_order_date: null
 };
@@ -89,6 +91,9 @@ describe('Customer router', () => {
                 id: 1000,
                 name: "Frank's Hotel",
                 address: '221 Hotel Ave, Hotelville MN 55123',
+                phone: null,
+                contact_name: 'Frank',
+                email: 'bob@bob.com',
                 last_order_date: null,
                 products: [
                     {
@@ -111,6 +116,9 @@ describe('Customer router', () => {
                 id: 1004,
                 name: "Amos's Diner",
                 address: '1234 Five Street',
+                email: null,
+                contact_name: null,
+                phone: null,
                 last_order_date: null,
                 products: [
                     {
@@ -141,6 +149,9 @@ describe('Customer router', () => {
                 name: "Frank's Hotel",
                 address: '221 Hotel Ave, Hotelville MN 55123',
                 last_order_date: null,
+                phone: null,
+                email: 'bob@bob.com',
+                contact_name: 'Frank',
                 products: [
                     {
                         id: 1000,
