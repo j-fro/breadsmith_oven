@@ -3,13 +3,13 @@ const path = require('path');
 const json2csv = require('json2csv');
 const knex = require('../database/dbConfig');
 
-function getOrders() {
+function getOrdersAndExport(filename) {
     knex
         .select()
         .from('orders')
         .join('order_items', 'orders.id', 'order_id')
         .join('products', 'product_id', 'products.id')
-        .then(result => exportOrderCsv(result))
+        .then(result => exportOrderCsv(result, filename))
         .catch(err => console.log(err));
 }
 
@@ -29,5 +29,3 @@ function exportOrderCsv(orders) {
         }
     );
 }
-
-getOrders();
