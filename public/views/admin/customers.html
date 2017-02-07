@@ -1,73 +1,104 @@
-<div id="wrapper">
-    <h1>Breadsith - Admin - Customers</h1>
-    <p> This is the main customers page from which admin can view customers, add customers, edit customers
-    should vuew customers, add customers and edit customers be their own seperate buttons/images that open models for the following information?
-    <input type="button" name="" value="View Customers">
-    <input type="button" name="" value="Add Customers">
-    <input type="button" name="" value="Edit Customers">
-    or should customers home mainly display customers i.e ng-init=viewCustomers(), then have buttons below to add customer but select option next to customer name to edit customer?
-    </p>
-</div>
+<div id="wrapper" ng-init="viewCustomer()">
 
-<div id="wrapper">
-    <!-- <table style="width:100%" ng-repeat="customer in customers"> -->
+    <!-- add customer btn -->
+    <label for="addCustomer"></label>
+    <input data-toggle="modal" data-target="#addCustomerModal" type="button" name="addCustomer" value="Add New Customer" ng-click="addCustomer()" ng-model="addCustomer" />
+
+    <!-- view customer main -->
     <table style="width:100%">
         <tr>
             <th>
                 <h1>View Customer</h1></th>
         </tr>
-        <tr>
-            <td>Loews Hotel {{customer.name}}</td>
-            <td><label for="editCustomer"></label>
-                <input type="button" name="editCustomer" value="Edit Customer" ng-click="" />
+        <tr ng-repeat="customer in customers">
+            <td>{{customer.name}}</td>
+            <td>
+                <!-- edit customer btn -->
+                <label for="editCustomer"></label>
+                <input data-toggle="modal" data-target="#editCustomerModal" type="button" name="editCustomer" value="Edit Customer" ng-click="editCustomer()" ng-model="editCustomer" />
             </td>
         </tr>
     </table>
-    <label for="addCustomer"></label>
-    <input type="button" name="addCustomer" value="Add New Customer" ng-click="" />
-</div>
 
-<div id="wrapper">
-    <h1>Edit Customer (Needs Modal)</h1>
-    <!-- <table style="width:100%" ng-repeat="customer in customers"> -->
-    <table style="width:100%">
-        <tr>
-            <td>
-                <h2>Company Name</h2></td>
-            <td>Loews Hotel {{customer.name}} </td>
-        </tr>
-        <tr>
-            <td>
-                <h2>Address</h2></td>
-            <td>574 XYZ Road {{customer.address}}</td>
-        </tr>
-        <tr>
-            <td>
-                <h2>Phone Number</h2></td>
-            <td> 555-555-5555 {{customer.number}} </td>
-        </tr>
-        <tr>
-            <td>
-                <h2>Email Address<h2></td>
-<td> chefraekwon@xyz.com {{customer.email}} </td>
-</tr>
-</table>
-<label for="editCustomer"></label>
-<input type="button" name="editCustomer" value="Edit Customer" ng-click=""/>
-</div>
+    <!-- edit customer modal begin -->
+    <div id="editCustomerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="modal-title">Edit Customer</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="modalRepeat container-fluid" ng-repeat="customer in customers">
+                        <table style="width:100%">
+                            <tr>
+                                <td>
+                                    <h5>Company Name</h5></td>
+                                <td><input type="text" name="" value="{{customer.name}}"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Address</h5></td>
+                                <td> <input type="text" name="" value="{{customer.address}}"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Phone Number</h5></td>
+                                <td> <input type="text" name="" value="{{customer.phone}}"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Email Address<h5></td>
+                            <td> <input type="text" name="" value="{{customer.email}}"></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <label for="submit"></label>
+                              <input type="submit" name="submit" value="Submit" ng-click="submit()"/>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end edit customer modal -->
 
-<div id="wrapper">
-<h1>Add Customer (Needs Modal) </h1>
-<form>
-<label for="customerName"><h2>Name:</h2></label>
-                <h2><input type="text" name="customerName" value="" placeholder="Name" ng-model="customerName"/></h2>
-                <label for="customerAddress"><h2>Address:<h2></label>
-                <input type="text" name="customerAddress" value="" placeholder="Address" ng-model="customerAddress" />
-                <label for="customerNumber"><h2>Number:</h2></label>
-                <input type="number" name="customerNumber" value="" placeholder="Phone Number" ng-model="customerNumber" />
-                <!-- do we need email if they are already logging in with gmail-->
-                <label for="customerEmail"><h2>Email:</h2></label>
-                <input type="text" name="customerEmail" value="" placeholder="Email" ng-model="customerEmail" />
-                <input type="button" name="Submit" value="Submit" />
-                </form>
+              <!-- add customer modal begin -->
+              <div id="addCustomerModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h1 class="modal-title">Add Customer</h1>
+                    </div>
+                    <div class="modal-body">
+                      <div class="modalRepeat container-fluid">
+                        <form>
+                          <label for="customerName"><h5>Name:</h5></label>
+                                    <h2><input type="text" name="customerName" value="" ng-model="customerName"/></h2>
+                                    <label for="customerAddress"><h5>Address:</h5></label>
+                                    <input type="text" name="customerAddress" value="" ng-model="customerAddress" />
+                                    <label for="customerNumber"><h5>Number:</h5></label>
+                                    <input type="number" name="customerNumber" value="" ng-model="customerNumber" />
+                                    <!-- do we need email if they are already logging in with gmail-->
+                                    <label for="customerEmail"><h5>Email:</h5></label>
+                                    <input type="text" name="customerEmail" value="" ng-model="customerEmail" />
+                                    <input type="button" name="Submit" value="Submit" />
+                                    </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- customer modal end -->
+    
 </div>
+<!-- end wrapper div -->

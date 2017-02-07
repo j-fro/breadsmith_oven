@@ -9,6 +9,7 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
                 url: '/customer', //or url: '/customer/id',
             }).then(function successCallback(response) {
                 console.log(response);
+                $scope.customers = response.data;
             }, function errorCallback(error) {
                 console.log('error', error);
             });
