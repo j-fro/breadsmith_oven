@@ -10,7 +10,6 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
             }).then(function successCallback(response) {
                 console.log(response);
                 $scope.customers = response.data;
-              console.log("id:", response.data[0].id);
             }, function errorCallback(error) {
                 console.log('error', error);
             });
@@ -20,7 +19,7 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
             var data = {
                 name: $scope.customerName,
                 address: $scope.customerAddress,
-                products: []
+                products: $scope.productToBeAdded
             };
             console.log("data:", data);
             $http({
@@ -59,9 +58,10 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
         $scope.deleteCustomer = function(customer) {
             $http({
                 method: 'DELETE',
-                url: '/customer/',
+                url: '/customer/' + customer.id,
             }).then(function successCallback(response) {
                 console.log(response);
+                $window.location.reload();
             }, function errorCallback(error) {
                 console.log('error', error);
             });
@@ -73,9 +73,16 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
                 url: '/product', //or url: '/product/id',
             }).then(function successCallback(response) {
                 console.log(response);
+                $scope.permitted_products = response.data;
             }, function errorCallback(error) {
                 console.log('error', error);
             });
+        };
+//on button click i would like addProduct to take selected product and add it to the addCustomer products array
+        $scope.addProductToCustomer = function(product){
+          $scope.productToBeAdded.push(product);
+          console.log("product added");
+          alert("product added");
         };
 
         $scope.addProduct = function() {
@@ -176,6 +183,6 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
                 console.log('error', error);
             });
         };
-
+        $scope.productToBeAdded = [];
     } //end
 ]);
