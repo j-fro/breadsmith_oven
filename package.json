@@ -14,9 +14,11 @@
   "dependencies": {
     "angular": "^1.6.1",
     "angular-route": "^1.6.1",
+    "angularfire": "^2.3.0",
     "body-parser": "^1.16.0",
     "bootstrap": "^3.3.7",
     "express": "^4.14.1",
+    "firebase": "^3.6.8",
     "knex": "^0.12.6",
     "pg": "^6.1.2"
   },
