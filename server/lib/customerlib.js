@@ -38,8 +38,9 @@ function getAllCustomers() {
                 'products.id as product_id'
             )
             .from('customers')
-            .join('permitted_products', 'customers.id', 'customer_id')
-            .join('products', 'product_id', 'products.id')
+            .leftOuterJoin('permitted_products', 'customers.id', 'customer_id')
+            .leftOuterJoin('products', 'product_id', 'products.id')
+            .orderBy('id')
             .then(customers => resolve(separateCustomers(customers)))
             .catch(err => reject(err));
     });
