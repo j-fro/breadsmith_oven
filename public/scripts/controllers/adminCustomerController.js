@@ -29,14 +29,14 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
             }).then(function successCallback(response) {
                 console.log(response);
                 alert("New Customer Added");
-                window.location.reload();
+                $window.location.reload();
             }, function errorCallback(error) {
                 console.log('error', error);
             });
         }; //end addNewCustomer
 
         $scope.editCustomer = function(customer) {
-          $scope.customerToEdit = customer;
+          $scope.customerToEdit = JSON.parse(JSON.stringify(customer));
         };
 
         $scope.updateCustomer = function() {
@@ -48,6 +48,8 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
                 data: data,
             }).then(function successCallback(response) {
                 console.log(response);
+                alert("Customer Updated");
+                $window.location.reload();
             }, function errorCallback(error) {
                 console.log('error', error);
             });
