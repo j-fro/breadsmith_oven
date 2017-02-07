@@ -998,3 +998,5 @@ insert into users (id, email, role, customer_id) values (997, 'ajohnsonro@phoca.
 insert into users (id, email, role, customer_id) values (998, 'jgonzalezrp@mail.ru', 'customer', 784);
 insert into users (id, email, role, customer_id) values (999, 'jhillrq@weebly.com', 'customer', 598);
 insert into users (id, email, role, customer_id) values (1000, 'ktorresrr@squidoo.com', 'admin', 42);
+
+SELECT setval('users_id_seq', (SELECT MAX(id) FROM users));
