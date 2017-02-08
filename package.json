@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.1",
+    "angular-modal-service": "^0.10.1",
     "angular-route": "^1.6.1",
     "angularfire": "^2.3.0",
     "body-parser": "^1.16.0",
@@ -21,7 +22,9 @@
     "firebase": "^3.6.8",
     "jwt-simple": "^0.5.1",
     "knex": "^0.12.6",
-    "pg": "^6.1.2"
+    "ng-dialog": "^1.0.0",
+    "pg": "^6.1.2",
+    "ui-bootstrap": "^0.1.9"
   },
   "devDependencies": {
     "chai": "^3.5.0",
