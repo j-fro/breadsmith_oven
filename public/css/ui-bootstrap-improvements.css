@@ -1,0 +1,84 @@
+.nav-item .nav-link {
+  cursor: pointer;
+}
+.navbar-brand {
+  cursor: pointer;
+}
+.navbar {
+  margin: 1rem 0;
+}
+
+.navbar .nav-item.right {
+  float: right;
+}
+
+.label.pill-size-large,
+.label.label-size-large {
+  font-size: 100%;
+}
+.label.pill-size-small,
+.label.label-size-small {
+  font-size: 55%;
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+span.card-link {
+  color: #0275d8;
+  text-decoration: none;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+span.card-link:hover {
+  color: #014c8c;
+}
+
+.card-align-center {
+  text-align: center !important;
+}
+
+.card-align-right {
+  text-align: right !important;
+}
+
+.bs-clickable {
+  cursor: pointer;
+}
+
+.label.label-muted {
+  color: hsl(0, 0%, 30%);
+  background-color: rgb(215, 215, 215);
+}
+
+.list-group-item.list-group-item-muted {
+  color: hsl(0, 0%, 40%);
+  background-color: hsl(0, 0%, 90%);
+}
+
+.list-group-item.list-group-item-aged {
+  color: hsl(0, 0%, 60%);
+  background-color: hsl(0, 0%, 95%);
+}
+
+.list-group-item.list-group-item-ancient {
+  color: hsl(0, 0%, 75%);
+  background-color: hsl(0, 0%, 98%);
+}
+
+.card-header {
+  display: block;
+}
+.card-header h1,
+.card-header h2,
+.card-header h3, {
+  display: inline-flex;
+}
+
+/*.card-img-overlay.top {
+  top: 15px;
+  bottom: initial;
+}
+.card-img-overlay.bottom {
+  top: initial;
+  bottom: 15px;
+}*/
