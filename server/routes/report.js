@@ -5,10 +5,12 @@ const lib = require('../lib/reportlib');
 let router = express.Router();
 
 router.get('/production/:date/:filename?', (req, res) => {
-    lib.getTallyAndExport(
-        req.params.filename || 'production.csv',
-        new Date(req.params.date),
-        () => {
+    console.log('Hit production report route');
+    lib
+        .getTallyAndExport(req.params.filename || 'production.csv', new Date(
+            req.params.date
+        ))
+        .then(() => {
             console.log('Getting to then');
             res.sendFile(
                 path.join(
@@ -17,8 +19,8 @@ router.get('/production/:date/:filename?', (req, res) => {
                     req.params.filename || 'production.csv'
                 )
             );
-        }
-    );
+        })
+        .catch(err => res.send('No complete orders found'));
 });
 
 module.exports = router;
