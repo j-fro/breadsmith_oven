@@ -25,6 +25,13 @@
             <div class="modal-body">
                 <h3>{{ viewedOrder.total_cost | currency }}</h3>
                 <table>
+                    <thead>
+                        <td>Product</td>
+                        <td>Price</td>
+                        <td>Quantity</td>
+                        <td>Ext. Cost</td>
+                        <td>Delete</td>
+                    </thead>
                     <tr ng-repeat="product in viewedOrder.products">
                         <td>{{ product.type }} {{ product.variety }}</td>
                         <td>{{ product.price | currency }}</td>
