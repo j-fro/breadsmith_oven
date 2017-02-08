@@ -9,7 +9,7 @@
         </thead>
         <tr ng-repeat="order in orders">
             <td>{{ order.customer_id }}</td>
-            <td>{{ order.created | date: short }}</td>
+            <td>{{ order.created | date: hh:mm }}</td>
             <td>{{ order.total_cost | currency }}</td>
             <td>{{ order.status }}</td>
         </tr>
