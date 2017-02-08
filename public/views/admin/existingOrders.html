@@ -7,11 +7,33 @@
             <td>Total Cost</td>
             <td>Status</td>
         </thead>
-        <tr ng-repeat="order in orders">
+        <tr ng-repeat="order in orders" data-toggle="modal" data-target="#viewOrderDialog" ng-click="viewOrder(order)">
             <td>{{ order.customer_id }}</td>
             <td>{{ order.created | date: hh:mm }}</td>
             <td>{{ order.total_cost | currency }}</td>
             <td>{{ order.status }}</td>
         </tr>
     </table>
+    <div class="modal fade" id="viewOrderDialog">
+        <div class="modal-dialog modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="modal-title">Order #{{ viewedOrder.id }}</h1>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <tr ng-repeat="product in viewedOrder.products">
+                        <td>{{ product.type }} {{ product.variety }}</td>
+                        <td>{{ product.price | currency }}</td>
+                        <td><input type="number" ng-model="product.qty"></td>
+                        <td>{{ product.qty * product.price | currency }}</td>
+                        <td><button type="button" ng-click="removeProduct(product)">&times;</button></td>
+                    </tr>
+                </table>
+                <label for="approveBox">Approve Order:</label>
+                <input type="checkbox" ng-model="viewedOrder.approved" name="approveBox">
+                <button type="button" ng-click="updateOrder(order.id)">Update</button>
+            </div>
+        </div>
+    </div>
 </div>

@@ -16,5 +16,9 @@ myApp.controller('ExistingOrderController', [
                     console.log(err);
                 });
         };
+
+        $scope.viewOrder = function(order) {
+            $scope.viewedOrder = order;
+        };
     }
 ]);
