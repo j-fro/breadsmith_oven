@@ -4,10 +4,10 @@ myApp.config([
     '$routeProvider',
     function($routeProvider) {
         $routeProvider
-            .when('/admin', {
-                templateUrl: 'views/admin/adminHome.html',
-                controller: 'adminController'
-            })
+            // .when('/adminHome', {
+            //     templateUrl: 'views/admin/adminHome.html',
+            //     controller: 'adminController'
+            // })
             .when('/newOrder', {
                 templateUrl: 'views/admin/newOrder.html',
                 controller: 'adminController'
@@ -18,7 +18,7 @@ myApp.config([
             })
             .when('/reports', {
                 templateUrl: 'views/admin/reports.html',
-                controller: 'adminController'
+                controller: 'adminReportsController'
             })
             .when('/customers', {
                 templateUrl: 'views/admin/customers.html',
