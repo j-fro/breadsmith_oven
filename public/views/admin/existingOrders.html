@@ -1,7 +1,7 @@
-<div class="">
+<div id="wrapper">
     <input type="date" ng-model="dateSelected" ng-change="getOrders()">
     <table>
-        <thead>
+        <thead ng-show="orders">
             <td>Customer</td>
             <td>Created on</td>
             <td>Total Cost</td>
@@ -9,7 +9,7 @@
             <td>Comments</td>
         </thead>
         <tr ng-repeat="order in orders" data-toggle="modal" data-target="#viewOrderDialog" ng-click="viewOrder(order)">
-            <td>{{ order.customer_id }}</td>
+            <td>{{ order.customer_name }}</td>
             <td>{{ order.created | date: hh:mm }}</td>
             <td>{{ order.total_cost | currency }}</td>
             <td>{{ order.status }}</td>
@@ -23,7 +23,7 @@
                 <h1 class="modal-title">Order #{{ viewedOrder.id }}</h1>
             </div>
             <div class="modal-body">
-                <h3>{{ viewedOrder.total_cost | currency }}</h3>
+                <h3>{{ viewedOrder.customer_name}}: {{ viewedOrder.total_cost | currency }}</h3>
                 <table>
                     <thead>
                         <td>Product</td>
@@ -41,7 +41,9 @@
                     </tr>
                 </table>
                 <h3>Customer comments:</h3>
+
                 <p>{{ viewedOrder.comments }}</p>
+                <a ng-href="{{ mailLink }}"><button>Respond</button></a>
                 <label for="approveBox">Approve Order:</label>
                 <input type="checkbox" ng-model="viewedOrder.status" name="approveBox">
                 <button type="button" ng-click="updateOrder(order.id)">Update</button>
