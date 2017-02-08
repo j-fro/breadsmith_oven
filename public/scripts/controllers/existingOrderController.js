@@ -20,5 +20,23 @@ myApp.controller('ExistingOrderController', [
         $scope.viewOrder = function(order) {
             $scope.viewedOrder = order;
         };
+
+        $scope.removeProduct = function(product) {
+            $scope.viewedOrder.products.splice(
+                $scope.viewedOrder.products.indexOf(product),
+                1
+            );
+        };
+
+        $scope.updateOrder = function() {
+            $http
+                .put('/order', $scope.viewedOrder)
+                .then(function(response) {
+                    console.log(response);
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });
+        };
     }
 ]);

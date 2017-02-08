@@ -6,12 +6,14 @@
             <td>Created on</td>
             <td>Total Cost</td>
             <td>Status</td>
+            <td>Comments</td>
         </thead>
         <tr ng-repeat="order in orders" data-toggle="modal" data-target="#viewOrderDialog" ng-click="viewOrder(order)">
             <td>{{ order.customer_id }}</td>
             <td>{{ order.created | date: hh:mm }}</td>
             <td>{{ order.total_cost | currency }}</td>
             <td>{{ order.status }}</td>
+            <td>{{ order.comments.length > 0 }}</td>
         </tr>
     </table>
     <div class="modal fade" id="viewOrderDialog">
@@ -21,6 +23,7 @@
                 <h1 class="modal-title">Order #{{ viewedOrder.id }}</h1>
             </div>
             <div class="modal-body">
+                <h3>{{ viewedOrder.total_cost | currency }}</h3>
                 <table>
                     <tr ng-repeat="product in viewedOrder.products">
                         <td>{{ product.type }} {{ product.variety }}</td>
@@ -30,8 +33,10 @@
                         <td><button type="button" ng-click="removeProduct(product)">&times;</button></td>
                     </tr>
                 </table>
+                <h3>Customer comments:</h3>
+                <p>{{ viewedOrder.comments }}</p>
                 <label for="approveBox">Approve Order:</label>
-                <input type="checkbox" ng-model="viewedOrder.approved" name="approveBox">
+                <input type="checkbox" ng-model="viewedOrder.status" name="approveBox">
                 <button type="button" ng-click="updateOrder(order.id)">Update</button>
             </div>
         </div>
