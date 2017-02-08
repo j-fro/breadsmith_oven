@@ -41,7 +41,7 @@ router.put('/', (req, res) => {
   });
 }); //end router.put
 
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
   console.log('deleting user:', req.params.id);
   knex.where('id', req.params.id).del().from('users')
       .then(function() {
