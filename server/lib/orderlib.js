@@ -12,6 +12,22 @@ function getOrders() {
     });
 }
 
+function getOrdersByDate(date) {
+    endDate = new Date(date);
+    endDate.setDate(endDate.getDate() + 1);
+    return new Promise((resolve, reject) => {
+        knex
+            .select()
+            .from('orders')
+            .join('order_items', 'orders.id', 'order_id')
+            .join('products', 'product_id', 'products.id')
+            .where('created', '>', date)
+            .andWhere('created', '<', endDate)
+            .then(result => resolve(separateOrders(result)))
+            .catch(err => reject(err));
+    });
+}
+
 function addOrder(order) {
     return new Promise((resolve, reject) => {
         knex
@@ -104,6 +120,7 @@ function deleteOrder(orderId) {
 module.exports = {
     addOrder: addOrder,
     getOrders: getOrders,
+    getOrdersByDate: getOrdersByDate,
     editOrder: editOrder,
     confirmOrder: confirmOrder,
     deleteOrder: deleteOrder,

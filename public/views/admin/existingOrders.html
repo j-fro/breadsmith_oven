@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Orders</title>
-  </head>
-  <body>
-    <h1>Orders</h1>
-  </body>
-</html>
+<div class="">
+    <input type="date" ng-model="dateSelected" ng-change="getOrders()">
+    <table>
+        <thead>
+            <td>Customer</td>
+            <td>Created on</td>
+            <td>Total Cost</td>
+            <td>Status</td>
+        </thead>
+        <tr ng-repeat="order in orders">
+            <td>{{ order.customer_id }}</td>
+            <td>{{ order.created | date: short }}</td>
+            <td>{{ order.total_cost | currency }}</td>
+            <td>{{ order.status }}</td>
+        </tr>
+    </table>
+</div>
