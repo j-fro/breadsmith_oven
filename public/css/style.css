@@ -30,7 +30,10 @@ margin-right:auto;
 margin-left:auto;
 position:relative;
 }
+.tayble, .taybel td{
+border: solid black 5px;
 
+}
 #wrapper {
 width:927px;
 margin-top:0px;

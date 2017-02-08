@@ -1,5 +1,6 @@
-<h1>Product</h1>
+
 <script type="text/javascript" src="controllers/products.js"></script>
+<img src="../../images/breadsmith_logo.jpg" alt="">
 <body ng-controller = "productRead">
 
 
@@ -16,9 +17,8 @@
     <td>{{product.type}}</td>
     <td>{{product.variety}}</td>
     <td>{{product.price}}</td>
-    <td><button type="button" name="button"> one </button></td>
-    <td><button type="button" name="button"> two </button></td>
-
+    <td><button type="button" name="button" ng-click = "editProduct()"> Edit </button></td>
+    <td><button type="button" name="button" ng-click = "deleteProduct()"> X </button></td>
   </tr>
 </table>
 </div>
