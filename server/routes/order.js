@@ -10,6 +10,16 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:date', (req, res) => {
+    lib
+        .getOrdersByDate(new Date(req.params.date))
+        .then(orders => res.send(orders))
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+});
+
 router.post('/', (req, res) => {
     console.log(req.body);
     lib

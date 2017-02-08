@@ -9,6 +9,7 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
                 url: '/customer', //or url: '/customer/id',
             }).then(function successCallback(response) {
                 console.log(response);
+                $scope.customers = response.data;
             }, function errorCallback(error) {
                 console.log('error', error);
             });
@@ -16,73 +17,51 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
 
         $scope.addCustomer = function() {
             var data = {
-                name: "Frank's Hotel",
-                address: "221 Hotel Ave, Hotelville MN 55123",
-                email: ['frank@franks.com'],
-                permitted_products: [{
-                        id: 2,
-                        regular: true
-                    },
-                    {
-                        id: 17,
-                        regular: true
-                    },
-                    {
-                        id: 24,
-                        regular: false
-                    }
-                ]
+                name: $scope.customerName,
+                address: $scope.customerAddress,
+                products: $scope.productToBeAdded
             };
+            console.log("data:", data);
             $http({
                 method: 'POST',
                 url: '/customer',
                 data: data,
             }).then(function successCallback(response) {
                 console.log(response);
+                alert("New Customer Added");
+                $window.location.reload();
             }, function errorCallback(error) {
                 console.log('error', error);
             });
         }; //end addNewCustomer
 
+        $scope.editCustomer = function(customer) {
+          $scope.customerToEdit = JSON.parse(JSON.stringify(customer));
+        };
+
         $scope.updateCustomer = function() {
-            var data = {
-                id: 7,
-                name: "Frank's Grand Hotel",
-                permitted_products: [{
-                        id: 2,
-                        regular: true
-                    },
-                    {
-                        id: 17,
-                        regular: false
-                    },
-                    {
-                        id: 24,
-                        regular: true
-                    },
-                    {
-                        id: 32,
-                        regular: false
-                    }
-                ]
-            };
+            var data = $scope.customerToEdit;
+            console.log("data:", data);
             $http({
                 method: 'PUT',
                 url: '/customer',
                 data: data,
             }).then(function successCallback(response) {
                 console.log(response);
+                alert("Customer Updated");
+                $window.location.reload();
             }, function errorCallback(error) {
                 console.log('error', error);
             });
         }; //end updateExistingCustomer
 
-        $scope.deleteCustomer = function() {
+        $scope.deleteCustomer = function(customer) {
             $http({
                 method: 'DELETE',
-                url: '/customer/:id',
+                url: '/customer/' + customer.id,
             }).then(function successCallback(response) {
                 console.log(response);
+                $window.location.reload();
             }, function errorCallback(error) {
                 console.log('error', error);
             });
@@ -94,9 +73,16 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
                 url: '/product', //or url: '/product/id',
             }).then(function successCallback(response) {
                 console.log(response);
+                $scope.permitted_products = response.data;
             }, function errorCallback(error) {
                 console.log('error', error);
             });
+        };
+//on button click i would like addProduct to take selected product and add it to the addCustomer products array
+        $scope.addProductToCustomer = function(product){
+          $scope.productToBeAdded.push(product);
+          console.log("product added");
+          alert("product added");
         };
 
         $scope.addProduct = function() {
@@ -197,6 +183,6 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
                 console.log('error', error);
             });
         };
-
+        $scope.productToBeAdded = [];
     } //end
 ]);
