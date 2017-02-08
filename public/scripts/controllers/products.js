@@ -14,22 +14,28 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
         $scope.show = show;//And shows it
       });//end get call
     };//end getProducts
-
   $scope.editProduct = function(){
     console.log("editing");
-    console.log(this);
+    console.log("this is", this);
     var obj = {
-      id : this.product.id,
-      type: "aifferent"
+      id : eObj.id.id,
+      type : this.pName,
+      variety : this.pVariety,
+      price : this.pPrice
     };
+    console.log("obj is", obj);
     $http({
-      method:"PUT",
+      method : "PUT",
       url:"/product",
-      data:obj
+      data : obj
     }).then(function(res){
       console.log(res);
-    });//end http call
-    $scope.getProducts();
+      $scope.pName = "";
+      $scope.pVariety="";
+      $scope.pPrice="";
+      $scope.getProducts();
+    });
+    console.log(obj);
   };//end editProduct
   $scope.deleteProduct = function(){
     console.log("deleting");
@@ -37,12 +43,26 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
     var delObj = this.product.id;
     $http({
       method:"DELETE",
-      url : "/product/" + delObj ,
+      url : "/product/" + delObj,
       data : delObj
     }).then(function(res){
       console.log(res);
+      $scope.getProducts();
     });//end http
-    $scope.getProducts();
+
   };//end delete
   $scope.getProducts();
+  var eObj={};
+  $scope.test = function(){
+    console.log(this);
+    console.log(eObj);
+
+  };//end test
+  $scope.storeInfo = function(){
+    var x = this.product;
+    eObj.id = x;
+    $scope.pName = x.type;
+    $scope.pVariety = x.variety;
+    $scope.pPrice = x.price;
+  };
 }]);
