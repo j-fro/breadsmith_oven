@@ -42,7 +42,14 @@ router.put('/', (req, res) => {
 }); //end router.put
 
 router.delete('/', (req, res) => {
-
+  console.log('deleting user:', req.params.id);
+  knex.where('id', req.params.id).del().from('users')
+      .then(function() {
+          res.sendStatus(200);
+      }).catch(function(error) {
+          console.log('problem deleting:', error);
+          res.sendStatus(500);
+      });
 }); //end router.delete
 
 module.exports = router;
