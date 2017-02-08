@@ -31,7 +31,14 @@ router.post('/', (req, res) => {
 }); //end router.post
 
 router.put('/', (req, res) => {
-
+  console.log('updating user:', req.body.id);
+  knex.update(req.body).where('id', req.body.id).from('users')
+  .then(function(){
+    res.sendStatus(200);
+  }).catch(function(error){
+    console.log('problem updating:', error);
+    res.sendStatus(500);
+  });
 }); //end router.put
 
 router.delete('/', (req, res) => {
