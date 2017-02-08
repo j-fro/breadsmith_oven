@@ -1,9 +1,18 @@
 var customerApp = angular.module('customerApp', ['ngRoute', 'ngDialog', 'firebase']);
 // "ui.bootstrap.modal"
 customerApp.controller('CustomerController', ['$scope', 'ngDialog', '$http', '$window', '$firebaseAuth',
-    function($scope, ngDialog, $http, $window, ModalService, $firebaseAuth) {
+    function($scope, ngDialog, $http, $window, $firebaseAuth) {
         console.log('in clientController');
-        var auth = $firebaseAuth;
+        var auth = $firebaseAuth();
+        $scope.logout = function(){
+          console.log('hit logout');
+          auth.$signOut().then(function(){
+            console.log('logging the user out!');
+            $window.location.href = '/';
+          }).catch(function(err) {
+            console.log('oook an err', err);
+          });
+        };
         $scope.displayOrder = function() {
             $http.get('/customer/46')
             .then(function successCallback(response) {
@@ -19,31 +28,26 @@ customerApp.controller('CustomerController', ['$scope', 'ngDialog', '$http', '$w
 
         $scope.postOrder = function(){
           var newOrder = {
-            status: 'placed',
             comments: $scope.comments,
             customer_id: $scope.customer.id,
             products: $scope.customer.products
           };
-        $http.post('/order', newOrder)
-        .then(function(response){
-          console.log('order Post hit');
+          $http.post('/order', newOrder)
+            .then(function(response){
+              console.log('order Post hit');
 
-          });
+            });
 
 
         };
 
         $scope.confirmModal = function(){
           ngDialog.open({
-            template: 'confirmOrder'
+            template: 'confirmOrder',
+            controller: 'CustomerController'
           });
         };
 
-        $scope.logout = function(){
-          auth.$signOut().then(function(){
-            console.log('logging the user out!');
-            $window.location.href = '/';
-          });
-        };
+
 
 }]);//end clientController
