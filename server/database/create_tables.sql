@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS  orders (
     total_qty INTEGER NOT NULL,
     total_cost REAL NOT NULL,
     created TIMESTAMP,
-    status VARCHAR(10),
+    status BOOLEAN DEFAULT FALSE,
     comments TEXT,
     customer_id INTEGER NOT NULL REFERENCES customers(id) ON DELETE CASCADE
 );

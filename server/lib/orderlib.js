@@ -7,6 +7,24 @@ function getOrders() {
             .from('orders')
             .join('order_items', 'orders.id', 'order_id')
             .join('products', 'product_id', 'products.id')
+            .join('customers', 'customer_id', 'customers.id')
+            .then(result => resolve(separateOrders(result)))
+            .catch(err => reject(err));
+    });
+}
+
+function getOrdersByDate(date) {
+    endDate = new Date(date);
+    endDate.setDate(endDate.getDate() + 1);
+    return new Promise((resolve, reject) => {
+        knex
+            .select()
+            .from('orders')
+            .join('order_items', 'orders.id', 'order_id')
+            .join('products', 'product_id', 'products.id')
+            .join('customers', 'customer_id', 'customers.id')
+            .where('created', '>', date)
+            .andWhere('created', '<', endDate)
             .then(result => resolve(separateOrders(result)))
             .catch(err => reject(err));
     });
@@ -18,7 +36,7 @@ function addOrder(order) {
             .insert(
                 {
                     comments: order.comments,
-                    status: order.status || 'placed',
+                    status: order.status,
                     created: order.created || new Date(),
                     total_qty: order.products.reduce(
                         (sum, prod) => sum + prod.qty,
@@ -83,6 +101,9 @@ function editOrder(order) {
             0
         );
         order.products = undefined;
+        order.contact_name = undefined;
+        order.email = undefined;
+        order.customer_name = undefined;
         let update = knex.update(order).from('orders').where('id', order.id);
         Promise.all([delete_items, insert_items, update])
             .then(() => resolve())
@@ -91,10 +112,7 @@ function editOrder(order) {
 }
 
 function confirmOrder(orderId) {
-    return knex
-        .update('status', 'confirmed')
-        .from('orders')
-        .where('id', orderId);
+    return knex.update('status', true).from('orders').where('id', orderId);
 }
 
 function deleteOrder(orderId) {
@@ -104,6 +122,7 @@ function deleteOrder(orderId) {
 module.exports = {
     addOrder: addOrder,
     getOrders: getOrders,
+    getOrdersByDate: getOrdersByDate,
     editOrder: editOrder,
     confirmOrder: confirmOrder,
     deleteOrder: deleteOrder,
@@ -116,6 +135,9 @@ function aggregateOrder(results) {
         (obj, row) => {
             obj.id = row.order_id;
             obj.customer_id = row.customer_id;
+            obj.customer_name = row.name;
+            obj.contact_name = row.contact_name;
+            obj.email = row.email;
             obj.total_qty = row.total_qty;
             obj.total_cost = row.total_cost;
             obj.created = row.created;

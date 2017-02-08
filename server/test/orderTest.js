@@ -111,7 +111,7 @@ describe('Order CRUD functions', () => {
                             let orderToCheck = result.find(
                                 ord => ord.id === TEST_ORDER_1_EDITED.id
                             );
-                            expect(orderToCheck.status).to.equal('confirmed');
+                            expect(orderToCheck.status).to.equal(true);
                             done();
                         })
                         .catch(err => done(err));
@@ -190,7 +190,7 @@ const TEST_ORDER_1_PRE = {
     customer_id: 2000,
     created: new Date(2000, 1, 1, 0, 0, 0, 0),
     comments: "I'm a comment",
-    status: 'placed',
+    status: false,
     products: [TEST_PRODUCT_1_QTY, TEST_PRODUCT_2_QTY]
 };
 
@@ -206,7 +206,8 @@ const TEST_ORDER_1_EDITED = {
     total_qty: 3,
     total_cost: 14.25,
     comments: 'Better comments',
-    status: 'placed',
+    status: false,
+    customer_name: "Frank's Hotel",
     products: [TEST_PRODUCT_2_QTY_EDITED]
 };
 
@@ -217,7 +218,8 @@ const TEST_ORDER_1_POST = {
     total_qty: 8,
     total_cost: 30.3,
     comments: "I'm a comment",
-    status: 'placed',
+    status: false,
+    customer_name: "Frank's Hotel",
     products: [TEST_PRODUCT_1_QTY, TEST_PRODUCT_2_QTY]
 };
 
@@ -227,7 +229,7 @@ const TEST_ORDER_2_PRE = {
     total_qty: 1,
     total_cost: 4.75,
     comments: "I'm a different comment",
-    status: 'placed'
+    status: false
 };
 
 const TEST_ORDER_2_POST = {
@@ -237,7 +239,8 @@ const TEST_ORDER_2_POST = {
     total_qty: 1,
     total_cost: 4.75,
     comments: "I'm a different comment",
-    status: 'placed',
+    status: false,
+    customer_name: "Frank's Hotel",
     products: [TEST_PRODUCT_2_QTY]
 };
 
@@ -248,7 +251,8 @@ const TEST_ORDER_3_POST = {
     total_qty: 1,
     total_cost: 4.75,
     comments: "I'm a different comment",
-    status: 'placed',
+    status: false,
+    customer_name: "Frank's Hotel",
     products: [TEST_PRODUCT_2_QTY]
 };
 
@@ -265,7 +269,7 @@ const TEST_ORDER_ROWS = [
         total_qty: 8,
         total_cost: 30.3,
         created: new Date(2000, 1, 1, 0, 0, 0, 0),
-        status: 'placed',
+        status: false,
         comments: "I'm a comment",
         customer_id: 2000,
         order_id: 6,
@@ -273,6 +277,7 @@ const TEST_ORDER_ROWS = [
         qty: 7,
         type: 'wheat bread',
         variety: '',
+        name: "Frank's Hotel",
         price: 3.65
     },
     {
@@ -280,7 +285,7 @@ const TEST_ORDER_ROWS = [
         total_qty: 8,
         total_cost: 30.3,
         created: new Date(2000, 1, 1, 0, 0, 0, 0),
-        status: 'placed',
+        status: false,
         comments: "I'm a comment",
         customer_id: 2000,
         order_id: 6,
@@ -288,6 +293,7 @@ const TEST_ORDER_ROWS = [
         qty: 1,
         type: 'dinner roll',
         variety: 'dozen',
+        name: "Frank's Hotel",
         price: 4.75
     },
     {
@@ -295,7 +301,7 @@ const TEST_ORDER_ROWS = [
         total_qty: 1,
         total_cost: 4.75,
         created: new Date(2000, 1, 1, 0, 0, 0, 0),
-        status: 'placed',
+        status: false,
         comments: "I'm a different comment",
         customer_id: 2000,
         order_id: 7,
@@ -303,6 +309,7 @@ const TEST_ORDER_ROWS = [
         qty: 1,
         type: 'dinner roll',
         variety: 'dozen',
+        name: "Frank's Hotel",
         price: 4.75
     }
 ];

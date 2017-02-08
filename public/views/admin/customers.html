@@ -1,10 +1,143 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Customers</title>
-  </head>
-  <body>
-    <h1>Customers</h1>
-  </body>
-</html>
+<div id="wrapper" ng-init="viewCustomer()">
+
+    <!-- add customer btn -->
+    <label for="addCustomer"></label>
+    <input data-toggle="modal" data-target="#addCustomerModal" type="button" name="addCustomer" value="Add New Customer" />
+
+    <!-- view customer main -->
+    <table style="width:100%">
+        <tr>
+            <th>
+                <h1>View Customer</h1></th>
+        </tr>
+        <tr ng-repeat="customer in customers">
+            <td>{{customer.name}}</td>
+            <td>
+
+                <!-- edit customer btn -->
+                <label for="editCustomer"></label>
+                <input data-toggle="modal" data-target="#editCustomerModal" type="button" name="editCustomer" value="Edit" ng-click="editCustomer(customer)" />
+            </td>
+            <td>
+                <label for="deleteCustomer"></label>
+                <input type="button" name="deleteCustomer" value="Delete" ng-click="deleteCustomer(customer)" />
+                <!-- <data-toggle="modal" data-target="#deleteCustomerModal"> -->
+            </td>
+        </tr>
+    </table>
+
+    <!-- edit customer modal begin -->
+    <div id="editCustomerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="modal-title">Edit Customer</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="modalRepeat container-fluid">
+                        <table style="width:100%">
+                            <tr>
+                                <td>
+                                    <h5>Company Name</h5></td>
+                                <td><input type="text" name="" ng-model="customerToEdit.name"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Address</h5></td>
+                                <td> <input type="text" name="" ng-model="customerToEdit.address"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Phone Number</h5></td>
+                                <td> <input type="text" name="" ng-model="customerToEdit.phone"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Email Address<h5></td>
+                              <td> <input type="text" name="" ng-model="customerToEdit.email"></td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <label for="updateCustomer"></label>
+                                <input type="submit" name="updateCustomer" value="Update Customer" ng-click="updateCustomer()"/>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end edit customer modal -->
+
+    <!-- add customer modal begin -->
+    <div id="addCustomerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="modal-title">Add Customer</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="modalRepeat container-fluid">
+                        <table>
+                            <tr>
+                                <td>
+                                    <label for="customerName"><h5>Name:</h5></label>
+                                    <h2><input type="text" name="customerName" ng-model="customerName"/></h2>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="customerAddress"><h5>Address:</h5></label>
+                                    <input type="text" name="customerAddress" ng-model="customerAddress" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="customerNumber"><h5>Number:</h5></label>
+                                    <input type="number" name="customerNumber" value="" ng-model="customerNumber" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="customerEmail"><h5> Contact Email:</h5></label>
+                                    <input type="text" name="customerEmail" value="" ng-model="customerEmail" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Permitted Products </h5>
+                                    <table ng-init="viewProduct()">
+                                        <tr ng-repeat="product in permitted_products">
+                                            <td>
+                                                {{product.type}} {{product.variety}} {{product.price}}
+                                                <input type="button" name="" value="Add Product" ng-click="addProductToCustomer(product)">
+                                            </td>
+                                        </tr>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" name="Add Customer" value="Add Customer" ng-click="addCustomer()" />
+                                </td>
+                            </tr>
+                            </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- add customer modal end -->
+
+
+
+              </div>
+              <!-- end wrapper div -->
