@@ -101,6 +101,9 @@ function editOrder(order) {
             0
         );
         order.products = undefined;
+        order.contact_name = undefined;
+        order.email = undefined;
+        order.customer_name = undefined;
         let update = knex.update(order).from('orders').where('id', order.id);
         Promise.all([delete_items, insert_items, update])
             .then(() => resolve())
@@ -133,6 +136,8 @@ function aggregateOrder(results) {
             obj.id = row.order_id;
             obj.customer_id = row.customer_id;
             obj.customer_name = row.name;
+            obj.contact_name = row.contact_name;
+            obj.email = row.email;
             obj.total_qty = row.total_qty;
             obj.total_cost = row.total_cost;
             obj.created = row.created;
