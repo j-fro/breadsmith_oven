@@ -4,10 +4,10 @@ myApp.config([
     '$routeProvider',
     function($routeProvider) {
         $routeProvider
-            // .when('/adminHome', {
-            //     templateUrl: 'views/admin/adminHome.html',
-            //     controller: 'adminController'
-            // })
+            .when('/adminHome', {
+                templateUrl: 'views/admin/adminHome.html',
+                controller: 'adminController'
+            })
             .when('/newOrder', {
                 templateUrl: 'views/admin/newOrder.html',
                 controller: 'adminController'
@@ -57,7 +57,7 @@ myApp.config([
                 controller: 'adminCustomerController'
             })
             .otherwise({
-                redirectTo: '/index.html'
+                redirectTo: 'home'
             });
     }
 ]);
