@@ -21,8 +21,10 @@ app.listen(app.get('port'), () => {
 const indexRouter = require('./routes/index');
 const customerRouter = require('./routes/customer');
 const productRouter = require('./routes/product');
+const reportRouter = require('./routes/report');
 
 //routers
 app.use('/', indexRouter);
 app.use('/customer', customerRouter);
 app.use('/product', productRouter);
+app.use('/report', reportRouter);

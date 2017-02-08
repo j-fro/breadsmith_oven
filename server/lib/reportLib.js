@@ -13,7 +13,7 @@ function getOrdersAndExport(filename, beginDate, endDate) {
         .catch(err => console.log(err));
 }
 
-function exportCsv(orders, filename) {
+function exportCsv(orders, filename, callback) {
     console.log(typeof orders);
     if (orders[0]) {
         let fields = Object.keys(orders[0]);
@@ -30,13 +30,14 @@ function exportCsv(orders, filename) {
                     console.log(err);
                 } else {
                     console.log('File Saved');
+                    callback();
                 }
             }
         );
     }
 }
 
-function getTallyAndExport(date) {
+function getTallyAndExport(filename, date, callback) {
     knex
         .select('type')
         .sum('qty')
@@ -44,6 +45,12 @@ function getTallyAndExport(date) {
         .join('order_items', 'orders.id', 'order_id')
         .join('products', 'product_id', 'products.id')
         .where('created', '>', date || new Date())
+        .andWhere('status', true)
         .groupBy('type')
-        .then(result => exportCsv(result, 'tally.csv'));
+        .then(result => exportCsv(result, filename, callback))
+        .catch(err => err);
 }
+
+module.exports = {
+    getTallyAndExport: getTallyAndExport
+};
