@@ -34,7 +34,7 @@ function addOrder(order) {
             .insert(
                 {
                     comments: order.comments,
-                    status: order.status || 'placed',
+                    status: order.status,
                     created: order.created || new Date(),
                     total_qty: order.products.reduce(
                         (sum, prod) => sum + prod.qty,
@@ -107,10 +107,7 @@ function editOrder(order) {
 }
 
 function confirmOrder(orderId) {
-    return knex
-        .update('status', 'confirmed')
-        .from('orders')
-        .where('id', orderId);
+    return knex.update('status', true).from('orders').where('id', orderId);
 }
 
 function deleteOrder(orderId) {
