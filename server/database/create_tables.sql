@@ -10,6 +10,8 @@ CREATE TABLE IF NOT EXISTS customers (
 
 CREATE TABLE IF NOT EXISTS  users (
     id SERIAL PRIMARY KEY,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
     email VARCHAR UNIQUE NOT NULL,
     role VARCHAR(10),
     customer_id INTEGER REFERENCES customers(id) ON DELETE SET NULL

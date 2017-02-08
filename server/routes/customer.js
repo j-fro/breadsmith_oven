@@ -1,6 +1,5 @@
 const express = require('express');
 const lib = require('../lib/customerlib');
-const jwt = require('jwt-simple');
 
 let router = express.Router();
 

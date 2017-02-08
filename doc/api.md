@@ -21,7 +21,8 @@ Gets information for all customers (for a privileged account) or a specific cust
     **Content if client account or id supplied:**
 ```
     {
-        id: [integer]
+        id: [integer],
+        name: [string]
         address: [string],
         phone: [string],
         email: [

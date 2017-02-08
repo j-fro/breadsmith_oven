@@ -1,8 +1,18 @@
-var customerApp = angular.module('customerApp', []);
-
-customerApp.controller('CustomerController', ['$scope', '$http', '$window',
-    function($scope, $http, $window) {
+var customerApp = angular.module('customerApp', ['ngRoute', 'ngDialog', 'firebase']);
+// "ui.bootstrap.modal"
+customerApp.controller('CustomerController', ['$scope', 'ngDialog', '$http', '$window', '$firebaseAuth',
+    function($scope, ngDialog, $http, $window, $firebaseAuth) {
         console.log('in clientController');
+        var auth = $firebaseAuth();
+        $scope.logout = function(){
+          console.log('hit logout');
+          auth.$signOut().then(function(){
+            console.log('logging the user out!');
+            $window.location.href = '/';
+          }).catch(function(err) {
+            console.log('oook an err', err);
+          });
+        };
         $scope.displayOrder = function() {
             $http.get('/customer/46')
             .then(function successCallback(response) {
@@ -13,26 +23,31 @@ customerApp.controller('CustomerController', ['$scope', '$http', '$window',
                 $window.location.href='#!/login';
             });
           };
-        // };$scope.checkLogin();
+
         $scope.displayOrder();
 
         $scope.postOrder = function(){
           var newOrder = {
-            status: 'placed',
             comments: $scope.comments,
             customer_id: $scope.customer.id,
             products: $scope.customer.products
           };
-        $http.post('/order', newOrder)
-        .then(function(response){
-          console.log('order Post hit');
+          $http.post('/order', newOrder)
+            .then(function(response){
+              console.log('order Post hit');
 
-          if(confirm("Thank you! Your order has been submitted. You will be notified when it has been accepted.")){
-            $window.location.href = '#!/home';
-          }
-        });
+            });
+
 
         };
 
-    }
-]);//end clientController
+        $scope.confirmModal = function(){
+          ngDialog.open({
+            template: 'confirmOrder',
+            controller: 'CustomerController'
+          });
+        };
+
+
+
+}]);//end clientController

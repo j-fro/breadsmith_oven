@@ -15,10 +15,10 @@ router.get('/customerHome', (req, res) => {
     res.sendFile(customerPath);
 });
 
-router.get('/adminHome', (req, res) => {
+router.get('/adminIndex', (req, res) => {
     let adminPath = path.join(
         __dirname,
-        '../../public/views/admin/adminHome.html'
+        '../../public/views/admin/adminIndex.html'
     );
     res.sendFile(adminPath);
 });

@@ -4,3 +4,4 @@ notes.md
 nodemon.json
 node_modules
 .env
+/reports
