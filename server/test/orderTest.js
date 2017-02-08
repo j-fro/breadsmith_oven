@@ -207,6 +207,7 @@ const TEST_ORDER_1_EDITED = {
     total_cost: 14.25,
     comments: 'Better comments',
     status: false,
+    customer_name: "Frank's Hotel",
     products: [TEST_PRODUCT_2_QTY_EDITED]
 };
 
@@ -218,6 +219,7 @@ const TEST_ORDER_1_POST = {
     total_cost: 30.3,
     comments: "I'm a comment",
     status: false,
+    customer_name: "Frank's Hotel",
     products: [TEST_PRODUCT_1_QTY, TEST_PRODUCT_2_QTY]
 };
 
@@ -238,6 +240,7 @@ const TEST_ORDER_2_POST = {
     total_cost: 4.75,
     comments: "I'm a different comment",
     status: false,
+    customer_name: "Frank's Hotel",
     products: [TEST_PRODUCT_2_QTY]
 };
 
@@ -249,6 +252,7 @@ const TEST_ORDER_3_POST = {
     total_cost: 4.75,
     comments: "I'm a different comment",
     status: false,
+    customer_name: "Frank's Hotel",
     products: [TEST_PRODUCT_2_QTY]
 };
 
@@ -273,6 +277,7 @@ const TEST_ORDER_ROWS = [
         qty: 7,
         type: 'wheat bread',
         variety: '',
+        name: "Frank's Hotel",
         price: 3.65
     },
     {
@@ -288,6 +293,7 @@ const TEST_ORDER_ROWS = [
         qty: 1,
         type: 'dinner roll',
         variety: 'dozen',
+        name: "Frank's Hotel",
         price: 4.75
     },
     {
@@ -303,6 +309,7 @@ const TEST_ORDER_ROWS = [
         qty: 1,
         type: 'dinner roll',
         variety: 'dozen',
+        name: "Frank's Hotel",
         price: 4.75
     }
 ];

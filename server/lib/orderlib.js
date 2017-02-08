@@ -7,6 +7,7 @@ function getOrders() {
             .from('orders')
             .join('order_items', 'orders.id', 'order_id')
             .join('products', 'product_id', 'products.id')
+            .join('customers', 'customer_id', 'customers.id')
             .then(result => resolve(separateOrders(result)))
             .catch(err => reject(err));
     });
@@ -21,6 +22,7 @@ function getOrdersByDate(date) {
             .from('orders')
             .join('order_items', 'orders.id', 'order_id')
             .join('products', 'product_id', 'products.id')
+            .join('customers', 'customer_id', 'customers.id')
             .where('created', '>', date)
             .andWhere('created', '<', endDate)
             .then(result => resolve(separateOrders(result)))
@@ -130,6 +132,7 @@ function aggregateOrder(results) {
         (obj, row) => {
             obj.id = row.order_id;
             obj.customer_id = row.customer_id;
+            obj.customer_name = row.name;
             obj.total_qty = row.total_qty;
             obj.total_cost = row.total_cost;
             obj.created = row.created;
