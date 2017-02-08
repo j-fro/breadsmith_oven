@@ -15,7 +15,18 @@ router.get('/', (req, res) => {
 }); //end router.get
 
 router.post('/', (req, res) => {
-
+  console.log('adding user:', req.body);
+  knex.insert({
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    role: req.body.role
+  }).into('users')
+  .then(function() {
+      res.sendStatus(200);
+  }).catch(function(error) {
+      console.log('error in post:', error);
+      res.sendStatus(500);
+  });
 }); //end router.post
 
 router.put('/', (req, res) => {
