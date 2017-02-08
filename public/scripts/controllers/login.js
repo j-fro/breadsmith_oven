@@ -1,7 +1,7 @@
 myApp.controller('loginController', ['$scope', '$http', '$window', '$firebaseAuth',
     function($scope, $http, $window, $firebaseAuth) {
         console.log('in loginController');
-        
+
         var provider = new firebase.auth.GoogleAuthProvider();
 
         $scope.login = function() {

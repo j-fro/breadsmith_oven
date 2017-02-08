@@ -3,14 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>clientHome</title>
+    <link rel="stylesheet" href="/css/ui-bootstrap-improvements.css">
     <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/ngDialog.min.css" />
+    <link rel="stylesheet" href="css/ngDialog-theme-default.min.css">
     <link rel="stylesheet" href="css/master.css" />
     <link rel="stylesheet" href="css/style.css" />
     <!-- <link rel="stylesheet" href="../vendors/bootstrap.min.css"> -->
+    <!-- <script src="vendors/angular-modal-service.min.js" charset="utf-8"></script> -->
     <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="vendors/angular-route.js" charset="utf-8"></script>
+    <script src="vendors/ngDialog.min.js" charset="utf-8"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
     <script src="vendors/angularfire.min.js" charset="utf-8"></script>
+    <script src="scripts/config.js"></script>
     <script src="scripts/index.js" charset="utf-8"></script>
 
 
@@ -25,9 +31,20 @@
       {{product.variety}}
       {{product.price}}  <input ng-model="product.qty" type="text" placeholder="qty">
     </div>
-    <input ng-model="comments" type="text" placeholer="comments/questions">
-    <button type="button" ng-click="postOrder()"></button>
-
+    <input ng-model="comments" type="text" placeholder="comments/questions">
+    <button type="button" ng-click="postOrder(); confirmModal();">Submit Order</button>
+    <script type="text/ng-template" id="confirmOrder">
+      <div class = 'modal-header'>
+        <h4>Thank you!</h4>
+      </div>
+        <div class= "modal-body">
+          <p>Your order has been submitted. You will be notified when it has been accepted.</p>
+        </div>
+        <div class= "modal-footer">
+          <button type="button" ng-click="logout()">Logout</button>
+        </div>
+      </div>
+    </script>
 
   </body>
 </html>

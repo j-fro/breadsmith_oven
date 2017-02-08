@@ -1,6 +1,5 @@
 const express = require('express');
 const knex = require('../database/dbConfig');
-// const pg = require('pg');
 let router = express.Router();
 
 router.get('/', (req, res) => {
@@ -13,7 +12,7 @@ router.get('/', (req, res) => {
             console.log('error in get:', error);
             res.sendStatus(500);
         });
-}); //end router.get (all)
+}); //end router.get 
 
 router.post('/', (req, res) => {
     console.log('adding product', req.body);
