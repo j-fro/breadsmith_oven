@@ -36,8 +36,12 @@ myApp.config([
                 templateUrl: 'views/customer/customerHome.html',
                 controller: 'CustomerController'
             })
+            .when('/login', {
+                templateUrl: 'views/login.html',
+                controller: 'LoginController'
+            })
             .otherwise({
-                redirectTo: 'admin/home'
+                redirectTo: 'login'
             });
     }
 ]);
