@@ -48,5 +48,13 @@ myApp.controller('ExistingOrderController', [
                     console.log(err);
                 });
         };
+
+        $scope.dateSelected = new Date();
+        $scope.popup = {
+            opened: false
+        };
+        $scope.toggle = function() {
+            $scope.popup.opened = !$scope.popup.opened;
+        };
     }
 ]);
