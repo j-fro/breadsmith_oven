@@ -13,8 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.1",
+    "angular-animate": "^1.6.1",
     "angular-modal-service": "^0.10.1",
     "angular-route": "^1.6.1",
+    "angular-ui-bootstrap": "^2.5.0",
     "angularfire": "^2.3.0",
     "body-parser": "^1.16.0",
     "bootstrap": "^3.3.7",
