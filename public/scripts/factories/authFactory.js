@@ -50,7 +50,7 @@ myApp.factory('AuthFactory', [
             },
             logOut: function() {
                 $firebaseAuth().$signOut().then(function() {
-                    $window.location.href = '#!/login';
+                    $window.location.href = '/';
                 });
             }
         };
