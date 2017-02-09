@@ -51,7 +51,12 @@ myApp.factory('AuthFactory', [
                     });
             },
             logOut: function() {
-                $firebaseAuth().$signOut().then(function() {
+                console.log('Clicked on logout');
+                var auth = $firebaseAuth();
+                State.token = undefined;
+                console.log('auth:', auth);
+                auth.$signOut().then(function(thing) {
+                    console.log('auth-thing:', thing);
                     $window.location.href = '/';
                 });
             }
