@@ -4,60 +4,40 @@ myApp.config([
     '$routeProvider',
     function($routeProvider) {
         $routeProvider
-            .when('/adminHome', {
-                templateUrl: 'views/admin/adminHome.html',
-                controller: 'adminController'
+            .when('/admin/home', {
+                templateUrl: 'views/admin/adminHome.html'
+                // controller: 'adminController'
             })
-            .when('/newOrder', {
-                templateUrl: 'views/admin/newOrder.html',
-                controller: 'adminController'
+            .when('/admin/newOrder', {
+                templateUrl: 'views/admin/newOrder.html'
+                // controller: 'adminController'
             })
-            .when('/existingOrders', {
+            .when('/admin/existingOrders', {
                 templateUrl: 'views/admin/existingOrders.html',
                 controller: 'ExistingOrderController'
             })
-            .when('/reports', {
+            .when('/admin/reports', {
                 templateUrl: 'views/admin/reports.html',
                 controller: 'adminReportsController'
             })
-            .when('/customers', {
+            .when('/admin/customers', {
                 templateUrl: 'views/admin/customers.html',
                 controller: 'adminCustomerController'
             })
-            .when('/products', {
+            .when('/admin/products', {
                 templateUrl: 'views/admin/products.html',
                 controller: 'productRead'
             })
-            .when('/staff', {
-                templateUrl: 'views/admin/staff.html',
-                controller: 'adminController'
+            .when('/admin/staff', {
+                templateUrl: 'views/admin/staff.html'
+                // controller: 'adminController'
             })
-            // .when("/newProduct", {
-            //   templateUrl: 'views/Admin/createProduct.html',
-            //   controller : 'adminController'
-            // })
-            //
-            // .when("/editProduct", {
-            //   templateUrl: 'views/Admin/editProduct.html',
-            //   controller : 'adminController'
-            // })
-            // .when("/editOrder", {
-            //   templateUrl: 'views/Admin/editOrder.html',
-            //   controller : 'adminController'
-            // })
-            //
-            //
-
-            .when('/customer', {
+            .when('/customer/home', {
                 templateUrl: 'views/customer/customerHome.html',
-                controller: 'adminController'
-            })
-            .when('/editCustomer', {
-                templateUrl: 'views/admin/editCustomer.html',
-                controller: 'adminCustomerController'
+                controller: 'CustomerController'
             })
             .otherwise({
-                redirectTo: 'home'
+                redirectTo: 'admin/home'
             });
     }
 ]);
