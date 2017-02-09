@@ -30,9 +30,9 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
       data : obj
     }).then(function(res){
       console.log(res);
-      $scope.pName = "";
-      $scope.pVariety="";
-      $scope.pPrice="";
+      $scope.editName = "";
+      $scope.editVariety="";
+      $scope.editPrice="";
       $scope.getProducts();
     });
     console.log(obj);
