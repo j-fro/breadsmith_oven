@@ -29,8 +29,8 @@ myApp.config([
                 controller: 'productRead'
             })
             .when('/admin/staff', {
-                templateUrl: 'views/admin/staff.html'
-                // controller: 'adminController'
+                templateUrl: 'views/admin/staff.html',
+                controller: 'adminStaffController'
             })
             .when('/customer/home', {
                 templateUrl: 'views/customer/customerHome.html',
