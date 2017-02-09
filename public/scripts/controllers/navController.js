@@ -4,7 +4,6 @@ myApp.controller('NavController', [
     'AuthFactory',
     function($scope, $window, AuthFactory) {
         console.log('NavController');
-        AuthFactory.getRole();
         $scope.auth = AuthFactory;
     }
 ]);
