@@ -16,7 +16,7 @@ myApp.controller('adminReportsController', ['$scope', '$http', '$window',
         $scope.productionReport = function() {
             $http({
                 method: 'GET',
-                url: '/reports/production',
+                url: '/report/production/' + '2017-02-03',
             }).then(function successCallback(response) {
                 console.log(response);
             }, function errorCallback(error) {
