@@ -37,6 +37,7 @@
             </div>
         </div>
         <div ng-controller="NavController">
+            <a href="#" ng-click="logout()">Logout</a>
             <nav class="container-fluid" id="nav" ng-if="auth.isAdmin()">
                 <ul>
                     <li><a href="#!/admin/home">Home</a></li>
@@ -46,6 +47,7 @@
                     <li><a href="#!/admin/customers">Customers</a></li>
                     <li><a href="#!/admin/products">Products</a></li>
                     <li><a href="#!/admin/staff">Staff</a></li>
+
                 </ul>
             </nav>
         </div>
