@@ -1,4 +1,10 @@
-var myApp = angular.module('myApp', ['ngRoute', 'firebase', 'ngDialog']);
+var myApp = angular.module('myApp', [
+    'ngAnimate',
+    'ngRoute',
+    'ngDialog',
+    'firebase',
+    'ui.bootstrap'
+]);
 console.log('NG');
 myApp.config([
     '$routeProvider',
