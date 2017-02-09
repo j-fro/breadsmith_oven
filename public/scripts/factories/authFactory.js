@@ -2,36 +2,46 @@ myApp.factory('AuthFactory', [
     '$http',
     '$window',
     function($http, $window) {
-        var Status = {
-            admin: false
+        var State = {
+            admin: false,
+            token: undefined
         };
         return {
-            _Status: Status,
+            _State: State,
             isAdmin: function() {
-                return Status.admin;
+                return State.admin;
             },
             isCustomer: function() {
-                return Status.admin;
+                return State.admin;
             },
             checkLoggedIn: function() {
                 console.log('Checking logged in');
                 return $http.get('/auth');
             },
             _setStatus: function(status) {
-                Status.admin = status;
+                State.admin = status;
             },
-            admin: false,
-            getRole: function() {
-                $http.get('/auth').then(function(response) {
+            // admin: false,
+            setToken: function(idToken) {
+                State.token = idToken;
+            },
+            getRole: function(idToken) {
+                $http({
+                    method: 'GET',
+                    url: '/auth',
+                    headers: {
+                        id_token: State.token
+                    }
+                }).then(function(response) {
+                    console.log('response', response);
                     if (response.data === 'admin') {
-                        console.log(this);
-                        Status.admin = true;
-                        console.log('_admin', Status.admin);
+                        State.admin = true;
                         $window.location.href = '#!/admin/home';
                     } else if (response.data === 'customer') {
-                        Status.admin = false;
+                        State.admin = false;
                         $window.location.href = '#!/customer/home';
                     } else {
+                        State.admin = false;
                         $window.location.href = '#!/login';
                     }
                 });
