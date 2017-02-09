@@ -10,7 +10,7 @@ myApp.config([
             })
             .when('/newOrder', {
                 templateUrl: 'views/admin/newOrder.html',
-                controller: 'adminController'
+                controller: 'adminNewOrderController'
             })
             .when('/existingOrders', {
                 templateUrl: 'views/admin/existingOrders.html',
