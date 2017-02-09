@@ -41,7 +41,7 @@
         </div>
         <div ng-controller="NavController">
             <a href="#" ng-click="logout()">Logout</a>
-            <nav class="container-fluid" id="nav" ng-if="auth.isAdmin()">
+            <nav class="container-fluid" id="nav" ng-if="auth._State.admin">
                 <ul>
                     <li><a href="#!/admin/home">Home</a></li>
                     <li><a href="#!/admin/newOrder">New Order</a></li>
@@ -56,6 +56,7 @@
         </div>
         <main ng-view>
         </main>
+    </div>
 </body>
 
 </html>

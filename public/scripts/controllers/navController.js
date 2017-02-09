@@ -6,6 +6,7 @@ myApp.controller('NavController', [
     function($scope, $window, $firebaseAuth, AuthFactory) {
         console.log('NavController');
         $scope.auth = AuthFactory;
+        $scope.auth.getRole();
         var auth = $firebaseAuth();
 
         $scope.logout = function() {

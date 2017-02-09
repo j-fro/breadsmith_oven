@@ -10,7 +10,9 @@ myApp.factory('AuthFactory', [
         return {
             _State: State,
             isAdmin: function() {
-                return State.admin;
+                if (!State.admin) {
+                    $window.location.href = '/';
+                }
             },
             isCustomer: function() {
                 return State.admin;

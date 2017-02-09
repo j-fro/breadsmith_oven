@@ -5,7 +5,7 @@ myApp.controller('adminReportsController', [
     'AuthFactory',
     function($scope, $http, $window, AuthFactory) {
         console.log('in adminReportsController');
-        AuthFactory.getRole();
+        AuthFactory.isAdmin();
         $scope.productionLink = 'report/production/' + '2017-01-26';
         $scope.invoiceReport = function() {
             $http({
