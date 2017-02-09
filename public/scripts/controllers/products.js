@@ -19,9 +19,9 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
     console.log("this is", this);
     var obj = {
       id : eObj.id.id,
-      type : this.pName,
-      variety : this.pVariety,
-      price : this.pPrice
+      type : this.editName,
+      variety : this.editVariety,
+      price : this.editPrice
     };
     console.log("obj is", obj);
     $http({
