@@ -20,6 +20,7 @@
     "bootstrap": "^3.3.7",
     "express": "^4.14.1",
     "firebase": "^3.6.8",
+    "firebase-admin": "^4.1.0",
     "json2csv": "^3.7.3",
     "jwt-simple": "^0.5.1",
     "knex": "^0.12.6",
