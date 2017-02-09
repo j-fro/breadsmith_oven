@@ -1,7 +1,8 @@
 myApp.factory('AuthFactory', [
     '$http',
     '$window',
-    function($http, $window) {
+    '$firebaseAuth',
+    function($http, $window, $firebaseAuth) {
         var State = {
             admin: false,
             token: undefined
@@ -13,10 +14,6 @@ myApp.factory('AuthFactory', [
             },
             isCustomer: function() {
                 return State.admin;
-            },
-            checkLoggedIn: function() {
-                console.log('Checking logged in');
-                return $http.get('/auth');
             },
             _setStatus: function(status) {
                 State.admin = status;
@@ -32,18 +29,28 @@ myApp.factory('AuthFactory', [
                     headers: {
                         id_token: State.token
                     }
-                }).then(function(response) {
-                    console.log('response', response);
-                    if (response.data === 'admin') {
-                        State.admin = true;
-                        $window.location.href = '#!/admin/home';
-                    } else if (response.data === 'customer') {
-                        State.admin = false;
-                        $window.location.href = '#!/customer/home';
-                    } else {
+                })
+                    .then(function(response) {
+                        console.log('response', response);
+                        if (response.data === 'admin') {
+                            State.admin = true;
+                            $window.location.href = '#!/admin/home';
+                        } else if (response.data === 'customer') {
+                            State.admin = false;
+                            $window.location.href = '#!/customer/home';
+                        } else {
+                            State.admin = false;
+                            $window.location.href = '#!/login';
+                        }
+                    })
+                    .catch(function() {
                         State.admin = false;
                         $window.location.href = '#!/login';
-                    }
+                    });
+            },
+            logOut: function() {
+                $firebaseAuth().$signOut().then(function() {
+                    $window.location.href = '/';
                 });
             }
         };

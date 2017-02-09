@@ -10,7 +10,10 @@
     <link rel="shortcut icon" href="images/favicon.ico" />
     <link rel="stylesheet" href="css/master.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="../vendors/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/bootstrap.min.css">
+    <link rel="stylesheet" href="css/ngDialog.min.css">
+    <link rel="stylesheet" href="css/ngDialog-theme-default.min.css">
+    <link rel="stylesheet" href="css/ui-bootstrap-improvements.css">
     <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="vendors/angular-route.js" charset="utf-8"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
@@ -37,6 +40,7 @@
             </div>
         </div>
         <div ng-controller="NavController">
+            <a href="#" ng-click="logout()">Logout</a>
             <nav class="container-fluid" id="nav" ng-if="auth.isAdmin()">
                 <ul>
                     <li><a href="#!/admin/home">Home</a></li>
@@ -46,6 +50,7 @@
                     <li><a href="#!/admin/customers">Customers</a></li>
                     <li><a href="#!/admin/products">Products</a></li>
                     <li><a href="#!/admin/staff">Staff</a></li>
+
                 </ul>
             </nav>
         </div>

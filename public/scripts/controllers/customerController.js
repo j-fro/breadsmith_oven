@@ -4,21 +4,12 @@ myApp.controller('CustomerController', [
     '$http',
     '$window',
     '$firebaseAuth',
-    function($scope, ngDialog, $http, $window, $firebaseAuth) {
+    'AuthFactory',
+    function($scope, ngDialog, $http, $window, $firebaseAuth, AuthFactory) {
         console.log('in clientController');
+        AuthFactory.getRole();
         var auth = $firebaseAuth();
-        $scope.logout = function() {
-            console.log('hit logout');
-            auth
-                .$signOut()
-                .then(function() {
-                    console.log('logging the user out!');
-                    $window.location.href = '/';
-                })
-                .catch(function(err) {
-                    console.log('oook an err', err);
-                });
-        };
+        $scope.logout = AuthFactory.logOut;
         $scope.displayOrder = function() {
             $http.get('/customer/46').then(function successCallback(response) {
                 console.log('displayOrder', response);
