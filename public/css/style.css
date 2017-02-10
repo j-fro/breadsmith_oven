@@ -30,7 +30,7 @@ margin-right:auto;
 margin-left:auto;
 position:relative;
 }
-.tayble, .taybel td{
+.tayble tr{
 border: solid black 5px;
 
 }
