@@ -9,15 +9,16 @@
             <td>Customer</td>
             <td>Created on</td>
             <td>Total Cost</td>
-            <td>Status</td>
+            <td>Approved</td>
             <td>Comments</td>
+            <td>Include</td>
         </thead>
         <tr ng-repeat="order in orders" data-toggle="modal" data-target="#viewOrderDialog" ng-click="viewOrder(order)">
             <td>{{ order.customer_name }}</td>
-            <td>{{ order.created | date: hh:mm }}</td>
+            <td>{{ order.created | date: 'shortTime' }}</td>
             <td>{{ order.total_cost | currency }}</td>
-            <td>{{ order.status }}</td>
-            <td>{{ order.comments.length > 0 }}</td>
+            <td><i ng-if="order.status" class="glyphicon glyphicon-ok"></i><i ng-if="!order.status" class="glyphicon glyphicon-remove"></i></td>
+            <td><i ng-if="order.comments.length > 0" class="glyphicon glyphicon-comment"></i></td>
             <td><input type="checkbox" ng-model="order.include" ng-click="$event.stopPropagation();"></td>
         </tr>
         <button ng-click="printPackingList()">Print Picking List</button>
@@ -48,12 +49,11 @@
                     </tr>
                 </table>
                 <h3>Customer comments:</h3>
-
                 <p>{{ viewedOrder.comments }}</p>
                 <a ng-href="{{ mailLink }}"><button>Respond</button></a>
                 <label for="approveBox">Approve Order:</label>
                 <input type="checkbox" ng-model="viewedOrder.status" name="approveBox">
-                <button type="button" ng-click="updateOrder(order.id)">Update</button>
+                <button type="button" data-toggle="modal" data-target="#viewOrderDialog" ng-click="updateOrder(order.id)">Update</button>
             </div>
         </div>
     </div>
