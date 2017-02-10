@@ -84,5 +84,12 @@ myApp.controller('adminStaffController', ['$scope', '$http', '$window', 'AuthFac
           });
         };//end $scope.addStaff
 
+        //--clear fields if user closes add modal--//
+        $scope.clearAdd=function(){
+          $scope.addFirst = '';
+          $scope.addLast = '';
+          $scope.addEmail = '';
+          $scope.addRole = '';
+        };//end $scope.clearAdd
 
 }]);
