@@ -16,26 +16,39 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
                 console.log('error', error);
             });
         };
-        //on button click i would like addProduct to take selected product and add it to the addCustomer products array
+
         $scope.addProductToCustomer = function(product) {
             $scope.productToBeAdded.push(product);
             console.log("product added");
             alert("product added");
         };
 
+        $scope.searchProduct = function() {
+            var searchProductBox = $scope.searchProductBox;
+            $http({
+                method: 'GET',
+                url: '/product', //or url: '/product/id',
+            }).then(function successCallback(response) {
+                console.log(response);
+                $scope.permitted_products = response.data;
+            }, function errorCallback(error) {
+                console.log('error', error);
+            });
+        };
+
         $scope.searchCustomer = function() {
-          var searchCustomerBox = $scope.searchCustomerBox;
-          $scope.customers = [];
-          $http({
-              method: 'GET',
-              url: '/customer', //or url: '/customer/id',
-          }).then(function successCallback(response) {
-              console.log(response);
-              $scope.customers = response.data;
-          }, function errorCallback(error) {
-              console.log('error', error);
-          });
-      };
+            var searchCustomerBox = $scope.searchCustomerBox;
+            $scope.customers = [];
+            $http({
+                method: 'GET',
+                url: '/customer', //or url: '/customer/id',
+            }).then(function successCallback(response) {
+                console.log(response);
+                $scope.customers = response.data;
+            }, function errorCallback(error) {
+                console.log('error', error);
+            });
+        };
 
         $scope.viewCustomer = function() {
             $http({
