@@ -1,33 +1,33 @@
 <div id="wrapper" ng-init="viewCustomer()">
-
-    <!-- add customer btn -->
-    <label for="addCustomer"></label>
-    <input data-toggle="modal" data-target="#addCustomerModal" type="button" name="addCustomer" value="Add New Customer" />
+    <h1>Customers</h1>
 
     <!-- search customer -->
     <label for="Search Customer"></label>
-    <input type="text" name="searchCustomer" class="form-control" placeholder="Search Customer" ng-model="searchCustomerBox" />
+    <input type="text" name="searchCustomer" class="form-control" placeholder="Search Existing Customer" ng-model="searchCustomerBox" />
     <!-- <input class="btn btn-primary navbar-btn" type='button' name='search' value='Search' ng-click='searchCustomer()' /> -->
-    <!-- view customer main -->
+
+    <!-- view customer table -->
     <table style="width:100%">
-        <tr>
-            <th>
-                <h1>View Customer</h1></th>
-        </tr>
         <tr ng-show="searchCustomerBox.length > 0" ng-repeat="customer in customers|filter: searchCustomerBox">
             <td>{{customer.name}}</td>
+            <td>
+                <!-- view customer -->
+                <label for="viewCustomer"></label>
+                <input data-toggle="modal" data-target="#viewCustomerModal" type="button" name="viewCustomer" value="View Customer" ng-click="viewCustomerBtn(customer)">
+            </td>
             <td>
                 <!-- edit customer btn -->
                 <label for="editCustomer"></label>
                 <input data-toggle="modal" data-target="#editCustomerModal" type="button" name="editCustomer" value="Edit" ng-click="editCustomer(customer)" />
             </td>
             <td>
+                <!-- delete customer btn -->
                 <label for="deleteCustomer"></label>
                 <input type="button" name="deleteCustomer" value="Delete" ng-click="deleteCustomer(customer)" />
-                <!-- <data-toggle="modal" data-target="#deleteCustomerModal"> -->
             </td>
         </tr>
     </table>
+    <!-- end view customer table -->
 
     <!-- edit customer modal begin -->
     <div id="editCustomerModal" class="modal fade" role="dialog">
@@ -42,7 +42,7 @@
                         <table style="width:100%">
                             <tr>
                                 <td>
-                                    <h5>Company Name</h5></td>
+                                    <h5>Name</h5></td>
                                 <td><input type="text" name="" ng-model="customerToEdit.name"></td>
                             </tr>
                             <tr>
@@ -58,24 +58,107 @@
                             <tr>
                                 <td>
                                     <h5>Email Address<h5></td>
-                              <td> <input type="text" name="" ng-model="customerToEdit.email"></td>
+                          <td> <input type="text" name="" ng-model="customerToEdit.email"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                          <h5> Current Permitted Products </h5>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="product in customerToEdit.products">
+                                <td>
+                                    {{product.variety}} {{product.type}} {{product.price}}
+                                    <label for="deleteProduct"></label>
+                                    <input type="button" name="deleteProduct" value="Delete Product" ng-click="deleteProduct(product)">
+                                </td>
                             </tr>
                             <tr>
-                              <td>
-                                <label for="updateCustomer"></label>
-                                <input type="submit" name="updateCustomer" value="Update Customer" ng-click="updateCustomer()"/>
-                              </td>
+                                <table ng-init="viewProduct()">
+                                    <tr>
+                                        <td>
+                                            <h5>Add Permittted Products:</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="Search Product"> </label>
+                                            <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
+                                        </td>
+                                    </tr>
+                                    <!-- search product -->
+                                    <tr ng-show="searchProductBox.length > 0" ng-repeat="product in permitted_products|filter: searchProductBox">
+                                        <td>{{product.type}} {{product.variety}}</td>
+                                        <td>{{product.price}}</td>
+                                        <td><input type="button" name="" value="Add Product" ng-click="addProductToCustomer(product)"></td>
+                                    </tr>
+                                </table>
                             </tr>
-                          </table>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                      </div>
+                            <tr>
+                                <td>
+                                    <label for="updateCustomer"></label>
+                                    <input type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Update Customer" ng-click="updateCustomer()" />
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                  </div>
                 </div>
-                <!-- end edit customer modal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end edit customer modal -->
+
+    <!-- view customer modal -->
+    <div id="viewCustomerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1 class="modal-title">View Customer</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="modalRepeat container-fluid">
+                        <table style="width:100%">
+                            <tr>
+                                <!-- <td> {{customerToView}}</td> -->
+                                <td>
+                                    <h5>Name</h5> {{customerToView.name}}
+                                </td>
+                                <td>
+                                    <h5>Address</h5> {{customerToView.address}}
+                                </td>
+                                <td>
+                                    <h5>Phone</h5> {{customerToView.phone}}
+                                </td>
+                                <td>
+                                    <h5>Email</h5> {{customerToView.email}}
+                                </td>
+
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <h5>Permitted Product</h5>
+                                  </td>
+                                </tr>
+                                <tr ng-repeat="product in customerToView.products">
+                                     <td>{{product.type}} {{product.variety}}</td>
+                                  </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end edit customer modal -->
+
+    <!-- add customer btn -->
+    <label for="addCustomer"></label>
+    <input data-toggle="modal" data-target="#addCustomerModal" type="button" name="addCustomer" value="Add New Customer" />
 
     <!-- add customer modal begin -->
     <div id="addCustomerModal" class="modal fade" role="dialog">
@@ -113,31 +196,30 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <table ng-init="viewProduct()">
-                                      <tr>
+                                <table ng-init="viewProduct()">
+                                    <tr>
                                         <td>
-                                        <h5>Permitted Products:</h5>
-                                        <!-- search product -->
-                                        <label for="Search Product"></label>
-                                        <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
-
-                                        <tr ng-show="searchProductBox.length > 0" ng-repeat="product in permitted_products|filter: searchProductBox">
-                                            <td>
-                                                {{product.type}} {{product.variety}} {{product.price}}
-                                                <input type="button" name="" value="Add Product" ng-click="addProductToCustomer(product)">
-                                            </td>
-                                        </tr>
-                                      </td>
-                                      </tr>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="submit" name="Add Customer" value="Add Customer" ng-click="addCustomer()" />
-                                </td>
-                            </tr>
-                            </table>
+                                            <h5>Permitted Products:</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="Search Product"> </label>
+                                            <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
+                                        </td>
+                                    </tr>
+                                    <!-- search product -->
+                                    <tr ng-show="searchProductBox.length > 0" ng-repeat="product in permitted_products|filter: searchProductBox">
+                                        <td>{{product.type}} {{product.variety}}</td>
+                                        <td>{{product.price}}</td>
+                                        <td><input type="button" name="" value="Add Product" ng-click="addProductToCustomer(product)"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input data-toggle="modal" data-target="#addCustomerModal" type="submit" name="Add Customer" value="Add Customer" ng-click="addCustomer()" />
+                                        </td>
+                                    </tr>
+                                </table>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -147,6 +229,30 @@
         </div>
     </div>
     <!-- add customer modal end -->
-
-<!-- end wrapper div -->
 </div>
+<!-- end wrapper div -->
+
+<!-- address
+:
+"83792 Corry Hill"
+contact_name
+:
+"Christine Webb"
+email
+:
+"cwebb17@bigcartel.com"
+id
+:
+44
+last_order_date
+:
+"2016-03-22T05:00:00.000Z"
+name
+:
+"Stracke Group"
+phone
+:
+"7-(755)158-1148"
+products
+:
+Array[1] -->
