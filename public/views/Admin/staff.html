@@ -1,53 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Staff</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <h1>Staff</h1>
     <div class="staffList">
-    <table>
-      <th>
-        <td>Name</td>
-        <td>Email</td>
-        <td>Role</td>
-      </th>
-      <tr ng-repeat = "staff in staffView">
-        <td></td>
-        <td>{{staff.first_name}} {{staff.last_name}}</td>
-        <td>{{staff.email}}</td>
-        <td>{{staff.role}}</td>
-        <td><button name="button" type="button" data-toggle="modal" data-target="#myModal" ng-click="storeStaff()"> Edit </button></td>
-        <td><button type="button" name="button" ng-click = "deleteProduct()"> X </button></td>
-      </tr>
-    </table>
+      <button type="button" class="addStaff" data-toggle='modal' data-target='#addStaffModal'>Add Staff</button>
+        <table>
+            <th>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Role</td>
+            </th>
+            <tr ng-repeat="staff in staffView">
+                <td></td>
+                <td>{{staff.first_name}} {{staff.last_name}}</td>
+                <td>{{staff.email}}</td>
+                <td>{{staff.role}}</td>
+                <td><button name="button" type="button" data-toggle="modal" data-target="#myModal" ng-click="storeStaff()"> Edit </button></td>
+                <td><button type="button" name="button" data-toggle="modal" data-target="#deleteModal" ng-click='storeStaff()'> X </button></td>
+            </tr>
+        </table>
     </div>
     <div class="modal fade" id="myModal" role="dialog">
-       <div class="modal-dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Editing Staff</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="" action="index.html" method="post">
+                        First Name: <input type="text" name="" value="" placeholder="{{xFirstName}}" ng-model="editFirst"><br>
+                        Last Name: <input type="text" name="" value="" placeholder="{{xLastName}}" ng-model="editLast"><br>
+                        Email:<input type="text" name="" value="" placeholder="{{xEmail}}" ng-model="editEmail"><br>
+                        Role: <select class="roleClass" name=""><option value="{{xRole}}">{{xRole}}</option></select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="editStaff()" data-dismiss="modal">Submit Changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addStaffModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Adding Staff</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="" action="index.html" method="post">
+                        First Name: <input type="text" ng-model="addFirst"><br>
+                        Last Name: <input type="text" ng-model="addLast"><br>
+                        Email:<input type="text" ng-model="addEmail"><br>
+                        Role: <select class="roleClass" ng-model="addRole">
+                          <option value="">Select Role</option>
+                          <option value="admin">admin</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="addStaff()" data-dismiss="modal">Submit Staff</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4>Are you sure you want to delete {{xFirstName}} {{xLastName}}?</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" name="button" ng-click="deleteStaff()" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 
-         <!-- Modal content-->
-         <div class="modal-content">
-           <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal">&times;</button>
-             <h4 class="modal-title">Editing Staff</h4>
-           </div>
-           <div class="modal-body">
-             <form class="" action="index.html" method="post">
-               First Name: <input type="text" name="" value="" placeholder="{{xFirstName}}" ng-model="editFirst"><br>
-               Last Name: <input type="text" name="" value="" placeholder="{{xLastName}}" ng-model="editLast"><br>
-               Email: <input type="text" name="" value="" placeholder="{{xEmail}}" ng-model="editEmail"><br>
-               Role: <input type="text" name="" value="" placeholder="{{xRole}}" ng-model="editRole">
-             </form>
-
-           </div>
-           <div class="modal-footer">
-             <button type="button" name="button" ng-click="editStaff()" data-dismiss="modal">Submit Changes</button>
-             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-           </div>
-         </div>
-
-       </div>
-     </div>
-  </body>
 </html>
