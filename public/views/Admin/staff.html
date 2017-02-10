@@ -57,21 +57,27 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Adding Staff</h4>
                 </div>
-                <div class="modal-body">
-                    <form class="" action="index.html" method="post">
+                <div  class="modal-body">
+                    <form name='addStaffModal' action="index.html" method="post">
                         First Name: <input type="text" ng-model="addFirst"><br>
                         Last Name: <input type="text" ng-model="addLast"><br>
-                        Email:<input type="text" ng-model="addEmail"><br>
-                        Role: <select class="roleClass" ng-model="addRole">
+                        Email*:<input name='email' type="text" ng-model="addEmail" required><br>
+                        <div><span style='color:red' ng-show="addStaffModal.email.$touched && addStaffModal.email.$invalid">Email is required.</span></div>
+                        Role*: <select name="role" class="roleClass" ng-model="addRole" required>
                           <option value="">Select Role</option>
                           <option value="admin">admin</option>
-                        </select>
+                        </select >
+                        <div><span style='color:red' ng-show="addStaffModal.role.$touched && addStaffModal.role.$invalid">Role is required.</span></div>
+                        <div class="modal-footer">
+                          <div style='float:left;margin-top:0px'  class="">
+                            * indicates required fields
+                          </div>
+                            <button type="button" ng-disabled='addStaffModal.$invalid' class="btn btn-default" ng-click="addStaff()" data-dismiss="modal">Submit Staff</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-click="addStaff()" data-dismiss="modal">Submit Staff</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+
             </div>
         </div>
     </div>
