@@ -18,8 +18,10 @@
             <td>{{ order.total_cost | currency }}</td>
             <td>{{ order.status }}</td>
             <td>{{ order.comments.length > 0 }}</td>
-            <td><input type="checkbox" ng-click="$event.stopPropagation();"></td>
+            <td><input type="checkbox" ng-model="order.include" ng-click="$event.stopPropagation();"></td>
         </tr>
+        <button ng-click="printPackingList()">Print Picking List</button>
+        <button ng-click="printPackingSlips()">Pring Packing Slips</button>
     </table>
     <div class="modal fade" id="viewOrderDialog">
         <div class="modal-dialog modal-content">

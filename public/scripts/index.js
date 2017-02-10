@@ -72,6 +72,9 @@ myApp.config([
                 templateUrl: 'views/login.html',
                 controller: 'LoginController'
             })
+            .when('/admin/packinglist', {
+                templateUrl: 'views/admin/packingTemplate.html'
+            })
             .otherwise({
                 redirectTo: 'login'
             });

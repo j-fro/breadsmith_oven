@@ -1,7 +1,8 @@
 myApp.controller('ExistingOrderController', [
     '$scope',
     '$http',
-    function($scope, $http) {
+    '$window',
+    function($scope, $http, $window) {
         $scope.getOrders = function() {
             $http
                 .get('/order/' + $scope.dateSelected.toDateString())
@@ -48,6 +49,18 @@ myApp.controller('ExistingOrderController', [
                     console.log(err);
                 });
         };
+
+        $scope.printPackingList = function() {
+            if ($scope.orders) {
+                var json = JSON.stringify($scope.orders.filter(x => x.include));
+                var data = $scope.orders.filter(x => x.include);
+                $http.post('/report/packing', data).then(function(response) {
+                    $window.load(response);
+                });
+            }
+        };
+
+        $scope.printPackingSlips = function() {};
 
         $scope.dateSelected = new Date();
         $scope.popup = {

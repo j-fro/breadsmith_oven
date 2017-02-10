@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Packing List</title>
+    </head>
+    <body>
+        {{name}}
+        {{#each orders}}
+            {{id}}
+        {{/each}}
+        <script type="text/javascript">
+            window.print();
+            setTimeout(window.close, 0);
+        </script>
+    </body>
+</html>
