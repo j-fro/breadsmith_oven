@@ -27,4 +27,26 @@ router.get('/production/:date/:filename?', (req, res) => {
         .catch(err => res.send('No complete orders found'));
 });
 
+router.get('/invoice/:startDate/:endDate/:filename?', (req, res) => {
+    console.log(req.params.filename);
+    lib
+        .getOrdersAndExport(
+            req.params.filename || 'invoice.csv',
+            new Date(req.params.startDate),
+            new Date(req.params.endDate)
+        )
+        .then(() => {
+            res
+                .set('Content-Type', 'application/csv')
+                .sendFile(
+                    path.join(
+                        __dirname,
+                        '../../reports/',
+                        req.params.filename || 'invoice.csv'
+                    )
+                );
+        })
+        .catch(err => res.send('No invoices found'));
+});
+
 module.exports = router;
