@@ -26,22 +26,15 @@ function exportCsv(orders, filename) {
         if (orders[0]) {
             let fields = Object.keys(orders[0]);
             let csv = json2csv({data: orders, fields: fields});
-            fs.writeFile(
+            fs.writeFileSync(
                 path.join(
                     __dirname,
                     '../../reports/',
                     filename || 'order_report.csv'
                 ),
-                csv,
-                err => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log('File Saved');
-                        resolve();
-                    }
-                }
+                csv
             );
+            resolve();
         } else {
             reject('No orders found');
         }
