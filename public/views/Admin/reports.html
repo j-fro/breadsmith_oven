@@ -1,26 +1,19 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>Reports</title>
-</head>
-
 <body>
     <h1>Reports</h1>
     <p> Date Picker thats works on both chrome and safari </p>
-    <div class="">
-        <input type="text" uib-datepicker-popup ng-model="productionDate" is-open="popup.opened" datepicker-options="options" close-text="Close">
-        <button type="button" class="btn btn-default" ng-click="toggle()"><i class="glyphicon glyphicon-calendar"></i></button>
+    <div class="input-group">
+        <input class="form-control" type="text" uib-datepicker-popup ng-model="productionDate" is-open="popup.opened" datepicker-options="options" close-text="Close">
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="toggle()">
+                <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+        </span>
     </div>
-
     <label for="invoiceReport"></label>
     <input type="button" name="invoiceReport" value="Invoice Report" ng-click="invoiceReport()">
     <p> need to display invoice report/ how do we want to display this</p>
     <label for="productionReport"></label>
     <a ng-href="{{ '/report/production/' + productionDate.toDateString() }}"><input type="button" name="productionReport" value="Production Report"></a>
     <p> need to display production report/ how do we want to display this </p>
-
 </body>
-
-</html>
