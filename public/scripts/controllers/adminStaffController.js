@@ -1,70 +1,48 @@
-myApp.controller('adminStaffController', ['$scope', '$http', '$window',
-    function($scope, $http, $window) {
+myApp.controller('adminStaffController', ['$scope', '$http', '$window', 'AuthFactory',
+    function($scope, $http, $window, AuthFactory) {
         console.log('in adminStaffController');
-        $scope.XYZ = function() {
+        $scope.showStaff = function() {
             $http({
-                method: 'POST',
-                url: '/',
-                data: XYZ
+                method: 'GET',
+                url: '/staff',
             }).then(function successCallback(response) {
                 console.log(response);
+                $scope.staffView = response.data;
             }, function errorCallback(error) {
                 console.log('error', error);
             });
-        };
-        $scope.viewUser = function() {
-            http({
-                type: 'GET',
-                url: '/user',
-            }).then(function successCallback(response) {
-                console.log(response);
-            }, function errorCallback(error) {
-                console.log('error', error);
-            });
-        };
+        }; //end $scope.showStaff
+        $scope.showStaff();
 
-        $scope.addUser = function() {
-            var data = {
-                email: 'frank@franks.com',
-                name: 'Frank Bank'
+        $scope.editStaff = function() {
+            console.log("editing", this);
+            var objectToSend = {
+                id: this.id,
+                first_name: this.editFirst,
+                last_name: this.editLast,
+                email: this.editEmail,
+                role: this.editRole
             };
-            http({
-                type: 'POST',
-                url: '/user',
-                data: data,
-            }).then(function successCallback(response) {
+            console.log("obj is", objectToSend);
+            $http({
+                method: "PUT",
+                url: "/staff",
+                data: objectToSend
+            }).then(function(response) {
                 console.log(response);
-            }, function errorCallback(error) {
-                console.log('error', error);
+                location.reload();
+                $scope.showStaff();
             });
-        };
+        }; //end editStaff
 
-        $scope.updateUser = function() {
-            var data = {
-                id: 2,
-                name: 'Franklin Bank'
-            };
-            http({
-                method: 'PUT',
-                url: '/user',
-                data: data,
-            }).then(function successCallback(response) {
-                console.log(response);
-            }, function errorCallback(error) {
-                console.log('error', error);
-            });
-        };
-
-        $scope.deleteUser = function() {
-            http({
-                method: 'DELETE',
-                url: '/user/:id',
-                data: data,
-            }).then(function successCallback(response) {
-                console.log(response);
-            }, function errorCallback(error) {
-                console.log('error', error);
-            });
-        };
+        $scope.storeStaff = function() {
+            var x = this.staff;
+            console.log('this is x', x);
+            $scope.id = x.id;
+            $scope.xFirstName = x.first_name;
+            $scope.xLastName = x.last_name;
+            $scope.xEmail = x.email;
+            $scope.xRole = x.role;
+        }; //end $scope.storeStaff
     }
 ]);
