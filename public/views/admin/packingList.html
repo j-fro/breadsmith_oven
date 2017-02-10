@@ -12,12 +12,21 @@
 <body ng-app="packingApp">
     <div ng-controller="PackingListController">
         <div ng-repeat="order in orders">
-            <p>{{ order.id }}</p>
+            <p>Order #{{ order.id }}</p>
             <p>{{ order.customer_name }}</p>
-            <div ng-repeat="product in order.products">
-                <p>{{ product.type }}</p>
-                <p>{{ product.qty }}</p>
-            </div>
+            <p>{{ order.customer_address }}</p>
+            <p>{{ order.customer_phone }}</p>
+            <table>
+                <thead>
+                    <td>Product</td>
+                    <td>Quantity</td>
+                </thead>
+                <tr ng-repeat="product in order.products">
+                    <td>{{ product.type }} {{ product.variety }}</td>
+                    <td>{{ product.qty }}</td>
+                </tr>
+            </table>
+            <p style="page-break-after:always;"><!-- pagebreak --></p>
         </div>
     </div>
 </body>

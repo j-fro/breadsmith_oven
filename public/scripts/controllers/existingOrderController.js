@@ -58,7 +58,13 @@ myApp.controller('ExistingOrderController', [
             }
         };
 
-        $scope.printPackingSlips = function() {};
+        $scope.printPackingSlips = function() {
+            if ($scope.orders) {
+                var orders = $scope.orders.filter(x => x.include);
+                localStorage.setItem('orders', JSON.stringify(orders));
+                $window.open('/views/admin/packingList.html');
+            }
+        };
 
         $scope.dateSelected = new Date();
         $scope.popup = {
