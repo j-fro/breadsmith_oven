@@ -8,7 +8,7 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
         $scope.viewProduct = function() {
             $http({
                 method: 'GET',
-                url: '/product', //or url: '/product/id',
+                url: '/product',
             }).then(function successCallback(response) {
                 console.log(response);
                 $scope.permitted_products = response.data;
@@ -19,6 +19,9 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
 
         $scope.addProductToCustomer = function(product) {
             $scope.productToBeAdded.push(product);
+            if ($scope.customerToEdit) {
+              $scope.customerToEdit.products.push(product);
+            }
             console.log("product added");
             alert("product added");
         };
@@ -27,7 +30,7 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
             var searchProductBox = $scope.searchProductBox;
             $http({
                 method: 'GET',
-                url: '/product', //or url: '/product/id',
+                url: '/product',
             }).then(function successCallback(response) {
                 console.log(response);
                 $scope.permitted_products = response.data;
@@ -41,7 +44,7 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
             $scope.customers = [];
             $http({
                 method: 'GET',
-                url: '/customer', //or url: '/customer/id',
+                url: '/customer',
             }).then(function successCallback(response) {
                 console.log(response);
                 $scope.customers = response.data;
@@ -53,7 +56,7 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
         $scope.viewCustomer = function() {
             $http({
                 method: 'GET',
-                url: '/customer', //or url: '/customer/id',
+                url: '/customer',
             }).then(function successCallback(response) {
                 console.log(response);
                 $scope.customers = response.data;
@@ -76,7 +79,7 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
             }).then(function successCallback(response) {
                 console.log(response);
                 alert("New Customer Added");
-                $window.location.reload();
+                $scope.viewCustomer();
             }, function errorCallback(error) {
                 console.log('error', error);
             });
@@ -84,7 +87,12 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
 
         $scope.editCustomer = function(customer) {
             $scope.customerToEdit = JSON.parse(JSON.stringify(customer));
+            console.log("customerToEdit:", $scope.customerToEdit.products);
         };
+
+        $scope.viewCustomerBtn = function(customer) {
+            $scope.customerToView = JSON.parse(JSON.stringify(customer));
+        }; //end viewCustomerBtn
 
         $scope.updateCustomer = function() {
             var data = $scope.customerToEdit;
@@ -96,7 +104,8 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
             }).then(function successCallback(response) {
                 console.log(response);
                 alert("Customer Updated");
-                $window.location.reload();
+                $scope.viewCustomer();
+                //still not changing the page
             }, function errorCallback(error) {
                 console.log('error', error);
             });
@@ -108,11 +117,27 @@ myApp.controller('adminCustomerController', ['$scope', '$http', '$window',
                 url: '/customer/' + customer.id,
             }).then(function successCallback(response) {
                 console.log(response);
-                $window.location.reload();
+                $scope.viewCustomer();
             }, function errorCallback(error) {
                 console.log('error', error);
             });
         };
 
+//this function should delete products from the customer but not the customer//
+        $scope.deleteProduct = function(product) {
+          console.log("product:", product);
+          var index= $scope.customerToEdit.products.indexOf(product);
+          $scope.customerToEdit.products.splice(index, 1 );
+            $http({
+                method: 'PUT',
+                url: '/customer/',
+                data: $scope.customerToEdit,
+            }).then(function successCallback(response) {
+                console.log(response);
+                $scope.viewCustomer();
+            }, function errorCallback(error) {
+                console.log('error', error);
+            });
+        };
     } //end
 ]);

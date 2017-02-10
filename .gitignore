@@ -5,4 +5,5 @@ nodemon.json
 node_modules
 .env
 /reports
-firebase-service-account.json
+firebase-service-account.json\
+bugs.md
