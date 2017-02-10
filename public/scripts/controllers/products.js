@@ -65,5 +65,23 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
     $scope.pName = x.type;
     $scope.pVariety = x.variety;
     $scope.pPrice = x.price;
+  };//end storeInfo
+  $scope.newProduct = function(){
+    var nObj = {
+      type : $scope.newName,
+      variety : $scope.newVariety,
+      price : $scope.newPrice
+    };
+    $http({
+      method : "POST",
+      url : "/product",
+      data: nObj
+    }).then(function(res){
+      console.log("Post call response", res);
+      $scope.getProducts();
+      $scope.newName = "";
+      $scope.newVariety = "";
+      $scope.newPrice = "";
+    });
   };
 }]);
