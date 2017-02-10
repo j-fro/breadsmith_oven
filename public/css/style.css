@@ -16,7 +16,11 @@ padding-top:1px;
 /*********************/
 /* BASIC */
 /*********************/
-
+#logoutNav {
+	width: 45px;
+	font-size: 11px;
+	padding: 3px;
+}
 
 html {
 background-color: #f4ecd7;
@@ -217,7 +221,7 @@ color:#005288;
 margin-bottom: 0px;
 	margin-top: 75px;
 	background: url(../images/nav_bar.jpg);
-	width:700px;
+	width:735px;
 	height:38px;
 	overflow:hidden;
 	float:right;
