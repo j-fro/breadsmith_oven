@@ -44,6 +44,7 @@ myApp.controller('ExistingOrderController', [
                 .put('/order', $scope.viewedOrder)
                 .then(function(response) {
                     console.log(response);
+                    $scope.getOrders();
                 })
                 .catch(function(err) {
                     console.log(err);
