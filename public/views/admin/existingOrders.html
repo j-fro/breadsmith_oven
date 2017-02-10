@@ -49,12 +49,11 @@
                     </tr>
                 </table>
                 <h3>Customer comments:</h3>
-
                 <p>{{ viewedOrder.comments }}</p>
                 <a ng-href="{{ mailLink }}"><button>Respond</button></a>
                 <label for="approveBox">Approve Order:</label>
                 <input type="checkbox" ng-model="viewedOrder.status" name="approveBox">
-                <button type="button" ng-click="updateOrder(order.id)">Update</button>
+                <button type="button" data-toggle="modal" data-target="#viewOrderDialog" ng-click="updateOrder(order.id)">Update</button>
             </div>
         </div>
     </div>
