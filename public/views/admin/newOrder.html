@@ -1,12 +1,13 @@
 <h1>Create Order</h1>
-Customer Name
+<!-- Customer Name
 <input type="text" name="" value="">
 Product Type
 <input type="text" name="" value="">
 Product Variety
 <input type="text" name="" value="">
   Product Price
-<input type="text" name="" value="">
+<input type="text" name="" value=""> -->
+<p> Need to have a way to pick which customer the order is being made for<p>
 <div ng-repeat='product in customer.products'>
     {{product.type}} {{product.variety}} {{product.price}}
     <input ng-model="product.qty" type="text" placeholder="qty">
