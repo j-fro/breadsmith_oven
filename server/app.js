@@ -7,7 +7,7 @@ const jsonParser = bodyParser.json();
 
 let app = express();
 
-app.set('port', 3000 || process.env.PORT);
+app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(urlEncodedParser);
