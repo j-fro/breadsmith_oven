@@ -13,7 +13,6 @@ myApp.config([
             .when('/admin/home', {
                 templateUrl: 'views/admin/adminHome.html',
                 resolveRedirectTo: function(AuthFactory) {
-                    console.log('Resolving');
                     return AuthFactory.requireAdmin('/admin/products');
                 }
             })
@@ -21,7 +20,6 @@ myApp.config([
                 templateUrl: 'views/admin/newOrder.html',
                 controller: 'adminNewOrderController',
                 resolveRedirectTo: function(AuthFactory) {
-                    console.log('Resolving');
                     return AuthFactory.requireAdmin('/admin/products');
                 }
             })
@@ -29,7 +27,6 @@ myApp.config([
                 templateUrl: 'views/admin/existingOrders.html',
                 controller: 'ExistingOrderController',
                 resolveRedirectTo: function(AuthFactory) {
-                    console.log('Resolving');
                     return AuthFactory.requireAdmin('/admin/products');
                 }
             })
@@ -37,7 +34,6 @@ myApp.config([
                 templateUrl: 'views/admin/reports.html',
                 controller: 'adminReportsController',
                 resolveRedirectTo: function(AuthFactory) {
-                    console.log('Resolving');
                     return AuthFactory.requireAdmin('/admin/products');
                 }
             })
@@ -45,7 +41,6 @@ myApp.config([
                 templateUrl: 'views/admin/customers.html',
                 controller: 'adminCustomerController',
                 resolveRedirectTo: function(AuthFactory) {
-                    console.log('Resolving');
                     return AuthFactory.requireAdmin('/admin/products');
                 }
             })
@@ -53,7 +48,6 @@ myApp.config([
                 templateUrl: 'views/admin/products.html',
                 controller: 'productRead',
                 resolveRedirectTo: function(AuthFactory) {
-                    console.log('Resolving');
                     return AuthFactory.requireAdmin('/admin/products');
                 }
             })
@@ -61,7 +55,6 @@ myApp.config([
                 templateUrl: 'views/admin/staff.html',
                 controller: 'adminStaffController',
                 resolveRedirectTo: function(AuthFactory) {
-                    console.log('Resolving');
                     return AuthFactory.requireAdmin('/admin/products');
                 }
             })
