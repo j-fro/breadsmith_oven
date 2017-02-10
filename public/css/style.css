@@ -30,9 +30,16 @@ margin-right:auto;
 margin-left:auto;
 position:relative;
 }
-.tayble, .taybel td{
+.tayble tr{
 border: solid black 5px;
-
+}
+.productList{
+	float : left;
+}
+.createBox{
+	border: solid black 5px;
+	float : right;
+	display: inline;
 }
 #wrapper {
 width:927px;

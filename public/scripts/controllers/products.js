@@ -20,9 +20,9 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
     console.log("this is", this);
     var obj = {
       id : eObj.id.id,
-      type : this.pName,
-      variety : this.pVariety,
-      price : this.pPrice
+      type : this.editName,
+      variety : this.editVariety,
+      price : this.editPrice
     };
     console.log("obj is", obj);
     $http({
@@ -31,9 +31,9 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
       data : obj
     }).then(function(res){
       console.log(res);
-      $scope.pName = "";
-      $scope.pVariety="";
-      $scope.pPrice="";
+      $scope.editName = "";
+      $scope.editVariety="";
+      $scope.editPrice="";
       $scope.getProducts();
     });
     console.log(obj);
@@ -65,5 +65,23 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
     $scope.pName = x.type;
     $scope.pVariety = x.variety;
     $scope.pPrice = x.price;
+  };//end storeInfo
+  $scope.newProduct = function(){
+    var nObj = {
+      type : $scope.newName,
+      variety : $scope.newVariety,
+      price : $scope.newPrice
+    };
+    $http({
+      method : "POST",
+      url : "/product",
+      data: nObj
+    }).then(function(res){
+      console.log("Post call response", res);
+      $scope.getProducts();
+      $scope.newName = "";
+      $scope.newVariety = "";
+      $scope.newPrice = "";
+    });
   };
 }]);

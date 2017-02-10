@@ -1,20 +1,24 @@
-<!DOCTYPE html>
+  <input type="text" name="" value="" placeholder="product search" ng-model="prodSearch"> <button type="button" name="button">Search</button>
 <div class="productList">
-    <!-- <table ng-repeat = "product in list"> -->
-    <table>
-        <th>
-            <td>Product</td>
-            <td>Variety</td>
-            <td>Price</td>
-        </th>
-        <tr ng-repeat="product in list" ng-show="show">
-            <td>{{product.type}}</td>
-            <td>{{product.variety}}</td>
-            <td>{{product.price}}</td>
-            <td><button name="button" type="button" data-toggle="modal" data-target="#myModal" ng-click="storeInfo()"> Edit </button></td>
-            <td><button type="button" name="button" ng-click="deleteProduct()">Delete</button></td>
-        </tr>
-    </table>
+
+  <!-- <table ng-repeat = "product in list"> -->
+<table class="tayble">
+  <tr>
+    <td>Product</td>
+    <td>Price</td>
+    <td></td>
+  </tr>
+  <tr ng-repeat = "product in list | filter:prodSearch"  ng-show="show">
+    <td>{{product.variety}} {{product.type}} </td>
+    <td>${{product.price}}</td>
+    <td><button name="button" type="button" data-toggle="modal" data-target="#myModal" ng-click="storeInfo()"> Edit </button></td>
+    <td><button type="button" name="button" ng-click = "deleteProduct()"> X </button></td>
+  </tr>
+</table>
+
+</div>
+<div class="createBox">
+  <button type="button" name="button" data-toggle="modal" data-target="#newModal">Create Product</button>
 </div>
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -39,6 +43,30 @@
             </div>
         </div>
 
+   </div>
+ </div>
+ <div class="modal fade" id="newModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Create New Product</h4>
+        </div>
+        <div class="modal-body">
+          <form class="" action="index.html" method="post">
+            Item Name: <input type="text" name="" value="" ng-model="newName"><br>
+            Item Variety: <input type="text" name="" value="" ng-model="newVariety"><br>
+            Price: $<input type="number" name="" value="" ng-model="newPrice">
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" name="button" ng-click="newProduct()" data-dismiss="modal">Create Product</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
     </div>
-</div>
-<button type="button" name="button" ng-click="getProducts()">products</button>
+  </div>
