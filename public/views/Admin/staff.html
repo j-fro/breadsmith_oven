@@ -21,17 +21,16 @@
                 <td>{{staff.first_name}} {{staff.last_name}}</td>
                 <td>{{staff.email}}</td>
                 <td>{{staff.role}}</td>
-                <td><button name="button" type="button" data-toggle="modal" data-target="#myModal" ng-click="storeStaff()">Edit</button></td>
+                <td><button name="button" type="button" data-toggle="modal" data-target="#editStaffModal" ng-click="storeStaff()">Edit</button></td>
                 <td><button type="button" name="button" data-toggle="modal" data-target="#deleteModal" ng-click='storeStaff()'>Delete</button></td>
             </tr>
         </table>
     </div>
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="editStaffModal" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Editing Staff</h4>
                 </div>
                 <div class="modal-body">
@@ -54,7 +53,6 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Adding Staff</h4>
                 </div>
                 <div  class="modal-body">
@@ -73,7 +71,7 @@
                             * indicates required field
                           </div>
                             <button type="button" ng-disabled='addStaffModal.$invalid' class="btn btn-default" ng-click="addStaff()" data-dismiss="modal">Submit Staff</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" ng-click="clearAdd()" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
