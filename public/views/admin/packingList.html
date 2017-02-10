@@ -16,14 +16,19 @@
             <p>{{ order.customer_name }}</p>
             <p>{{ order.customer_address }}</p>
             <p>{{ order.customer_phone }}</p>
+            <p>{{ today | date: 'shortDate' }}</p>
             <table>
                 <thead>
-                    <td>Product</td>
                     <td>Quantity</td>
+                    <td>Product</td>
+                    <td>Unit Price</td>
+                    <td>Total</td>
                 </thead>
                 <tr ng-repeat="product in order.products">
-                    <td>{{ product.type }} {{ product.variety }}</td>
                     <td>{{ product.qty }}</td>
+                    <td>{{ product.type }} {{ product.variety }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.price * product.qty }}</td>
                 </tr>
             </table>
             <p style="page-break-after:always;"><!-- pagebreak --></p>
