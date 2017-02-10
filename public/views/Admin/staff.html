@@ -16,7 +16,7 @@
                 <td>Email</td>
                 <td>Role</td>
             </th>
-            <tr ng-repeat="staff in staffView">
+            <tr ng-repeat="staff in staffView | orderBy:'last_name'">
                 <td></td>
                 <td>{{staff.first_name}} {{staff.last_name}}</td>
                 <td>{{staff.email}}</td>
@@ -61,8 +61,8 @@
                     <form name='addStaffModal' action="index.html" method="post">
                         First Name: <input type="text" ng-model="addFirst"><br>
                         Last Name: <input type="text" ng-model="addLast"><br>
-                        Email*:<input name='email' type="text" ng-model="addEmail" required><br>
-                        <div><span style='color:red' ng-show="addStaffModal.email.$touched && addStaffModal.email.$invalid">Email is required.</span></div>
+                        Email*:<input name='email' type="email" ng-model="addEmail" required><br>
+                        <div><span style='color:red' ng-show="addStaffModal.email.$touched && addStaffModal.email.$invalid">Please enter a valid email address.</span></div>
                         Role*: <select name="role" class="roleClass" ng-model="addRole" required>
                           <option value="">Select Role</option>
                           <option value="admin">admin</option>
