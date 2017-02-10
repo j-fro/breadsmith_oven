@@ -4,16 +4,23 @@ const json2csv = require('json2csv');
 const knex = require('../database/dbConfig');
 
 function getOrdersAndExport(filename, beginDate, endDate) {
-    knex
-        .select()
-        .from('orders')
-        .join('order_items', 'orders.id', 'order_id')
-        .join('products', 'product_id', 'products.id')
-        .then(result => exportCsv(result, filename))
-        .catch(err => console.log(err));
+    return new Promise((resolve, reject) => {
+        knex
+            .select()
+            .from('orders')
+            .join('order_items', 'orders.id', 'order_id')
+            .join('products', 'product_id', 'products.id')
+            .where('created', '>', beginDate)
+            .andWhere('created', '<', endDate)
+            .then(result =>
+                exportCsv(result, filename)
+                    .then(resolve())
+                    .catch(err => reject(err)))
+            .catch(err => reject(err));
+    });
 }
 
-function exportCsv(orders, filename, callback) {
+function exportCsv(orders, filename) {
     console.log('Exporting:', orders);
     return new Promise((resolve, reject) => {
         if (orders[0]) {
@@ -64,5 +71,6 @@ function getTallyAndExport(filename, date) {
 }
 
 module.exports = {
-    getTallyAndExport: getTallyAndExport
+    getTallyAndExport: getTallyAndExport,
+    getOrdersAndExport: getOrdersAndExport
 };
