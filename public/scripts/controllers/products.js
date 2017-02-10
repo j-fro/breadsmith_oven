@@ -8,6 +8,7 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
         method:"GET",
         url:"/product"
       }).then(function(res){
+        console.log(res.data);
         array = res.data;
         $scope.list = array;//puts the products on the page
         show = true;//prepares the list to be shown
