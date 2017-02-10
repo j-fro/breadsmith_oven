@@ -2,8 +2,7 @@ myApp.controller('ExistingOrderController', [
     '$scope',
     '$http',
     '$window',
-    'OrdersFactory',
-    function($scope, $http, $window, OrdersFactory) {
+    function($scope, $http, $window) {
         $scope.getOrders = function() {
             $http
                 .get('/order/' + $scope.dateSelected.toDateString())
@@ -54,7 +53,6 @@ myApp.controller('ExistingOrderController', [
         $scope.printPackingList = function() {
             if ($scope.orders) {
                 var orders = $scope.orders.filter(x => x.include);
-                OrdersFactory.orders = $scope.orders.filter(x => x.include);
                 localStorage.setItem('orders', JSON.stringify(orders));
                 $window.open('/views/admin/packingList.html');
             }
