@@ -6,7 +6,8 @@
   "scripts": {
     "test": "export DATABASE_URL=\"postgres://localhost:5432/breadsmith_test\" && ./node_modules/.bin/mocha --reporter spec server/test && export DATABASE_URL=\"\"",
     "create-data": "node server/database/migration.js && node server/database/loadTestData.js",
-    "start": "node server/app.js"
+    "start": "node server/app.js",
+    "postInstall": "node server/database/migration.js && mkdir reports"
   },
   "keywords": [],
   "author": "",
@@ -23,9 +24,7 @@
     "express": "^4.14.1",
     "firebase": "^3.6.8",
     "firebase-admin": "^4.1.0",
-    "handlebars": "^4.0.6",
     "json2csv": "^3.7.3",
-    "jwt-simple": "^0.5.1",
     "knex": "^0.12.6",
     "ng-dialog": "^1.0.0",
     "pg": "^6.1.2",
