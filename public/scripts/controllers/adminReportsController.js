@@ -2,11 +2,18 @@ myApp.controller('adminReportsController', [
     '$scope',
     '$http',
     '$window',
-    'AuthFactory',
-    function($scope, $http, $window, AuthFactory) {
+    function($scope, $http, $window) {
         console.log('in adminReportsController');
-        AuthFactory.isAdmin();
-        $scope.productionLink = 'report/production/' + '2017-01-26';
+        $scope.productionDate = new Date();
+        $scope.popup = {
+            opened: false
+        };
+        $scope.toggle = function() {
+            $scope.popup.opened = !$scope.popup.opened;
+        };
+        $scope.productionLink = 'report/production/' +
+            $scope.productionDate.toString();
+
         $scope.invoiceReport = function() {
             $http({
                 method: 'GET',

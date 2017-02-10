@@ -3,12 +3,44 @@ myApp.factory('AuthFactory', [
     '$window',
     '$firebaseAuth',
     function($http, $window, $firebaseAuth) {
+        var auth = $firebaseAuth();
         var State = {
             admin: false,
             token: undefined
         };
         return {
             _State: State,
+            requireAdmin: function(route) {
+                var user = auth.$getAuth();
+                if (user) {
+                    user
+                        .getToken()
+                        .then(function(token) {
+                            $http({
+                                method: 'GET',
+                                url: '/auth',
+                                headers: {
+                                    id_token: token
+                                }
+                            })
+                                .then(function(response) {
+                                    if (response.data === 'admin') {
+                                        return route;
+                                    } else {
+                                        return '/login';
+                                    }
+                                })
+                                .catch(function() {
+                                    return '/login';
+                                });
+                        })
+                        .catch(function() {
+                            return '/login';
+                        });
+                } else {
+                    return '/login';
+                }
+            },
             isAdmin: function() {
                 if (!State.admin) {
                     $window.location.href = '/';

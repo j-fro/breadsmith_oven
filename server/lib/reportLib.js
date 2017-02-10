@@ -42,6 +42,8 @@ function exportCsv(orders, filename, callback) {
 }
 
 function getTallyAndExport(filename, date) {
+    let endDate = date ? new Date(date) : new Date();
+    endDate.setDate(endDate.getDate() + 1);
     return new Promise((resolve, reject) => {
         knex
             .select('type')
@@ -50,6 +52,7 @@ function getTallyAndExport(filename, date) {
             .join('order_items', 'orders.id', 'order_id')
             .join('products', 'product_id', 'products.id')
             .where('created', '>', date || new Date())
+            .andWhere('created', '<', endDate)
             .andWhere('status', true)
             .groupBy('type')
             .then(result =>
