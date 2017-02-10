@@ -8,15 +8,9 @@ myApp.config([
                 templateUrl: 'views/admin/adminHome.html'
                 // controller: 'adminController'
             })
-<<<<<<< HEAD
-            .when('/newOrder', {
+            .when('/admin/newOrder', {
                 templateUrl: 'views/admin/newOrder.html',
                 controller: 'adminNewOrderController'
-=======
-            .when('/admin/newOrder', {
-                templateUrl: 'views/admin/newOrder.html'
-                // controller: 'adminController'
->>>>>>> master
             })
             .when('/admin/existingOrders', {
                 templateUrl: 'views/admin/existingOrders.html',
