@@ -14,39 +14,17 @@ router.get('/production/:date/:filename?', (req, res) => {
         ))
         .then(() => {
             console.log('Getting to then');
-            res.sendFile(
-                path.join(
-                    __dirname,
-                    '../../reports/',
-                    req.params.filename || 'production.csv'
-                )
-            );
+            res
+                .set('Content-Type', 'application/csv')
+                .sendFile(
+                    path.join(
+                        __dirname,
+                        '../../reports/',
+                        req.params.filename || 'production.csv'
+                    )
+                );
         })
         .catch(err => res.send('No complete orders found'));
-});
-
-router.get('/packing/:orders', (req, res) => {
-    let html = fs.readFileSync(
-        path.join(__dirname, '../templates/packinglist.hbs'),
-        'utf8'
-    );
-    console.log(req.params.orders);
-    let template = handlebars.compile(html);
-    html = template({name: 'name', orders: JSON.parse(req.params.orders)});
-    console.log(html);
-    res.send(html);
-});
-
-router.post('/packing', (req, res) => {
-    let html = fs.readFileSync(
-        path.join(__dirname, '../templates/packinglist.hbs'),
-        'utf8'
-    );
-    console.log(req.body.orders);
-    let template = handlebars.compile(html);
-    html = template({name: 'name', orders: req.body.orders});
-    console.log(html);
-    res.send(html);
 });
 
 module.exports = router;
