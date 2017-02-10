@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Packing List</title>
+
+    <script src="../../vendors/angular.min.js" charset="utf-8"></script>
+    <script src="../../scripts/controllers/packingListController.js" charset="utf-8"></script>
+</head>
+
+<body ng-app="packingApp">
+    <div ng-controller="PackingListController">
+        <div ng-repeat="order in orders">
+            <p>Order #{{ order.id }}</p>
+            <p>{{ order.customer_name }}</p>
+            <p>{{ order.customer_address }}</p>
+            <p>{{ order.customer_phone }}</p>
+            <table>
+                <thead>
+                    <td>Product</td>
+                    <td>Quantity</td>
+                </thead>
+                <tr ng-repeat="product in order.products">
+                    <td>{{ product.type }} {{ product.variety }}</td>
+                    <td>{{ product.qty }}</td>
+                </tr>
+            </table>
+            <p style="page-break-after:always;"><!-- pagebreak --></p>
+        </div>
+    </div>
+</body>
+
+</html>

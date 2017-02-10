@@ -1,7 +1,8 @@
 myApp.controller('ExistingOrderController', [
     '$scope',
     '$http',
-    function($scope, $http) {
+    '$window',
+    function($scope, $http, $window) {
         $scope.getOrders = function() {
             $http
                 .get('/order/' + $scope.dateSelected.toDateString())
@@ -47,6 +48,22 @@ myApp.controller('ExistingOrderController', [
                 .catch(function(err) {
                     console.log(err);
                 });
+        };
+
+        $scope.printPackingList = function() {
+            if ($scope.orders) {
+                var orders = $scope.orders.filter(x => x.include);
+                localStorage.setItem('orders', JSON.stringify(orders));
+                $window.open('/views/admin/packingList.html');
+            }
+        };
+
+        $scope.printPackingSlips = function() {
+            if ($scope.orders) {
+                var orders = $scope.orders.filter(x => x.include);
+                localStorage.setItem('orders', JSON.stringify(orders));
+                $window.open('/views/admin/packingList.html');
+            }
         };
 
         $scope.dateSelected = new Date();
