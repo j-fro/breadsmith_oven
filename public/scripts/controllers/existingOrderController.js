@@ -4,7 +4,7 @@ myApp.controller('ExistingOrderController', [
     function($scope, $http) {
         $scope.getOrders = function() {
             $http
-                .get('/order/' + $scope.dateSelected)
+                .get('/order/' + $scope.dateSelected.toDateString())
                 .then(function(response) {
                     console.log(response);
                     $scope.orders = response.data.map(ord => {
