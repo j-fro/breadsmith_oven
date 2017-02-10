@@ -1,10 +1,8 @@
 <div id="wrapper" ng-init="viewCustomer()">
-    <!-- <""> -->
 
     <!-- add customer btn -->
     <label for="addCustomer"></label>
     <input data-toggle="modal" data-target="#addCustomerModal" type="button" name="addCustomer" value="Add New Customer" />
-
 
     <!-- search customer -->
     <label for="Search Customer"></label>
@@ -110,20 +108,28 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="customerEmail"><h5> Contact Email:</h5></label>
+                                    <label for="customerEmail"><h5> Email:</h5></label>
                                     <input type="text" name="customerEmail" value="" ng-model="customerEmail" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <h5>Permitted Products </h5>
-                                    <!-- <table ng-init="viewProduct()"> -->
-                                        <tr ng-repeat="product in permitted_products">
+                                    <table ng-init="viewProduct()">
+                                      <tr>
+                                        <td>
+                                        <h5>Permitted Products:</h5>
+                                        <!-- search product -->
+                                        <label for="Search Product"></label>
+                                        <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
+
+                                        <tr ng-show="searchProductBox.length > 0" ng-repeat="product in permitted_products|filter: searchProductBox">
                                             <td>
                                                 {{product.type}} {{product.variety}} {{product.price}}
                                                 <input type="button" name="" value="Add Product" ng-click="addProductToCustomer(product)">
                                             </td>
                                         </tr>
+                                      </td>
+                                      </tr>
                                 </td>
                             </tr>
                             <tr>
