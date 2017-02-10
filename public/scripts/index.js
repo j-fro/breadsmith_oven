@@ -19,6 +19,7 @@ myApp.config([
             })
             .when('/admin/newOrder', {
                 templateUrl: 'views/admin/newOrder.html',
+                controller: 'adminNewOrderController',
                 resolveRedirectTo: function(AuthFactory) {
                     console.log('Resolving');
                     return AuthFactory.requireAdmin('/admin/products');
