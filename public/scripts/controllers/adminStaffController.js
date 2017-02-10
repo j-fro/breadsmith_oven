@@ -1,6 +1,5 @@
 myApp.controller('adminStaffController', ['$scope', '$http', '$window', 'AuthFactory',
     function($scope, $http, $window, AuthFactory) {
-        console.log('in adminStaffController');
         $scope.showStaff = function() {
             $http({
                 method: 'GET',
@@ -8,7 +7,7 @@ myApp.controller('adminStaffController', ['$scope', '$http', '$window', 'AuthFac
             }).then(function successCallback(response) {
                 console.log(response);
                 $scope.staffView = response.data;
-            }, function errorCallback(error) {
+            }).catch(function errorCallback(error) {
                 console.log('error', error);
             });
         }; //end $scope.showStaff
@@ -22,27 +21,68 @@ myApp.controller('adminStaffController', ['$scope', '$http', '$window', 'AuthFac
                 last_name: this.editLast,
                 email: this.editEmail,
                 role: this.editRole
-            };
-            console.log("obj is", objectToSend);
+            }; //end objectToSend
+            console.log("sending:", objectToSend);
             $http({
                 method: "PUT",
                 url: "/staff",
                 data: objectToSend
             }).then(function(response) {
                 console.log(response);
-                location.reload();
+                $scope.editFirst = "";
+                $scope.xLastName = "";
+                $scope.xEmail = "";
                 $scope.showStaff();
+            }).catch(function(error){
+              console.log(error);
             });
-        }; //end editStaff
-
+        }; //end $scope.editStaff
         $scope.storeStaff = function() {
-            var x = this.staff;
-            console.log('this is x', x);
-            $scope.id = x.id;
-            $scope.xFirstName = x.first_name;
-            $scope.xLastName = x.last_name;
-            $scope.xEmail = x.email;
-            $scope.xRole = x.role;
+            console.log('this is x', this.staff);
+            $scope.id = this.staff.id;
+            $scope.xFirstName = this.staff.first_name;
+            $scope.xLastName = this.staff.last_name;
+            $scope.xEmail = this.staff.email;
+            $scope.xRole = this.staff.role;
         }; //end $scope.storeStaff
-    }
-]);
+
+        $scope.deleteStaff = function(){
+          console.log('deleting:', $scope.id);
+          $http({
+            method: 'DELETE',
+            url: 'staff/' + $scope.id,
+            data: $scope.id
+          }).then(function(response){
+            console.log(response);
+            $scope.showStaff();
+          }).catch(function(error){
+            console.log(error);
+          });
+        };//end $scope.deleteStaff
+
+        $scope.addStaff = function(){
+          console.log('adding staff');
+          var staffToSend = {
+            first_name: $scope.addFirst,
+            last_name: $scope.addLast,
+            email: $scope.addEmail,
+            role: $scope.addRole
+          };//end staffToSend
+          $http({
+            method: 'POST',
+            url: '/staff',
+            data: staffToSend
+          }).then(function(response){
+            console.log(response);
+            $scope.addFirst = '';
+            $scope.addLast = '';
+            $scope.addEmail = '';
+            $scope.addRole = '';
+            $scope.showStaff();
+          }).catch(function(error){
+            console.log('problem adding:', error);
+          });
+        };//end $scope.addStaff
+
+
+}]);
