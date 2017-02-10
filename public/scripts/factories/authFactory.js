@@ -6,8 +6,15 @@ myApp.factory('AuthFactory', [
         var auth = $firebaseAuth();
         var State = {
             admin: false,
-            token: undefined
+            token: null,
+            name: null
         };
+        auth.$onAuthStateChanged(function(firebaseUser) {
+            if (firebaseUser) {
+                console.log('user', firebaseUser);
+                State.name = firebaseUser.displayName;
+            }
+        });
         return {
             _State: State,
             requireAdmin: function(route) {
