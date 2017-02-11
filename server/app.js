@@ -26,6 +26,7 @@ const orderRouter = require('./routes/order');
 const reportRouter = require('./routes/report');
 const staffRouter = require('./routes/staff');
 const authRouter = require('./routes/auth');
+const mailRouter = require('./routes/mail');
 
 //routers
 app.use('/', indexRouter);
@@ -35,3 +36,4 @@ app.use('/order', orderRouter);
 app.use('/report', reportRouter);
 app.use('/staff', staffRouter);
 app.use('/auth', authRouter);
+app.use('/mail', mailRouter);

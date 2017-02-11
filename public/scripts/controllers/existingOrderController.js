@@ -51,6 +51,33 @@ myApp.controller('ExistingOrderController', [
                 });
         };
 
+        $scope.confirmOrder = function() {
+            $http
+                .put('/order/confirm/' + $scope.viewedOrder.id)
+                .then(function() {
+                    $scope.viewedOrder.status = true;
+                    $scope.sendMessage();
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });
+        };
+
+        $scope.sendMessage = function() {
+            $http
+                .post('/mail', {
+                    orderId: $scope.viewedOrder.id,
+                    emailTo: $scope.viewedOrder.email,
+                    message: $scope.mailMessage
+                })
+                .then(function() {
+                    console.log('Successfully sent');
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });
+        };
+
         $scope.printPackingList = function() {
             if ($scope.orders) {
                 var orders = $scope.orders.filter(x => x.include);
@@ -67,6 +94,7 @@ myApp.controller('ExistingOrderController', [
             }
         };
 
+        $scope.mailMessage = 'Your order has been confirmed!';
         $scope.dateSelected = new Date();
         $scope.popup = {
             opened: false

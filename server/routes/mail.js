@@ -21,8 +21,12 @@ router.post('/', (req, res) => {
     transporter.sendMail(mailOptions, (err, info) => {
         if (err) {
             console.log(err);
+            res.sendStatus(500);
         } else {
             console.log('Message sent');
+            res.sendStatus(200);
         }
     });
 });
+
+module.exports = router;
