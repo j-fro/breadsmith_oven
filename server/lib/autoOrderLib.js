@@ -69,7 +69,8 @@ function generateOrders(day) {
 
 function scheduleOrders() {
     console.log('Scheduling auto orders');
-    schedule.scheduleJob({hour: 21, minute: 38}, () => {
+    schedule.scheduleJob({hour: 21, minute: 45}, () => {
+        console.log('Generating orders');
         generateOrders(moment().format('dddd'));
     });
 }
