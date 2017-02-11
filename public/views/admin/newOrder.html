@@ -1,14 +1,37 @@
-<h1>Create Order</h1>
-<!-- Customer Name
-<input type="text" name="" value="">
-Product Type
-<input type="text" name="" value="">
-Product Variety
-<input type="text" name="" value="">
-  Product Price
-<input type="text" name="" value=""> -->
-<p> Need to have a way to pick which customer the order is being made for<p>
-<div ng-repeat='product in customer.products'>
-    {{product.type}} {{product.variety}} {{product.price}}
-    <input ng-model="product.qty" type="text" placeholder="qty">
-</div>
+<!DOCTYPE html>
+<section ng-init="getCustomers()">
+    <h1>Create Order</h1>
+    <div ng-repeat="product in selectedCustomer.products">
+        {{product.type}} {{product.variety}} {{product.price}}
+        <input ng-model="product.qty" type="number" placeholder="qty">
+    </div>
+    <button ng-click="selectCustomerModal()">Select Customer</button>
+
+    <script type="text/ng-template" id="confirmOrder">
+        <div class="modal-header">
+            <h4>Thank you!</h4>
+        </div>
+        <div class="modal-body">
+            <p>Your order has been submitted. You will be notified when it has been accepted.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" ng-click="logout()">Logout</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="selectCustomer">
+        <div class="modal-header">
+            <h4>Select a customer:</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+            <label>Find a customer:</label>
+            <input type="text" class="form-control-inline" ng-model="customerSearch">
+        </div>
+            <div class="panel panel-body" ng-repeat="customer in customers | filter: {name: customerSearch}" ng-show="customerSearch.length > 0" ng-click="pickCustomer(customer)">
+                <p>{{ customer.name }}</p>
+                <p>id#{{ customer.id }}</p>
+            </div>
+        </div>
+    </script>
+</section>
