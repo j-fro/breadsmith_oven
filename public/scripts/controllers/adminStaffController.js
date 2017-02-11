@@ -35,11 +35,12 @@ myApp.controller('adminStaffController', ['$scope', '$http', '$window', 'AuthFac
         };
 
         $scope.deleteStaff = function(){
-          console.log('deleting:', $scope.id);
+          var toDelete = $scope.staffToEdit.id;
+          console.log('deleting:', toDelete);
           $http({
             method: 'DELETE',
-            url: 'staff/' + $scope.id,
-            data: $scope.id
+            url: 'staff/' + toDelete,
+            data: toDelete
           }).then(function(response){
             console.log(response);
             $scope.showStaff();

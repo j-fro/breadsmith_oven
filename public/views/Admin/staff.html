@@ -22,7 +22,7 @@
                 <td>{{staff.email}}</td>
                 <td>{{staff.role}}</td>
                 <td><button name="button" type="button" data-toggle="modal" data-target="#editStaffModal" ng-click="storeStaff(staff)">Edit</button></td>
-                <td><button type="button" name="button" data-toggle="modal" data-target="#deleteModal" ng-click='storeStaff()'>Delete</button></td>
+                <td><button type="button" name="button" data-toggle="modal" data-target="#deleteModal" ng-click='storeStaff(staff)'>Delete</button></td>
             </tr>
         </table>
     </div>
@@ -60,12 +60,10 @@
                         First Name: <input type="text" ng-model="addFirst"><br>
                         Last Name: <input type="text" ng-model="addLast"><br>
                         Email*:<input name='email' type="email" ng-model="addEmail" required><br>
-                        <div><span style='color:red' ng-show="addStaffModal.email.$touched && addStaffModal.email.$invalid">Please enter a valid email address.</span></div>
                         Role*: <select name="role" class="roleClass" ng-model="addRole" required>
                           <option value="">Select Role</option>
                           <option value="admin">admin</option>
                         </select >
-                        <div><span style='color:red' ng-show="addStaffModal.role.$touched && addStaffModal.role.$invalid">Role is required.</span></div>
                         <div class="modal-footer">
                           <div style='float:left;margin-top:0px'  class="">
                             * indicates required field
@@ -84,7 +82,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-body">
-                    <h4>Are you sure you want to delete {{xFirstName}} {{xLastName}}?</h3>
+                    <h4>Are you sure you want to delete {{staffToEdit.first_name}} {{staffToEdit.last_name}}?</h3>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" name="button" ng-click="deleteStaff()" data-dismiss="modal">Yes</button>
