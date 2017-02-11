@@ -68,3 +68,8 @@ input.form-control{
 main {
     padding-top: 30px;
 }
+
+.customers:hover {
+    cursor: pointer;
+    opacity: 0.75;
+}
