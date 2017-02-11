@@ -5,6 +5,7 @@
         {{product.type}} {{product.variety}} {{product.price}}
         <input ng-model="product.qty" type="number" placeholder="qty">
     </div>
+    <button ng-show="selectedCustomer" ng-click="postOrder()">Submit Order</button>
     <button ng-click="selectCustomerModal()">Select Customer</button>
 
     <script type="text/ng-template" id="confirmOrder">
@@ -12,11 +13,11 @@
             <h4>Thank you!</h4>
         </div>
         <div class="modal-body">
-            <p>Your order has been submitted. You will be notified when it has been accepted.</p>
+            <p>Your order has been submitted.</p>
         </div>
-        <div class="modal-footer">
+        <!-- <div class="modal-footer">
             <button type="button" ng-click="logout()">Logout</button>
-        </div>
+        </div> -->
     </script>
 
     <script type="text/ng-template" id="selectCustomer">
@@ -28,7 +29,7 @@
             <label>Find a customer:</label>
             <input type="text" class="form-control-inline" ng-model="customerSearch">
         </div>
-            <div class="panel panel-body" ng-repeat="customer in customers | filter: {name: customerSearch}" ng-show="customerSearch.length > 0" ng-click="pickCustomer(customer)">
+            <div class="panel panel-body customers" ng-repeat="customer in customers | filter: {name: customerSearch}" ng-show="customerSearch.length > 0" ng-click="pickCustomer(customer)">
                 <p>{{ customer.name }}</p>
                 <p>id#{{ customer.id }}</p>
             </div>

@@ -22,11 +22,13 @@ myApp.controller('adminNewOrderController', [
         $scope.postOrder = function() {
             var newOrder = {
                 comments: $scope.comments,
-                customer_id: $scope.customer.id,
-                products: $scope.customer.products
+                customer_id: $scope.selectedCustomer.id,
+                products: $scope.selectedCustomer.products,
+                status: true
             };
             $http.post('/order', newOrder).then(function(response) {
                 console.log('order Post hit');
+                $scope.confirmModal();
             });
         };
 
