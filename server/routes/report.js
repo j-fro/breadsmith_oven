@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const handlebars = require('handlebars');
 const lib = require('../lib/reportlib');
 
 let router = express.Router();
