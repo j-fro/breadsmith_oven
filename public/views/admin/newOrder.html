@@ -6,6 +6,7 @@
         <input ng-model="product.qty" type="number" placeholder="qty">
     </div>
     <button ng-show="selectedCustomer" ng-click="postOrder()">Submit Order</button>
+    <button ng-show="selectedCustomer" ng-click="recurringOrderModal()">Set as Recurring Order</button>
     <button ng-click="selectCustomerModal()">Select Customer</button>
 
     <script type="text/ng-template" id="confirmOrder">
@@ -33,6 +34,23 @@
                 <p>{{ customer.name }}</p>
                 <p>id#{{ customer.id }}</p>
             </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="recurringOrder">
+        <div class="modal-header">
+            <h4>Choose the days to recur:</h4>
+        </div>
+        <div class="modal-body">
+            <label for="sunday">Sunday</label><input name="sunday" type="checkbox" ng-model="recur.Sunday">
+            <label for="monday">Monday</label><input name="monday" type="checkbox" ng-model="recur.Monday">
+            <label for="tuesday">Tuesday</label><input name="tuesday" type="checkbox" ng-model="recur.Tuesday">
+            <label for="wednesday">Wednesday</label><input name="wednesday" type="checkbox" ng-model="recur.Wednesday">
+            <label for="thursday">Thursday</label><input name="thursday" type="checkbox" ng-model="recur.Thursday">
+            <label for="friday">Friday</label><input name="friday" type="checkbox" ng-model="recur.Friday">
+            <label for="saturday">Saturday</label><input name="saturday" type="checkbox" ng-model="recur.Saturday">
+            <button ng-click="setRecurrance()">Confirm</button>
+        </div>
         </div>
     </script>
 </section>

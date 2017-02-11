@@ -19,6 +19,22 @@ myApp.controller('adminNewOrderController', [
             $scope.closeThisDialog(customer);
         };
 
+        $scope.setRecurrance = function() {
+            var days = Object.keys($scope.recur).filter(function(key) {
+                return $scope.recur[key];
+            });
+            $http
+                .post('/order/recurring', {
+                    customer_id: $scope.selectedCustomer.id,
+                    products: $scope.selectedCustomer.products,
+                    days: days
+                })
+                .then(function(response) {})
+                .catch(function(err) {
+                    console.log(err);
+                });
+        };
+
         $scope.postOrder = function() {
             var newOrder = {
                 comments: $scope.comments,
@@ -49,6 +65,14 @@ myApp.controller('adminNewOrderController', [
 
             dialog.closePromise.then(function(data) {
                 $scope.selectedCustomer = data.value;
+            });
+        };
+
+        $scope.recurringOrderModal = function() {
+            var dialog = ngDialog.open({
+                template: 'recurringOrder',
+                controller: 'adminNewOrderController',
+                scope: $scope
             });
         };
     }
