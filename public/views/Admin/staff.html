@@ -21,7 +21,7 @@
                 <td>{{staff.first_name}} {{staff.last_name}}</td>
                 <td>{{staff.email}}</td>
                 <td>{{staff.role}}</td>
-                <td><button name="button" type="button" data-toggle="modal" data-target="#editStaffModal" ng-click="storeStaff()">Edit</button></td>
+                <td><button name="button" type="button" data-toggle="modal" data-target="#editStaffModal" ng-click="storeStaff(staff)">Edit</button></td>
                 <td><button type="button" name="button" data-toggle="modal" data-target="#deleteModal" ng-click='storeStaff()'>Delete</button></td>
             </tr>
         </table>
@@ -35,14 +35,14 @@
                 </div>
                 <div class="modal-body">
                     <form class="" action="index.html" method="post">
-                        First Name: <input type="text" name="" value="" placeholder="{{xFirstName}}" ng-model="editFirst"><br>
-                        Last Name: <input type="text" name="" value="" placeholder="{{xLastName}}" ng-model="editLast"><br>
-                        Email:<input type="text" name="" value="" placeholder="{{xEmail}}" ng-model="editEmail"><br>
-                        Role: <select class="roleClass" name=""><option value="{{xRole}}">{{xRole}}</option></select>
+                        First Name: <input type="text" name="" value=""  ng-model="staffToEdit.first_name"><br>
+                        Last Name: <input type="text" name="" value="" ng-model="staffToEdit.last_name"><br>
+                        Email:<input type="text" name="" value="" ng-model="staffToEdit.email"><br>
+                        Role: <select class="roleClass" name=""><option value="role">{{staffToEdit.role}}</option></select>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-click="editStaff()" data-dismiss="modal">Submit Changes</button>
+                    <button type="button" class="btn btn-default" ng-click="updateStaff()" data-dismiss="modal">Submit Changes</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
