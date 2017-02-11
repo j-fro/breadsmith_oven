@@ -1,50 +1,81 @@
-myApp.controller('adminNewOrderController', ['$scope', 'ngDialog', '$http', '$window', '$firebaseAuth',
-    function($scope, ngDialog, $http, $window, $firebaseAuth) {
-        console.log('in clientController');
-        var auth = $firebaseAuth();
-        $scope.logout = function() {
-            console.log('hit logout');
-            auth.$signOut().then(function() {
-                console.log('logging the user out!');
-                $window.location.href = '/';
-            }).catch(function(err) {
-                console.log('oook an err', err);
-            });
-        };
-        $scope.displayOrder = function() {
-            $http.get('/customer/46')
-                .then(function successCallback(response) {
-                    console.log('displayOrder', response);
-                    $scope.customer = response.data;
-                }, function errorCallback(error) {
-                    console.log('displayOrder error', error);
-                    $window.location.href = '#!/login';
+myApp.controller('adminNewOrderController', [
+    '$scope',
+    'ngDialog',
+    '$http',
+    '$window',
+    function($scope, ngDialog, $http, $window) {
+        $scope.getCustomers = function() {
+            $http
+                .get('/customer')
+                .then(function(response) {
+                    $scope.customers = response.data;
+                })
+                .catch(function(err) {
+                    console.log(err);
                 });
         };
 
-        $scope.displayOrder();
+        $scope.pickCustomer = function(customer) {
+            $scope.closeThisDialog(customer);
+        };
+
+        $scope.setRecurrance = function() {
+            var days = Object.keys($scope.recur).filter(function(key) {
+                return $scope.recur[key];
+            });
+            $http
+                .post('/order/recurring', {
+                    customer_id: $scope.selectedCustomer.id,
+                    products: $scope.selectedCustomer.products,
+                    days: days
+                })
+                .then(function(response) {
+                    $scope.closeThisDialog();
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });
+        };
 
         $scope.postOrder = function() {
             var newOrder = {
                 comments: $scope.comments,
-                customer_id: $scope.customer.id,
-                products: $scope.customer.products
+                customer_id: $scope.selectedCustomer.id,
+                products: $scope.selectedCustomer.products,
+                status: true
             };
-            $http.post('/order', newOrder)
-                .then(function(response) {
-                    console.log('order Post hit');
-
-                });
-
-
+            $http.post('/order', newOrder).then(function(response) {
+                console.log('order Post hit');
+                $scope.confirmModal();
+            });
         };
 
         $scope.confirmModal = function() {
             ngDialog.open({
                 template: 'confirmOrder',
-                controller: 'CustomerController'
+                controller: 'adminNewOrderController',
+                scope: $scope
             });
         };
 
+        $scope.selectCustomerModal = function() {
+            var dialog = ngDialog.open({
+                template: 'selectCustomer',
+                controller: 'adminNewOrderController',
+                scope: $scope
+            });
+
+            dialog.closePromise.then(function(data) {
+                $scope.selectedCustomer = data.value;
+            });
+        };
+
+        $scope.recurringOrderModal = function() {
+            var dialog = ngDialog.open({
+                template: 'recurringOrder',
+                controller: 'adminNewOrderController',
+                scope: $scope
+            });
+        };
     }
 ]); //end clientController

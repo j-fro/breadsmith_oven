@@ -998,3 +998,5 @@ insert into recurring_order_items (id, customer_id, product_id, qty, recur_day) 
 insert into recurring_order_items (id, customer_id, product_id, qty, recur_day) values (998, 3, 302, 8, 'Thursday');
 insert into recurring_order_items (id, customer_id, product_id, qty, recur_day) values (999, 95, 108, 1, 'Saturday');
 insert into recurring_order_items (id, customer_id, product_id, qty, recur_day) values (1000, 20, 800, 7, 'Wednesday');
+
+SELECT setval('recurring_order_items_id_seq', (SELECT MAX(id) FROM recurring_order_items));
