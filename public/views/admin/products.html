@@ -1,6 +1,6 @@
 <input type="text" placeholder="product search" ng-model="prodSearch"> <button type="button" class="btn btn-default">Search</button>
+  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newModal">Create Product</button>
 <div class="productList">
-
   <!-- <table ng-repeat = "product in list"> -->
   <table class="tayble">
     <tr>
@@ -12,14 +12,10 @@
       <td>{{product.type}} </td>
       <td>{{product.variety}}</td>
       <td>${{product.price}}</td>
-      <td><button type="button" class="btn btn-default"data-toggle="modal" data-target="#myModal" ng-click="storeInfo(product)"> Edit </button></td>
+      <td><button type="button" class="btn btn-default"data-toggle="modal" data-target="#myModal" ng-click="storeInfo(product)">Edit</button></td>
       <td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#delProdModal" ng-click="storeInfo(product)">Delete</button></td>
     </tr>
   </table>
-
-</div>
-<div class="createBox">
-  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newModal">Create Product</button>
 </div>
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
@@ -36,7 +32,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="editProduct()" data-dismiss="modal">Edit Product</button>
+        <button type="button" class="btn btn-default" ng-click="editProduct()" data-dismiss="modal">Submit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -57,7 +53,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="newProduct()" data-dismiss="modal">Create Product</button>
+        <button type="button" class="btn btn-default" ng-click="newProduct()" data-dismiss="modal">Submit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearCreate()">Close</button>
       </div>
     </div>
