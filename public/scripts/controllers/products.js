@@ -13,8 +13,8 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
       $scope.list = res.data; //puts the products on the page
       show = true; //prepares the list to be shown
       $scope.show = show; //And shows it
-    }); //end get call
-  }; //end getProducts
+    }); //end GET
+  }; //end $scope.getProducts
 
   $scope.storeInfo = function(product) {
     $scope.productToEdit = JSON.parse(JSON.stringify(product));
@@ -31,8 +31,8 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
     }).then(function(res) {
       console.log(res);
       $scope.getProducts();
-    });
-  }; //end editProduct
+    }); //end PUT
+  }; //end $scope.editProduct
 
   $scope.deleteProduct = function() {
     var delObj = $scope.productToEdit.id;
@@ -44,15 +44,16 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
     }).then(function(res) {
       console.log(res);
       $scope.getProducts();
-    }); //end http
-  }; //end delete
+    }); //end DELETE
+  }; //end $scope.deleteProduct
+  $scope.getProducts();
 
   $scope.newProduct = function() {
     var nObj = {
       type: $scope.newName,
       variety: $scope.newVariety,
       price: $scope.newPrice
-    };
+    };//end nObj
     $http({
       method: "POST",
       url: "/product",
@@ -63,20 +64,18 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
       $scope.newVariety = "";
       $scope.newPrice = "";
       $scope.getProducts();
-    });
+    });//end POST
   };//end $scope.newProduct
+
   $scope.clearCreate=function(){
     $scope.newName = '';
     $scope.newVariety = '';
     $scope.newPrice = '';
   };//end $scope.clearCreate
 
-  // $scope.getProducts();
   // var eObj = {};
   // $scope.test = function() {
   //     console.log(this);
   //     console.log(eObj);
-  //
   // }; //end test
-
 }]);

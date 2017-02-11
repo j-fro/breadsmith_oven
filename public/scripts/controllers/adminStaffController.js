@@ -9,7 +9,7 @@ function($scope, $http, $window, AuthFactory) {
       $scope.staffView = response.data;
     }).catch(function errorCallback(error) {
       console.log('error', error);
-    });
+    });//end GET
   }; //end $scope.showStaff
   $scope.showStaff();
 
@@ -26,13 +26,13 @@ function($scope, $http, $window, AuthFactory) {
       $scope.showStaff();
     }).catch(function(error){
       console.log(error);
-    });
+    });//end PUT
   }; //end $scope.editStaff
 
   $scope.storeStaff = function(staff) {
     $scope.staffToEdit = JSON.parse(JSON.stringify(staff));
     console.log("staffToEdit:", $scope.staffToEdit);
-  };
+  };//end $scope.storeStaff
 
   $scope.deleteStaff = function(){
     var toDelete = $scope.staffToEdit.id;
