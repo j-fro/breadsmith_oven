@@ -13,15 +13,9 @@ myApp.controller('adminStaffController', ['$scope', '$http', '$window', 'AuthFac
         }; //end $scope.showStaff
         $scope.showStaff();
 
-        $scope.editStaff = function() {
-            console.log("editing", this);
-            var objectToSend = {
-                id: this.id,
-                first_name: this.editFirst,
-                last_name: this.editLast,
-                email: this.editEmail,
-                role: this.editRole
-            }; //end objectToSend
+        $scope.updateStaff = function() {
+            console.log("updating", $scope.staffToEdit);
+            var objectToSend =  $scope.staffToEdit;
             console.log("sending:", objectToSend);
             $http({
                 method: "PUT",
@@ -29,22 +23,16 @@ myApp.controller('adminStaffController', ['$scope', '$http', '$window', 'AuthFac
                 data: objectToSend
             }).then(function(response) {
                 console.log(response);
-                $scope.editFirst = "";
-                $scope.xLastName = "";
-                $scope.xEmail = "";
                 $scope.showStaff();
             }).catch(function(error){
               console.log(error);
             });
         }; //end $scope.editStaff
-        $scope.storeStaff = function() {
-            console.log('this is x', this.staff);
-            $scope.id = this.staff.id;
-            $scope.xFirstName = this.staff.first_name;
-            $scope.xLastName = this.staff.last_name;
-            $scope.xEmail = this.staff.email;
-            $scope.xRole = this.staff.role;
-        }; //end $scope.storeStaff
+
+        $scope.storeStaff = function(staff) {
+            $scope.staffToEdit = JSON.parse(JSON.stringify(staff));
+            console.log("staffToEdit:", $scope.staffToEdit);
+        };
 
         $scope.deleteStaff = function(){
           console.log('deleting:', $scope.id);
