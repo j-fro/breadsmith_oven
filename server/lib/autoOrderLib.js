@@ -1,3 +1,4 @@
+const moment = require('moment');
 const knex = require('../database/dbConfig');
 
 function getOrderData(day) {
@@ -27,7 +28,7 @@ function mapToOrders(row) {
         total_qty: row.total_qty,
         status: true,
         comments: 'AUTOMATIC ORDER',
-        created: new Date()
+        created: moment().format()
     };
     return order;
 }
@@ -52,9 +53,8 @@ function generateOrders(day) {
                 .then(results => {
                     console.log('Results:', results);
                     let orders = results[0];
-                    let productsToInsert = results[1].map(row => {
-                        mapToProducts(row, orders);
-                    });
+                    let productsToInsert = results[1].map(row =>
+                        mapToProducts(row, orders));
                     knex
                         .insert(productsToInsert)
                         .into('order_items')
