@@ -75,6 +75,27 @@ function addOrder(order) {
     });
 }
 
+function addRecurringOrder(order, days) {
+    let productsToAdd = order.products.reduce(
+        (arr, prod) => {
+            console.log('arr before:', arr);
+            let innerArr = days.map(day => {
+                return {
+                    customer_id: order.customer_id,
+                    product_id: prod.id,
+                    qty: prod.qty,
+                    recur_day: day
+                };
+            });
+            console.log('inner arr:', innerArr);
+            return arr.concat(innerArr);
+        },
+        []
+    );
+    console.log('products:', productsToAdd);
+    return knex.insert(productsToAdd).into('recurring_order_items');
+}
+
 function editOrder(order) {
     return new Promise((resolve, reject) => {
         let delete_items = knex
@@ -126,6 +147,7 @@ module.exports = {
     editOrder: editOrder,
     confirmOrder: confirmOrder,
     deleteOrder: deleteOrder,
+    addRecurringOrder: addRecurringOrder,
     _aggregateOrder: aggregateOrder,
     _separateOrders: separateOrders
 };

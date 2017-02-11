@@ -31,6 +31,22 @@ router.post('/', (req, res) => {
         });
 });
 
+router.post('/recurring', (req, res) => {
+    lib
+        .addRecurringOrder(
+            {
+                customer_id: req.body.customer_id,
+                products: req.body.products
+            },
+            req.body.days
+        )
+        .then(() => res.sendStatus(200))
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+});
+
 router.put('/', (req, res) => {
     lib.editOrder(req.body).then(() => res.sendStatus(200)).catch(err => {
         console.log(err);
