@@ -29,7 +29,9 @@ myApp.controller('adminNewOrderController', [
                     products: $scope.selectedCustomer.products,
                     days: days
                 })
-                .then(function(response) {})
+                .then(function(response) {
+                    $scope.closeThisDialog();
+                })
                 .catch(function(err) {
                     console.log(err);
                 });
