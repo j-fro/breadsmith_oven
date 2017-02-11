@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const pg = require('pg');
+const scheduleOrders = require('./lib/autoOrderLib');
 const urlEncodedParser = bodyParser.urlencoded({extended: true});
 const jsonParser = bodyParser.json();
 
@@ -15,6 +15,7 @@ app.use(jsonParser);
 
 app.listen(app.get('port'), () => {
     console.log('Server listening on port', app.get('port'));
+    scheduleOrders();
 });
 
 //require routers

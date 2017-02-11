@@ -1,4 +1,5 @@
 const moment = require('moment');
+const schedule = require('node-schedule');
 const knex = require('../database/dbConfig');
 
 function getOrderData(day) {
@@ -66,4 +67,11 @@ function generateOrders(day) {
         .catch(err => console.log(err));
 }
 
-generateOrders('monday');
+function scheduleOrders() {
+    console.log('Scheduling auto orders');
+    schedule.scheduleJob({hour: 21, minute: 38}, () => {
+        generateOrders(moment().format('dddd'));
+    });
+}
+
+module.exports = scheduleOrders;
