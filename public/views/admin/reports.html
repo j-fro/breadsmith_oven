@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <body>
     <h1>Reports</h1>
+  <div class="container">
+
     <div class="input-group">
         <label>Start at:</label>
         <div uib-datepicker ng-model="startDate" datepicker-options="options"></div>
@@ -13,4 +15,5 @@
     <label for="productionReport"></label>
     <a ng-href="{{ '/report/production/' + startDate.toDateString() + '/production.csv'}}"><input type="button" name="productionReport" value="Production Report"></a>
     <p> need to display production report/ how do we want to display this </p>
+    </div>
 </body>
