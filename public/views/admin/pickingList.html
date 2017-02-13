@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Packing List</title>
+
+    <script src="../../vendors/angular.min.js" charset="utf-8"></script>
+    <script src="../../scripts/controllers/packingListController.js" charset="utf-8"></script>
+</head>
+
+<body ng-app="packingApp">
+    <div ng-controller="PackingListController">
+            <table ng-init="getProductTotals()">
+                <thead>
+                    <td>Quantity</td>
+                    <td>Product</td>
+                    <td>Unit Price</td>
+                    <td>Total</td>
+                </thead>
+                <tr ng-repeat="product in productTotals">
+                    <td>{{ product.qty }}</td>
+                    <td>{{ product.type }} {{ product.variety }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.price * product.qty }}</td>
+                </tr>
+            </table>
+            <p style="page-break-after:always;"><!-- pagebreak --></p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -82,7 +82,7 @@ myApp.controller('ExistingOrderController', [
             if ($scope.orders) {
                 var orders = $scope.orders.filter(x => x.include);
                 localStorage.setItem('orders', JSON.stringify(orders));
-                $window.open('/views/admin/packingList.html');
+                $window.open('/views/admin/pickingList.html');
             }
         };
 
