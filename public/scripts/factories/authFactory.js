@@ -17,6 +17,47 @@ myApp.factory('AuthFactory', [
         });
         return {
             _State: State,
+            requireCustomer: function(route) {
+                var user = auth.$getAuth();
+                if (user) {
+                    user
+                        .getToken()
+                        .then(function(token) {
+                            $http({
+                                method: 'GET',
+                                url: '/auth',
+                                headers: {
+                                    id_token: token
+                                }
+                            })
+                                .then(function(response) {
+                                    if (response.data === 'customer') {
+                                      $http({
+                                        method: 'GET',
+                                        url: '/auth/imSomebody',
+                                        headers: {
+                                            id_token: token
+                                        }
+                                      }).then(function(response){
+                                        State.customerId = response.data.customerId;
+                                        return route;
+                                      });
+
+                                    } else {
+                                        return '/login';
+                                    }
+                                })
+                                .catch(function() {
+                                    return '/login';
+                                });
+                        })
+                        .catch(function() {
+                            return '/login';
+                        });
+                } else {
+                    return '/login';
+                }
+            },
             requireAdmin: function(route) {
                 var user = auth.$getAuth();
                 if (user) {

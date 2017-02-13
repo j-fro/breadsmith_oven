@@ -32,6 +32,7 @@ function getOrdersByDate(date) {
 
 function addOrder(order) {
     return new Promise((resolve, reject) => {
+        console.log(order.products);
         knex
             .insert(
                 {
