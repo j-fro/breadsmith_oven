@@ -18,6 +18,7 @@
 /*}*/
 body{
   background-image: url(http://www.asbcert.com.tr/wp-content/uploads/2016/09/iso22000-uygulamalari.jpg);
+  background-size: cover;
   opacity: 0.9;
 }
 #banner{
@@ -73,4 +74,8 @@ main {
 .customers:hover {
     cursor: pointer;
     opacity: 0.75;
+}
+
+.custLoginButton{
+  background-color: rgb(51, 122, 183) !important;
 }
