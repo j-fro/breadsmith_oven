@@ -33,46 +33,43 @@ function getOrdersByDate(date) {
 function addOrder(order) {
     return new Promise((resolve, reject) => {
         console.log(order.products);
-        knex
-            .insert(
-                {
-                    comments: order.comments,
-                    status: order.status,
-                    created: order.created || new Date(),
-                    total_qty: order.products.reduce(
-                        (sum, prod) => sum + prod.qty,
-                        0
-                    ),
-                    total_cost: order.products.reduce(
-                        (sum, prod) => sum + prod.price * prod.qty,
-                        0
-                    ),
-                    customer_id: order.customer_id
-                },
-                'id'
-            )
-            .into('orders')
-            .then(order_id => {
-                let order_items = order.products.reduce(
-                    (arr, prod) => {
-                        arr.push(
-                            knex
-                                .insert({
-                                    order_id: order_id[0],
-                                    product_id: prod.id,
-                                    qty: prod.qty
-                                })
-                                .into('order_items')
-                        );
-                        return arr;
-                    },
-                    []
-                );
-                Promise.all(order_items)
-                    .then(() => resolve(order_id[0]))
-                    .catch(err => reject(err));
-            })
-            .catch(err => reject(err));
+        let orderToInsert = {
+            comments: order.comments,
+            status: order.status,
+            created: order.created || new Date(),
+            total_qty: order.products.reduce((sum, prod) => sum + prod.qty, 0),
+            total_cost: order.products.reduce(
+                (sum, prod) => sum + prod.price * prod.qty,
+                0
+            ),
+            customer_id: order.customer_id
+        };
+        if (orderToInsert.total_qty > 0) {
+            knex
+                .insert(orderToInsert, 'id')
+                .into('orders')
+                .then(order_id => {
+                    let order_items = order.products.reduce(
+                        (arr, prod) => {
+                            arr.push(
+                                knex
+                                    .insert({
+                                        order_id: order_id[0],
+                                        product_id: prod.id,
+                                        qty: prod.qty
+                                    })
+                                    .into('order_items')
+                            );
+                            return arr;
+                        },
+                        []
+                    );
+                    Promise.all(order_items)
+                        .then(() => resolve(order_id[0]))
+                        .catch(err => reject(err));
+                })
+                .catch(err => reject(err));
+        }
     });
 }
 
