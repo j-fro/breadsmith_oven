@@ -8,7 +8,7 @@
 
     <!-- view customer table -->
     <table style="width:100%">
-        <tr ng-show="searchCustomerBox.length > 0" ng-repeat="customer in customers|filter: searchCustomerBox">
+        <tr ng-show="searchCustomerBox.length > 0" ng-repeat="customer in customers|filter: searchCustomerBox track by $index">
             <td>{{customer.name}}</td>
             <td>
                 <!-- view customer -->
@@ -65,7 +65,7 @@
                           <h5> Current Permitted Products </h5>
                                 </td>
                             </tr>
-                            <tr ng-repeat="product in customerToEdit.products">
+                            <tr ng-repeat="product in customerToEdit.products track by $index">
                                 <td>
                                     {{product.variety}} {{product.type}} {{product.price}}
                                     <label for="deleteProduct"></label>
@@ -86,7 +86,7 @@
                                         </td>
                                     </tr>
                                     <!-- search product -->
-                                    <tr ng-show="searchProductBox.length > 0" ng-repeat="product in permitted_products|filter: searchProductBox">
+                                    <tr ng-show="searchProductBox.length > 0" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
                                         <td>{{product.type}} {{product.variety}}</td>
                                         <td>{{product.price}}</td>
                                         <td><input type="button" name="" value="Add Product" ng-click="addProductToCustomer(product)"></td>
@@ -142,7 +142,7 @@
                                     <h5>Permitted Product</h5>
                                   </td>
                                 </tr>
-                                <tr ng-repeat="product in customerToView.products">
+                                <tr ng-repeat="product in customerToView.products track by $index">
                                      <td>{{product.type}} {{product.variety}}</td>
                                   </tr>
                         </table>
@@ -209,7 +209,7 @@
                                         </td>
                                     </tr>
                                     <!-- search product -->
-                                    <tr ng-show="searchProductBox.length > 0" ng-repeat="product in permitted_products|filter: searchProductBox">
+                                    <tr ng-show="searchProductBox.length > 0" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
                                         <td>{{product.type}} {{product.variety}}</td>
                                         <td>{{product.price}}</td>
                                         <td><input type="button" name="" value="Add Product" ng-click="addProductToCustomer(product)"></td>
