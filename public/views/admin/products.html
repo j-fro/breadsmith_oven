@@ -1,72 +1,75 @@
-  <input type="text" name="" value="" placeholder="product search" ng-model="prodSearch"> <button type="button" name="button">Search</button>
+<input type="text" placeholder="product search" ng-model="prodSearch"> <button type="button" class="btn btn-default">Search</button>
+  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newModal">Create Product</button>
 <div class="productList">
-
   <!-- <table ng-repeat = "product in list"> -->
-<table class="tayble">
-  <tr>
-    <td>Product</td>
-    <td>Price</td>
-    <td></td>
-  </tr>
-  <tr ng-repeat = "product in list | filter:prodSearch"  ng-show="show">
-    <td>{{product.variety}} {{product.type}} </td>
-    <td>${{product.price}}</td>
-    <td><button name="button" type="button" data-toggle="modal" data-target="#myModal" ng-click="storeInfo()"> Edit </button></td>
-    <td><button type="button" name="button" ng-click = "deleteProduct()"> X </button></td>
-  </tr>
-</table>
-
-</div>
-<div class="createBox">
-  <button type="button" name="button" data-toggle="modal" data-target="#newModal">Create Product</button>
+  <table class="tayble">
+    <tr>
+      <td>Product</td>
+      <td>Variety</td>
+      <td>Price</td>
+    </tr>
+    <tr ng-repeat = "product in list | orderBy: 'type' | filter:prodSearch" ng-show="show">
+      <td>{{product.type}} </td>
+      <td>{{product.variety}}</td>
+      <td>${{product.price}}</td>
+      <td><button type="button" class="btn btn-default"data-toggle="modal" data-target="#myModal" ng-click="storeInfo(product)">Edit</button></td>
+      <td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#delProdModal" ng-click="storeInfo(product)">Delete</button></td>
+    </tr>
+  </table>
 </div>
 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Editing Product</h4>
-            </div>
-            <div class="modal-body">
-                <form class="" action="index.html" method="post">
-                    Item Name: <input type="text" name="" value="" placeholder="{{pName}}" ng-model="editName"><br> Item Variety: <input type="text" name="" value="" placeholder="{{pVariety}}" ng-model="editVariety"><br> Price: $
-                    <input type="number" name=""
-                        value="" placeholder="{{pPrice}}" ng-model="editPrice">
-                </form>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" name="button" ng-click="editProduct()" data-dismiss="modal">Edit Product</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-   </div>
- </div>
- <div class="modal fade" id="newModal" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Create New Product</h4>
-        </div>
-        <div class="modal-body">
-          <form class="" action="index.html" method="post">
-            Item Name: <input type="text" name="" value="" ng-model="newName"><br>
-            Item Variety: <input type="text" name="" value="" ng-model="newVariety"><br>
-            Price: $<input type="number" name="" value="" ng-model="newPrice">
-          </form>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" name="button" ng-click="newProduct()" data-dismiss="modal">Create Product</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Editing Product</h4>
       </div>
-
+      <div class="modal-body">
+        <form class="" action="index.html" method="post">
+          Product Name: <input type="text" ng-model="productToEdit.type"><br>
+          Product Variety: <input type="text" ng-model="productToEdit.variety"><br>
+          Price: $ <input type="number" ng-model="productToEdit.price">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="editProduct()" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
+</div>
+<div class="modal fade" id="newModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create New Product</h4>
+      </div>
+      <div class="modal-body">
+        <form class="" action="index.html" method="post">
+          Product Name: <input type="text" ng-model="newName"><br>
+          Product Variety: <input type="text" ng-model="newVariety"><br>
+          Price: $<input type="number" ng-model="newPrice">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="newProduct()" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearCreate()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="delProdModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3>Are you sure you want to delete {{productToEdit.type}} {{productToEdit.variety}}?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="deleteProduct()" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

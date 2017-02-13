@@ -1,4 +1,4 @@
-#wrapperInside {
+/*#wrapperInside {
   /*padding:15px 15px 15px 15px;
   border: 10px #e1dfd7 solid;
   text-align:center;
@@ -15,6 +15,50 @@
   /*top:50%;*/
   /*right:0;*/
   /*left:0;*/
+/*}*/
+body{
+  background-image: url(http://www.asbcert.com.tr/wp-content/uploads/2016/09/iso22000-uygulamalari.jpg);
+  opacity: 0.8;
+}
+#banner{
+  background-color: #f4ecd7;
+  padding: 30px 0 20px 30px;
+}
+#customerHomeBody{
+  font-family: "Trebuchet MS", helvetica, sans-serif;
+  margin: 0 30px 0 30px;
+  background-color: #fff;
+  padding: 30px;
+}
+
+
+#containerLeft{
+  margin-right: -250px;
+}
+
+#containerRight{
+  float: right;
+  margin: -65px 140px;
+}
+
+.container-fluid{
+  float: right;
+  margin: -100px 90px 0 0;
+}
+
+#quantityOrdered{
+  padding-right: 12px;
+  width: 100px;
+}
+
+btn.btn-success{
+  text-align: center;
+}
+textarea.form-control{
+  display: inline-block;
+}
+input.form-control{
+  padding-right: 70px;
 }
 
 #nav a.nav-button {
@@ -22,5 +66,10 @@
 }
 
 main {
-    padding-top: 150px;
+    padding-top: 30px;
+}
+
+.customers:hover {
+    cursor: pointer;
+    opacity: 0.75;
 }

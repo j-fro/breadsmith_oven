@@ -31,6 +31,7 @@
                 <h1 class="modal-title">Order #{{ viewedOrder.id }}</h1>
             </div>
             <div class="modal-body">
+                <p ng-show="viewedOrder.status"><em>This order is confirmed.</em></p>
                 <h3>{{ viewedOrder.customer_name}}: {{ viewedOrder.total_cost | currency }}</h3>
                 <table>
                     <thead>
@@ -48,12 +49,13 @@
                         <td><button type="button" ng-click="removeProduct(product)">&times;</button></td>
                     </tr>
                 </table>
+                <button type="button" data-toggle="modal" data-target="#viewOrderDialog" ng-click="updateOrder()">Update</button>
                 <h3>Customer comments:</h3>
                 <p>{{ viewedOrder.comments }}</p>
-                <a ng-href="{{ mailLink }}"><button>Respond</button></a>
-                <label for="approveBox">Approve Order:</label>
-                <input type="checkbox" ng-model="viewedOrder.status" name="approveBox">
-                <button type="button" data-toggle="modal" data-target="#viewOrderDialog" ng-click="updateOrder(order.id)">Update</button>
+                <button ng-click="customMessage=!customMessage">Customize Message</button>
+                <textarea ng-show="customMessage" rows="8" cols="80" ng-model="mailMessage"></textarea>
+                <button ng-click="confirmOrder()">Confirm & Send</button>
+                <button ng-click="sendMessage()">Send Without Confirming</button>
             </div>
         </div>
     </div>

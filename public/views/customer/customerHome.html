@@ -1,18 +1,54 @@
-<h3 id='welcomeBack'>Welcome back {{customer.name}}!</h3>
-<div ng-repeat='product in customer.products'>
-    {{product.type}} {{product.variety}} {{product.price}} <input ng-model="product.qty" type="text" placeholder="qty">
+<div id='customerHomeBody' >
+
+
+    <!-- <div ng-repeat='product in customer.products'> -->
+
+    <div class="customerOrderContainer">
+      <div id="containerLeft">
+        <h3 id='welcomeBack'>Welcome back {{customer.name}}!</h3>
+        <p>Tell us what quantities you need for tomorrow.</p>
+      </div>
+      <div id="containerRight">
+        <button type="button" ng-click="postOrder(); confirmModal();" class="btn btn-success">Submit Order</button>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Product Price</th>
+            <th>Quantity Needed</th>
+          </tr>
+        </thead>
+        <tbody ng-repeat='product in customer.products'>
+          <tr>
+            <td>{{product.type}}</td>
+            <td>{{product.variety}}</td>
+            <td>{{product.price}}</td>
+            <td><input ng-model="products" class="form-control" id="quantityOrdered"></input></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- <input ng-model="comments" type="text" placeholder="comments/questions" class="form-control"> -->
+    <div class="form-group">
+      <label for="comment">Comments or Questions:</label>
+      <textarea ng-model="comments" class="form-control" rows="4" id="comment"></textarea>
+    <!-- <button type="button" ng-click="postOrder(); confirmModal();" class="btn btn-success">Submit Order</button> -->
+
+    <script type="text/ng-template" id="confirmOrder">
+      <div id="customerModal">
+      <div class='modal-header'>
+          <h4>Thank you!</h4>
+      </div>
+      <div class="modal-body">
+          <p>Your order has been submitted. You will be notified when it has been accepted.</p>
+      </div>
+      <div class="modal-footer">
+          <button type="button" ng-click="logout()">Logout</button>
+      </div>
+      </div>
+    </script>
 </div>
-<input ng-model="comments" type="text" placeholder="comments/questions">
-<button type="button" ng-click="postOrder(); confirmModal();">Submit Order</button>
-<script type="text/ng-template" id="confirmOrder">
-    <div class='modal-header'>
-        <h4>Thank you!</h4>
-    </div>
-    <div class="modal-body">
-        <p>Your order has been submitted. You will be notified when it has been accepted.</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" ng-click="logout()">Logout</button>
-    </div>
-    </div>
-</script>

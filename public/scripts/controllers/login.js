@@ -15,7 +15,6 @@ myApp.controller('LoginController', [
                 .signInWithPopup(provider)
                 .then(function(firebaseUser) {
                     console.log('logged in user:', firebaseUser);
-                    alert('Logged in as' + ' ' + firebaseUser.user.displayName);
                 })
                 .catch(function(error) {
                     console.log('login failure:', error);
