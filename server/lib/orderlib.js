@@ -69,6 +69,8 @@ function addOrder(order) {
                         .catch(err => reject(err));
                 })
                 .catch(err => reject(err));
+        } else {
+            reject('Not generating an order with 0 items');
         }
     });
 }

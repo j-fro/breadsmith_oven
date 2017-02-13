@@ -44,10 +44,18 @@ myApp.controller('adminNewOrderController', [
                 products: $scope.selectedCustomer.products,
                 status: true
             };
-            $http.post('/order', newOrder).then(function(response) {
-                console.log('order Post hit');
-                $scope.confirmModal();
-            });
+            $http
+                .post('/order', newOrder)
+                .then(function(response) {
+                    console.log('order Post hit');
+                    $scope.confirmMessage = 'Your order has been submitted.';
+                    $scope.confirmModal();
+                })
+                .catch(function(response) {
+                    console.log('Error');
+                    $scope.confirmMessage = 'There was an error and your order was not submitted';
+                    $scope.confirmModal();
+                });
         };
 
         $scope.confirmModal = function() {
