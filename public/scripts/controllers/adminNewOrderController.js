@@ -67,6 +67,9 @@ myApp.controller('adminNewOrderController', [
 
             dialog.closePromise.then(function(data) {
                 $scope.selectedCustomer = data.value;
+                $scope.selectedCustomer.products.forEach(function(prod) {
+                    prod.qty = 0;
+                });
             });
         };
 
