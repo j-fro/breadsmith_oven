@@ -1,22 +1,26 @@
-<div class="container">
+<div class="customerHomeBody container">
+  <div class="productSearchDiv">
+    <input class='productSearchBar' type="text" placeholder="product search" ng-model="prodSearch">
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newModal">Create Product</button>
+  </div>
 
-
-<input type="text" placeholder="product search" ng-model="prodSearch"> <button type="button" class="btn btn-default">Search</button>
-  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newModal">Create Product</button>
 <div class="productList">
   <!-- <table ng-repeat = "product in list"> -->
-  <table class="tayble container">
-    <tr>
-      <td>Product</td>
-      <td>Variety</td>
-      <td>Price</td>
-    </tr>
-    <tr ng-repeat = "product in list | orderBy: 'type' | filter:prodSearch" ng-show="show">
+  <table class="tayble container table table-striped">
+    <thead>
+      <tr>
+        <th class="productHeading">Product</th>
+        <th class="productHeading">Variety</th>
+        <th class="productHeading">Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tr class='table table-striped' ng-repeat = "product in list | orderBy: 'type' | filter:prodSearch" ng-show="show">
       <td>{{product.type}} </td>
       <td>{{product.variety}}</td>
       <td>${{product.price}}</td>
-      <td><button type="button" class="btn btn-default"data-toggle="modal" data-target="#myModal" ng-click="storeInfo(product)">Edit</button></td>
-      <td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#delProdModal" ng-click="storeInfo(product)">Delete</button></td>
+      <td><button type="button" class="btn btn-info glyphicon glyphicon-edit"data-toggle="modal" data-target="#myModal" ng-click="storeInfo(product)"></button>
+      <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#delProdModal" ng-click="storeInfo(product)"></button></td>
     </tr>
   </table>
 </div>
