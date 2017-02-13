@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <section ng-init="getCustomers()">
-    <h1>Create Order</h1>
-    <div ng-repeat="product in selectedCustomer.products">
-        {{product.type}} {{product.variety}} {{product.price}}
-        <input ng-model="product.qty" type="number" placeholder="qty">
-    </div>
-    <button ng-show="selectedCustomer" ng-click="postOrder()">Submit Order</button>
-    <button ng-show="selectedCustomer" ng-click="recurringOrderModal()">Set as Recurring Order</button>
-    <button ng-click="selectCustomerModal()">Select Customer</button>
 
+<div class="container orderContainer">
+  <h1 class='createOrderHeader'>Create Order</h1>
+  <div ng-repeat="product in selectedCustomer.products">
+      {{product.type}} {{product.variety}} {{product.price}}
+      <input ng-model="product.qty" type="number" placeholder="qty">
+  </div>
+  <button ng-show="selectedCustomer" ng-click="postOrder()">Submit Order</button>
+  <button ng-show="selectedCustomer" ng-click="recurringOrderModal()">Set as Recurring Order</button>
+  <button ng-click="selectCustomerModal()">Select Customer</button>
+</div>
     <script type="text/ng-template" id="confirmOrder">
         <div class="modal-header">
             <h4>Thank you!</h4>
