@@ -11,9 +11,14 @@ myApp.controller('CustomerController', [
         $scope.logout = AuthFactory.logOut;
         var customerId = AuthFactory._State.customerId;
         $scope.displayOrder = function() {
-            $http.get('/customer/'+ customerId).then(function successCallback(response) {
+            $http.get('/customer/' + customerId).then(function successCallback(
+                response
+            ) {
                 console.log('displayOrder', response);
                 $scope.customer = response.data;
+                $scope.customer.products.forEach(function(prod) {
+                    prod.qty = 0;
+                });
             }, function errorCallback(error) {
                 console.log('displayOrder error', error);
                 $window.location.href = '#!/login';
