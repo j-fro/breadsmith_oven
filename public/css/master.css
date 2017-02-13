@@ -18,7 +18,7 @@
 /*}*/
 body{
   background-image: url(http://www.asbcert.com.tr/wp-content/uploads/2016/09/iso22000-uygulamalari.jpg);
-  opacity: 0.8;
+  opacity: 0.9;
 }
 #banner{
   background-color: #f4ecd7;
@@ -36,15 +36,16 @@ body{
   margin-right: -250px;
 }
 
-#containerRight{
-  float: right;
-  margin: -65px 140px;
-}
 
 .container-fluid{
   float: right;
   margin: -100px 90px 0 0;
 }
+
+.submitOrderButton, .customerLogout{
+  float: right;
+}
+
 
 #quantityOrdered{
   padding-right: 12px;
