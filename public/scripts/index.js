@@ -13,35 +13,35 @@ myApp.config([
             .when('/admin/home', {
                 templateUrl: 'views/admin/adminHome.html',
                 resolveRedirectTo: function(AuthFactory) {
-                    return AuthFactory.requireAdmin('/admin/products');
+                    return AuthFactory.requireAdmin('/admin/home');
                 }
             })
             .when('/admin/newOrder', {
                 templateUrl: 'views/admin/newOrder.html',
                 controller: 'adminNewOrderController',
                 resolveRedirectTo: function(AuthFactory) {
-                    return AuthFactory.requireAdmin('/admin/products');
+                    return AuthFactory.requireAdmin('/admin/newOrder');
                 }
             })
             .when('/admin/existingOrders', {
                 templateUrl: 'views/admin/existingOrders.html',
                 controller: 'ExistingOrderController',
                 resolveRedirectTo: function(AuthFactory) {
-                    return AuthFactory.requireAdmin('/admin/products');
+                    return AuthFactory.requireAdmin('/admin/existingOrders');
                 }
             })
             .when('/admin/reports', {
                 templateUrl: 'views/admin/reports.html',
                 controller: 'adminReportsController',
                 resolveRedirectTo: function(AuthFactory) {
-                    return AuthFactory.requireAdmin('/admin/products');
+                    return AuthFactory.requireAdmin('/admin/reports');
                 }
             })
             .when('/admin/customers', {
                 templateUrl: 'views/admin/customers.html',
                 controller: 'adminCustomerController',
                 resolveRedirectTo: function(AuthFactory) {
-                    return AuthFactory.requireAdmin('/admin/products');
+                    return AuthFactory.requireAdmin('/admin/customers');
                 }
             })
             .when('/admin/products', {
@@ -55,12 +55,15 @@ myApp.config([
                 templateUrl: 'views/admin/staff.html',
                 controller: 'adminStaffController',
                 resolveRedirectTo: function(AuthFactory) {
-                    return AuthFactory.requireAdmin('/admin/products');
+                    return AuthFactory.requireAdmin('/admin/staff');
                 }
             })
             .when('/customer/home', {
                 templateUrl: 'views/customer/customerHome.html',
-                controller: 'CustomerController'
+                controller: 'CustomerController',
+                resolveRedirectTo: function(AuthFactory) {
+                    return AuthFactory.requireCustomer('/customer/home');
+                }
             })
             .when('/login', {
                 templateUrl: 'views/login.html',

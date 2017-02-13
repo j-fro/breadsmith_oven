@@ -7,11 +7,11 @@ myApp.controller('CustomerController', [
     'AuthFactory',
     function($scope, ngDialog, $http, $window, $firebaseAuth, AuthFactory) {
         console.log('in clientController');
-        AuthFactory.getRole();
         var auth = $firebaseAuth();
         $scope.logout = AuthFactory.logOut;
+        var customerId = AuthFactory._State.customerId;
         $scope.displayOrder = function() {
-            $http.get('/customer/46').then(function successCallback(response) {
+            $http.get('/customer/'+ customerId).then(function successCallback(response) {
                 console.log('displayOrder', response);
                 $scope.customer = response.data;
             }, function errorCallback(error) {
