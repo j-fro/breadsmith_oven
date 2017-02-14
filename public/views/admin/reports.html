@@ -2,12 +2,11 @@
 <body>
     <h1>Reports</h1>
   <div class="container">
-
-    <div class="input-group">
+    <div class="container input-group">
         <label>Start at:</label>
-        <div uib-datepicker ng-model="startDate" datepicker-options="options"></div>
+        <div class="container" uib-datepicker ng-model="startDate" datepicker-options="options"></div>
         <label>End at:</label>
-        <div uib-datepicker ng-model="endDate" datepicker-options="options"></div>
+        <div class="container" uib-datepicker ng-model="endDate" datepicker-options="options"></div>
     </div>
     <label for="invoiceReport"></label>
     <a ng-href="{{ '/report/invoice/' + startDate.toDateString() + '/' + endDate.toDateString() + '/invoice.csv' }}"><input type="button" name="invoiceReport" value="Invoice Report"></a>
