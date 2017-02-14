@@ -63,10 +63,7 @@ function($scope, $http, $window, AuthFactory) {
       data: staffToSend
     }).then(function(response){
       console.log(response);
-      $scope.addFirst = '';
-      $scope.addLast = '';
-      $scope.addEmail = '';
-      $scope.addRole = '';
+      $scope.clearAdd();
       $scope.showStaff();
     }).catch(function(error){
       console.log('problem adding:', error);
@@ -80,5 +77,5 @@ function($scope, $http, $window, AuthFactory) {
     $scope.addEmail = '';
     $scope.addRole = '';
   };//end $scope.clearAdd
-
+  $scope.addRole = "admin";
 }]);

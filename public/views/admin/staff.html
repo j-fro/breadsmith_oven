@@ -5,22 +5,27 @@
   <title>Staff</title>
 </head>
 <body>
-  <h1 class='container'>Staff</h1>
-  <div class="staffList container">
-    <button type="button" class="btn btn-default" class="addStaff" data-toggle='modal' data-target='#addStaffModal'>Add Staff</button>
-    <table class='container'>
-      <th>
-        <td>Name</td>
-        <td>Email</td>
-        <td>Role</td>
-      </th>
-      <tr ng-repeat="staff in staffView | orderBy:'last_name'">
-        <td></td>
+  <div class="homeBody staffList container">
+    <div class="addStaffButtonDiv">
+      <button type="button" class="btn btn-default" class="addStaff" data-toggle='modal' data-target='#addStaffModal'>Add Staff <span class="glyphicon glyphicon-plus-sign"></span>
+      </button>
+    </div>
+    <table class='container table table-striped'>
+      <thead>
+        <tr>
+          <th class="tableHeading">Name</th>
+          <th class="tableHeading">Email</th>
+          <th class="tableHeading">Role</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tr class="table table-striped" ng-repeat="staff in staffView | orderBy:'last_name'">
         <td>{{staff.first_name}} {{staff.last_name}}</td>
         <td>{{staff.email}}</td>
         <td>{{staff.role}}</td>
-        <td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#editStaffModal" ng-click="storeStaff(staff)">Edit</button></td>
-        <td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteModal" ng-click='storeStaff(staff)'>Delete</button></td>
+        <td><button type="button" class="btn btn-info glyphicon glyphicon-edit" data-toggle="modal" data-target="#editStaffModal" ng-click="storeStaff(staff)"></button>
+      <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal" ng-click='storeStaff(staff)'></button></td>
       </tr>
     </table>
   </div>
@@ -32,16 +37,16 @@
           <h4 class="modal-title">Editing Staff</h4>
         </div>
         <div class="modal-body">
-          <form class="" action="index.html" method="post">
-            First Name: <input type="text" ng-model="staffToEdit.first_name"><br/>
-            Last Name: <input type="text" ng-model="staffToEdit.last_name"><br/>
-            Email:<input type="text" ng-model="staffToEdit.email"><br/>
+          <form action="index.html" method="post">
+            First Name: <input class='modalInput form-control' type="text" ng-model="staffToEdit.first_name"><br/>
+            Last Name: <input class='modalInput form-control' type="text" ng-model="staffToEdit.last_name"><br/>
+            Email:<input class='modalInput form-control' type="text" ng-model="staffToEdit.email"><br/>
             Role: <select class="roleClass"><option value="role">admin</option></select>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" ng-click="updateStaff()" data-dismiss="modal">Submit Changes</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" ng-click="updateStaff()" data-dismiss="modal">Submit Changes</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -51,23 +56,19 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Adding Staff</h4>
+          <h4 class="modal-title">Create New Staff</h4>
         </div>
         <div class="modal-body">
           <form name='addStaffModal' action="index.html" method="post">
-            First Name: <input type="text" ng-model="addFirst"><br/>
-            Last Name: <input type="text" ng-model="addLast"><br/>
-            Email*:<input type="email" ng-model="addEmail" required><br/>
-            Role*: <select class="roleClass" ng-model="addRole" required>
-              <option value="">Select Role</option>
+            First Name: <input class='modalInput form-control' type="text" ng-model="addFirst"><br/>
+            Last Name: <input class='modalInput form-control' type="text" ng-model="addLast"><br/>
+            Email:<small> (required) </small><input name="email" class='modalInput form-control' type="email" ng-model="addEmail" required><br/>
+            Role: <select class="roleClass modalInput" ng-model="addRole" required>
               <option value="admin">admin</option>
             </select >
             <div class="modal-footer">
-              <div style='float:left;margin-top:0px'  class="">
-                * indicates required field
-              </div>
-              <button type="button" class="btn btn-default" ng-disabled='addStaffModal.$invalid' ng-click="addStaff()" data-dismiss="modal">Submit Staff</button>
-              <button type="button" class="btn btn-default" ng-click="clearAdd()" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" ng-disabled='addStaffModal.$invalid' ng-click="addStaff()" data-dismiss="modal">Submit Staff</button>
+              <button type="button" class="btn btn-danger" ng-click="clearAdd()" data-dismiss="modal">Close</button>
             </div>
           </form>
         </div>
