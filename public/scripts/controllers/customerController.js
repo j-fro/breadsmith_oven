@@ -18,6 +18,7 @@ myApp.controller('CustomerController', [
                 $scope.customer = response.data;
                 $scope.customer.products.forEach(function(prod) {
                     prod.qty = 0;
+                    prod.multi = '1';
                 });
             }, function errorCallback(error) {
                 console.log('displayOrder error', error);
@@ -31,7 +32,10 @@ myApp.controller('CustomerController', [
             var newOrder = {
                 comments: $scope.comments,
                 customer_id: $scope.customer.id,
-                products: $scope.customer.products
+                products: $scope.customer.products.map(function(product){
+                  product.qty *= product.multi;
+                  return product;
+                })
             };
             $http.post('/order', newOrder).then(function(response) {
                 console.log('order Post hit');
@@ -45,12 +49,9 @@ myApp.controller('CustomerController', [
             });
         };
 
-        $scope.multiplier = function() {
-            if ($scope.dozen === "Dozen") {
-              return {$scope.quantity * 12);
-            } else {
-              return $scope.single
-            }
-        }
-    }
-]); //end clientController
+}]); //end clientController
+
+
+// product multiplier x quantity needed
+// if product multiplier should default to single
+// if changed then (product multiplier x quantity needed = quantity needed)
