@@ -3,20 +3,7 @@ const knex = require('../database/dbConfig');
 function getCustomerById(custId) {
     return new Promise((resolve, reject) => {
         knex
-            .select(
-                'customers.id',
-                'name',
-                'address',
-                'type',
-                'variety',
-                'price',
-                'regular',
-                'last_order_date',
-                'email',
-                'phone',
-                'contact_name',
-                'products.id as product_id'
-            )
+            .select()
             .from('customers')
             .where('customers.id', custId)
             .leftOuterJoin('permitted_products', 'customers.id', 'customer_id')
