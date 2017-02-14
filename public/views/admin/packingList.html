@@ -14,10 +14,10 @@
 
         <div ng-repeat="order in orders">
             <img src="../../images/packing-logo.png" alt="">
-            <p><strong>{{ order.customer_name }}</strong></p>
+            <h3>{{ order.customer_name }}</h3>
             <p>{{ order.customer_address }}</p>
             <p>{{ order.customer_phone }}</p>
-            <p>{{ today | date: 'shortDate' }}</p>
+            <p>{{ today | date: 'longDate' }}</p>
             <div class="blue">
             </div>
             <p>Order #{{ order.id }}</p>
