@@ -45,18 +45,36 @@ function addCustomer(customer) {
             )
             .into('customers')
             .then(id => {
-                customer.products.forEach(prod => {
-                    inserts.push(
-                        knex
-                            .insert({
+                let productsToInsert = knex
+                    .insert(
+                        customer.products.map(prod => {
+                            return {
                                 customer_id: id[0],
                                 product_id: prod.id,
                                 regular: prod.regular
-                            })
-                            .into('permitted_products')
-                    );
-                });
-                Promise.all(inserts)
+                            };
+                        })
+                    )
+                    .into('permitted_products');
+                let usersToInsert = knex
+                    .insert([
+                        {
+                            first_name: customer.primary_contact_name,
+                            email: customer.primary_email,
+                            role: 'customer',
+                            customer_id: id[0]
+                        },
+                        customer.secondary_email
+                            ? {
+                                  first_name: customer.secondary_contact_name,
+                                  email: customer.secondary_email,
+                                  role: 'customer',
+                                  customer_id: id[0]
+                              }
+                            : null
+                    ])
+                    .into('users');
+                Promise.all([productsToInsert, usersToInsert])
                     .then(() => resolve(id[0]))
                     .catch(err => reject(err));
             });

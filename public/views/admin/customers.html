@@ -263,6 +263,10 @@
                                             <h5>Permitted Products:</h5>
                                         </td>
                                     </tr>
+                                    <tr ng-repeat="product in productToBeAdded">
+                                        <td>{{ product.type }} {{ product.variety }}</td>
+                                        <td>{{ product.price }}</td>
+                                    </tr>
                                     <tr>
                                         <td>
                                             <label for="Search Product"> </label>
