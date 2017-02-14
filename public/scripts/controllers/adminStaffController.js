@@ -75,7 +75,6 @@ function($scope, $http, $window, AuthFactory) {
     $scope.addFirst = '';
     $scope.addLast = '';
     $scope.addEmail = '';
-    $scope.addRole = '';
   };//end $scope.clearAdd
   $scope.addRole = "admin";
 }]);
