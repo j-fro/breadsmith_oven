@@ -19,6 +19,7 @@ myApp.controller('ExistingOrderController', [
                     console.log(response);
                     $scope.orders = response.data.map(ord => {
                         ord.created = new Date(ord.created);
+                        ord.include = true;
                         return ord;
                     });
                 })
@@ -49,6 +50,7 @@ myApp.controller('ExistingOrderController', [
         };
 
         $scope.updateOrder = function() {
+            $scope.viewedOrder.include = undefined;
             $http
                 .put('/order', $scope.viewedOrder)
                 .then(function(response) {
