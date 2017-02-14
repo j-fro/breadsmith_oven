@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Packing List</title>
-
+    <link rel="stylesheet" href="../../css/picklist.css">
     <script src="../../vendors/angular.min.js" charset="utf-8"></script>
     <script src="../../scripts/controllers/packingListController.js" charset="utf-8"></script>
 </head>
@@ -12,21 +12,21 @@
 <body ng-app="packingApp">
     <div ng-controller="PackingListController">
         <div ng-init="init()">
-            <h4>Customers:</h4>
+            <h4 class="blue">Customers:</h4>
             <p ng-repeat="order in orders">{{ order.customer_name }}</p>
-            <h4>Products:</h4>
+            <h4 class="blue">Products:</h4>
             <table>
-                <thead>
-                    <td>Quantity</td>
-                    <td>Product</td>
-                    <td>Unit Price</td>
-                    <td>Total</td>
+                <thead class="blue">
+                    <td class="right-align">QTY</td>
+                    <td>DESCRIPTION</td>
+                    <td class="right-align">UNIT PRICE</td>
+                    <td class="right-align">TOTAL</td>
                 </thead>
                 <tr ng-repeat="product in productTotals">
-                    <td>{{ product.qty }}</td>
+                    <td class="right-align">{{ product.qty }}</td>
                     <td>{{ product.type }} {{ product.variety }}</td>
-                    <td>{{ product.price | currency }}</td>
-                    <td>{{ product.price * product.qty | currency }}</td>
+                    <td class="right-align">{{ product.price | currency }}</td>
+                    <td class="right-align">{{ product.price * product.qty | currency }}</td>
                 </tr>
             </table>
             <p style="page-break-after:always;"><!-- pagebreak --></p>

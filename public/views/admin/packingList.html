@@ -4,31 +4,35 @@
 <head>
     <meta charset="utf-8">
     <title>Packing List</title>
-
+    <link rel="stylesheet" href="../../css/picklist.css">
     <script src="../../vendors/angular.min.js" charset="utf-8"></script>
     <script src="../../scripts/controllers/packingListController.js" charset="utf-8"></script>
 </head>
 
 <body ng-app="packingApp">
     <div ng-controller="PackingListController">
+
         <div ng-repeat="order in orders">
-            <p>Order #{{ order.id }}</p>
-            <p>{{ order.customer_name }}</p>
+            <img src="../../images/packing-logo.png" alt="">
+            <p><strong>{{ order.customer_name }}</strong></p>
             <p>{{ order.customer_address }}</p>
             <p>{{ order.customer_phone }}</p>
             <p>{{ today | date: 'shortDate' }}</p>
+            <div class="blue">
+            </div>
+            <p>Order #{{ order.id }}</p>
             <table>
-                <thead>
-                    <td>Quantity</td>
-                    <td>Product</td>
-                    <td>Unit Price</td>
-                    <td>Total</td>
+                <thead class="blue">
+                    <td class="right-align">QTY</td>
+                    <td>DESCRIPTION</td>
+                    <td class="right-align">UNIT PRICE</td>
+                    <td class="right-align">TOTAL</td>
                 </thead>
                 <tr ng-repeat="product in order.products">
-                    <td>{{ product.qty }}</td>
+                    <td class="right-align">{{ product.qty }}</td>
                     <td>{{ product.type }} {{ product.variety }}</td>
-                    <td>{{ product.price | currency }}</td>
-                    <td>{{ product.price * product.qty | currency }}</td>
+                    <td class="right-align">{{ product.price | currency }}</td>
+                    <td class="right-align">{{ product.price * product.qty | currency }}</td>
                 </tr>
             </table>
             <p style="page-break-after:always;"><!-- pagebreak --></p>
