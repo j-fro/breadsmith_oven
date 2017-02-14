@@ -3,6 +3,15 @@ myApp.controller('ExistingOrderController', [
     '$http',
     '$window',
     function($scope, $http, $window) {
+        $scope.init = function() {
+            $scope.mailMessage = 'Your order has been confirmed!';
+            $scope.dateSelected = new Date();
+            $scope.getOrders();
+            $scope.popup = {
+                opened: false
+            };
+        };
+
         $scope.getOrders = function() {
             $http
                 .get('/order/' + $scope.dateSelected.toDateString())
@@ -94,11 +103,6 @@ myApp.controller('ExistingOrderController', [
             }
         };
 
-        $scope.mailMessage = 'Your order has been confirmed!';
-        $scope.dateSelected = new Date();
-        $scope.popup = {
-            opened: false
-        };
         $scope.toggle = function() {
             $scope.popup.opened = !$scope.popup.opened;
         };
