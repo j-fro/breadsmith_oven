@@ -44,5 +44,13 @@ myApp.controller('CustomerController', [
                 controller: 'CustomerController'
             });
         };
+
+        $scope.multiplier = function() {
+            if ($scope.dozen === "Dozen") {
+              return {$scope.quantity * 12);
+            } else {
+              return $scope.single
+            }
+        }
     }
 ]); //end clientController

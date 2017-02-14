@@ -15,6 +15,7 @@
             <th>Product Name</th>
             <th>Product Description</th>
             <th>Product Price</th>
+            <th> Product  Multiplier </th>
             <th>Quantity Needed</th>
           </tr>
         </thead>
@@ -23,6 +24,12 @@
             <td>{{product.type}}</td>
             <td>{{product.variety}}</td>
             <td>{{product.price}}</td>
+            <td>
+              <select>
+                <option value="single">Single</option>
+                <option value="dozen">Dozen</option>
+              </select>
+            </td>
             <td><input type="number" ng-model="product.qty" class="form-control" id="quantityOrdered"></input></td>
           </tr>
         </tbody>
