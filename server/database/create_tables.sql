@@ -3,9 +3,12 @@ CREATE TABLE IF NOT EXISTS customers (
     name VARCHAR NOT NULL,
     address VARCHAR,
     last_order_date DATE,
-    email VARCHAR,
-    phone VARCHAR,
-    contact_name VARCHAR
+    primary_email VARCHAR,
+    primary_phone VARCHAR,
+    primary_contact_name VARCHAR,
+    secondary_email VARCHAR,
+    secondary_phone VARCHAR,
+    secondary_contact_name VARCHAR
 );
 
 CREATE TABLE IF NOT EXISTS  users (

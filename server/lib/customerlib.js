@@ -29,24 +29,11 @@ function getCustomerById(custId) {
 function getAllCustomers() {
     return new Promise((resolve, reject) => {
         knex
-            .select(
-                'customers.id',
-                'name',
-                'address',
-                'type',
-                'variety',
-                'price',
-                'regular',
-                'last_order_date',
-                'email',
-                'phone',
-                'contact_name',
-                'products.id as product_id'
-            )
+            .select()
             .from('customers')
             .leftOuterJoin('permitted_products', 'customers.id', 'customer_id')
             .leftOuterJoin('products', 'product_id', 'products.id')
-            .orderBy('id')
+            .orderBy('customers.id')
             .then(customers => resolve(separateCustomers(customers)))
             .catch(err => reject(err));
     });
@@ -60,9 +47,12 @@ function addCustomer(customer) {
                 {
                     name: customer.name,
                     address: customer.address,
-                    email: customer.email,
-                    phone: customer.phone,
-                    contact_name: customer.contact_name
+                    primary_email: customer.primary_email,
+                    primary_phone: customer.primary_phone,
+                    primary_contact_name: customer.primary_contact_name,
+                    secondary_email: customer.secondary_email,
+                    secondary_phone: customer.secondary_phone,
+                    secondary_contact_name: customer.secondary_contact_name
                 },
                 'id'
             )
@@ -158,9 +148,12 @@ function aggregateCustomer(results) {
             obj.address = row.address;
             obj.id = row.id;
             obj.last_order_date = row.last_order_date;
-            obj.contact_name = row.contact_name;
-            obj.phone = row.phone;
-            obj.email = row.email;
+            obj.primary_contact_name = row.primary_contact_name;
+            obj.primary_phone = row.primary_phone;
+            obj.primary_email = row.primary_email;
+            obj.secondary_contact_name = row.secondary_contact_name;
+            obj.secondary_phone = row.secondary_phone;
+            obj.secondary_email = row.secondary_email;
             if (typeof obj.products !== 'undefined') {
                 obj.products.push({
                     id: row.product_id,

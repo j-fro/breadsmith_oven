@@ -1,4 +1,4 @@
-<div class='container' id="wrapper" ng-init="viewCustomer()">
+<div class='container' id="wrapper" ng-init="viewCustomer(); viewProduct()">
     <h1>Customers</h1>
     <!-- search customer -->
     <label for="Search Customer"></label>
@@ -50,17 +50,47 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <h5>Phone Number</h5></td>
-                                <td> <input type="text" name="" ng-model="customerToEdit.phone"></td>
+                                    <h5>Primary Contact Name</h5></td>
+                                <td>
+                                    <input type="text" ng-model="customerToEdit.primary_contact_name">
+                                </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <h5>Email Address<h5></td>
-                          <td> <input type="text" name="" ng-model="customerToEdit.email"></td>
-                        </tr>
-                        <tr>
-                          <td>
-                          <h5> Current Permitted Products </h5>
+                                    <h5>Primary Phone Number</h5></td>
+                                <td> <input type="text" name="" ng-model="customerToEdit.primary_phone"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Primary Email Address</h5>
+                                </td>
+                                <td>
+                                    <input type="text" name="" ng-model="customerToEdit.primary_email">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Secondary Contact Name</h5></td>
+                                <td>
+                                    <input type="text" ng-model="customerToEdit.secondary_contact_name">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Secondary Phone Number</h5></td>
+                                <td> <input type="text" name="" ng-model="customerToEdit.secondary_phone"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>Secondary Email Address</h5>
+                                </td>
+                                <td>
+                                    <input type="text" name="" ng-model="customerToEdit.secondary_email">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5> Current Permitted Products </h5>
                                 </td>
                             </tr>
                             <tr ng-repeat="product in customerToEdit.products track by $index">
@@ -71,7 +101,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <table ng-init="viewProduct()">
+                                <table>
                                     <tr>
                                         <td>
                                             <h5>Add Permittted Products:</h5>
@@ -127,21 +157,32 @@
                                     <h5>Address</h5> {{customerToView.address}}
                                 </td>
                                 <td>
-                                    <h5>Phone</h5> {{customerToView.phone}}
+                                    <h5>Primary Contact Name</h5> {{customerToView.primary_contact_name}}
                                 </td>
                                 <td>
-                                    <h5>Email</h5> {{customerToView.email}}
+                                    <h5>Primary Phone</h5> {{customerToView.primary_phone}}
                                 </td>
-
-                                </tr>
-                                <tr>
-                                  <td>
+                                <td>
+                                    <h5>Primary Email</h5> {{customerToView.primary_email}}
+                                </td>
+                                <td>
+                                    <h5>Secondary Contact Name</h5> {{customerToView.secondary_contact_name}}
+                                </td>
+                                <td>
+                                    <h5>Secondary Phone</h5> {{customerToView.secondary_phone}}
+                                </td>
+                                <td>
+                                    <h5>Secondary Email</h5> {{customerToView.secondary_email}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <h5>Permitted Product</h5>
-                                  </td>
-                                </tr>
-                                <tr ng-repeat="product in customerToView.products track by $index">
-                                     <td>{{product.type}} {{product.variety}}</td>
-                                  </tr>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="product in customerToView.products track by $index">
+                                <td>{{product.type}} {{product.variety}}</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -169,30 +210,54 @@
                         <table>
                             <tr>
                                 <td>
-                                    <label for="customerName"><h5>Name:</h5></label>
+                                    <label for="customerName">Name:</label>
                                     <h2><input type="text" name="customerName" ng-model="customerName"/></h2>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="customerAddress"><h5>Address:</h5></label>
+                                    <label for="customerAddress">Address:</label>
                                     <input type="text" name="customerAddress" ng-model="customerAddress" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="customerNumber"><h5>Phone Number:</h5></label>
-                                    <input type="number" name="customerNumber" value="" ng-model="customerNumber" />
+                                    <label for="primaryContactName">Primary Contact Name:</label>
+                                    <input type="number" name="primaryContactName" value="" ng-model="primaryContactName" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="customerEmail"><h5> Email:</h5></label>
-                                    <input type="text" name="customerEmail" value="" ng-model="customerEmail" />
+                                    <label for="primaryCustomerNumber">Primary Phone Number:</label>
+                                    <input type="number" name="primaryCustomerNumber" value="" ng-model="primaryCustomerNumber" />
                                 </td>
                             </tr>
                             <tr>
-                                <table ng-init="viewProduct()">
+                                <td>
+                                    <label for="primaryCustomerEmail">Primary Email:</label>
+                                    <input type="text" name="primaryCustomerEmail" value="" ng-model="primaryCustomerEmail" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="secondaryContactName">Secondary Contact Name:</label>
+                                    <input type="number" name="secondaryContactName" value="" ng-model="secondaryContactName" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="secondaryCustomerNumber">Secondary Phone Number:</label>
+                                    <input type="number" name="secondaryCustomerNumber" value="" ng-model="secondaryCustomerNumber" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="secondaryCustomerEmail">Secondary Email:</label>
+                                    <input type="text" name="secondaryCustomerEmail" value="" ng-model="secondaryCustomerEmail" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <table>
                                     <tr>
                                         <td>
                                             <h5>Permitted Products:</h5>
