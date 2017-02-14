@@ -6,4 +6,4 @@ node_modules
 .env
 /reports
 firebase-service-account.json
-bugs.md
+toDo.md
