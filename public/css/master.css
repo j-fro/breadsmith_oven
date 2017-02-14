@@ -111,6 +111,12 @@ main {
 }
 
 .productSearchDiv{
-  padding: 2em;
+  padding-bottom: 2em;
+  padding-left: 2em;
   float: left;
+}
+
+.createProductButton{
+  padding-bottom: 2em;
+  float: right;
 }
