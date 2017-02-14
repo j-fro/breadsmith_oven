@@ -6,7 +6,7 @@ angular.module('packingApp', []).controller('PackingListController', [
         $scope.orders = JSON.parse(localStorage.getItem('orders'));
 
         $window.print();
-        // setTimeout($window.close, 500);
+        setTimeout($window.close, 100);
 
         $scope.getProductTotals = function() {
             $scope.productTotals = [];
@@ -29,6 +29,10 @@ angular.module('packingApp', []).controller('PackingListController', [
                 });
             });
             console.log('Product totals:', $scope.productTotals);
+        };
+
+        $scope.init = function() {
+            $scope.getProductTotals();
         };
     }
 ]);

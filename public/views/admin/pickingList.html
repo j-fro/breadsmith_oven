@@ -11,7 +11,11 @@
 
 <body ng-app="packingApp">
     <div ng-controller="PackingListController">
-            <table ng-init="getProductTotals()">
+        <div ng-init="init()">
+            <h4>Customers:</h4>
+            <p ng-repeat="order in orders">{{ order.customer_name }}</p>
+            <h4>Products:</h4>
+            <table>
                 <thead>
                     <td>Quantity</td>
                     <td>Product</td>
