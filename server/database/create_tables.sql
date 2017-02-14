@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS  users (
     last_name VARCHAR(30),
     email VARCHAR UNIQUE NOT NULL,
     role VARCHAR(10),
-    customer_id INTEGER REFERENCES customers(id) ON DELETE SET NULL
+    customer_id INTEGER REFERENCES customers(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS  products (

@@ -122,6 +122,7 @@ myApp.controller('adminCustomerController', [
         }; //end updateExistingCustomer
 
         $scope.deleteCustomer = function(customer) {
+            console.log(customer);
             $http({
                 method: 'DELETE',
                 url: '/customer/' + customer.id

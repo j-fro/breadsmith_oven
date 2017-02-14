@@ -3,7 +3,24 @@ const knex = require('../database/dbConfig');
 function getCustomerById(custId) {
     return new Promise((resolve, reject) => {
         knex
-            .select()
+            .select(
+                'customers.id as id',
+                'name',
+                'address',
+                'last_order_date',
+                'primary_email',
+                'primary_phone',
+                'primary_contact_name',
+                'secondary_email',
+                'secondary_phone',
+                'secondary_contact_name',
+                'customer_id',
+                'product_id',
+                'regular',
+                'type',
+                'variety',
+                'price'
+            )
             .from('customers')
             .where('customers.id', custId)
             .leftOuterJoin('permitted_products', 'customers.id', 'customer_id')
@@ -16,7 +33,24 @@ function getCustomerById(custId) {
 function getAllCustomers() {
     return new Promise((resolve, reject) => {
         knex
-            .select()
+            .select(
+                'customers.id as id',
+                'name',
+                'address',
+                'last_order_date',
+                'primary_email',
+                'primary_phone',
+                'primary_contact_name',
+                'secondary_email',
+                'secondary_phone',
+                'secondary_contact_name',
+                'customer_id',
+                'product_id',
+                'regular',
+                'type',
+                'variety',
+                'price'
+            )
             .from('customers')
             .leftOuterJoin('permitted_products', 'customers.id', 'customer_id')
             .leftOuterJoin('products', 'product_id', 'products.id')
@@ -87,6 +121,11 @@ function editCustomer(customer) {
             .from('permitted_products')
             .where('customer_id', customer.id)
             .del();
+        let deleteUsers = knex
+            .from('users')
+            .where('customer_id', customer.id)
+            .andWhere('role', 'customer')
+            .del();
         let addPermitted = knex
             .insert(
                 customer.products.map(prod => {
@@ -98,14 +137,34 @@ function editCustomer(customer) {
                 })
             )
             .into('permitted_products');
+        let addUsers = knex
+            .insert([
+                {
+                    first_name: customer.primary_contact_name,
+                    email: customer.primary_email,
+                    role: 'customer',
+                    customer_id: customer.id
+                },
+                customer.secondary_email
+                    ? {
+                          first_name: customer.secondary_contact_name,
+                          email: customer.secondary_email,
+                          role: 'customer',
+                          customer_id: customer.id
+                      }
+                    : null
+            ])
+            .into('users');
         customer.products = undefined;
         let updateCustomer = knex
             .update(customer)
             .from('customers')
             .where('id', customer.id);
-        Promise.all([deletePermitted, updateCustomer])
+        Promise.all([deletePermitted, deleteUsers, updateCustomer])
             .then(() => {
-                addPermitted.then(() => resolve()).catch(err => reject(err));
+                Promise.all([addPermitted, addUsers])
+                    .then(() => resolve())
+                    .catch(err => reject(err));
             })
             .catch(err => reject(err));
     });
@@ -149,6 +208,7 @@ function separateCustomers(customers) {
 function aggregateCustomer(results) {
     return results.reduce(
         (obj, row) => {
+            console.log(row);
             obj.name = row.name;
             obj.address = row.address;
             obj.id = row.id;
