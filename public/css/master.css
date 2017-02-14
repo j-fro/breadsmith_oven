@@ -18,7 +18,7 @@
 /*}*/
 body{
   background-image: url(../images/babka.jpg);
-  background-repeat: tile;
+  background-repeat: repeat-y;
   background-size: 100%;
   opacity: 0.96;
 }
@@ -35,9 +35,6 @@ body{
   padding: 30px;
 }
 
-#containerLeft{
-  margin-right: -250px;
-}
 
 .container{
   text-align: center;
