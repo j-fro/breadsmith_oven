@@ -1,13 +1,15 @@
 <div class='container' id="wrapper" ng-init="viewCustomer(); viewProduct()">
+<!-- <div class='container' id="wrapper"> -->
     <h1>Customers</h1>
     <!-- search customer -->
     <label for="Search Customer"></label>
+    <!-- <input type="text" name="searchCustomer" class="form-control" placeholder="Search Existing Customer" ng-model="searchCustomerBox" /> -->
     <input type="text" name="searchCustomer" class="form-control" placeholder="Search Existing Customer" ng-model="searchCustomerBox" />
     <!-- <input class="btn btn-primary navbar-btn" type='button' name='search' value='Search' ng-click='searchCustomer()' /> -->
 
     <!-- view customer table -->
     <table style="width:100%">
-        <tr ng-show="searchCustomerBox.length > 0" ng-repeat="customer in customers|filter: searchCustomerBox track by $index">
+          <tr ng-repeat="customer in customers|filter: searchCustomerBox track by $index">
             <td>{{customer.name}}</td>
             <td>
                 <!-- view customer -->
@@ -296,28 +298,3 @@
     <!-- add customer modal end -->
 </div>
 <!-- end wrapper div -->
-
-<!-- address
-:
-"83792 Corry Hill"
-contact_name
-:
-"Christine Webb"
-email
-:
-"cwebb17@bigcartel.com"
-id
-:
-44
-last_order_date
-:
-"2016-03-22T05:00:00.000Z"
-name
-:
-"Stracke Group"
-phone
-:
-"7-(755)158-1148"
-products
-:
-Array[1] -->
