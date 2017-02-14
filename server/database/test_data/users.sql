@@ -101,7 +101,7 @@ insert into users (id, first_name, last_name, email, role, customer_id) values (
 insert into users (id, first_name, last_name, email, role, customer_id) values (101, 'Jacob', 'Froman', 'jacob.h.froman@gmail.com', 'admin', 100);
 insert into users (id, first_name, last_name, email, role, customer_id) values (102, 'John', 'Amakye', 'jamakyecubed@gmail.com', 'admin', 100);
 insert into users (id, first_name, last_name, email, role, customer_id) values (102, 'Karla', 'Hugo', 'karlabrandon817@gmail.com', 'admin', 100);
-insert into users (id, first_name, last_name, email, role, customer_id) values (102, 'Sherrie', 'Bloomquist', '', 'admin', 100);
+insert into users (id, first_name, last_name, email, role, customer_id) values (102, 'Sherrie', 'Bloomquist', 'sherrie.bloomquist@yahoo.com', 'admin', 100);
 insert into users (id, first_name, last_name, email, role, customer_id) values (102, 'Deforis', 'Nash', 'defhnash@gmail.com', 'admin', 100);
 
 SELECT setval('users_id_seq', (SELECT MAX(id) FROM users));
