@@ -3,9 +3,8 @@
     <input class='productSearchBar' type="text" placeholder="Search Products" ng-model="prodSearch">
   </div>
   <div class="createProductButton">
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newModal">Create Product</button>
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newModal">Add New Product <span class="glyphicon glyphicon-plus-sign"></span> </button>
   </div>
-
 <div class="productList">
   <!-- <table ng-repeat = "product in list"> -->
   <table class="container table table-striped">
@@ -26,6 +25,7 @@
     </tr>
   </table>
 </div>
+</div>
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -34,19 +34,20 @@
         <h4 class="modal-title">Editing Product</h4>
       </div>
       <div class="modal-body">
-        <form class="" action="index.html" method="post">
-          Product Name: <input type="text" ng-model="productToEdit.type"><br>
-          Product Description: <input type="text" ng-model="productToEdit.variety"><br>
-          Price: $ <input type="number" ng-model="productToEdit.price">
+        <form action="index.html" method="post">
+          Product Name: <input class='form-control' type="text" ng-model="productToEdit.type"><br>
+          Product Description: <input class='form-control' type="text" ng-model="productToEdit.variety"><br>
+          Price: <input class='form-control' type="number" placeholder="$" ng-model="productToEdit.price">
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="editProduct()" data-dismiss="modal">Submit</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" ng-click="editProduct()" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="newModal" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -56,14 +57,14 @@
       </div>
       <div class="modal-body">
         <form class="" action="index.html" method="post">
-          Product Name: <input type="text" ng-model="newName"><br>
-          Product Description: <input type="text" ng-model="newVariety"><br>
-          Price: $<input type="number" ng-model="newPrice">
+          Product Name: <input class='form-control' type="text" ng-model="newName"><br>
+          Product Description: <input class='form-control' type="text" ng-model="newVariety"><br>
+          Price:<input class='form-control' type="number" placeholder="$" ng-model="newPrice">
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="newProduct()" data-dismiss="modal">Submit</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearCreate()">Close</button>
+        <button type="button" class="btn btn-success" ng-click="newProduct()" data-dismiss="modal">Submit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="clearCreate()">Close</button>
       </div>
     </div>
   </div>
@@ -73,13 +74,12 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-body">
-        <h3>Are you sure you want to delete {{productToEdit.type}} {{productToEdit.variety}}?</h3>
+        <h4>Are you sure you want to delete {{productToEdit.type}} {{productToEdit.variety}}?</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="deleteProduct()" data-dismiss="modal">Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-success" ng-click="deleteProduct()" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
       </div>
     </div>
   </div>
-</div>
 </div>
