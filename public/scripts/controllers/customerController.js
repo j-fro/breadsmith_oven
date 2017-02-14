@@ -32,9 +32,9 @@ myApp.controller('CustomerController', [
             var newOrder = {
                 comments: $scope.comments,
                 customer_id: $scope.customer.id,
-                products: $scope.customer.products.map(function(product){
-                  product.qty *= product.multi;
-                  return product;
+                products: $scope.customer.products.map(function(product) {
+                    product.qty *= product.multi;
+                    return product;
                 })
             };
             $http.post('/order', newOrder).then(function(response) {
@@ -49,9 +49,16 @@ myApp.controller('CustomerController', [
             });
         };
 
-}]); //end clientController
+        $scope.callForOrder = function() {
+            return moment().hours() >= 14 && moment().hours() < 16;
+        };
 
+        $scope.placeForTomorrow = function() {
+            return moment().hours() >= 16;
+        };
 
-// product multiplier x quantity needed
-// if product multiplier should default to single
-// if changed then (product multiplier x quantity needed = quantity needed)
+        $scope.today = function() {
+            return moment().format('ll');
+        };
+    }
+]); //end clientController
