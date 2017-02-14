@@ -1,9 +1,11 @@
-<div class='homeBody' >
+<div class='homeBody'>
     <!-- <div ng-repeat='product in customer.products'> -->
     <button type="button" name="button" class="btn btn-danger customerLogout" ng-click="logout()">Logout</button>
     <div class="customerOrderContainer">
       <div id="containerLeft">
         <h3 id='welcomeBack'>Welcome back {{customer.name}}!</h3>
+        <h2 ng-if="placeForTomorrow()">It's too late to place an order for {{ today() }}. Your order will be placed for tomorrow.</h2>
+        <h2 ng-if="callForOrder()">It's too late to place an online order for {{ today() }}. Please call the Breadsmith office for availability.</h2>
         <p>Tell us what quantities you need for tomorrow.</p>
       </div>
       <div id="containerRight">
@@ -23,7 +25,7 @@
           <tr>
             <td>{{product.type}}</td>
             <td>{{product.variety}}</td>
-            <td>{{product.price}}</td>
+            <td>{{product.price | currency }}</td>
             <td><input type="number" ng-model="product.qty" class="form-control" id="quantityOrdered"></input></td>
             <td>
               <select ng-model="product.multi">
