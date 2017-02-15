@@ -18,7 +18,8 @@
 </td>
 </tr>
 </table>
-
+</div>
+<!-- end wrapper div -->
 <!-- edit customer modal begin -->
 <div id="editCustomerModal" class="modal fade" role="dialog">
 <div class="modal-dialog">
@@ -26,60 +27,19 @@
 <div class="modal-header">
 <h1 class="modal-title">Edit Customer</h1>
 </div>
-<div class="modal-body">
-<div class="modalRepeat container-fluid">
-<table style="width:100%">
-<tr>
-<td>
-<h5>Name</h5></td>
-<td><input type="text" name="" ng-model="customerToEdit.name"></td>
-</tr>
-<tr>
-<td>
-<h5>Address</h5></td>
-<td> <input type="text" name="" ng-model="customerToEdit.address"></td>
-</tr>
-<tr>
-<td>
-<h5>Primary Contact Name</h5></td>
-<td>
-<input type="text" ng-model="customerToEdit.primary_contact_name">
-</td>
-</tr>
-<tr>
-<td>
-<h5>Primary Phone Number</h5></td>
-<td> <input type="text" name="" ng-model="customerToEdit.primary_phone"></td>
-</tr>
-<tr>
-<td>
-<h5>Primary Email Address</h5>
-</td>
-<td>
-<input type="text" name="" ng-model="customerToEdit.primary_email">
-</td>
-</tr>
-<tr>
-<td>
-<h5>Secondary Contact Name</h5></td>
-<td>
-<input type="text" ng-model="customerToEdit.secondary_contact_name">
-</td>
-</tr>
-<tr>
-<td>
-<h5>Secondary Phone Number</h5></td>
-<td> <input type="text" name="" ng-model="customerToEdit.secondary_phone"></td>
-</tr>
-<tr>
-<td>
-<h5>Secondary Email Address</h5>
-</td>
-<td>
-<input type="text" name="" ng-model="customerToEdit.secondary_email">
-</td>
-</tr>
-<tr>
+<!-- <div class="modal-body"> -->
+  <div class="modal-body">
+    <form action="index.html" method="post">
+      Name: <input type="text" ng-model="customerToEdit.name"><br/>
+      Address: <input type="text" ng-model="customerToEdit.address"><br/>
+      Primary Contact Name:<input type="text" ng-model="customerToEdit.primary_contact_name"><br/>
+      Primary Contact Phone:<input type="text" ng-model="customerToEdit.primary_phone"><br/>
+      Primary Contact Email:<input type="text" ng-model="customerToEdit.primary_email"><br/>
+      Secondary Contact Name:<input type="text" ng-model="customerToEdit.secondary_contact_name"><br/>
+      Secondary Contact Phone:<input type="text" ng-model="customerToEdit.secondary_phone"><br/>
+      Secondary Contact Email:<input type="text" ng-model="customerToEdit.secondary_email"><br/>
+    </form>
+  </div>
 <td>
 <h5> Current Permitted Products </h5>
 </td>
@@ -297,5 +257,3 @@
 </div>
 </div>
 </div>
-</div>
-<!-- end wrapper div -->
