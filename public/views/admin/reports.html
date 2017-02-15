@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<body>
+<div class="container homeBody">
     <h1>Reports</h1>
-  <div class="container">
+
     <div class="container input-group">
         <label>Start at:</label>
         <div class="container" uib-datepicker ng-model="startDate" datepicker-options="options"></div>
         <label>End at:</label>
         <div class="container" uib-datepicker ng-model="endDate" datepicker-options="options"></div>
     </div>
-    <label for="invoiceReport"></label>
-    <a ng-href="{{ '/report/invoice/' + startDate.toDateString() + '/' + endDate.toDateString() + '/invoice.csv' }}"><input type="button" name="invoiceReport" value="Invoice Report"></a>
-    <p> need to display invoice report/ how do we want to display this</p>
-    <label for="productionReport"></label>
-    <a ng-href="{{ '/report/production/' + startDate.toDateString() + '/production.csv'}}"><input type="button" name="productionReport" value="Production Report"></a>
-    <p> need to display production report/ how do we want to display this </p>
-    </div>
-</body>
+    <a ng-href="{{ '/report/invoice/' + startDate.toDateString() + '/' + endDate.toDateString() + '/invoice.csv' }}">
+        <button type="button" class="btn btn-default">Invoice Report</button>
+    </a>
+    <a ng-href="{{ '/report/production/' + startDate.toDateString() + '/production.csv'}}">
+        <button class="btn btn-default">ProductionReport</button>
+    </a>
+</div>
