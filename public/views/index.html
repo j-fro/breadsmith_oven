@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Breadsmith - Order Verification Entry Network</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -19,7 +20,10 @@
     <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="vendors/angular-route.js" charset="utf-8"></script>
     <script src="vendors/angular-animate.min.js" charset="utf-8"></script>
+    <script src="vendors/ng-file-upload.min.js" charset="utf-8"></script>
+    <script src="vendors/ng-file-upload-shim.min.js" charset="utf-8"></script>
     <script src="vendors/moment.min.js" charset="utf-8"></script>
+    <script src="vendors/papaparse.min.js" charset="utf-8"></script>
     <script src="vendors/ui-bootstrap.js" charset="utf-8"></script>
     <script src="vendors/ui-bootstrap-tpls.js" charset="utf-8"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
@@ -37,33 +41,26 @@
     <script src="scripts/controllers/adminNewOrderController.js" charset="utf-8"></script>
     <script src="scripts/controllers/login.js" charset="utf-8"></script>
     <script src="scripts/controllers/products.js" charset="utf-8"></script>
+    <script src="scripts/controllers/importController.js" charset="utf-8"></script>
 </head>
 
 <body ng-app="myApp">
-    <div id="wrapperall">
-
-            <div id="banner">
-                <img src="../../images/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo">
-            </div>
-            <div ng-controller="NavController">
-            <nav class="navbar" ng-if="auth._State.admin">
-              <div class="container-fluid">
-                <ul class="nav navbar-nav">
-                  <li class="active"><a href='#!/admin/home'>Home</a></li>
-                  <li><a href='#!/admin/newOrder'>New Order</a></li>
-                  <li><a href='#!/admin/existingOrders'>Existing Orders</a></li>
-                  <li><a href='#!/admin/reports'>Reports</a></li>
-                  <li><a href='#!/admin/customers'>Customers</a></li>
-                  <li><a href='#!/admin/products'>Products</a></li>
-                  <li><a href='#!/admin/staff'>Staff</a></li>
-                  <li ng-click="auth.logOut()"><a href="#!/admin/home">Logout</a></li>
-                </ul>
-              </div>
-            </nav>
-            <div class="">
-                <p>{{auth._State.name}}</p>
-            </div>
-         </div>
+  <header ng-controller="NavController">
+    <img src="../../images/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo">
+    <nav class="navbar" ng-if="auth._State.admin">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href='#!/admin/home'>Home</a></li>
+          <li><a href='#!/admin/newOrder'>New Order</a></li>
+          <li><a href='#!/admin/existingOrders'>Existing Orders</a></li>
+          <li><a href='#!/admin/reports'>Reports</a></li>
+          <li><a href='#!/admin/customers'>Customers</a></li>
+          <li><a href='#!/admin/products'>Products</a></li>
+          <li><a href='#!/admin/staff'>Staff</a></li>
+          <li><a href="#!/admin/import">Import</a></li>
+          <li ng-click="auth.logOut()"><a href="#!/admin/home">Logout</a></li>
+        </ul>
+    </nav>
+  </header>
         <main ng-view>
         </main>
     </div>

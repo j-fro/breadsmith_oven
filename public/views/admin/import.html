@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<section class="text-center container homeBody">
+    <label class="btn btn-default">Import Customer CSV
+    <input type="file" class="hidden" ng-model="upload.file" ngf-select="uploadCustomerFile($file, $invalidFiles, $index)" ngf-max-size="25MB" required>
+</label>
+
+    <label class="btn btn-default">Import Product CSV
+    <input type="file" class="hidden" ng-model="upload.file" ngf-select="uploadProductFile($file, $invalidFiles, $index)" ngf-max-size="25MB" required>
+    </label>
+</section>
+
+
+<script type="text/ng-template" id="responseModal">
+    <div class="modal-header">
+        <h4>{{ modalHeader }}</h4>
+    </div>
+    <div class="modal-body">
+        <p>{{ modalBody }}</p>
+    </div>
+</script>

@@ -3,7 +3,8 @@ var myApp = angular.module('myApp', [
     'ngRoute',
     'ngDialog',
     'firebase',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngFileUpload'
 ]);
 console.log('NG');
 myApp.config([
@@ -56,6 +57,13 @@ myApp.config([
                 controller: 'adminStaffController',
                 resolveRedirectTo: function(AuthFactory) {
                     return AuthFactory.requireAdmin('/admin/staff');
+                }
+            })
+            .when('/admin/import', {
+                templateUrl: 'views/admin/import.html',
+                controller: 'ImportController',
+                resolveRedirectTo: function(AuthFactory) {
+                    return AuthFactory.requireAdmin('/admin/import');
                 }
             })
             .when('/customer/home', {

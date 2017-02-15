@@ -1,16 +1,44 @@
 <!DOCTYPE html>
-<section ng-init="getCustomers()">
+<section ng-init="getCustomers()" class="container homeBody">
 
-<div class="container orderContainer">
-  <h1 class='createOrderHeader'>Create Order</h1>
-  <div ng-repeat="product in selectedCustomer.products">
-      {{product.type}} {{product.variety}} {{product.price}}
-      <input ng-model="product.qty" type="number" placeholder="qty">
-  </div>
-  <button ng-show="selectedCustomer" ng-click="postOrder()">Submit Order</button>
-  <button ng-show="selectedCustomer" ng-click="recurringOrderModal()">Set as Recurring Order</button>
-  <button ng-click="selectCustomerModal()">Select Customer</button>
-</div>
+    <div class="container">
+        <h1>Create Order</h1>
+        <!-- <div ng-repeat="product in selectedCustomer.products">
+            {{product.type}} {{product.variety}} {{product.price}}
+            <input ng-model="product.qty" type="number" placeholder="qty">
+        </div> -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Product Description</th>
+                    <th>Product Price</th>
+                    <th>Quantity Needed</th>
+                    <th>Product Multiplier</th>
+                    <th>Total Quantity</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="product in selectedCustomer.products">
+                <tr>
+                    <td>{{product.type}}</td>
+                    <td>{{product.variety}}</td>
+                    <td>{{product.price | currency }}</td>
+                    <td><input type="number" ng-model="product.qty" class="form-control" id="quantityOrdered">
+                    </td>
+                    <td>
+                        <select class="form-control" ng-model="product.multi">
+                  <option value="1">Single</option>
+                  <option value="12">Dozen</option>
+                </select>
+                    </td>
+                    <td>{{product.qty * product.multi}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-success" ng-show="selectedCustomer" ng-click="postOrder()">Submit Order</button>
+        <button class="btn btn-default" ng-show="selectedCustomer" ng-click="recurringOrderModal()">Set as Recurring Order</button>
+        <button class="btn btn-default" ng-click="selectCustomerModal()">Select Customer</button>
+    </div>
     <script type="text/ng-template" id="confirmOrder">
         <div class="modal-header">
             <h4>Thank you!</h4>
@@ -26,10 +54,10 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-            <label>Find a customer:</label>
-            <input type="text" class="form-control-inline" ng-model="customerSearch">
-        </div>
-            <div class="panel panel-body customers" ng-repeat="customer in customers | filter: {name: customerSearch}" ng-show="customerSearch.length > 0" ng-click="pickCustomer(customer)">
+                <label>Find a customer:</label>
+                <input type="text" class="form-control-inline" ng-model="customerSearch">
+            </div>
+            <div class="panel panel-body customers" ng-repeat="customer in customers | filter: {name: customerSearch}" ng-click="pickCustomer(customer)">
                 <p>{{ customer.name }}</p>
                 <p>id#{{ customer.id }}</p>
             </div>
@@ -40,15 +68,36 @@
         <div class="modal-header">
             <h4>Choose the days to recur:</h4>
         </div>
-        <div class="modal-body">
-            <label for="sunday">Sunday</label><input name="sunday" type="checkbox" ng-model="recur.Sunday">
-            <label for="monday">Monday</label><input name="monday" type="checkbox" ng-model="recur.Monday">
-            <label for="tuesday">Tuesday</label><input name="tuesday" type="checkbox" ng-model="recur.Tuesday">
-            <label for="wednesday">Wednesday</label><input name="wednesday" type="checkbox" ng-model="recur.Wednesday">
-            <label for="thursday">Thursday</label><input name="thursday" type="checkbox" ng-model="recur.Thursday">
-            <label for="friday">Friday</label><input name="friday" type="checkbox" ng-model="recur.Friday">
-            <label for="saturday">Saturday</label><input name="saturday" type="checkbox" ng-model="recur.Saturday">
-            <button ng-click="setRecurrance()">Confirm</button>
+        <div class="modal-body form">
+            <span class="form-group">
+                <input name="sunday" type="checkbox" class="checkbox" ng-model="recur.Sunday">
+                <label for="sunday">Sunday</label>
+            </span>
+            <span class="form-group">
+                <input name="monday" type="checkbox" class="checkbox" ng-model="recur.Monday">
+                <label for="monday">Monday</label>
+            </span>
+            <span class="form-group">
+                <input name="tuesday" type="checkbox" class="checkbox" ng-model="recur.Tuesday">
+                <label for="tuesday">Tuesday</label>
+            </span>
+            <span class="form-group">
+                <input name="wednesday" type="checkbox" class="checkbox" ng-model="recur.Wednesday">
+                <label for="wednesday">Wednesday</label>
+            </span>
+            <span class="form-group">
+                <input name="thursday" type="checkbox" class="checkbox" ng-model="recur.Thursday">
+                <label for="thursday">Thursday</label>
+            </span>
+            <span class="form-group">
+                <input name="friday" type="checkbox" class="checkbox" ng-model="recur.Friday">
+                <label for="friday">Friday</label>
+            </span>
+            <span class="form-group">
+                <input name="saturday" type="checkbox" class="checkbox" ng-model="recur.Saturday">
+                <label for="saturday">Saturday</label>
+            </span>
+            <button class="btn btn-default" ng-click="setRecurrance()">Confirm</button>
         </div>
         </div>
     </script>
