@@ -41,7 +41,10 @@ myApp.controller('adminNewOrderController', [
             var newOrder = {
                 comments: $scope.comments,
                 customer_id: $scope.selectedCustomer.id,
-                products: $scope.selectedCustomer.products,
+                products: $scope.selectedCustomer.products.map(p => {
+                    p.qty *= p.multi;
+                    return p;
+                }),
                 status: true
             };
             $http
@@ -77,6 +80,7 @@ myApp.controller('adminNewOrderController', [
                 $scope.selectedCustomer = data.value;
                 $scope.selectedCustomer.products.forEach(function(prod) {
                     prod.qty = 0;
+                    prod.multi = '1';
                 });
             });
         };
