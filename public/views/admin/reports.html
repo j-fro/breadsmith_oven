@@ -8,10 +8,10 @@
         <label>End at:</label>
         <div class="container" uib-datepicker ng-model="endDate" datepicker-options="options"></div>
     </div>
-    <a ng-href="{{ '/report/invoice/' + startDate.toDateString() + '/' + endDate.toDateString() + '/invoice.csv' }}">
+    <a ng-href="{{ '/report/invoice/' + startDate.format('YYYY-MM-DD') + '/' + endDate.format('YYYY-MM-DD') + '/invoice.csv' }}">
         <button type="button" class="btn btn-default">Invoice Report</button>
     </a>
-    <a ng-href="{{ '/report/production/' + startDate.toDateString() + '/production.csv'}}">
+    <a ng-href="{{ '/report/production/' + startDate.format('YYYY-MM-DD') + '/production.csv'}}">
         <button class="btn btn-default">ProductionReport</button>
     </a>
 </div>

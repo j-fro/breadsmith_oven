@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const moment = require('moment');
 const lib = require('../lib/reportlib');
 
 let router = express.Router();
@@ -8,9 +9,10 @@ let router = express.Router();
 router.get('/production/:date/:filename?', (req, res) => {
     console.log('Hit production report route');
     lib
-        .getTallyAndExport(req.params.filename || 'production.csv', new Date(
-            req.params.date
-        ))
+        .getTallyAndExport(
+            req.params.filename || 'production.csv',
+            moment(req.params.date)
+        )
         .then(() => {
             console.log('Getting to then');
             res
@@ -27,12 +29,12 @@ router.get('/production/:date/:filename?', (req, res) => {
 });
 
 router.get('/invoice/:startDate/:endDate/:filename?', (req, res) => {
-    console.log(req.params.filename);
+    console.log(req.params.startDate);
     lib
         .getOrdersAndExport(
             req.params.filename || 'invoice.csv',
-            new Date(req.params.startDate),
-            new Date(req.params.endDate)
+            moment(req.params.startDate),
+            moment(req.params.endDate).hours(24)
         )
         .then(() => {
             res

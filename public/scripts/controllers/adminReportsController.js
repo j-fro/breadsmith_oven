@@ -4,8 +4,8 @@ myApp.controller('adminReportsController', [
     '$window',
     function($scope, $http, $window) {
         console.log('in adminReportsController');
-        $scope.startDate = new Date();
-        $scope.endDate = new Date();
+        $scope.startDate = moment();
+        $scope.endDate = moment();
         $scope.popup = {
             opened: false
         };
