@@ -39,14 +39,16 @@
       Secondary Contact Phone:<input type="text" ng-model="customerToEdit.secondary_phone"><br/>
       Secondary Contact Email:<input type="text" ng-model="customerToEdit.secondary_email"><br/>
     </form>
-  </div>
+
+
 <td>
 <h5> Current Permitted Products </h5>
 </td>
 </tr>
 <tr ng-repeat="product in customerToEdit.products track by $index">
 <td>
-{{product.variety}} {{product.type}} {{product.price}}
+{{customerToEdit.products}}
+<!-- {{product.variety}} {{product.type}} {{product.price}} -->
 <label for="deleteProduct"></label>
 <input type="button" name="deleteProduct" value="Delete Product" ng-click="deleteProduct(product)">
 </td>
@@ -55,6 +57,7 @@
 <table>
 <tr>
 <td>
+
   <h5>Add Permittted Products:</h5>
 </td>
 </tr>
@@ -83,6 +86,7 @@
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+</div>
 </div>
 </div>
 </div>
