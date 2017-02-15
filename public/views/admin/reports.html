@@ -2,11 +2,19 @@
 <div class="container homeBody">
     <h1>Reports</h1>
 
-    <div class="container input-group">
-        <label>Start at:</label>
-        <div class="container" uib-datepicker ng-model="startDate" datepicker-options="options"></div>
-        <label>End at:</label>
-        <div class="container" uib-datepicker ng-model="endDate" datepicker-options="options"></div>
+    <div class="cal">
+        <div>
+            <span>
+                <p>Start at:</p>
+                <div uib-datepicker ng-model="startDate" datepicker-options="options"></div>
+            </span>
+        </div>
+        <div>
+            <span>
+                <p>End at:</p>
+                <div uib-datepicker ng-model="endDate" datepicker-options="options"></div>
+            </span>
+        </div>
     </div>
     <a ng-href="{{ '/report/invoice/' + startDate.format('YYYY-MM-DD') + '/' + endDate.format('YYYY-MM-DD') + '/invoice.csv' }}">
         <button type="button" class="btn btn-default">Invoice Report</button>

@@ -142,3 +142,8 @@ a:focus{
 span.form-group {
     display: block;
 }
+
+.cal div {
+    display: inline-block;;
+    margin: auto;
+}
