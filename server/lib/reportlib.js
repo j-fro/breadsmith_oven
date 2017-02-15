@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const json2csv = require('json2csv');
+const moment = require('moment');
 const knex = require('../database/dbConfig');
 
 function getOrdersAndExport(filename, beginDate, endDate) {
@@ -10,8 +11,9 @@ function getOrdersAndExport(filename, beginDate, endDate) {
             .from('orders')
             .join('order_items', 'orders.id', 'order_id')
             .join('products', 'product_id', 'products.id')
-            .where('created', '>', beginDate)
-            .andWhere('created', '<', endDate)
+            .join('customers', 'orders.customer_id', 'customers.id')
+            .where('created', '>', beginDate.format('YYYY-MM-DD'))
+            .andWhere('created', '<', endDate.format('YYYY-MM-DD'))
             .then(result =>
                 exportCsv(result, filename)
                     .then(resolve())
@@ -42,8 +44,8 @@ function exportCsv(orders, filename) {
 }
 
 function getTallyAndExport(filename, date) {
-    let endDate = date ? new Date(date) : new Date();
-    endDate.setDate(endDate.getDate() + 1);
+    let endDate = date ? moment(date) : moment();
+    endDate.hours(24);
     return new Promise((resolve, reject) => {
         knex
             .select('type')
@@ -51,8 +53,8 @@ function getTallyAndExport(filename, date) {
             .from('orders')
             .join('order_items', 'orders.id', 'order_id')
             .join('products', 'product_id', 'products.id')
-            .where('created', '>', date || new Date())
-            .andWhere('created', '<', endDate)
+            .where('created', '>', date.format('YYYY-MM-DD'))
+            .andWhere('created', '<', endDate.format('YYYY-MM-DD'))
             .andWhere('status', true)
             .groupBy('type')
             .then(result =>
