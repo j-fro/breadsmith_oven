@@ -11,6 +11,20 @@ function parseCustomerFile(file) {
     });
 }
 
+function parseProductFile(file) {
+    return knex
+        .insert(
+            file.map(row => {
+                return {
+                    type: row['Product Name'],
+                    variety: row['Product Description'],
+                    price: row['Product Price']
+                };
+            })
+        )
+        .into('products');
+}
+
 function createProducts(file, customerResults) {
     return new Promise((resolve, reject) => {
         getExistingProduts(file)
@@ -100,4 +114,7 @@ function reduceCustomers(file) {
     );
 }
 
-module.exports = {parseCustomerFile: parseCustomerFile};
+module.exports = {
+    parseCustomerFile: parseCustomerFile,
+    parseProductFile: parseProductFile
+};

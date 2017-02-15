@@ -14,4 +14,14 @@ router.post('/customer', (req, res) => {
         });
 });
 
+router.post('/product', (req, res) => {
+    lib
+        .parseProductFile(req.body)
+        .then(() => res.sendStatus(201))
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+});
+
 module.exports = router;
