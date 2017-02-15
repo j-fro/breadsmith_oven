@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<div class="container" id="wrapper" ng-init="init()">
+<div class="homeBody container" id="wrapper" ng-init="init()">
     <h1>Existing Orders</h1>
-    <input type="text" uib-datepicker-popup ng-model="dateSelected" is-open="popup.opened" datepicker-options="options" close-text="Close" ng-change="getOrders()">
-    <button type="button" class="btn btn-default" ng-click="toggle()"><i class="glyphicon glyphicon-calendar"></i></button>
+    <form class="input-group col-md-4 col-md-offset-4">
+        <input type="text" class="form-control" uib-datepicker-popup ng-model="dateSelected" is-open="popup.opened" datepicker-options="options" close-text="Close" ng-change="getOrders()">
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="toggle()"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+    </form>
 
-    <table>
+    <table class="table table-striped order-table">
         <thead ng-show="orders">
             <td>Customer</td>
             <td>Created on</td>
@@ -19,10 +23,10 @@
             <td>{{ order.total_cost | currency }}</td>
             <td><i ng-if="order.status" class="glyphicon glyphicon-ok"></i><i ng-if="!order.status" class="glyphicon glyphicon-remove"></i></td>
             <td><i ng-if="order.comments.length > 0" class="glyphicon glyphicon-comment"></i></td>
-            <td><input type="checkbox" ng-model="order.include" ng-click="$event.stopPropagation();"></td>
+            <td ng-click="$event.stopPropagation();"><input type="checkbox" class="" ng-model="order.include"></td>
         </tr>
-        <button ng-click="printPackingList()">Print Picking List</button>
-        <button ng-click="printPackingSlips()">Print Packing Slips</button>
+        <button class="btn btn-default" ng-click="printPackingList()">Print Picking List</button>
+        <button class="btn btn-default" ng-click="printPackingSlips()">Print Packing Slips</button>
     </table>
     <div class="modal fade" id="viewOrderDialog">
         <div class="modal-dialog modal-content">
@@ -33,7 +37,7 @@
             <div class="modal-body">
                 <p ng-show="viewedOrder.status"><em>This order is confirmed.</em></p>
                 <h3>{{ viewedOrder.customer_name}}: {{ viewedOrder.total_cost | currency }}</h3>
-                <table>
+                <table class="table table-striped">
                     <thead>
                         <td>Product</td>
                         <td>Price</td>
@@ -46,16 +50,16 @@
                         <td>{{ product.price | currency }}</td>
                         <td><input type="number" ng-model="product.qty"></td>
                         <td>{{ product.qty * product.price | currency }}</td>
-                        <td><button type="button" ng-click="removeProduct(product)">&times;</button></td>
+                        <td><button type="button" class="btn btn-danger glyphicon glyphicon-remove" ng-click="removeProduct(product)"></button></td>
                     </tr>
                 </table>
-                <button type="button" data-toggle="modal" data-target="#viewOrderDialog" ng-click="updateOrder()">Update</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#viewOrderDialog" ng-click="updateOrder()">Update</button>
                 <h3>Customer comments:</h3>
                 <p>{{ viewedOrder.comments }}</p>
-                <button ng-click="customMessage=!customMessage">Customize Message</button>
-                <textarea ng-show="customMessage" rows="8" cols="80" ng-model="mailMessage"></textarea>
-                <button ng-click="confirmOrder()">Confirm & Send</button>
-                <button ng-click="sendMessage()">Send Without Confirming</button>
+                <button class="btn btn-default" ng-click="customMessage=!customMessage">Customize Message</button>
+                <textarea class="form-control" ng-show="customMessage" rows="8" ng-model="mailMessage"></textarea>
+                <button class="btn btn-default" ng-click="confirmOrder()">Confirm & Send</button>
+                <button class="btn btn-default" ng-click="sendMessage()">Send Without Confirming</button>
             </div>
         </div>
     </div>

@@ -129,3 +129,8 @@ a:focus{
   background-color: #f4ecd7 !important;
   text-decoration: underline !important;
 }
+
+.order-table tbody tr:hover {
+    cursor: pointer;
+    background-color: #e6e6e6 !important;
+}
