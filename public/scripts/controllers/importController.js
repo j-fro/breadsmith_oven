@@ -24,13 +24,14 @@ myApp.controller('ImportController', [
         $scope.parseUpload = function(file, route) {
             Papa.parse(file, {
                 header: true,
+                dynamicTyping: true,
                 complete: function(results) {
                     console.log(results);
                     $http
                         .post('/import/' + route, results.data)
                         .then(function(response) {
                             $scope.modalHeader = 'Success';
-                            $sope.modalBody = 'Your file has been imported successfully';
+                            $scope.modalBody = 'Your file has been imported successfully';
                             ngDialog.open({
                                 template: 'responseModal',
                                 scope: $scope

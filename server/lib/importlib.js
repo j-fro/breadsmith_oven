@@ -1,18 +1,73 @@
 const knex = require('../database/dbConfig');
 
 function parseCustomerFile(file) {
-    createCustomers(file).then(results => createProducts(file, results));
+    return new Promise((resolve, reject) => {
+        createCustomers(file)
+            .then(results =>
+                createProducts(file, results)
+                    .then(() => resolve())
+                    .catch(err => reject(err)))
+            .catch(err => reject(err));
+    });
 }
 
 function createProducts(file, customerResults) {
-    console.log(file.map(x => x['Product Name']));
-    console.log(file.map(x => x['Product Description']));
-    knex
+    return new Promise((resolve, reject) => {
+        getExistingProduts(file)
+            .then(results => {
+                file = mapProductIds(file, results);
+                file = mapCustomerIds(file, customerResults);
+                console.log(file);
+                knex
+                    .insert(file.map(sanitize))
+                    .into('permitted_products')
+                    .then(() => resolve())
+                    .catch(err => reject(err));
+            })
+            .catch(err => reject(err));
+    });
+}
+
+function getExistingProduts(file) {
+    return knex
         .select()
         .from('products')
         .whereIn('type', file.map(x => x['Product Name']))
-        .whereIn('variety', file.map(x => x['Product Description']))
-        .then(results => console.log(results));
+        .orWhereIn('variety', file.map(x => x['Product Description']));
+}
+
+function mapProductIds(file, productResults) {
+    console.log(productResults);
+    return file.map(row => {
+        row.product_id = productResults.find(product =>
+            findMatchingProduct(product, row)).id;
+        return row;
+    });
+}
+
+function mapCustomerIds(file, customerResults) {
+    return file.map(row => {
+        row.customer_id = customerResults.find(
+            x => x.name === row['Company Name']
+        ).id;
+        return row;
+    });
+}
+
+function sanitize(row) {
+    return {
+        customer_id: row.customer_id,
+        product_id: row.product_id,
+        regular: true
+    };
+}
+
+function findMatchingProduct(product, row) {
+    if (product.variety === null) {
+        product.variety = '';
+    }
+    return row['Product Name'] === product.type &&
+        row['Product Description'] === product.variety;
 }
 
 function createCustomers(file) {
