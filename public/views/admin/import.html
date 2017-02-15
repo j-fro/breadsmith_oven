@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<label class="btn">Click Me
+<label class="btn">Import Customer CSV
 <input type="file" class="hidden" ng-model="upload.file" ngf-select="uploadCustomerFile($file, $invalidFiles, $index)" ngf-max-size="25MB" required>
+</label>
+
+<label class="btn">Import Product CSV
+<input type="file" class="hidden" ng-model="upload.file" ngf-select="uploadProductFile($file, $invalidFiles, $index)" ngf-max-size="25MB" required>
 </label>
 
 <script type="text/ng-template" id="responseModal">

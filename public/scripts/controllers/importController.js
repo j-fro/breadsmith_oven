@@ -10,12 +10,24 @@ myApp.controller('ImportController', [
             $scope.f = file;
             $scope.errFile = errFiles && errFiles[0];
 
+            $scope.parseUpload(file, 'customer');
+        };
+
+        $scope.uploadProductFile = function(file, errFiles, index) {
+            console.log(file);
+            $scope.f = file;
+            $scope.errFile = errFiles && errFiles[0];
+
+            $scope.parseUpload(file, 'product');
+        };
+
+        $scope.parseUpload = function(file, route) {
             Papa.parse(file, {
                 header: true,
                 complete: function(results) {
                     console.log(results);
                     $http
-                        .post('/import/customer', results.data)
+                        .post('/import/' + route, results.data)
                         .then(function(response) {
                             $scope.modalHeader = 'Success';
                             $sope.modalBody = 'Your file has been imported successfully';
