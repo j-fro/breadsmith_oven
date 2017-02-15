@@ -95,7 +95,7 @@ main {
   background-color: rgb(51, 122, 183) !important;
 }
 
-.productSearchBar{
+.productSearchBar, .customerSearchBar{
   width: 20em;
   height: 2.2em;
   /*border-radius: .5em;*/
@@ -109,13 +109,13 @@ main {
   font-size: 1.2em;
 }
 
-.productSearchDiv{
+.productSearchDiv, .customerSearchDiv{
   padding-bottom: 2em;
   padding-left: 2em;
   float: left;
 }
 
-.createProductButton, .addStaffButtonDiv{
+.createProductButton, .addStaffButtonDiv, .addCustomerButtonDiv{
   padding-bottom: 2em;
   float: right;
 }

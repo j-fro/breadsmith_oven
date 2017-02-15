@@ -121,11 +121,12 @@ myApp.controller('adminCustomerController', [
             );
         }; //end updateExistingCustomer
 
-        $scope.deleteCustomer = function(customer) {
-            console.log(customer);
+        $scope.deleteCustomer = function() {
+          var delCustomer = $scope.customerToEdit.id;
+            console.log('deleting:', delCustomer);
             $http({
                 method: 'DELETE',
-                url: '/customer/' + customer.id
+                url: '/customer/' + delCustomer
             }).then(
                 function successCallback(response) {
                     console.log(response);
