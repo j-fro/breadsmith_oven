@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Breadsmith - Order Verification Entry Network</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -40,7 +41,22 @@
 </head>
 
 <body ng-app="myApp">
-    <div id="wrapperall">
+  <header ng-controller="NavController">
+    <img src="../../images/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo">
+    <nav class="navbar" ng-if="auth._State.admin">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href='#!/admin/home'>Home</a></li>
+          <li><a href='#!/admin/newOrder'>New Order</a></li>
+          <li><a href='#!/admin/existingOrders'>Existing Orders</a></li>
+          <li><a href='#!/admin/reports'>Reports</a></li>
+          <li><a href='#!/admin/customers'>Customers</a></li>
+          <li><a href='#!/admin/products'>Products</a></li>
+          <li><a href='#!/admin/staff'>Staff</a></li>
+          <li ng-click="auth.logOut()"><a href="#!/admin/home">Logout</a></li>
+        </ul>
+    </nav>
+  </header>
+    <!-- <div id="wrapperall">
 
             <div id="banner">
                 <img src="../../images/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo">
@@ -63,7 +79,7 @@
             <div class="">
                 <p>{{auth._State.name}}</p>
             </div>
-         </div>
+         </div> -->
         <main ng-view>
         </main>
     </div>
