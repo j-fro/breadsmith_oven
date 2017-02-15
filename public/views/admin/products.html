@@ -19,7 +19,7 @@
     <tr class='table table-striped' ng-repeat = "product in list | orderBy: 'type' | filter:prodSearch" ng-show="show">
       <td>{{product.type}} </td>
       <td>{{product.variety}}</td>
-      <td>${{product.price}}</td>
+      <td>{{product.price | currency }}</td>
       <td><button type="button" class="btn btn-info glyphicon glyphicon-edit"data-toggle="modal" data-target="#myModal" ng-click="storeInfo(product)"></button>
       <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#delProdModal" ng-click="storeInfo(product)"></button></td>
     </tr>
