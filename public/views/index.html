@@ -56,35 +56,11 @@
           <li><a href='#!/admin/customers'>Customers</a></li>
           <li><a href='#!/admin/products'>Products</a></li>
           <li><a href='#!/admin/staff'>Staff</a></li>
+          <li><a href="#!/admin/import">Import</a></li>
           <li ng-click="auth.logOut()"><a href="#!/admin/home">Logout</a></li>
         </ul>
     </nav>
   </header>
-    <!-- <div id="wrapperall">
-
-            <div id="banner">
-                <img src="../../images/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo">
-            </div>
-            <div ng-controller="NavController">
-            <nav class="navbar" ng-if="auth._State.admin">
-              <div class="container-fluid">
-                <ul class="nav navbar-nav">
-                  <li class="active"><a href='#!/admin/home'>Home</a></li>
-                  <li><a href='#!/admin/newOrder'>New Order</a></li>
-                  <li><a href='#!/admin/existingOrders'>Existing Orders</a></li>
-                  <li><a href='#!/admin/reports'>Reports</a></li>
-                  <li><a href='#!/admin/customers'>Customers</a></li>
-                  <li><a href='#!/admin/products'>Products</a></li>
-                  <li><a href='#!/admin/staff'>Staff</a></li>
-                  <li><a href="#!/admin/import">Import</a></li>
-                  <li ng-click="auth.logOut()"><a href="#!/admin/home">Logout</a></li>
-                </ul>
-              </div>
-            </nav>
-            <div class="">
-                <p>{{auth._State.name}}</p>
-            </div>
-         </div> -->
         <main ng-view>
         </main>
     </div>
