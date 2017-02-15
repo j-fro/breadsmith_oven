@@ -1,21 +1,3 @@
-/*#wrapperInside {
-  /*padding:15px 15px 15px 15px;
-  border: 10px #e1dfd7 solid;
-  text-align:center;
-  height: auto;
-  width: 890px 100px;
-  margin: 50px 50px 50px 50px;
-  border: 25px;
-  border-radius: 100px;*/
-  /*width: auto;*/
-  /*height: 250px;*/
-  /*display: inline-block;*/
-  /*vertical-align:middle;*/
-  /*position:absolute;*/
-  /*top:50%;*/
-  /*right:0;*/
-  /*left:0;*/
-/*}*/
 body{
   background-image: url(../images/babka.jpg);
   background-repeat: repeat-y;
@@ -65,21 +47,6 @@ textarea.form-control{
 input.form-control{
   padding-right: 70px;
 }
-
-#nav a.nav-button {
-    color: black
-}
-
-/*#nav{
-  margin-bottom: 0px;
-   margin-top: 75px;
-   background: url(../images/nav_bar.jpg);
-   width: 700px;
-   height: 38px;
-   overflow: hidden;
-   float: right;
-   padding-left: 25px;
-}*/
 
 main {
     padding-top: 30px;
@@ -137,4 +104,16 @@ main {
 
 .roleClass{
   margin-bottom: .5em;
+}
+
+.nav, .navbar-nav{
+  background-color: #f4ecd7;
+  float: right;
+  padding-top: 60px;
+}
+
+.navbar li{
+  font-family: "Trebuchet MS", helvetica, sans-serif;
+  border: none;
+  color: black !important;
 }
