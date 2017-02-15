@@ -20,7 +20,10 @@
     <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="vendors/angular-route.js" charset="utf-8"></script>
     <script src="vendors/angular-animate.min.js" charset="utf-8"></script>
+    <script src="vendors/ng-file-upload.min.js" charset="utf-8"></script>
+    <script src="vendors/ng-file-upload-shim.min.js" charset="utf-8"></script>
     <script src="vendors/moment.min.js" charset="utf-8"></script>
+    <script src="vendors/papaparse.min.js" charset="utf-8"></script>
     <script src="vendors/ui-bootstrap.js" charset="utf-8"></script>
     <script src="vendors/ui-bootstrap-tpls.js" charset="utf-8"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
@@ -38,6 +41,7 @@
     <script src="scripts/controllers/adminNewOrderController.js" charset="utf-8"></script>
     <script src="scripts/controllers/login.js" charset="utf-8"></script>
     <script src="scripts/controllers/products.js" charset="utf-8"></script>
+    <script src="scripts/controllers/importController.js" charset="utf-8"></script>
 </head>
 
 <body ng-app="myApp">
@@ -72,6 +76,7 @@
                   <li><a href='#!/admin/customers'>Customers</a></li>
                   <li><a href='#!/admin/products'>Products</a></li>
                   <li><a href='#!/admin/staff'>Staff</a></li>
+                  <li><a href="#!/admin/import">Import</a></li>
                   <li ng-click="auth.logOut()"><a href="#!/admin/home">Logout</a></li>
                 </ul>
               </div>
