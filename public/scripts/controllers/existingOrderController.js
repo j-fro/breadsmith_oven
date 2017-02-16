@@ -31,16 +31,7 @@ myApp.controller('ExistingOrderController', [
 
         $scope.viewOrder = function(order) {
             $scope.viewedOrder = order;
-            $scope.mailLink = 'mailto:' +
-                order.email +
-                '?subject=' +
-                order.customer_name +
-                ': Regarding your order #' +
-                order.id +
-                '&body=' +
-                'Dear ' +
-                order.contact_name +
-                ',\n\n';
+            $scope.orderEditForm.$setPristine();
         };
 
         $scope.removeProduct = function(product) {
