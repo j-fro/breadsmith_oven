@@ -7,6 +7,7 @@ myApp.controller('ExistingOrderController', [
         $scope.init = function() {
             $scope.mailMessage = 'Your order has been confirmed!';
             $scope.dateSelected = new Date();
+            $scope.checkAll = true;
             $scope.getOrders();
             $scope.popup = {
                 opened: false
@@ -103,6 +104,12 @@ myApp.controller('ExistingOrderController', [
                         scope: $scope
                     });
                 });
+        };
+
+        $scope.toggleAll = function() {
+            $scope.orders.forEach(function(ord) {
+                ord.include = $scope.checkAll;
+            });
         };
 
         $scope.printPackingList = function() {

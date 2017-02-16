@@ -15,7 +15,7 @@
             <td>Total Cost</td>
             <td>Approved</td>
             <td>Comments</td>
-            <td>Include <input type="checkbox" ng-model="checkAll"></td>
+            <td>Include <input type="checkbox" ng-model="checkAll" ng-change="toggleAll()"></td>
         </thead>
         <tr ng-repeat="order in orders" data-toggle="modal" data-target="#viewOrderDialog" ng-click="viewOrder(order)">
             <td>{{ order.customer_name }}</td>
