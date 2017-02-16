@@ -159,11 +159,11 @@ span.form-group {
   font-size: 1.5em;
 }
 
-@media (max-width: 1200px) {
+/*@media (max-width: 1200px) {
   .navbar-nav{
     display: none !important;
   }
   .navbar-toggle{
     display: block !important;
   }
-}
+}*/
