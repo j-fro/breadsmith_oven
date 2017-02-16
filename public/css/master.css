@@ -114,7 +114,9 @@ main {
   margin-right: 1.5em !important;
   font-size: 12px;
   color: rgb(51, 122, 183);
-  position: relative;;
+  position: fixed;
+  background-color: #f4ecd7;
+  z-index: 1;
 }
 
 header a {
