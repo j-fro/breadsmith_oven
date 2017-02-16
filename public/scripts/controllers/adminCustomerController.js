@@ -89,8 +89,6 @@ myApp.controller('adminCustomerController', [
             );
         }; //end addNewCustomer
 
-        
-
         $scope.editCustomer = function(customer) {
             $scope.customerToEdit = JSON.parse(JSON.stringify(customer));
             console.log('customerToEdit:', $scope.customerToEdit.products);
