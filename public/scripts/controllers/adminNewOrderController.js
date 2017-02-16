@@ -53,11 +53,6 @@ myApp.controller('adminNewOrderController', [
                     console.log('order Post hit');
                     $scope.confirmMessage = 'Your order has been submitted.';
                     $scope.confirmModal();
-                })
-                .catch(function(response) {
-                    console.log('Error');
-                    $scope.confirmMessage = 'There was an error and your order was not submitted';
-                    $scope.confirmModal();
                 });
         };
 
@@ -69,8 +64,6 @@ myApp.controller('adminNewOrderController', [
             });
         };
 
-        $scope.ngDialog = ngDialog;
-        
         $scope.selectCustomerModal = function() {
             var dialog = ngDialog.open({
                 template: 'selectCustomer',

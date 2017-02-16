@@ -3,7 +3,7 @@
 
     <div class="container">
         <h1>Create Order</h1>
-
+      <form name="orderForm">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -32,8 +32,9 @@
                 </tr>
 
         </table>
-        <button class="separateButtons btn btn-success" ng-show="selectedCustomer" ng-click="postOrder()">Submit Order</button>
-        <button class="separateButtons btn btn-info" ng-show="selectedCustomer" ng-click="recurringOrderModal()">Set as Recurring Order</button>
+      </form>
+        <button class="separateButtons btn btn-success" ng-show="selectedCustomer" ng-click="postOrder()" ng-disabled="orderForm.$pristine">Submit Order</button>
+        <button class="separateButtons btn btn-info" ng-show="selectedCustomer" ng-click="recurringOrderModal()" ng-disabled="orderForm.$pristine">Set as Recurring Order</button>
         <button class="separateButtons btn btn-primary" ng-click="selectCustomerModal()">Select Customer</button>
 
     </div>
@@ -43,6 +44,7 @@
         </div>
         <div class="modal-body">
             <p>{{ confirmMessage }}</p>
+            <button class="btn btn-success">OK</button>
         </div>
     </script>
 
