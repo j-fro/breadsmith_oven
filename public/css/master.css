@@ -155,3 +155,22 @@ span.form-group {
 .product-row {
     padding-bottom: 5px;
 }
+
+.deliveryMessage{
+  font-size: 30px;
+  color: red;
+}
+
+.welcomeBack{
+  text-align: center;
+  font-family: "Trebuchet MS", helvetica, sans-serif;
+}
+
+.modal-header{
+  text-align: center;
+  color: rgb(51, 122, 183);
+}
+
+.productDisplay{
+  text-align: left;
+}
