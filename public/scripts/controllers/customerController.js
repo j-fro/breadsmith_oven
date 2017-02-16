@@ -58,7 +58,11 @@ myApp.controller('CustomerController', [
         };
 
         $scope.today = function() {
-            return moment().format('ll');
+            return moment().hours(24).format('ll');
+        };
+
+        $scope.nextDay = function() {
+            return moment().hours(48).format('ll');
         };
     }
 ]); //end clientController
