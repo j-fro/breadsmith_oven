@@ -3,10 +3,7 @@
 
     <div class="container">
         <h1>Create Order</h1>
-        <!-- <div ng-repeat="product in selectedCustomer.products">
-            {{product.type}} {{product.variety}} {{product.price}}
-            <input ng-model="product.qty" type="number" placeholder="qty">
-        </div> -->
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -36,8 +33,8 @@
 
         </table>
         <button class="separateButtons btn btn-success" ng-show="selectedCustomer" ng-click="postOrder()">Submit Order</button>
-        <button class="separateButtons btn btn-info" ng-click="selectCustomerModal()">Select Customer</button>
-        <button class="separateButtons btn btn-primary" ng-show="selectedCustomer" ng-click="recurringOrderModal()">Set as Recurring Order</button>
+        <button class="separateButtons btn btn-info" ng-show="selectedCustomer" ng-click="recurringOrderModal()">Set as Recurring Order</button>
+        <button class="separateButtons btn btn-primary" ng-click="selectCustomerModal()">Select Customer</button>
 
     </div>
     <script type="text/ng-template" id="confirmOrder">
@@ -98,7 +95,8 @@
                 <input name="saturday" type="checkbox" class="checkbox" ng-model="recur.Saturday">
                 <label for="saturday">Saturday</label>
             </span>
-            <button class="btn btn-default" ng-click="setRecurrance()">Confirm</button>
+            <button class="separateButtons btn btn-success" ng-click="setRecurrance()">Submit</button>
+            <button class="separateButtons btn btn-warning" ng-click="ngDialog.close()">Cancel</button>
         </div>
         </div>
     </script>

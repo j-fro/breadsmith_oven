@@ -69,6 +69,8 @@ myApp.controller('adminNewOrderController', [
             });
         };
 
+        $scope.ngDialog = ngDialog;
+        
         $scope.selectCustomerModal = function() {
             var dialog = ngDialog.open({
                 template: 'selectCustomer',
