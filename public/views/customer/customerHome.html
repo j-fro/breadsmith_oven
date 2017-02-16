@@ -4,7 +4,7 @@
     <div class="customerOrderContainer">
       <div id="containerLeft">
         <h3 id='welcomeBack'>Welcome back {{customer.name}}!</h3>
-        <h2 ng-if="placeForTomorrow()">It's too late to place an order for {{ today() }}. Your order will be placed for tomorrow.</h2>
+        <h2 ng-if="placeForTomorrow()">It's too late to place an order for {{ today() }}. Your order will be placed for {{ nextDay() }}.</h2>
         <h2 ng-if="callForOrder()">It's too late to place an online order for {{ today() }}. Please call the Breadsmith office for availability.</h2>
         <p>Tell us what quantities you need for tomorrow.</p>
       </div>
