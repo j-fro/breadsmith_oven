@@ -1,17 +1,14 @@
-<div class='homeBody container' id="wrapper" ng-init="viewCustomer(); viewProduct()">
-    <!-- <div class='container' id="wrapper"> -->
+<!DOCTYPE html>
+<div class="homeBody container col-md-6 col-md-offset-3 col-s-12" id="wrapper" ng-init="viewCustomer(); viewProduct()">
     <div class="addCustomerButtonDiv">
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addCustomerModal">Add New Customer <span class="glyphicon glyphicon-plus-sign"></span> </button>
     </div>
     <div class="customerSearchDiv">
         <input type="text" name="searchCustomer" class="customerSearchBar" placeholder="Search Existing Customers" ng-model="searchCustomerBox" />
     </div>
-    <table class="table table-striped" style="width:100%">
+    <table class="table table-striped">
         <tr ng-repeat="customer in customers|filter: searchCustomerBox track by $index">
             <td>{{customer.name}}</td>
-            <td>
-                <button type="button" class="btn btn-default" data-toggle='modal' data-target="#viewCustomerModal" ng-click="viewCustomerBtn(customer)">View Customer</button>
-            </td>
             <td>
                 <button type="button" class="btn btn-info glyphicon glyphicon-edit" data-toggle="modal" data-target="#editCustomerModal" ng-click="editCustomer(customer)"></button>
                 <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#delCustModal" ng-click="editCustomer(customer)"></button>
@@ -26,116 +23,43 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Edit Customer</h1>
+                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Save" ng-click="updateCustomer()" />
             </div>
-            <!-- <div class="modal-body"> -->
             <div class="modal-body">
-                <form action="index.html" method="post">
-                    Name: <input type="text" ng-model="customerToEdit.name"><br/> Address: <input type="text" ng-model="customerToEdit.address"><br/> Primary Contact Name:<input type="text" ng-model="customerToEdit.primary_contact_name"><br/> Primary
-                    Contact Phone:<input type="text" ng-model="customerToEdit.primary_phone"><br/> Primary Contact Email:<input type="text" ng-model="customerToEdit.primary_email"><br/> Secondary Contact Name:<input type="text" ng-model="customerToEdit.secondary_contact_name"><br/>                    Secondary Contact Phone:<input type="text" ng-model="customerToEdit.secondary_phone"><br/> Secondary Contact Email:<input type="text" ng-model="customerToEdit.secondary_email"><br/>
+                <form class="form">
+                    <label>Name: </label><input type="text" class="form-control" ng-model="customerToEdit.name">
+                    <label>Address: </label><input type="text" class="form-control" ng-model="customerToEdit.address">
+                    <label>Primary Contact Name:</label><input type="text" class="form-control" ng-model="customerToEdit.primary_contact_name">
+                    <label>Primary Contact Phone:</label><input type="text" class="form-control" ng-model="customerToEdit.primary_phone">
+                    <label>Primary Contact Email:</label><input type="text" class="form-control" ng-model="customerToEdit.primary_email">
+                    <label>Secondary Contact Name:</label><input type="text" class="form-control" ng-model="customerToEdit.secondary_contact_name">
+                    <label>Secondary Contact Phone:</label><input type="text" class="form-control" ng-model="customerToEdit.secondary_phone">
+                    <label>Secondary Contact Email:</label><input type="text" class="form-control" ng-model="customerToEdit.secondary_email">
                 </form>
-                <table>
-                    <tr>
-                        <td>
-                            <h5> Current Permitted Products </h5>
-                        </td>
-                    </tr>
-                    <tr ng-repeat="product in customerToEdit.products track by $index">
-                        <td>
-                            {{customerToEdit.products}}
-                            <!-- {{product.variety}} {{product.type}} {{product.price}} -->
-                            <label for="deleteProduct"></label>
-                            <input type="button" name="deleteProduct" value="Delete Product" ng-click="deleteProduct(product)">
-                        </td>
-                    </tr>
-                    <tr>
-                        <table>
-                            <tr>
-                                <td>
-                                    <h5>Add Permittted Products:</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="Search Product"> </label>
-                                    <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
-                                </td>
-                            </tr>
-                            <!-- search product -->
-                            <tr ng-show="searchProductBox.length > 0" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
-                                <td>{{product.type}} {{product.variety}}</td>
-                                <td>{{product.price}}</td>
-                                <td><input type="button" name="" value="Add Product" ng-click="addProductToCustomer(product)"></td>
-                            </tr>
-                        </table>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="updateCustomer"></label>
-                            <input type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Update Customer" ng-click="updateCustomer()" />
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-    </div>
-</div>
-<!-- end edit customer modal -->
-
-<!-- view customer modal -->
-<div id="viewCustomerModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title">View Customer</h1>
-            </div>
-            <div class="modal-body">
-                <div class="modalRepeat container-fluid">
-                    <table style="width:100%">
-                        <tr>
-                            <!-- <td> {{customerToView}}</td> -->
-                            <td>
-                                <h5>Name</h5> {{customerToView.name}}
-                            </td>
-                            <td>
-                                <h5>Address</h5> {{customerToView.address}}
-                            </td>
-                            <td>
-                                <h5>Primary Contact Name</h5> {{customerToView.primary_contact_name}}
-                            </td>
-                            <td>
-                                <h5>Primary Phone</h5> {{customerToView.primary_phone}}
-                            </td>
-                            <td>
-                                <h5>Primary Email</h5> {{customerToView.primary_email}}
-                            </td>
-                            <td>
-                                <h5>Secondary Contact Name</h5> {{customerToView.secondary_contact_name}}
-                            </td>
-                            <td>
-                                <h5>Secondary Phone</h5> {{customerToView.secondary_phone}}
-                            </td>
-                            <td>
-                                <h5>Secondary Email</h5> {{customerToView.secondary_email}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5>Permitted Product</h5>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="product in customerToView.products track by $index">
-                            <td>{{product.type}} {{product.variety}}</td>
-                        </tr>
-                    </table>
+                <div class="col-xs-12">
+                    <h5> Current Permitted Products </h5>
+                    <p class="row" ng-repeat="product in customerToEdit.products track by $index">
+                        <span class="col-xs-8">{{ product.type }} {{ product.variety }}</span>
+                        <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
+                    </p>
+                </div>
+                <div class="col-xs-12">
+                    <div class="row">
+                        <h5>Add Permittted Products:</h5>
+                        <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
+                    </div>
+                    <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
+                        <span class="col-xs-8">{{product.type}} {{product.variety}}
+                                  {{product.price}}</span>
+                        <button class="btn btn-success" ng-click="editCustomerAddProduct(product)"><i class="glyphicon glyphicon-plus"></i></button>
+                    </p>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
+
     </div>
 </div>
 <!-- end edit customer modal -->
@@ -145,99 +69,47 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title">Add Customer</h1>
+                <h1 class="modal-title">Create Customer</h1>
+                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#addCustomerModal" value="Save" ng-click="addCustomer()" />
             </div>
             <div class="modal-body">
-                <div class="modalRepeat container-fluid">
-                    <table>
-                        <tr>
-                            <td>
-                                <label for="customerName">Name:</label>
-                                <h2><input type="text" name="customerName" ng-model="customerName"/></h2>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="customerAddress">Address:</label>
-                                <input type="text" name="customerAddress" ng-model="customerAddress" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="primaryContactName">Primary Contact Name:</label>
-                                <input type="text" name="primaryContactName" value="" ng-model="primaryContactName" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="primaryCustomerNumber">Primary Phone Number:</label>
-                                <input type="number" name="primaryCustomerNumber" value="" ng-model="primaryCustomerNumber" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="primaryCustomerEmail">Primary Email:</label>
-                                <input type="text" name="primaryCustomerEmail" value="" ng-model="primaryCustomerEmail" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="secondaryContactName">Secondary Contact Name:</label>
-                                <input type="number" name="secondaryContactName" value="" ng-model="secondaryContactName" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="secondaryCustomerNumber">Secondary Phone Number:</label>
-                                <input type="number" name="secondaryCustomerNumber" value="" ng-model="secondaryCustomerNumber" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="secondaryCustomerEmail">Secondary Email:</label>
-                                <input type="text" name="secondaryCustomerEmail" value="" ng-model="secondaryCustomerEmail" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <h5>Permitted Products:</h5>
-                                    </td>
-                                </tr>
-                                <tr ng-repeat="product in productToBeAdded">
-                                    <td>{{ product.type }} {{ product.variety }}</td>
-                                    <td>{{ product.price }}</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="Search Product"> </label>
-                                        <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
-                                    </td>
-                                </tr>
-                                <!-- search product -->
-                                <tr ng-show="searchProductBox.length > 0" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
-                                    <td>{{product.type}} {{product.variety}}</td>
-                                    <td>{{product.price}}</td>
-                                    <td><input type="button" name="" value="Add Product" ng-click="addProductToCustomer(product)"></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input data-toggle="modal" data-target="#addCustomerModal" type="submit" name="Add Customer" value="Add Customer" ng-click="addCustomer()" />
-                                    </td>
-                                </tr>
-                            </table>
-                        </tr>
-                    </table>
+                <form class="form">
+                    <label>Name: </label><input type="text" class="form-control" ng-model="customerName" required>
+                    <label>Address: </label><input type="text" class="form-control" ng-model="customerAddress">
+                    <label>Primary Contact Name:</label><input type="text" class="form-control" ng-model="primaryContactName">
+                    <label>Primary Contact Phone:</label><input type="text" class="form-control" ng-model="primaryCustomerEmail" required>
+                    <label>Primary Contact Email:</label><input type="text" class="form-control" ng-model="primaryCustomerNumber">
+                    <label>Secondary Contact Name:</label><input type="text" class="form-control" ng-model="secondaryContactName">
+                    <label>Secondary Contact Phone:</label><input type="text" class="form-control" ng-model="secondaryCustomerEmail">
+                    <label>Secondary Contact Email:</label><input type="text" class="form-control" ng-model="secondaryCustomerNumber">
+                </form>
+                <div class="col-xs-12">
+                    <h5> Current Permitted Products </h5>
+                    <p class="row" ng-repeat="product in productToBeAdded track by $index">
+                        <span class="col-xs-8">{{ product.type }} {{ product.variety }}</span>
+                        <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
+                    </p>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <div class="col-xs-12">
+                    <div class="row">
+                        <h5>Add Permittted Products:</h5>
+                        <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
+                    </div>
+                    <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
+                        <span class="col-xs-8">{{product.type}} {{product.variety}}
+                                  {{product.price}}</span>
+                        <button class="btn btn-success" ng-click="newCustomerAddProduct(product)"><i class="glyphicon glyphicon-plus"></i></button>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- add customer modal end -->
+
 <div class="modal fade" id="delCustModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->

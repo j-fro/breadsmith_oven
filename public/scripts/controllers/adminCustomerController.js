@@ -1,8 +1,7 @@
 myApp.controller('adminCustomerController', [
     '$scope',
     '$http',
-    '$window',
-    function($scope, $http, $window) {
+    function($scope, $http) {
         console.log('NG');
         console.log('in adminCustomerController');
 
@@ -23,29 +22,14 @@ myApp.controller('adminCustomerController', [
             );
         };
 
-        $scope.addProductToCustomer = function(product) {
+        $scope.newCustomerAddProduct = function(product) {
             $scope.productToBeAdded.push(product);
-            if ($scope.customerToEdit) {
-                $scope.customerToEdit.products.push(product);
-            }
             console.log('product added');
-            alert('product added');
         };
 
-        $scope.searchProduct = function() {
-            var searchProductBox = $scope.searchProductBox;
-            $http({
-                method: 'GET',
-                url: '/product'
-            }).then(
-                function successCallback(response) {
-                    console.log(response);
-                    $scope.permitted_products = response.data;
-                },
-                function errorCallback(error) {
-                    console.log('error', error);
-                }
-            );
+        $scope.editCustomerAddProduct = function(product) {
+            $scope.customerToEdit.products.push(product);
+            console.log('product added');
         };
 
         $scope.viewCustomer = function() {
@@ -68,8 +52,8 @@ myApp.controller('adminCustomerController', [
                 name: $scope.customerName,
                 address: $scope.customerAddress,
                 primary_contact_name: $scope.primaryContactName,
-                primary_email: $scope.primaryCustomerEmail,
-                primary_phone: $scope.primaryCustomerNumber,
+                primary_email: $scope.primaryCustomerNumber,
+                primary_phone: $scope.primaryCustomerEmail,
                 secondary_contact_name: $scope.secondaryContactName,
                 secondary_email: $scope.secondaryCustomerEmail,
                 secondary_phone: $scope.secondaryCustomerNumber,
@@ -97,10 +81,6 @@ myApp.controller('adminCustomerController', [
             console.log('customerToEdit:', $scope.customerToEdit.products);
         };
 
-        $scope.viewCustomerBtn = function(customer) {
-            $scope.customerToView = JSON.parse(JSON.stringify(customer));
-        }; //end viewCustomerBtn
-
         $scope.updateCustomer = function() {
             var data = $scope.customerToEdit;
             console.log('data:', data);
@@ -113,7 +93,6 @@ myApp.controller('adminCustomerController', [
                     console.log(response);
                     alert('Customer Updated');
                     $scope.viewCustomer();
-                    //still not changing the page
                 },
                 function errorCallback(error) {
                     console.log('error', error);
@@ -122,7 +101,7 @@ myApp.controller('adminCustomerController', [
         }; //end updateExistingCustomer
 
         $scope.deleteCustomer = function() {
-          var delCustomer = $scope.customerToEdit.id;
+            var delCustomer = $scope.customerToEdit.id;
             console.log('deleting:', delCustomer);
             $http({
                 method: 'DELETE',
@@ -143,19 +122,6 @@ myApp.controller('adminCustomerController', [
             console.log('product:', product);
             var index = $scope.customerToEdit.products.indexOf(product);
             $scope.customerToEdit.products.splice(index, 1);
-            $http({
-                method: 'PUT',
-                url: '/customer/',
-                data: $scope.customerToEdit
-            }).then(
-                function successCallback(response) {
-                    console.log(response);
-                    $scope.viewCustomer();
-                },
-                function errorCallback(error) {
-                    console.log('error', error);
-                }
-            );
         };
     } //end
 ]);

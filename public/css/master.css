@@ -10,6 +10,10 @@ header{
   padding: 30px 0 28px 30px;
 }
 
+table {
+    text-align: left;
+}
+
 .homeBody{
   font-family: "Trebuchet MS", helvetica, sans-serif;
   margin: 0 30px 0 30px;
@@ -146,4 +150,8 @@ span.form-group {
 .cal div {
     display: inline-block;;
     margin: auto;
+}
+
+.product-row {
+    padding-bottom: 5px;
 }
