@@ -24,6 +24,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Edit Customer</h1>
+                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Save" ng-click="updateCustomer()" />
             </div>
             <div class="modal-body">
                 <form class="form">
@@ -36,52 +37,30 @@
                     <label>Secondary Contact Phone:</label><input type="text" class="form-control" ng-model="customerToEdit.secondary_phone">
                     <label>Secondary Contact Email:</label><input type="text" class="form-control" ng-model="customerToEdit.secondary_email">
                 </form>
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12">
                     <h5> Current Permitted Products </h5>
                     <p class="row" ng-repeat="product in customerToEdit.products track by $index">
                         <span class="col-xs-8">{{ product.type }} {{ product.variety }}</span>
                         <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
                     </p>
                 </div>
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12">
                     <div class="row">
                         <h5>Add Permittted Products:</h5>
                         <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
                     </div>
                     <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
-                            <span class="col-xs-8">{{product.type}} {{product.variety}}
+                        <span class="col-xs-8">{{product.type}} {{product.variety}}
                                   {{product.price}}</span>
-                            <button class="btn btn-success" ng-click="addProductToCustomer(product)"><i class="glyphicon glyphicon-plus-sign"></i></button>
-                        </p>
+                        <button class="btn btn-success" ng-click="addProductToCustomer(product)"><i class="glyphicon glyphicon-plus"></i></button>
+                    </p>
                 </div>
-
-                    <tr>
-                        <table>
-                            <tr>
-                                <td>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-
-                                </td>
-                            </tr>
-                            <!-- search product -->
-
-                        </table>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="updateCustomer"></label>
-                            <input type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Update Customer" ng-click="updateCustomer()" />
-                        </td>
-                    </tr>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
+
     </div>
 </div>
 <!-- end edit customer modal -->
