@@ -1,25 +1,46 @@
 <!DOCTYPE html>
 <div class="container homeBody">
     <h1>Reports</h1>
-
-    <div class="cal">
-        <div>
-            <span>
+    <div>
+        <h2>Export CSVs</h2>
+        <div class="cal">
+            <div>
+                <span>
                 <p>Start at:</p>
                 <div uib-datepicker ng-model="startDate" datepicker-options="options"></div>
             </span>
-        </div>
-        <div>
-            <span>
+            </div>
+            <div>
+                <span>
                 <p>End at:</p>
                 <div uib-datepicker ng-model="endDate" datepicker-options="options"></div>
             </span>
+            </div>
         </div>
+        <a ng-href="{{ '/report/invoice/' + startDate.format('YYYY-MM-DD') + '/' + endDate.format('YYYY-MM-DD') + '/invoice.csv' }}">
+            <button type="button" class="btn btn-default">Invoice Report</button>
+        </a>
+        <a ng-href="{{ '/report/production/' + startDate.format('YYYY-MM-DD') + '/production.csv'}}">
+            <button class="btn btn-default">Production Report</button>
+        </a>
     </div>
-    <a ng-href="{{ '/report/invoice/' + startDate.format('YYYY-MM-DD') + '/' + endDate.format('YYYY-MM-DD') + '/invoice.csv' }}">
-        <button type="button" class="btn btn-default">Invoice Report</button>
-    </a>
-    <a ng-href="{{ '/report/production/' + startDate.format('YYYY-MM-DD') + '/production.csv'}}">
-        <button class="btn btn-default">Production Report</button>
-    </a>
+    <div>
+        <h2>Import CSVs</h2>
+        <label class="btn btn-default">Import Customer CSV
+        <input type="file" class="hidden" ng-model="upload.file" ngf-select="uploadCustomerFile($file, $invalidFiles, $index)" ngf-max-size="25MB" required>
+    </label>
+
+        <label class="btn btn-default">Import Product CSV
+        <input type="file" class="hidden" ng-model="upload.file" ngf-select="uploadProductFile($file, $invalidFiles, $index)" ngf-max-size="25MB" required>
+    </label>
+    </div>
 </div>
+
+<script type="text/ng-template" id="responseModal">
+    <div class="modal-header">
+        <h4>{{ modalHeader }}</h4>
+    </div>
+    <div class="modal-body">
+        <p>{{ modalBody }}</p>
+    </div>
+</script>
