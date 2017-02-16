@@ -76,6 +76,7 @@ myApp.controller('adminCustomerController', [
                     });
                     $scope.viewCustomer();
                 },
+
                 function errorCallback(error) {
                     console.log('error', error);
                     $scope.modalBody = 'Sorry, there was an error. Please try again.';
@@ -87,6 +88,8 @@ myApp.controller('adminCustomerController', [
                 }
             );
         }; //end addNewCustomer
+
+        
 
         $scope.editCustomer = function(customer) {
             $scope.customerToEdit = JSON.parse(JSON.stringify(customer));
