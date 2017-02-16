@@ -12,6 +12,7 @@
             <td>
                 <button type="button" class="btn btn-info glyphicon glyphicon-edit" data-toggle="modal" data-target="#editCustomerModal" ng-click="editCustomer(customer)"></button>
                 <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#delCustModal" ng-click="editCustomer(customer)"></button>
+                <input type="button" name="" value="Edit Permitted Products" data-toggle="modal" data-target="#permitedProductsModal" >
             </td>
         </tr>
     </table>
@@ -36,33 +37,48 @@
                     <label>Secondary Contact Phone:</label><input type="text" class="form-control" ng-model="customerToEdit.secondary_phone">
                     <label>Secondary Contact Email:</label><input type="text" class="form-control" ng-model="customerToEdit.secondary_email">
                 </form>
-                <div class="col-xs-12">
-                    <h5> Current Permitted Products </h5>
-                    <p class="row" ng-repeat="product in customerToEdit.products track by $index">
-                        <span class="col-xs-8">{{ product.type }} {{ product.variety }}</span>
-                        <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
-                    </p>
-                </div>
-                <div class="col-xs-12">
-                    <div class="row">
-                        <h5>Add Permittted Products:</h5>
-                        <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
-                    </div>
-                    <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
-                        <span class="col-xs-8">{{product.type}} {{product.variety}}
-                                  {{product.price | currency}}</span>
-                        <button class="btn btn-success" ng-click="editCustomerAddProduct(product)"><i class="glyphicon glyphicon-plus"></i></button>
-                    </p>
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
-
     </div>
 </div>
 <!-- end edit customer modal -->
+
+<!-- edit permited product modal begin -->
+<div id="permitedProductsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Edit Permitted Products</h1>
+                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#editPermittedProductsModal" name="updateProducts" value="Save" ng-click="updatePermittedProducts" ng-disabled="editPermittedProductsForm.$invalid"/>
+            </div>
+            <div class="modal-body">
+    <h5> Current Permitted Products: </h5>
+    <p class="row" ng-repeat="product in customerToEdit.products track by $index">
+        <span class="col-xs-8">{{ product.type }} {{ product.variety }}</span>
+        <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
+    </p>
+</div>
+<div class="col-xs-12">
+    <div class="row">
+        <h5>Add Permittted Products:</h5>
+        <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
+    </div>
+    <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
+        <span class="col-xs-8">{{product.type}} {{product.variety}}
+                  {{product.price | currency}}</span>
+        <button class="btn btn-success" ng-click="editCustomerAddProduct(product)"><i class="glyphicon glyphicon-plus"></i></button>
+    </p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+<!-- edit permited product modal end -->
 
 <!-- add customer modal begin -->
 <div id="addCustomerModal" class="modal fade" role="dialog">
