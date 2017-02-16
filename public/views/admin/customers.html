@@ -12,7 +12,7 @@
             <td>
                 <button type="button" class="btn btn-info glyphicon glyphicon-edit" data-toggle="modal" data-target="#editCustomerModal" ng-click="editCustomer(customer)"></button>
                 <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#delCustModal" ng-click="editCustomer(customer)"></button>
-                <input type="button" value="Edit Permitted Products" data-toggle="modal" data-target="#permitedProductsModal"/>
+                <input type="button" value="Edit Permitted Products" data-toggle="modal" data-target="#permitedProductsModal" ng-click="editCustomer(customer)"/>
             </td>
         </tr>
     </table>
@@ -52,14 +52,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Edit Permitted Products</h1>
-                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#editPermittedProductsModal" name="updateProducts" value="Save" ng-click="updatePermittedProducts" ng-disabled="editPermittedProductsForm.$invalid"/>
+                <input class="btn btn-success" data-dismiss="modal" type="submit" data-toggle="modal" data-target="#editPermittedProductsModal" name="updateProducts" value="Save" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid"/>
             </div>
+            <!-- need to fix stlye here -->
             <div class="modal-body">
+
+              <div class="col-xs-12">
+                  <div class="row">
     <h5> Current Permitted Products: </h5>
     <p class="row" ng-repeat="product in customerToEdit.products track by $index">
         <span class="col-xs-8">{{ product.type }} {{ product.variety }}</span>
         <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
     </p>
+  </div>
+</div>
 </div>
 <div class="col-xs-12">
     <div class="row">
