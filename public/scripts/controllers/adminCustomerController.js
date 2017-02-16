@@ -75,7 +75,6 @@ myApp.controller('adminCustomerController', [
                         scope: $scope
                     });
                     $scope.viewCustomer();
-                    $scope.viewCustomer();
                 },
                 function errorCallback(error) {
                     console.log('error', error);
