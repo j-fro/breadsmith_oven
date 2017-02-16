@@ -42,8 +42,7 @@
       <label for="comment">Comments or Questions:</label>
       <textarea ng-model="comments" class="form-control" rows="4" id="comment"></textarea>
     <!-- <button type="button" ng-click="postOrder(); confirmModal();" class="btn btn-success">Submit Order</button> -->
-    <button type="button" ng-click="confirmModal()" class="btn btn-success submitOrderButton">Submit Order</button>
-
+    <button type="button" ng-click="confirmModal()" class="btn btn-success submitOrderButton">Review Order</button>
     <script type="text/ng-template" id="confirmOrder">
       <div id="customerModal">
       <div class='modal-header'>
@@ -55,7 +54,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-success" ng-click="ngDialog.close()">Go Back</button>
         <!-- this button will not represent submit instead of logout -->
-        <button type="button" class="btn btn-warning" ng-click="postOrder();logout()">Logout</button>
+        <button type="button" class="btn btn-warning" ng-click="postOrder();logout()">Submit & Logout</button>
       </div>
       </div>
     </script>

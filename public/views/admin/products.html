@@ -17,9 +17,9 @@
       </tr>
     </thead>
     <tr class='table table-striped' ng-repeat = "product in list | orderBy: 'type' | filter:prodSearch" ng-show="show">
-      <td>{{product.type}} </td>
-      <td>{{product.variety}}</td>
-      <td>{{product.price | currency }}</td>
+      <td class=''>{{product.type}} </td>
+      <td class=''>{{product.variety}}</td>
+      <td class=''>{{product.price | currency }}</td>
       <td><button type="button" class="btn btn-info glyphicon glyphicon-edit"data-toggle="modal" data-target="#myModal" ng-click="storeInfo(product)"></button>
       <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#delProdModal" ng-click="storeInfo(product)"></button></td>
     </tr>
@@ -42,7 +42,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" ng-click="editProduct()" data-dismiss="modal">Submit</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -76,8 +76,8 @@
         <h4>Are you sure you want to delete {{productToEdit.type}} {{productToEdit.variety}}?</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" ng-click="deleteProduct()" data-dismiss="modal">Yes</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" ng-click="deleteProduct()" data-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Keep</button>
       </div>
     </div>
   </div>

@@ -45,7 +45,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success" ng-click="updateStaff()" data-dismiss="modal">Submit Changes</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -83,8 +83,8 @@
           <h4>Are you sure you want to delete {{staffToEdit.first_name}} {{staffToEdit.last_name}}?</h4>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" ng-click="deleteStaff()" data-dismiss="modal">Yes</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-danger" ng-click="deleteStaff()" data-dismiss="modal">Delete</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal">Keep</button>
         </div>
       </div>
     </div>

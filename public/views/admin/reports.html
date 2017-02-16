@@ -1,25 +1,54 @@
 <!DOCTYPE html>
 <div class="container homeBody">
     <h1>Reports</h1>
-
-    <div class="cal">
-        <div>
-            <span>
-                <p>Start at:</p>
+    <div>
+        <h2>Export CSVs</h2>
+        <div class="cal">
+            <div>
+                <span>
+                <h4>Start date:</h4>
                 <div uib-datepicker ng-model="startDate" datepicker-options="options"></div>
             </span>
-        </div>
-        <div>
-            <span>
-                <p>End at:</p>
+            </div>
+            <div>
+                <span>
+                <h4>End date:</h4>
                 <div uib-datepicker ng-model="endDate" datepicker-options="options"></div>
             </span>
+            </div>
+        </div>
+        <div class="row report-button">
+            <a ng-href="{{ '/report/production/' + startDate.format('YYYY-MM-DD') + '/production.csv'}}">
+                <button class="btn btn-primary">Production Report</button>
+            </a>
+        </div>
+        <div class="row report-button">
+            <a ng-href="{{ '/report/invoice/' + startDate.format('YYYY-MM-DD') + '/' + endDate.format('YYYY-MM-DD') + '/invoice.csv' }}">
+                <button type="button" class="btn btn-primary">Invoice Report</button>
+            </a>
         </div>
     </div>
-    <a ng-href="{{ '/report/invoice/' + startDate.format('YYYY-MM-DD') + '/' + endDate.format('YYYY-MM-DD') + '/invoice.csv' }}">
-        <button type="button" class="btn btn-default">Invoice Report</button>
-    </a>
-    <a ng-href="{{ '/report/production/' + startDate.format('YYYY-MM-DD') + '/production.csv'}}">
-        <button class="btn btn-default">Production Report</button>
-    </a>
+    <div>
+        <h2>Import CSVs</h2>
+        <p><em>Please import new products before importing customers that rely on those products. Please do not include duplicates of customers/products that already exist</em></p>
+        <div class="row report-button">
+            <label class="btn btn-primary">Import Product CSV
+                <input type="file" class="hidden" ng-model="upload.file" ngf-select="uploadProductFile($file, $invalidFiles, $index)" ngf-max-size="25MB" required>
+            </label>
+        </div>
+        <div class="row report-button">
+            <label class="btn btn-primary">Import Customer CSV
+                <input type="file" class="hidden" ng-model="upload.file" ngf-select="uploadCustomerFile($file, $invalidFiles, $index)" ngf-max-size="25MB" required>
+            </label>
+        </div>
+    </div>
 </div>
+
+<script type="text/ng-template" id="responseModal">
+    <div class="modal-header">
+        <h4>{{ modalHeader }}</h4>
+    </div>
+    <div class="modal-body">
+        <p>{{ modalBody }}</p>
+    </div>
+</script>
