@@ -26,8 +26,6 @@ myApp.controller('CustomerController', [
             });
         };
 
-        $scope.displayOrder();
-
         $scope.postOrder = function() {
             var newOrder = {
                 comments: $scope.comments,
@@ -45,7 +43,8 @@ myApp.controller('CustomerController', [
         $scope.confirmModal = function() {
             ngDialog.open({
                 template: 'confirmOrder',
-                controller: 'CustomerController'
+                controller: 'CustomerController',
+                scope: $scope
             });
 
         };

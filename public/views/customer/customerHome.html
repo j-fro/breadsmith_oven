@@ -1,4 +1,4 @@
-<div class='homeBody'>
+<div class='homeBody' ng-init="displayOrder()">
     <button type="button" name="button" class="btn btn-warning customerLogout" ng-click="logout()">Logout</button>
     <div class="customerOrderContainer">
       <div id="containerLeft">
@@ -41,7 +41,6 @@
     <div class="form-group">
       <label for="comment">Comments or Questions:</label>
       <textarea ng-model="comments" class="form-control" rows="4" id="comment"></textarea>
-    <!-- <button type="button" ng-click="postOrder(); confirmModal();" class="btn btn-success">Submit Order</button> -->
     <button type="button" ng-click="confirmModal()" class="btn btn-success submitOrderButton">Review Order</button>
     <script type="text/ng-template" id="confirmOrder">
       <div id="customerModal">
@@ -49,11 +48,30 @@
           <h4>Thank you!</h4>
       </div>
       <div class="modal-body">
-          <p>You will be notified when this order has been accepted.</p>
+          <!-- <p>You will be notified when this order has been accepted.</p> -->
+          <p> Your order has been created. Please await email from Breadsmith to confirm your order</p>
+          <table class="container table table-striped">
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Product Price</th>
+                <th>Total Quantity</th>
+              </tr>
+            </thead>
+
+              <tr class='table table-striped' ng-repeat='product in customer.products'>
+                <td class='productDisplay'>{{product.type}}</td>
+                <td class='productDisplay'>{{product.variety}}</td>
+                <td class='productDisplay'>{{product.price | currency }}</td>
+                </td>
+                <td>{{product.qty * product.multi}}</td>
+              </tr>
+
+          </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" ng-click="ngDialog.close()">Go Back</button>
-        <!-- this button will not represent submit instead of logout -->
         <button type="button" class="btn btn-warning" ng-click="postOrder();logout()">Submit & Logout</button>
       </div>
       </div>
