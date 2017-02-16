@@ -189,7 +189,15 @@ span.form-group {
 }
 
 
-.importButton{
-  margin-right: 40px;
+.separateButtons{
+  margin-right: 30px;
+}
 
+.buttonMargin{
+  margin-top: 1em;
+  margin-bottom: 1em !important;
+}
+
+.numberCenter{
+  text-align: center;
 }

@@ -27,8 +27,8 @@
             <td><i ng-if="order.comments.length > 0" class="glyphicon glyphicon-comment"></i></td>
             <td ng-click="$event.stopPropagation();"><input type="checkbox" class="" ng-model="order.include"></td>
         </tr>
-        <button class="btn btn-default" ng-click="printPackingList()">Print Picking List</button>
-        <button class="btn btn-default" ng-click="printPackingSlips()">Print Packing Slips</button>
+        <button class="separateButtons buttonMargin btn btn-primary" ng-click="printPackingList()">Print Picking List</button>
+        <button class="separateButtons buttonMargin btn btn-primary" ng-click="printPackingSlips()">Print Packing Slips</button>
     </table>
     <div class="modal fade" id="viewOrderDialog">
         <div class="modal-dialog modal-content">
