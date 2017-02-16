@@ -18,8 +18,8 @@
                     <th>Total Quantity</th>
                 </tr>
             </thead>
-            <tbody ng-repeat="product in selectedCustomer.products">
-                <tr>
+
+                <tr class='table table-striped' ng-repeat="product in selectedCustomer.products">
                     <td>{{product.type}}</td>
                     <td>{{product.variety}}</td>
                     <td>{{product.price | currency }}</td>
@@ -31,13 +31,14 @@
                   <option value="12">Dozen</option>
                 </select>
                     </td>
-                    <td>{{product.qty * product.multi}}</td>
+                    <td class='numberCenter'>{{product.qty * product.multi}}</td>
                 </tr>
-            </tbody>
+
         </table>
-        <button class="btn btn-success" ng-show="selectedCustomer" ng-click="postOrder()">Submit Order</button>
-        <button class="btn btn-default" ng-show="selectedCustomer" ng-click="recurringOrderModal()">Set as Recurring Order</button>
-        <button class="btn btn-default" ng-click="selectCustomerModal()">Select Customer</button>
+        <button class="separateButtons btn btn-success" ng-show="selectedCustomer" ng-click="postOrder()">Submit Order</button>
+        <button class="separateButtons btn btn-info" ng-click="selectCustomerModal()">Select Customer</button>
+        <button class="separateButtons btn btn-primary" ng-show="selectedCustomer" ng-click="recurringOrderModal()">Set as Recurring Order</button>
+
     </div>
     <script type="text/ng-template" id="confirmOrder">
         <div class="modal-header">

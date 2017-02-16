@@ -50,7 +50,7 @@
     <nav class="navbar" ng-if="auth._State.admin">
         <ul class="nav navbar-nav">
           <li class="active"><a href='#!/admin/home'>Home</a></li>
-          <li><a href='#!/admin/newOrder'>New Order</a></li>
+          <li><a href='#!/admin/newOrder'>Create Order</a></li>
           <li><a href='#!/admin/existingOrders'>Existing Orders</a></li>
           <li><a href='#!/admin/reports'>Reports</a></li>
           <li><a href='#!/admin/customers'>Customers</a></li>
@@ -59,10 +59,10 @@
           <li ng-click="auth.logOut()"><a href="#!/admin/home">Logout</a></li>
         </ul>
     </nav>
-  </header>
+</header>
         <main ng-view>
         </main>
-    </div>
+
 </body>
 
 </html>
