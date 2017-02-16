@@ -2,7 +2,8 @@ myApp.controller('ExistingOrderController', [
     '$scope',
     '$http',
     '$window',
-    function($scope, $http, $window) {
+    'ngDialog',
+    function($scope, $http, $window, ngDialog) {
         $scope.init = function() {
             $scope.mailMessage = 'Your order has been confirmed!';
             $scope.dateSelected = new Date();
@@ -30,16 +31,7 @@ myApp.controller('ExistingOrderController', [
 
         $scope.viewOrder = function(order) {
             $scope.viewedOrder = order;
-            $scope.mailLink = 'mailto:' +
-                order.email +
-                '?subject=' +
-                order.customer_name +
-                ': Regarding your order #' +
-                order.id +
-                '&body=' +
-                'Dear ' +
-                order.contact_name +
-                ',\n\n';
+            $scope.orderEditForm.$setPristine();
         };
 
         $scope.removeProduct = function(product) {
@@ -55,10 +47,22 @@ myApp.controller('ExistingOrderController', [
                 .put('/order', $scope.viewedOrder)
                 .then(function(response) {
                     console.log(response);
+                    $scope.success = true;
+                    $scope.modalBody = 'Updated Order successfully.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
                     $scope.getOrders();
                 })
                 .catch(function(err) {
                     console.log(err);
+                    $scope.success = false;
+                    $scope.modalBody = 'Sorry, there was an error. Please try again.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
                 });
         };
 
@@ -83,9 +87,21 @@ myApp.controller('ExistingOrderController', [
                 })
                 .then(function() {
                     console.log('Successfully sent');
+                    $scope.success = true;
+                    $scope.modalBody = 'Your email was sent.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
                 })
                 .catch(function(err) {
                     console.log(err);
+                    $scope.success = false;
+                    $scope.modalBody = 'Sorry, there was an error sending. Please try again.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
                 });
         };
 
