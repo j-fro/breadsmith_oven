@@ -23,7 +23,6 @@
             <td>{{ order.total_cost | currency }}</td>
             <td>
                 <i ng-if="order.status" class="glyphicon glyphicon-ok"></i>
-                <!-- <i ng-if="!order.status" class="glyphicon glyphicon-remove"></i> -->
             </td>
             <td><i ng-if="order.comments.length > 0" class="glyphicon glyphicon-comment"></i></td>
             <td ng-click="$event.stopPropagation();"><input type="checkbox" class="" ng-model="order.include"></td>
@@ -56,15 +55,15 @@
                         <td><button type="button" class="btn btn-danger glyphicon glyphicon-remove" ng-click="removeProduct(product)"></button></td>
                     </tr>
                 </table>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#viewOrderDialog" ng-click="updateOrder()">Update</button>
-                <h3>Customer comments:</h3>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewOrderDialog" ng-click="updateOrder()">Save</button>
+                <h3 ng-if="viewedOrder.comments.length > 0">Customer comments:</h3>
                 <p>{{ viewedOrder.comments }}</p>
+                <label class="row">Email Message:</label>
+                <textarea class="form-control" rows="4" ng-model="mailMessage"></textarea>
                 <div class="row">
-                    <button class="btn btn-default" ng-click="confirmOrder()">Confirm & Send</button>
+                    <button class="btn btn-primary" ng-click="confirmOrder()">Confirm & Send</button>
                     <button class="btn btn-default" ng-click="sendMessage()">Send Without Confirming</button>
                 </div>
-                <label class="row">Modify Message:</label>
-                <textarea class="form-control" rows="8" ng-model="mailMessage"></textarea>
             </div>
         </div>
     </div>
