@@ -39,23 +39,25 @@
             <div class="modal-body">
                 <p ng-show="viewedOrder.status"><em>This order is confirmed.</em></p>
                 <h3>{{ viewedOrder.customer_name}}: {{ viewedOrder.total_cost | currency }}</h3>
-                <table class="table table-striped">
-                    <thead>
-                        <td>Product</td>
-                        <td>Price</td>
-                        <td>Quantity</td>
-                        <td>Ext. Cost</td>
-                        <td>Delete</td>
-                    </thead>
-                    <tr ng-repeat="product in viewedOrder.products">
-                        <td>{{ product.type }} {{ product.variety }}</td>
-                        <td>{{ product.price | currency }}</td>
-                        <td><input type="number" ng-model="product.qty"></td>
-                        <td>{{ product.qty * product.price | currency }}</td>
-                        <td><button type="button" class="btn btn-danger glyphicon glyphicon-remove" ng-click="removeProduct(product)"></button></td>
-                    </tr>
-                </table>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewOrderDialog" ng-click="updateOrder()">Save</button>
+                <form name="orderEditForm">
+                    <table class="table table-striped">
+                        <thead>
+                            <td>Product</td>
+                            <td>Price</td>
+                            <td>Quantity</td>
+                            <td>Ext. Cost</td>
+                            <td>Delete</td>
+                        </thead>
+                        <tr ng-repeat="product in viewedOrder.products">
+                            <td>{{ product.type }} {{ product.variety }}</td>
+                            <td>{{ product.price | currency }}</td>
+                            <td><input type="number" ng-model="product.qty"></td>
+                            <td>{{ product.qty * product.price | currency }}</td>
+                            <td><button type="button" class="btn btn-danger glyphicon glyphicon-remove" ng-click="removeProduct(product)"></button></td>
+                        </tr>
+                    </table>
+                </form>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewOrderDialog" ng-click="updateOrder()" ng-disabled="orderEditForm.$pristine">Save</button>
                 <h3 ng-if="viewedOrder.comments.length > 0">Customer comments:</h3>
                 <p>{{ viewedOrder.comments }}</p>
                 <label class="row">Email Message:</label>
