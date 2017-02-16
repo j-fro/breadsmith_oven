@@ -14,7 +14,9 @@ myApp.controller('adminReportsController', [
         $scope.toggle = function() {
             $scope.popup.opened = !$scope.popup.opened;
         };
-
+        $scope.options = {
+            showWeeks: false
+        };
         $scope.uploadCustomerFile = function(file, errFiles, index) {
             console.log(file);
             $scope.f = file;

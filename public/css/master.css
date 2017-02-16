@@ -176,3 +176,7 @@ span.form-group {
 .productDisplay{
   text-align: left;
 }
+
+.report-button {
+    padding-top: 20px;
+}
