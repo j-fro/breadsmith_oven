@@ -106,7 +106,7 @@ myApp.controller('ExistingOrderController', [
                 .catch(function(err) {
                     console.log(err);
                     $scope.success = false;
-                    $scope.modalBody = 'Sorry, there was an error. Please try again.';
+                    $scope.modalBody = 'Sorry, there was an error sending. Please try again.';
                     ngDialog.open({
                         template: 'responseModal',
                         scope: $scope
