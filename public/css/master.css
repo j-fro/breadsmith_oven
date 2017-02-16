@@ -20,7 +20,6 @@ table {
   padding: 30px;
 }
 
-
 .container{
   text-align: center;
 }
@@ -112,7 +111,7 @@ main {
 .navbar{
   float: right;
   margin-right: 1.5em !important;
-  font-size: 12px;
+  font-size: 14px;
   color: rgb(51, 122, 183);
   position: fixed;
   background-color: #f4ecd7;
