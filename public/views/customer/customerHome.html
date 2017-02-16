@@ -1,16 +1,15 @@
 <div class='homeBody'>
-    <!-- <div ng-repeat='product in customer.products'> -->
-    <button type="button" name="button" class="btn btn-danger customerLogout" ng-click="logout()">Logout</button>
+    <button type="button" name="button" class="btn btn-warning customerLogout" ng-click="logout()">Logout</button>
     <div class="customerOrderContainer">
       <div id="containerLeft">
-        <h3 id='welcomeBack'>Welcome back {{customer.name}}!</h3>
-        <h2 ng-if="placeForTomorrow()">It's too late to place an order for {{ today() }}. Your order will be placed for {{ nextDay() }}.</h2>
-        <h2 ng-if="callForOrder()">It's too late to place an online order for {{ today() }}. Please call the Breadsmith office for availability.</h2>
-        <p>Tell us what quantities you need for tomorrow.</p>
+        <h3 class='welcomeBack'>Welcome back {{customer.name}}!</h3>
+        <h2 ng-if="onTimeOrder()" class="deliveryMessage">This order will be for delivery on {{ today() }}.</h2>
+        <h2 ng-if="placeForTomorrow()" class="deliveryMessage">It is too late to place an order for {{ today() }}. This order will be for delivery on {{ nextDay() }}.</h2>
+        <h2 ng-if="callForOrder()" class="deliveryMessage">You're passed the deadline to place an online order for {{ nextDay() }}. Please call the Breadsmith office for availability. 952-475-0099</h2>
       </div>
       <div id="containerRight">
       </div>
-      <table class="table table-striped">
+      <table class="container table table-striped">
         <thead>
           <tr>
             <th>Product Name</th>
@@ -21,11 +20,11 @@
             <th>Total Quantity</th>
           </tr>
         </thead>
-        <tbody ng-repeat='product in customer.products'>
-          <tr>
-            <td>{{product.type}}</td>
-            <td>{{product.variety}}</td>
-            <td>{{product.price | currency }}</td>
+
+          <tr class='table table-striped' ng-repeat='product in customer.products'>
+            <td class='productDisplay'>{{product.type}}</td>
+            <td class='productDisplay'>{{product.variety}}</td>
+            <td class='productDisplay'>{{product.price | currency }}</td>
             <td><input type="number" ng-model="product.qty" class="form-control" id="quantityOrdered"></input></td>
             <td>
               <select ng-model="product.multi">
@@ -35,17 +34,15 @@
             </td>
             <td>{{product.qty * product.multi}}</td>
           </tr>
-        </tbody>
+
       </table>
     </div>
-
-    <!-- <input ng-model="comments" type="text" placeholder="comments/questions" class="form-control"> -->
 
     <div class="form-group">
       <label for="comment">Comments or Questions:</label>
       <textarea ng-model="comments" class="form-control" rows="4" id="comment"></textarea>
     <!-- <button type="button" ng-click="postOrder(); confirmModal();" class="btn btn-success">Submit Order</button> -->
-    <button type="button" ng-click="postOrder(); confirmModal();" class="btn btn-success submitOrderButton">Submit Order</button>
+    <button type="button" ng-click="postOrder(); confirmModal()" class="btn btn-success submitOrderButton">Submit Order</button>
 
     <script type="text/ng-template" id="confirmOrder">
       <div id="customerModal">
@@ -53,10 +50,11 @@
           <h4>Thank you!</h4>
       </div>
       <div class="modal-body">
-          <p>Your order has been submitted. You will be notified when it has been accepted.</p>
+          <p>You will be notified when this order has been accepted.</p>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-danger" ng-click="logout()">Logout</button>
+        <button type="button" class="btn btn-success" ng-click="ngDialog.close()">Go Back</button>
+        <button type="button" class="btn btn-warning" ng-click="logout()">Logout</button>
       </div>
       </div>
     </script>

@@ -47,6 +47,15 @@ myApp.controller('CustomerController', [
                 template: 'confirmOrder',
                 controller: 'CustomerController'
             });
+
+        };
+        $scope.ngDialog = ngDialog;
+
+
+
+
+        $scope.onTimeOrder = function() {
+          return moment().hours() < 14;
         };
 
         $scope.callForOrder = function() {

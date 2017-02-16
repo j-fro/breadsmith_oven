@@ -2,7 +2,6 @@ body{
   background-image: url(../images/babka.jpg);
   background-repeat: repeat-y;
   background-size: 100%;
-  opacity: 0.96;
 }
 
 header{
@@ -112,7 +111,10 @@ main {
 
 .navbar{
   float: right;
-s
+  margin-right: 1.5em !important;
+  font-size: 12px;
+  color: rgb(51, 122, 183);
+  /*position: inherit;*/
 }
 
 header a {
@@ -122,15 +124,15 @@ header a {
 }
 
 a:hover{
-  background-color: #f4ecd7 !important;
   font-weight: bold;
   text-decoration: underline !important;
+  background-color: #f4ecd7 !important;
 }
 
 a:focus{
   background-color:#f4ecd7 !important;
   text-decoration: underline !important;
-  font-weight: bold;
+  color: red !important;
 }
 
 .order-table tbody tr:hover {
@@ -155,6 +157,7 @@ span.form-group {
     padding-bottom: 5px;
 }
 
+
 .glyphicon-menu-hamburger{
   font-size: 1.5em;
 }
@@ -167,3 +170,22 @@ span.form-group {
     display: block !important;
   }
 }*/
+
+.deliveryMessage{
+  font-size: 30px;
+  color: red;
+}
+
+.welcomeBack{
+  text-align: center;
+  font-family: "Trebuchet MS", helvetica, sans-serif;
+}
+
+.modal-header{
+  text-align: center;
+  color: rgb(51, 122, 183);
+}
+
+.productDisplay{
+  text-align: left;
+}
