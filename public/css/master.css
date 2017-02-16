@@ -206,3 +206,13 @@ span.form-group {
 .numberCenter{
   text-align: center;
 }
+
+.leftJustify{
+  text-align:left;
+}
+
+
+.productButton{
+  text-align: right;
+  padding-right: 40px !important;
+}

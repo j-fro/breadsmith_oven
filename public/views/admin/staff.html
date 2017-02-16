@@ -1,11 +1,5 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Staff</title>
-</head>
-<body>
-  <div class="homeBody staffList container">
+  <div class="homeBody staffList container col-md-6 col-md-offset-3 col-s-12">
     <div class="addStaffButtonDiv">
       <button type="button" class="btn btn-default" class="addStaff" data-toggle='modal' data-target='#addStaffModal'>Add Staff <span class="glyphicon glyphicon-plus-sign"></span>
       </button>
@@ -13,16 +7,16 @@
     <table class='container table table-striped'>
       <thead>
         <tr>
-          <th class="tableHeading">Name</th>
-          <th class="tableHeading">Email</th>
-          <th class="tableHeading">Role</th>
+          <th class="tableHeading leftJustify">Name</th>
+          <th class="tableHeading leftJustify">Email</th>
+          <th class="tableHeading leftJustify">Role</th>
           <th></th>
         </tr>
       </thead>
       <tr class="table table-striped" ng-repeat="staff in staffView | orderBy:'last_name'">
-        <td>{{staff.first_name}} {{staff.last_name}}</td>
-        <td>{{staff.email}}</td>
-        <td>{{staff.role}}</td>
+        <td class='leftJustify'>{{staff.first_name}} {{staff.last_name}}</td>
+        <td class='leftJustify'>{{staff.email}}</td>
+        <td class='leftJustify'>{{staff.role}}</td>
         <td><button type="button" class="btn btn-info glyphicon glyphicon-edit" data-toggle="modal" data-target="#editStaffModal" ng-click="storeStaff(staff)"></button>
       <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal" ng-click='storeStaff(staff)'></button></td>
       </tr>
@@ -89,6 +83,3 @@
       </div>
     </div>
   </div>
-</body>
-
-</html>
