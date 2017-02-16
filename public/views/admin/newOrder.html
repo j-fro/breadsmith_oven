@@ -23,7 +23,7 @@
                     <td>{{product.type}}</td>
                     <td>{{product.variety}}</td>
                     <td>{{product.price | currency }}</td>
-                    <td><input type="number" ng-model="product.qty" class="form-control" id="quantityOrdered">
+                    <td><input type="number" min="0" ng-model="product.qty" class="form-control" id="quantityOrdered">
                     </td>
                     <td>
                         <select class="form-control" ng-model="product.multi">

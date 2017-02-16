@@ -50,9 +50,6 @@ myApp.controller('CustomerController', [
         };
         $scope.ngDialog = ngDialog;
 
-
-
-
         $scope.onTimeOrder = function() {
           return moment().hours() < 14;
         };

@@ -2,7 +2,7 @@
     <button type="button" name="button" class="btn btn-warning customerLogout" ng-click="logout()">Logout</button>
     <div class="customerOrderContainer">
       <div id="containerLeft">
-        <h3 class='welcomeBack'>Welcome back {{customer.name}}!</h3>
+        <h3 class='welcomeBack'>Welcome back, {{customer.name}}!</h3>
         <h2 ng-if="onTimeOrder()" class="deliveryMessage">This order will be for delivery on {{ today() }}.</h2>
         <h2 ng-if="placeForTomorrow()" class="deliveryMessage">It is too late to place an order for {{ today() }}. This order will be for delivery on {{ nextDay() }}.</h2>
         <h2 ng-if="callForOrder()" class="deliveryMessage">You're passed the deadline to place an online order for {{ nextDay() }}. Please call the Breadsmith office for availability. 952-475-0099</h2>
@@ -25,7 +25,7 @@
             <td class='productDisplay'>{{product.type}}</td>
             <td class='productDisplay'>{{product.variety}}</td>
             <td class='productDisplay'>{{product.price | currency }}</td>
-            <td><input type="number" ng-model="product.qty" class="form-control" id="quantityOrdered"></input></td>
+            <td><input type="number" min="0" ng-model="product.qty" class="form-control" id="quantityOrdered"></input></td>
             <td>
               <select ng-model="product.multi">
                 <option value="1">Single</option>
@@ -34,22 +34,21 @@
             </td>
             <td>{{product.qty * product.multi}}</td>
           </tr>
-
       </table>
     </div>
-
     <div class="form-group">
       <label for="comment">Comments or Questions:</label>
       <textarea ng-model="comments" class="form-control" rows="4" id="comment"></textarea>
     <button type="button" ng-click="confirmModal()" class="btn btn-success submitOrderButton">Review Order</button>
+<!-- Review Order Modal -->
     <script type="text/ng-template" id="confirmOrder">
       <div id="customerModal">
       <div class='modal-header'>
-          <h4>Thank you!</h4>
+          <h4>Review Order</h4>
       </div>
       <div class="modal-body">
           <!-- <p>You will be notified when this order has been accepted.</p> -->
-          <p> Your order has been created. Please await email from Breadsmith to confirm your order</p>
+          <p> Please Note: Submission of this order will be pending confirmation email from Breadsmith</p>
           <table class="container table table-striped">
             <thead>
               <tr>
@@ -61,6 +60,8 @@
             </thead>
 
               <tr class='table table-striped' ng-repeat='product in customer.products'>
+              <!-- <tr class='table table-striped' ng-repeat='product in customer.products' ng-show="if"> -->
+                <!-- I want to NG show in modal only the products with quantities greater than 0 -->
                 <td class='productDisplay'>{{product.type}}</td>
                 <td class='productDisplay'>{{product.variety}}</td>
                 <td class='productDisplay'>{{product.price | currency }}</td>
