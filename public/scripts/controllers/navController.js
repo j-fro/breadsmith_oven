@@ -8,5 +8,10 @@ myApp.controller('NavController', [
         $scope.auth = AuthFactory;
         $scope.logout = AuthFactory.logOut;
         $scope.name = $scope.auth._State.name;
-    }
-]);
+
+        //-- navbar collapsing controls --//
+        $scope.isNavCollapsed = true;
+        $scope.isCollapsed = false;
+        $scope.isCollapsedHorizontal = false;
+
+}]);

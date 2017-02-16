@@ -47,35 +47,34 @@
 <body ng-app="myApp">
   <header ng-controller="NavController">
     <img src="../../images/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo">
-    <div class="container-fluid">
+
+<nav class="navbar" role="navigation" ng-if="auth._State.admin">
+    <div class="navContainer">
       <div class="navbar-header">
-        <button ng-click="isNavCollapsed = !isNavCollapsed" type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
+        <button ng-click="isNavCollapsed=!isNavCollapsed" type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar top-bar"></span>
-            <span class="icon-bar middle-bar"></span>
-            <span class="icon-bar bottom-bar"></span>
+              <span class="glyphicon glyphicon-menu-hamburger"></span>
         </button>
         <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
-          <nav class="navbar navbar-fixed-top" role="navigation" ng-if="auth._State.admin">
               <ul class="nav navbar-nav">
-                <li class="active"><a href='#!/admin/home'>Home</a></li>
-                <li><a href='#!/admin/newOrder'>New Order</a></li>
-                <li><a href='#!/admin/existingOrders'>Existing Orders</a></li>
-                <li><a href='#!/admin/reports'>Reports</a></li>
-                <li><a href='#!/admin/customers'>Customers</a></li>
-                <li><a href='#!/admin/products'>Products</a></li>
-                <li><a href='#!/admin/staff'>Staff</a></li>
-                <li><a href="#!/admin/import">Import</a></li>
+                <li class="active"><a ng-click="isNavCollapsed=!isNavCollapsed" href='#!/admin/home'>Home</a></li>
+                <li><a ng-click="isNavCollapsed" href='#!/admin/newOrder'>New Order</a></li>
+                <li><a ng-click="isNavCollapsed=!isNavCollapsed" href='#!/admin/existingOrders'>Existing Orders</a></li>
+                <li><a ng-click="isNavCollapsed=!isNavCollapsed" href='#!/admin/reports'>Reports</a></li>
+                <li><a ng-click="isNavCollapsed=!isNavCollapsed" href='#!/admin/customers'>Customers</a></li>
+                <li><a ng-click="isNavCollapsed=!isNavCollapsed" href='#!/admin/products'>Products</a></li>
+                <li><a ng-click="isNavCollapsed=!isNavCollapsed" href='#!/admin/staff'>Staff</a></li>
+                <li><a ng-click="isNavCollapsed=!isNavCollapsed" href="#!/admin/import">Import</a></li>
                 <li ng-click="auth.logOut()"><a href="#!/admin/home">Logout</a></li>
               </ul>
-          </nav>
         </div>
       </div>
     </div>
-  </header>
+    </nav>
+</header>
         <main ng-view>
         </main>
-    </div>
+
 </body>
 
 </html>
