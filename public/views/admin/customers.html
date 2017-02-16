@@ -23,15 +23,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Edit Customer</h1>
-                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Save" ng-click="updateCustomer()" />
+                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Save" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid"/>
             </div>
             <div class="modal-body">
-                <form class="form">
-                    <label>Name: </label><input type="text" class="form-control" ng-model="customerToEdit.name">
+                <form class="form" name="editCustomerForm">
+                    <label>Name (Required): </label><input type="text" class="form-control" ng-model="customerToEdit.name">
                     <label>Address: </label><input type="text" class="form-control" ng-model="customerToEdit.address">
                     <label>Primary Contact Name:</label><input type="text" class="form-control" ng-model="customerToEdit.primary_contact_name">
                     <label>Primary Contact Phone:</label><input type="text" class="form-control" ng-model="customerToEdit.primary_phone">
-                    <label>Primary Contact Email:</label><input type="text" class="form-control" ng-model="customerToEdit.primary_email">
+                    <label>Primary Contact Email (Required):</label><input type="text" class="form-control" ng-model="customerToEdit.primary_email">
                     <label>Secondary Contact Name:</label><input type="text" class="form-control" ng-model="customerToEdit.secondary_contact_name">
                     <label>Secondary Contact Phone:</label><input type="text" class="form-control" ng-model="customerToEdit.secondary_phone">
                     <label>Secondary Contact Email:</label><input type="text" class="form-control" ng-model="customerToEdit.secondary_email">
@@ -70,18 +70,18 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Create Customer</h1>
-                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#addCustomerModal" value="Save" ng-click="addCustomer()" />
+                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#addCustomerModal" value="Save" ng-click="addCustomer()" ng-disabled="createCustomerForm.$invalid" />
             </div>
             <div class="modal-body">
-                <form class="form">
-                    <label>Name: </label><input type="text" class="form-control" ng-model="customerName" required>
+                <form class="form" name="createCustomerForm">
+                    <label>Name (Required): </label><input type="text" class="form-control" ng-model="customerName" required>
                     <label>Address: </label><input type="text" class="form-control" ng-model="customerAddress">
                     <label>Primary Contact Name:</label><input type="text" class="form-control" ng-model="primaryContactName">
-                    <label>Primary Contact Phone:</label><input type="text" class="form-control" ng-model="primaryCustomerEmail" required>
-                    <label>Primary Contact Email:</label><input type="text" class="form-control" ng-model="primaryCustomerNumber">
+                    <label>Primary Contact Phone:</label><input type="text" class="form-control" ng-model="primaryCustomerNumber" >
+                    <label>Primary Contact Email (Required):</label><input type="email" class="form-control" ng-model="primaryCustomerEmail" required>
                     <label>Secondary Contact Name:</label><input type="text" class="form-control" ng-model="secondaryContactName">
-                    <label>Secondary Contact Phone:</label><input type="text" class="form-control" ng-model="secondaryCustomerEmail">
-                    <label>Secondary Contact Email:</label><input type="text" class="form-control" ng-model="secondaryCustomerNumber">
+                    <label>Secondary Contact Phone:</label><input type="text" class="form-control" ng-model="secondaryCustomerNumber">
+                    <label>Secondary Contact Email:</label><input type="email" class="form-control" ng-model="secondaryCustomerEmail">
                 </form>
                 <div class="col-xs-12">
                     <h5> Current Permitted Products </h5>
