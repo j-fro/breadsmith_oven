@@ -1,7 +1,8 @@
 myApp.controller('adminCustomerController', [
     '$scope',
     '$http',
-    function($scope, $http) {
+    'ngDialog',
+    function($scope, $http, ngDialog) {
         console.log('NG');
         console.log('in adminCustomerController');
 
@@ -67,10 +68,22 @@ myApp.controller('adminCustomerController', [
             }).then(
                 function successCallback(response) {
                     console.log(response);
-                    alert('New Customer Added');
+                    $scope.success = true;
+                    $scope.modalBody = 'Saved customer successfully.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
+                    $scope.viewCustomer();
                     $scope.viewCustomer();
                 },
                 function errorCallback(error) {
+                    console.log('error', error);
+                    $scope.modalBody = 'Sorry, there was an error. Please try again.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
                     console.log('error', error);
                 }
             );
@@ -91,10 +104,21 @@ myApp.controller('adminCustomerController', [
             }).then(
                 function successCallback(response) {
                     console.log(response);
-                    alert('Customer Updated');
+                    $scope.success = true;
+                    $scope.modalBody = 'Saved customer successfully.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
                     $scope.viewCustomer();
                 },
                 function errorCallback(error) {
+                    $scope.success = false;
+                    $scope.modalBody = 'Sorry, there was an error. Please try again.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
                     console.log('error', error);
                 }
             );
@@ -109,9 +133,21 @@ myApp.controller('adminCustomerController', [
             }).then(
                 function successCallback(response) {
                     console.log(response);
+                    $scope.success = true;
+                    $scope.modalBody = 'Saved customer successfully.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
                     $scope.viewCustomer();
                 },
                 function errorCallback(error) {
+                    console.log('error', error);
+                    $scope.modalBody = 'Sorry, there was an error. Please try again.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
                     console.log('error', error);
                 }
             );

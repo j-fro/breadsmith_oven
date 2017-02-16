@@ -111,7 +111,8 @@ function addCustomer(customer) {
                 Promise.all([productsToInsert, usersToInsert])
                     .then(() => resolve(id[0]))
                     .catch(err => reject(err));
-            });
+            })
+            .catch(err => reject(err));
     });
 }
 
