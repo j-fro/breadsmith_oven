@@ -1,27 +1,27 @@
-<div class="homeBody container">
+<div class="homeBody productList container col-md-6 col-md-offset-3 col-s-12">
   <div class="productSearchDiv">
     <input class='productSearchBar' type="text" placeholder="Search Products" ng-model="prodSearch">
   </div>
   <div class="createProductButton">
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newModal">Add New Product <span class="glyphicon glyphicon-plus-sign"></span> </button>
   </div>
-<div class="productList">
+<div>
   <!-- <table ng-repeat = "product in list"> -->
-  <table class="container table table-striped">
+  <table class="container table table-striped productTable">
     <thead>
       <tr>
-        <th class="tableHeading">Product</th>
-        <th class="tableHeading">Description</th>
+        <th class="tableHeading leftJustify">Product</th>
+        <th class="tableHeading leftJustify">Description</th>
         <th class="tableHeading">Price</th>
         <th></th>
       </tr>
     </thead>
     <tr class='table table-striped' ng-repeat = "product in list | orderBy: 'type' | filter:prodSearch" ng-show="show">
-      <td class=''>{{product.type}} </td>
-      <td class=''>{{product.variety}}</td>
-      <td class=''>{{product.price | currency }}</td>
-      <td><button type="button" class="btn btn-info glyphicon glyphicon-edit"data-toggle="modal" data-target="#myModal" ng-click="storeInfo(product)"></button>
-      <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#delProdModal" ng-click="storeInfo(product)"></button></td>
+      <td class='leftJustify'>{{product.type}} </td>
+      <td class='leftJustify'>{{product.variety}}</td>
+      <td>{{product.price | currency }}</td>
+      <td class="productButton"><button type="button" class="btn btn-info glyphicon glyphicon-edit"data-toggle="modal" data-target="#myModal" ng-click="storeInfo(product)"></button>
+      <button type="button" class= "btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#delProdModal" ng-click="storeInfo(product)"></button></td>
     </tr>
   </table>
 </div>
