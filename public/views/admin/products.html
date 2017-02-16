@@ -37,7 +37,7 @@
         <form action="index.html" method="post">
           Product Name: <input class='form-control' type="text" ng-model="productToEdit.type"><br>
           Product Description: <input class='form-control' type="text" ng-model="productToEdit.variety"><br>
-          Price: <input class='form-control' type="number" placeholder="$" ng-model="productToEdit.price">
+          Price: <input class='form-control' type="number" min="0" placeholder="$" ng-model="productToEdit.price">
         </form>
       </div>
       <div class="modal-footer">
