@@ -58,17 +58,14 @@
                 <th>Total Quantity</th>
               </tr>
             </thead>
-
               <tr class='table table-striped' ng-repeat='product in customer.products'>
               <tr class='table table-striped' ng-repeat='product in customer.products' ng-show="product.qty > 0">
-                <!-- I want to NG show in modal only the products with quantities greater than 0 -->
                 <td class='productDisplay'>{{product.type}}</td>
                 <td class='productDisplay'>{{product.variety}}</td>
                 <td class='productDisplay'>{{product.price | currency }}</td>
                 </td>
                 <td>{{product.qty * product.multi}}</td>
               </tr>
-
           </table>
       </div>
       <div class="modal-footer">
