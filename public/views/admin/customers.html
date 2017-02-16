@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<div class="homeBody container" id="wrapper" ng-init="viewCustomer(); viewProduct()">
+<div class="homeBody container col-md-6 col-md-offset-3 col-s-12" id="wrapper" ng-init="viewCustomer(); viewProduct()">
     <!-- <div class="container" id="wrapper"> -->
     <div class="addCustomerButtonDiv">
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addCustomerModal">Add New Customer <span class="glyphicon glyphicon-plus-sign"></span> </button>
@@ -7,7 +7,7 @@
     <div class="customerSearchDiv">
         <input type="text" name="searchCustomer" class="customerSearchBar" placeholder="Search Existing Customers" ng-model="searchCustomerBox" />
     </div>
-    <table class="table table-striped" style="width:100%">
+    <table class="table table-striped">
         <tr ng-repeat="customer in customers|filter: searchCustomerBox track by $index">
             <td>{{customer.name}}</td>
             <td>
@@ -36,37 +36,39 @@
                     <label>Secondary Contact Phone:</label><input type="text" class="form-control" ng-model="customerToEdit.secondary_phone">
                     <label>Secondary Contact Email:</label><input type="text" class="form-control" ng-model="customerToEdit.secondary_email">
                 </form>
-                <table>
-                    <tr>
-                        <td>
-                            <h5> Current Permitted Products </h5>
-                        </td>
-                    </tr>
-                    <tr ng-repeat="product in customerToEdit.products track by $index">
-                        <td>{{ product.type }} {{ product.variety }}</td>
-                        <td>
-                            <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
-                        </td>
-                    </tr>
+                <div class="col-xs-12 col-md-6">
+                    <h5> Current Permitted Products </h5>
+                    <p class="row" ng-repeat="product in customerToEdit.products track by $index">
+                        <span class="col-xs-8">{{ product.type }} {{ product.variety }}</span>
+                        <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
+                    </p>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="row">
+                        <h5>Add Permittted Products:</h5>
+                        <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
+                    </div>
+                    <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
+                            <span class="col-xs-8">{{product.type}} {{product.variety}}
+                                  {{product.price}}</span>
+                            <button class="btn btn-success" ng-click="addProductToCustomer(product)"><i class="glyphicon glyphicon-plus-sign"></i></button>
+                        </p>
+                </div>
+
                     <tr>
                         <table>
                             <tr>
                                 <td>
-                                    <h5>Add Permittted Products:</h5>
+
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="Search Product"> </label>
-                                    <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
+
                                 </td>
                             </tr>
                             <!-- search product -->
-                            <tr ng-show="searchProductBox.length > 0" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
-                                <td>{{product.type}} {{product.variety}}</td>
-                                <td>{{product.price}}</td>
-                                <td><input type="button" name="" value="Add Product" ng-click="addProductToCustomer(product)"></td>
-                            </tr>
+
                         </table>
                     </tr>
                     <tr>
@@ -75,7 +77,6 @@
                             <input type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Update Customer" ng-click="updateCustomer()" />
                         </td>
                     </tr>
-                </table>
             </div>
         </div>
         <div class="modal-footer">
