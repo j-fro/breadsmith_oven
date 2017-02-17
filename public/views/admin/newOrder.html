@@ -43,7 +43,7 @@
         </div>
         <div class="modal-body">
             <p>{{ confirmMessage }}</p>
-            <button class="btn btn-success">OK</button>
+            <button class="btn btn-success" ng-click="closeDialog()">OK</button>
         </div>
     </script>
 
@@ -56,7 +56,7 @@
                 <label>Find a customer:</label>
                 <input type="text" class="form-control-inline" ng-model="customerSearch">
             </div>
-            <div class="panel panel-body customers" ng-repeat="customer in customers | filter: {name: customerSearch}" ng-click="pickCustomer(customer)">
+            <div class="panel panel-body customers" ng-repeat="customer in customers | orderBy: 'name' | filter: {name: customerSearch}" ng-click="pickCustomer(customer)">
                 <p>{{ customer.name }}</p>
                 <p>id#{{ customer.id }}</p>
             </div>
@@ -70,34 +70,34 @@
         <div class="modal-body form">
             <span class="form-group">
                 <input name="sunday" type="checkbox" class="checkbox" ng-model="recur.Sunday">
-                <label for="sunday">Sunday</label>
+                <label for="sunday">Produce on Sunday (Deliver Monday)</label>
             </span>
             <span class="form-group">
                 <input name="monday" type="checkbox" class="checkbox" ng-model="recur.Monday">
-                <label for="monday">Monday</label>
+                <label for="monday">Produce on Monday (Deliver Tuesday)</label>
             </span>
             <span class="form-group">
                 <input name="tuesday" type="checkbox" class="checkbox" ng-model="recur.Tuesday">
-                <label for="tuesday">Tuesday</label>
+                <label for="tuesday">Produce on Tuesday (Deliver Wednesday)</label>
             </span>
             <span class="form-group">
                 <input name="wednesday" type="checkbox" class="checkbox" ng-model="recur.Wednesday">
-                <label for="wednesday">Wednesday</label>
+                <label for="wednesday">Produce on Wednesday (Deliver Thursday)</label>
             </span>
             <span class="form-group">
                 <input name="thursday" type="checkbox" class="checkbox" ng-model="recur.Thursday">
-                <label for="thursday">Thursday</label>
+                <label for="thursday">Produce on Thursday (Deliver Friday)</label>
             </span>
             <span class="form-group">
                 <input name="friday" type="checkbox" class="checkbox" ng-model="recur.Friday">
-                <label for="friday">Friday</label>
+                <label for="friday">Produce on Friday (Deliver Saturday)</label>
             </span>
             <span class="form-group">
                 <input name="saturday" type="checkbox" class="checkbox" ng-model="recur.Saturday">
-                <label for="saturday">Saturday</label>
+                <label for="saturday">Produce on Saturday (Deliver Sunday)</label>
             </span>
             <button class="separateButtons btn btn-success" ng-click="setRecurrance()">Submit</button>
-            <button class="separateButtons btn btn-warning" ng-click="ngDialog.close()">Cancel</button>
+            <button class="separateButtons btn btn-warning" ng-click="closeDialog()">Cancel</button>
         </div>
         </div>
     </script>
