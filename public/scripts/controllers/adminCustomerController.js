@@ -159,5 +159,16 @@ myApp.controller('adminCustomerController', [
             var index = $scope.customerToEdit.products.indexOf(product);
             $scope.customerToEdit.products.splice(index, 1);
         };
+
+        $scope.clearCreate = function(){
+          $scope.customerName = '';
+          $scope.customerAddress = '';
+          $scope.primaryContactName = '';
+          $scope.primaryCustomerEmail = '';
+          $scope.primaryCustomerNumber = '';
+          $scope.secondaryContactName = '';
+          $scope.secondaryCustomerEmail = '';
+          $scope.secondaryCustomerNumber = '';
+        };//end clearData function
     } //end
 ]);
