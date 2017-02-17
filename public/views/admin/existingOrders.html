@@ -48,7 +48,7 @@
                             <td>Ext. Cost</td>
                             <td>Delete</td>
                         </thead>
-                        <tr ng-repeat="product in viewedOrder.products">
+                        <tr ng-repeat="product in viewedOrder.products | orderBy: 'type'">
                             <td>{{ product.type }} {{ product.variety }}</td>
                             <td>{{ product.price | currency }}</td>
                             <td><input type="number" ng-model="product.qty"></td>
@@ -72,7 +72,10 @@
 </div>
 
 <script type="text/ng-template" id="responseModal">
-<div class="alert" ng-class="{'alert-success': success, 'alert-danger': !success}">
+<div
+    class="alert"
+    ng-class="{'alert-success': success, 'alert-danger': !success}"
+>
     <p>{{modalBody}}</p>
-</div>
+</div>;
 </script>

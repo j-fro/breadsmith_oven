@@ -15,7 +15,7 @@
                     <th>Total Quantity</th>
                 </tr>
             </thead>
-                <tr class='table table-striped' ng-repeat="product in selectedCustomer.products">
+                <tr class='table table-striped' ng-repeat="product in selectedCustomer.products | orderBy: 'type'">
                     <td>{{product.type}}</td>
                     <td>{{product.variety}}</td>
                     <td>{{product.price | currency }}</td>
