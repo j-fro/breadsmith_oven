@@ -93,7 +93,7 @@
             <div class="modal-header">
                 <h1 class="modal-title">Create Customer</h1>
                 <input class="separateButtons btn btn-success" type="submit" data-toggle="modal" data-target="#addCustomerModal" value="Save" ng-click="addCustomer()" ng-disabled="createCustomerForm.$invalid" />
-
+                <button type="button" class="btn btn-danger" ng-click="clearCreate()" data-dismiss="modal">Close</button>
             </div>
             <div class="modal-body">
                 <form class="form" name="createCustomerForm">
@@ -125,7 +125,7 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
                 </div>
             </div>
         </div>
