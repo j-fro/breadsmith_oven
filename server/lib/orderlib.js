@@ -162,8 +162,10 @@ function aggregateOrder(results) {
             obj.customer_name = row.name;
             obj.customer_address = row.address;
             obj.customer_phone = row.phone;
-            obj.contact_name = row.contact_name;
-            obj.email = row.email;
+            obj.primary_contact_name = row.primary_contact_name;
+            obj.secondary_contact_name = row.secondary_contact_name;
+            obj.primary_email = row.primary_email;
+            obj.secondary_email = row.secondary_email;
             obj.total_qty = row.total_qty;
             obj.total_cost = row.total_cost;
             obj.created = row.created;

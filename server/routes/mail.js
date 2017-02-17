@@ -11,22 +11,28 @@ let transporter = nodemailer.createTransport({
 });
 
 router.post('/', (req, res) => {
-    let mailOptions = {
-        from: 'Breadsmith',
-        to: req.body.emailTo,
-        subject: 'Your Breadsmith Order#' + req.body.orderId,
-        text: req.body.message || 'Your order has been confirmed!'
-    };
+    let sends = req.body.emailTo.map(email => {
+        if (email) {
+            console.log('Sending an email to', email);
+            let mailOptions = {
+                from: 'Breadsmith',
+                to: email,
+                subject: 'Your Breadsmith Order#' + req.body.orderId,
+                text: req.body.message || 'Your order has been confirmed!'
+            };
 
-    transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-            console.log(err);
-            res.sendStatus(500);
-        } else {
-            console.log('Message sent');
-            res.sendStatus(200);
+            return transporter.sendMail(mailOptions);
         }
     });
+    Promise.all(sends)
+        .then(() => {
+            console.log('Success');
+            res.sendStatus(200);
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;
