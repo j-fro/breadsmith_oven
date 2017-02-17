@@ -10,7 +10,7 @@ header{
 }
 
 table {
-    text-align: left;
+  text-align: left;
 }
 
 .homeBody{
@@ -175,7 +175,7 @@ span.form-group {
   padding-bottom: 13px;
 }
 
-.welcomeBack{
+.welcomeBack, .oven{
   text-align: center;
   font-family: "Trebuchet MS", helvetica, sans-serif;
 }
