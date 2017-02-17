@@ -7,12 +7,12 @@
         <input type="text" name="searchCustomer" class="customerSearchBar" placeholder="Search Existing Customers" ng-model="searchCustomerBox"/>
     </div>
     <table class="table table-striped">
-        <tr ng-repeat="customer in customers|filter: searchCustomerBox track by $index">
+        <tr ng-repeat="customer in customers | orderBy: 'name' | filter: searchCustomerBox track by $index">
             <td>{{customer.name}}</td>
             <td>
+                <input type="button" class="btn btn-default" value="Edit Permitted Products" data-toggle="modal" data-target="#permitedProductsModal" ng-click="editCustomer(customer)"/>
                 <button type="button" class="btn btn-info glyphicon glyphicon-edit" data-toggle="modal" data-target="#editCustomerModal" ng-click="editCustomer(customer)"></button>
                 <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#delCustModal" ng-click="editCustomer(customer)"></button>
-                <input type="button" value="Edit Permitted Products" data-toggle="modal" data-target="#permitedProductsModal" ng-click="editCustomer(customer)"/>
             </td>
         </tr>
     </table>
@@ -149,7 +149,10 @@
 </div>
 
 <script type="text/ng-template" id="responseModal">
-    <div class="alert" ng-class="{'alert-success': success, 'alert-danger': !success}">
-        <p>{{ modalBody }}</p>
-    </div>
+<div
+    class="alert"
+    ng-class="{'alert-success': success, 'alert-danger': !success}"
+>
+    <p>{{modalBody}}</p>
+</div>;
 </script>
