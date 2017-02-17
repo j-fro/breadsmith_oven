@@ -24,7 +24,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Edit Customer</h1>
-                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Save" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid"/>
             </div>
             <div class="modal-body">
                 <form class="form" name="editCustomerForm">
@@ -39,6 +38,7 @@
                 </form>
             </div>
             <div class="modal-footer">
+              <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Save" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid"/>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
