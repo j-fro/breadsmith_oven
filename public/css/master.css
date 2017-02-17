@@ -232,3 +232,8 @@ span.form-group {
   text-align: right;
   padding-right: 40px !important;
 }
+
+.productList{
+  width: 60% !important;
+  text-align: center;
+}

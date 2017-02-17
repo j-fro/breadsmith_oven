@@ -80,10 +80,22 @@ myApp.controller('ExistingOrderController', [
         };
 
         $scope.sendMessage = function() {
+            var data = {
+                orderId: $scope.viewedOrder.id,
+                emailTo: [
+                    $scope.viewedOrder.primary_email,
+                    $scope.viewedOrder.secondary_email
+                ],
+                message: $scope.mailMessage
+            };
+            console.log(data);
             $http
                 .post('/mail', {
                     orderId: $scope.viewedOrder.id,
-                    emailTo: $scope.viewedOrder.email,
+                    emailTo: [
+                        $scope.viewedOrder.primary_email,
+                        $scope.viewedOrder.secondary_email
+                    ],
                     message: $scope.mailMessage
                 })
                 .then(function() {
