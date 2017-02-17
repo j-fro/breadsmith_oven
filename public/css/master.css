@@ -20,7 +20,6 @@ table {
   padding: 30px;
 }
 
-
 .container{
   text-align: center;
 }
@@ -112,9 +111,11 @@ main {
 .navbar{
   float: right;
   margin-right: 1.5em !important;
-  font-size: 12px;
+  font-size: 14px;
   color: rgb(51, 122, 183);
-  position: relative;;
+  position: fixed;
+  background-color: #f4ecd7;
+  z-index: 1;
 }
 
 header a {
@@ -215,14 +216,19 @@ span.form-group {
   margin-left: 50px;
 }
 
-/*.csvReport{
-  display: inline-block;;
-}*/
-
 .lineSeparator{
   border-top: 3px solid black;
 }
 
 .separateExports{
   padding-bottom: 20px;
+}
+.leftJustify{
+  text-align:left;
+}
+
+
+.productButton{
+  text-align: right;
+  padding-right: 40px !important;
 }

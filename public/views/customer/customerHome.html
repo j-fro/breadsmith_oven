@@ -5,7 +5,7 @@
         <h3 class='welcomeBack'>Welcome back, {{customer.name}}!</h3>
         <h2 ng-if="onTimeOrder()" class="deliveryMessage">This order will be for delivery on {{ today() }}.</h2>
         <h2 ng-if="placeForTomorrow()" class="deliveryMessage">It is too late to place an order for {{ today() }}. This order will be for delivery on {{ nextDay() }}.</h2>
-        <h2 ng-if="callForOrder()" class="deliveryMessage">You're passed the deadline to place an online order for {{ nextDay() }}. Please call the Breadsmith office for availability. 952-475-0099</h2>
+        <h2 ng-if="callForOrder()" class="deliveryMessage">The deadline has passed to place an online order for {{ today() }}. Please call the Breadsmith office for availability, 952-475-0099.</h2>
       </div>
       <div id="containerRight">
       </div>

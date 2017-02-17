@@ -15,7 +15,7 @@
             <td>Total Cost</td>
             <td>Approved</td>
             <td>Comments</td>
-            <td>Include</td>
+            <td>Include <input type="checkbox" ng-model="checkAll" ng-change="toggleAll()"></td>
         </thead>
         <tr ng-repeat="order in orders" data-toggle="modal" data-target="#viewOrderDialog" ng-click="viewOrder(order)">
             <td>{{ order.customer_name }}</td>
@@ -72,7 +72,7 @@
 </div>
 
 <script type="text/ng-template" id="responseModal">
-    <div class="alert" ng-class="{'alert-success': success, 'alert-danger': !success}">
-        <p>{{ modalBody }}</p>
-    </div>
+<div class="alert" ng-class="{'alert-success': success, 'alert-danger': !success}">
+    <p>{{modalBody}}</p>
+</div>
 </script>

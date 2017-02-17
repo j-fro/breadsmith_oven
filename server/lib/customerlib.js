@@ -220,7 +220,9 @@ function aggregateCustomer(results) {
             obj.secondary_contact_name = row.secondary_contact_name;
             obj.secondary_phone = row.secondary_phone;
             obj.secondary_email = row.secondary_email;
-            if (typeof obj.products !== 'undefined') {
+            if (row.product_id === null) {
+                obj.products = [];
+            } else if (typeof obj.products !== 'undefined') {
                 obj.products.push({
                     id: row.product_id,
                     type: row.type,

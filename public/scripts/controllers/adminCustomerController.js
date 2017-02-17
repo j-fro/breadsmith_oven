@@ -53,8 +53,8 @@ myApp.controller('adminCustomerController', [
                 name: $scope.customerName,
                 address: $scope.customerAddress,
                 primary_contact_name: $scope.primaryContactName,
-                primary_email: $scope.primaryCustomerNumber,
-                primary_phone: $scope.primaryCustomerEmail,
+                primary_email: $scope.primaryCustomerEmail,
+                primary_phone: $scope.primaryCustomerNumber,
                 secondary_contact_name: $scope.secondaryContactName,
                 secondary_email: $scope.secondaryCustomerEmail,
                 secondary_phone: $scope.secondaryCustomerNumber,
@@ -76,7 +76,6 @@ myApp.controller('adminCustomerController', [
                     });
                     $scope.viewCustomer();
                 },
-
                 function errorCallback(error) {
                     console.log('error', error);
                     $scope.modalBody = 'Sorry, there was an error. Please try again.';
@@ -89,9 +88,8 @@ myApp.controller('adminCustomerController', [
             );
         }; //end addNewCustomer
 
-        
-
         $scope.editCustomer = function(customer) {
+            console.log('customer before', customer);
             $scope.customerToEdit = JSON.parse(JSON.stringify(customer));
             console.log('customerToEdit:', $scope.customerToEdit.products);
         };
