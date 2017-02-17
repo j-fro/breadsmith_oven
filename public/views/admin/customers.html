@@ -27,7 +27,7 @@
             </div>
             <div class="modal-body">
                 <form class="form" name="editCustomerForm">
-                    <label>Name (Required): </label><input type="text" class="form-control" ng-model="customerToEdit.name">
+                    <label>Customer Name (Required): </label><input type="text" class="form-control" ng-model="customerToEdit.name">
                     <label>Address: </label><input type="text" class="form-control" ng-model="customerToEdit.address">
                     <label>Primary Contact Name:</label><input type="text" class="form-control" ng-model="customerToEdit.primary_contact_name">
                     <label>Primary Contact Phone:</label><input type="text" class="form-control" ng-model="customerToEdit.primary_phone">
@@ -92,12 +92,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Create Customer</h1>
-                <input class="separateButtons btn btn-success" type="submit" data-toggle="modal" data-target="#addCustomerModal" value="Save" ng-click="addCustomer()" ng-disabled="createCustomerForm.$invalid" />
+                <input class=" btn btn-success" type="submit" data-toggle="modal" data-target="#addCustomerModal" value="Save" ng-click="addCustomer()" ng-disabled="createCustomerForm.$invalid" />
                 <button type="button" class="btn btn-danger" ng-click="clearCreate()" data-dismiss="modal">Close</button>
             </div>
             <div class="modal-body">
                 <form class="form" name="createCustomerForm">
-                    <label>Name (Required): </label><input type="text" class="form-control" ng-model="customerName" required>
+                    <label>Customer Name (Required): </label><input type="text" class="form-control" ng-model="customerName" required>
                     <label>Address: </label><input type="text" class="form-control" ng-model="customerAddress">
                     <label>Primary Contact Name:</label><input type="text" class="form-control" ng-model="primaryContactName">
                     <label>Primary Contact Phone:</label><input type="text" class="form-control" ng-model="primaryCustomerNumber" >
@@ -142,7 +142,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Keep</button>
-                <button type="button" class="btn btn-danger" ng-click="deleteCustomer()" data-dismiss="modal">Delete`</button>
+                <button type="button" class="btn btn-danger" ng-click="deleteCustomer()" data-dismiss="modal">Delete</button>
             </div>
         </div>
     </div>
