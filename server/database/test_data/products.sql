@@ -998,3 +998,5 @@ insert into products (id, type, variety, price) values (997, 'Country White Hoag
 insert into products (id, type, variety, price) values (998, 'Flaxseed Cranberry', 'No Slice', 5.16);
 insert into products (id, type, variety, price) values (999, 'Flaxseed Cranberry', '10 Packs', 7.19);
 insert into products (id, type, variety, price) values (1000, 'Focaccia Buns', '1/2 Sliced', 4.23);
+
+SELECT setval('products_id_seq', (SELECT MAX(id) FROM products));

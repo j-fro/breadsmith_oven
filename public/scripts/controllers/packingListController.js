@@ -6,7 +6,7 @@ angular.module('packingApp', []).controller('PackingListController', [
         $scope.orders = JSON.parse(localStorage.getItem('orders'));
 
         $window.print();
-        setTimeout($window.close, 100);
+        setTimeout($window.close, 200);
 
         $scope.getProductTotals = function() {
             $scope.productTotals = [];
@@ -15,7 +15,7 @@ angular.module('packingApp', []).controller('PackingListController', [
                     var existing = $scope.productTotals.find(function(x) {
                         if (
                             x.type === product.type &&
-                                x.variety === product.variety
+                            x.variety === product.variety
                         ) {
                             return true;
                         }
