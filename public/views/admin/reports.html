@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <div class="container homeBody">
     <h1>Reports</h1>
-    <div>
+    <div class="separateExports">
         <h2>Export CSVs</h2>
         <div class="cal">
-            <div>
+            <div class="startDate">
                 <span>
                 <h4>Start date:</h4>
                 <div uib-datepicker ng-model="startDate" datepicker-options="options"></div>
             </span>
             </div>
             <div>
-                <span>
+                <span class="endDate">
                 <h4>End date:</h4>
                 <div uib-datepicker ng-model="endDate" datepicker-options="options"></div>
             </span>
@@ -28,15 +28,15 @@
             </a>
         </div>
     </div>
-    <div>
+    <div class="lineSeparator">
         <h2>Import CSVs</h2>
         <p><em>Please import new products before importing customers that rely on those products. Please do not include duplicates of customers/products that already exist</em></p>
-        <div class="row report-button">
+        <div class="row report-button csvReport">
             <label class="btn btn-primary">Import Product CSV
                 <input type="file" class="hidden" ng-model="upload.file" ngf-select="uploadProductFile($file, $invalidFiles, $index)" ngf-max-size="25MB" required>
             </label>
         </div>
-        <div class="row report-button">
+        <div class="row report-button csvReport">
             <label class="btn btn-primary">Import Customer CSV
                 <input type="file" class="hidden" ng-model="upload.file" ngf-select="uploadCustomerFile($file, $invalidFiles, $index)" ngf-max-size="25MB" required>
             </label>

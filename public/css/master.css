@@ -208,6 +208,21 @@ span.form-group {
   text-align: center;
 }
 
+.startDate{
+  margin-right: 50px;
+}
+
+.endDate{
+  margin-left: 50px;
+}
+
+.lineSeparator{
+  border-top: 3px solid black;
+}
+
+.separateExports{
+  padding-bottom: 20px;
+}
 .leftJustify{
   text-align:left;
 }

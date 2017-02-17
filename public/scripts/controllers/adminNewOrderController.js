@@ -47,13 +47,11 @@ myApp.controller('adminNewOrderController', [
                 }),
                 status: true
             };
-            $http
-                .post('/order', newOrder)
-                .then(function(response) {
-                    console.log('order Post hit');
-                    $scope.confirmMessage = 'Your order has been submitted.';
-                    $scope.confirmModal();
-                });
+            $http.post('/order', newOrder).then(function(response) {
+                console.log('order Post hit');
+                $scope.confirmMessage = 'Your order has been submitted.';
+                $scope.confirmModal();
+            });
         };
 
         $scope.confirmModal = function() {
@@ -86,6 +84,10 @@ myApp.controller('adminNewOrderController', [
                 controller: 'adminNewOrderController',
                 scope: $scope
             });
+        };
+
+        $scope.closeDialog = function() {
+            ngDialog.close();
         };
     }
 ]); //end clientController
