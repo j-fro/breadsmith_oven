@@ -51,15 +51,17 @@ function addOrder(order) {
                 .then(order_id => {
                     let order_items = order.products.reduce(
                         (arr, prod) => {
-                            arr.push(
-                                knex
-                                    .insert({
-                                        order_id: order_id[0],
-                                        product_id: prod.id,
-                                        qty: prod.qty
-                                    })
-                                    .into('order_items')
-                            );
+                            if (prod.qty > 0) {
+                                arr.push(
+                                    knex
+                                        .insert({
+                                            order_id: order_id[0],
+                                            product_id: prod.id,
+                                            qty: prod.qty
+                                        })
+                                        .into('order_items')
+                                );
+                            }
                             return arr;
                         },
                         []
