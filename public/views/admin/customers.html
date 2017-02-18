@@ -70,7 +70,7 @@
 </div>
 <div class="col-xs-12">
     <div class="row">
-        <h5>Add Permittted Products:</h5>
+        <h5>Add Permitted Products:</h5>
         <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
     </div>
     <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox | orderBy: 'type'">
@@ -115,7 +115,7 @@
                 </div>
                 <div class="col-xs-12">
                     <div class="row">
-                        <h5>Add Permittted Products:</h5>
+                        <h5>Add Permitted Products:</h5>
                         <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
                     </div>
                     <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
