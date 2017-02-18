@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<div class="homeBody container col-md-6 col-md-offset-3 col-s-12" id="wrapper" ng-init="viewCustomer(); viewProduct()">
+<div class="homeBody container col-md-8 col-md-offset-2 col-s-12" id="wrapper" ng-init="viewCustomer(); viewProduct()">
     <div class="addCustomerButtonDiv">
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addCustomerModal">Add New Customer <span class="glyphicon glyphicon-plus-sign"></span></button>
     </div>
     <div class="customerSearchDiv">
-        <input type="text" name="searchCustomer" class="customerSearchBar" placeholder="Search Existing Customers" ng-model="searchCustomerBox"/>
+        <input type="text" name="searchCustomer" class="customerSearchBar" placeholder="Search Existing Customers" ng-model="searchCustomerBox" />
     </div>
     <table class="table table-striped">
         <tr ng-repeat="customer in customers | orderBy: 'name' | filter: searchCustomerBox track by $index">
             <td>{{customer.name}}</td>
             <td>
-                <input type="button" class="btn btn-default" value="Edit Permitted Products" data-toggle="modal" data-target="#permitedProductsModal" ng-click="editCustomer(customer)"/>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#permitedProductsModal" ng-click="editCustomer(customer)">Permitted Products <i class="glyphicon glyphicon-thumbs-up"></i></button>
+                <button type="button" class="btn btn-default" ng-click="viewRecurringOrders(customer)" data-toggle="modal" data-target="#recurringOrderModal">Recurring Orders <i class="glyphicon glyphicon-refresh primary"></i></button>
                 <button type="button" class="btn btn-info glyphicon glyphicon-edit" data-toggle="modal" data-target="#editCustomerModal" ng-click="editCustomer(customer)"></button>
                 <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#delCustModal" ng-click="editCustomer(customer)"></button>
             </td>
@@ -38,7 +39,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-              <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Save" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid"/>
+                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Save" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid" />
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -52,37 +53,37 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Edit Permitted Products</h1>
-                <input class="btn btn-success" data-dismiss="modal" type="submit" data-toggle="modal" data-target="#editPermittedProductsModal" value="Save" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid"/>
+                <input class="btn btn-success" data-dismiss="modal" type="submit" data-toggle="modal" data-target="#editPermittedProductsModal" value="Save" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid" />
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
             <!-- need to fix stlye here -->
             <div class="modal-body">
 
-              <div class="col-xs-12">
-                  <div class="row">
-    <h5> Current Permitted Products: </h5>
-    <p class="row" ng-repeat="product in customerToEdit.products | orderBy: 'type'">
-        <span class="col-xs-8">{{ product.type }} {{ product.variety }}</span>
-        <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
-    </p>
-  </div>
-</div>
-</div>
-<div class="col-xs-12">
-    <div class="row">
-        <h5>Add Permitted Products:</h5>
-        <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
-    </div>
-    <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox | orderBy: 'type'">
-        <span class="col-xs-8">{{product.type}} {{product.variety}}
+                <div class="col-xs-12">
+                    <div class="row">
+                        <h5> Current Permitted Products: </h5>
+                        <p class="row" ng-repeat="product in customerToEdit.products | orderBy: 'type'">
+                            <span class="col-xs-8">{{ product.type }} {{ product.variety }}</span>
+                            <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="row">
+                    <h5>Add Permitted Products:</h5>
+                    <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
+                </div>
+                <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox | orderBy: 'type'">
+                    <span class="col-xs-8">{{product.type}} {{product.variety}}
                   {{product.price | currency}}</span>
-        <button class="btn btn-success" ng-click="editCustomerAddProduct(product)"><i class="glyphicon glyphicon-plus"></i></button>
-    </p>
-</div>
-<div class="modal-footer">
-</div>
-</div>
-</div>
+                    <button class="btn btn-success" ng-click="editCustomerAddProduct(product)"><i class="glyphicon glyphicon-plus"></i></button>
+                </p>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
 </div>
 <!-- edit permited product modal end -->
 
@@ -100,7 +101,7 @@
                     <label>Customer Name (Required): </label><input type="text" class="form-control" ng-model="customerName" required>
                     <label>Address: </label><input type="text" class="form-control" ng-model="customerAddress">
                     <label>Primary Contact Name:</label><input type="text" class="form-control" ng-model="primaryContactName">
-                    <label>Primary Contact Phone:</label><input type="text" class="form-control" ng-model="primaryCustomerNumber" >
+                    <label>Primary Contact Phone:</label><input type="text" class="form-control" ng-model="primaryCustomerNumber">
                     <label>Primary Contact Email (Required):</label><input type="email" class="form-control" ng-model="primaryCustomerEmail" required>
                     <label>Secondary Contact Name:</label><input type="text" class="form-control" ng-model="secondaryContactName">
                     <label>Secondary Contact Phone:</label><input type="text" class="form-control" ng-model="secondaryCustomerNumber">
@@ -149,7 +150,41 @@
 </div>
 
 <script type="text/ng-template" id="responseModal">
-<div class="alert confirmAlert" ng-class="{'alert-success': success, 'alert-danger': !success}">
+<div
+    class="alert confirmAlert"
+    ng-class="{'alert-success': success, 'alert-danger': !success}"
+>
     <p>{{modalBody}}</p>
-</div>
+</div>;
 </script>
+
+<div class="modal fade" id="recurringOrderModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Recurring Items for {{ recurCustomer.name }}</h4>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <th>Product</th>
+                        <th>Production Day</th>
+                        <th>Quantity</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in recurringItems | orderBy: 'recur_day'">
+                            <td>{{ item.type }} {{ item.variety }}</td>
+                            <td>{{ item.recur_day }}</td>
+                            <td ng-hide="item.editing">{{ item.qty }}</td>
+                            <td ng-show="item.editing"><input type="number" class="form-control form-inline" ng-model="item.qty"></td>
+                            <td ng-hide="item.editing"><button type="button" ng-click="editItem(item)" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></button></td>
+                            <td ng-show="item.editing"><button type="button" ng-click="saveItem(item)" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></button></td>
+                            <td><button type="button" ng-click="deleteItem(item)" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

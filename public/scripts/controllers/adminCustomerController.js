@@ -148,7 +148,6 @@ myApp.controller('adminCustomerController', [
                         template: 'responseModal',
                         scope: $scope
                     });
-                    console.log('error', error);
                 }
             );
         };
@@ -160,22 +159,85 @@ myApp.controller('adminCustomerController', [
             $scope.customerToEdit.products.splice(index, 1);
         };
 
-        $scope.deleteNewProduct = function(product){
-          console.log('product:', product);
-          var index = $scope.productToBeAdded.indexOf(product);
-          $scope.productToBeAdded.splice(index, 1);
-          //$scope.customerToEdit.products.splice(index, 1);
+        $scope.deleteNewProduct = function(product) {
+            console.log('product:', product);
+            var index = $scope.productToBeAdded.indexOf(product);
+            $scope.productToBeAdded.splice(index, 1);
+            //$scope.customerToEdit.products.splice(index, 1);
         };
 
-        $scope.clearCreate = function(){
-          $scope.customerName = '';
-          $scope.customerAddress = '';
-          $scope.primaryContactName = '';
-          $scope.primaryCustomerEmail = '';
-          $scope.primaryCustomerNumber = '';
-          $scope.secondaryContactName = '';
-          $scope.secondaryCustomerEmail = '';
-          $scope.secondaryCustomerNumber = '';
-        };//end clearData function
+        $scope.clearCreate = function() {
+            $scope.customerName = '';
+            $scope.customerAddress = '';
+            $scope.primaryContactName = '';
+            $scope.primaryCustomerEmail = '';
+            $scope.primaryCustomerNumber = '';
+            $scope.secondaryContactName = '';
+            $scope.secondaryCustomerEmail = '';
+            $scope.secondaryCustomerNumber = '';
+        }; //end clearData function
+
+        $scope.viewRecurringOrders = function(customer) {
+            $scope.recurCustomer = customer;
+            $scope.getRecurringOrders();
+        };
+
+        $scope.getRecurringOrders = function() {
+            $http
+                .get('/recurring/' + $scope.recurCustomer.id)
+                .then(function(response) {
+                    $scope.recurringItems = response.data;
+                });
+        };
+
+        $scope.editItem = function(item) {
+            item.editing = true;
+        };
+
+        $scope.saveItem = function(item) {
+            $http
+                .put('/recurring', {id: item.id, qty: item.qty})
+                .then(function() {
+                    item.editing = false;
+                    $scope.success = true;
+                    $scope.modalBody = 'Updated successfully.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
+                })
+                .catch(function(err) {
+                    console.log('error', error);
+                    $scope.success = false;
+                    $scope.modalBody = 'Sorry, there was an error. Please try again.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
+                });
+        };
+
+        $scope.deleteItem = function(item) {
+            $http
+                .delete('/recurring/' + item.id)
+                .then(function() {
+                    $scope.success = true;
+                    $scope.modalBody = 'Recurring item deleted.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
+                    $scope.getRecurringOrders();
+                })
+                .catch(function(err) {
+                    console.log('error', error);
+                    $scope.success = false;
+                    $scope.modalBody = 'Sorry, there was an error. Please try again.';
+                    ngDialog.open({
+                        template: 'responseModal',
+                        scope: $scope
+                    });
+                });
+        };
     } //end
 ]);
