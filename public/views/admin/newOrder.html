@@ -2,7 +2,7 @@
 <section ng-init="getCustomers()" class="container homeBody">
 
     <div class="container">
-        <h1>Create Order</h1>
+        <h1>Create Order <span ng-show="selectedCustomer">for {{selectedCustomer.name}}</span></h1>
       <form name="orderForm">
         <table class="table table-striped">
             <thead>
@@ -29,7 +29,6 @@
                     </td>
                     <td class='numberCenter'>{{product.qty * product.multi}}</td>
                 </tr>
-
         </table>
       </form>
         <button class="separateButtons btn btn-success" ng-show="selectedCustomer" ng-click="postOrder()" ng-disabled="orderForm.$pristine">Submit Order</button>
