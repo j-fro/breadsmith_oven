@@ -237,3 +237,8 @@ span.form-group {
   width: 60% !important;
   text-align: center;
 }
+
+.confirmAlert{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

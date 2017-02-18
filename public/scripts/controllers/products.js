@@ -30,6 +30,12 @@ myApp.controller("productRead", ["$scope", "$http", "$window", "ngDialog", funct
       data: obj
     }).then(function(res) {
       console.log(res);
+      $scope.success = true;
+      $scope.modalBody = 'Product updated.';
+      ngDialog.open({
+          template: 'responseModal',
+          scope: $scope
+      });
       $scope.getProducts();
     }); //end PUT
   }; //end $scope.editProduct
@@ -46,7 +52,7 @@ myApp.controller("productRead", ["$scope", "$http", "$window", "ngDialog", funct
       $scope.success = true;
       $scope.modalBody = 'Product Deleted.';
       ngDialog.open({
-          template: 'deleteModal',
+          template: 'responseModal',
           scope: $scope
       });
       $scope.getProducts();
@@ -84,10 +90,4 @@ myApp.controller("productRead", ["$scope", "$http", "$window", "ngDialog", funct
     $scope.newVariety = '';
     $scope.newPrice = '';
   };//end $scope.clearCreate
-
-  // var eObj = {};
-  // $scope.test = function() {
-  //     console.log(this);
-  //     console.log(eObj);
-  // }; //end test
 }]);
