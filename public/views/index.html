@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Breadsmith - Order Verification Entry Network</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="shortcut icon" href="images/breadsmith_favicon.ico" />
     <link rel="stylesheet" href="css/master.css" />
     <link rel="stylesheet" href="css/bootstrap-social.css">
@@ -16,6 +14,8 @@
     <link rel="stylesheet" href="css/ngDialog.min.css">
     <link rel="stylesheet" href="css/ngDialog-theme-default.min.css">
     <link rel="stylesheet" href="css/ui-bootstrap-improvements.css">
+    <script src="vendors/jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="vendors/bootstrap.min.js" charset="utf-8"></script>
     <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="vendors/angular-route.js" charset="utf-8"></script>
     <script src="vendors/angular-animate.min.js" charset="utf-8"></script>
@@ -44,7 +44,7 @@
 
 <body ng-app="myApp">
   <header ng-controller="NavController">
-    <img src="../../images/breadsmith_logo.jpg" alt="Breadsmith" width="232" height="48" border="0" class="logo">
+    <img class="img-responsive" src="../../images/breadsmith_logo.jpg" alt="Breadsmith">
     <nav class="navbar" ng-if="auth._State.admin">
         <ul class="nav navbar-nav">
           <li><a href='#!/admin/home'>Home</a></li>
