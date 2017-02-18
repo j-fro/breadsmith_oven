@@ -56,7 +56,6 @@
             </div>
             <div class="panel panel-body customers" ng-repeat="customer in customers | orderBy: 'name' | filter: {name: customerSearch}" ng-click="pickCustomer(customer)">
                 <p><strong>{{ customer.name }}</strong></p>
-                <p>ID#: {{ customer.id }}</p>
             </div>
         </div>
     </script>
