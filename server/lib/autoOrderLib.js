@@ -75,4 +75,46 @@ function scheduleOrders() {
     });
 }
 
-module.exports = scheduleOrders;
+function getAllAutoOrders() {
+    return knex
+        .select(
+            'recurring_order_items.id',
+            'name',
+            'type',
+            'variety',
+            'price',
+            'recur_day',
+            'qty'
+        )
+        .from('recurring_order_items')
+        .join('customers', 'customer_id', 'customers.id')
+        .join('products', 'product_id', 'products.id');
+}
+
+function getCustomerAutoOrders(id) {
+    return knex
+        .select(
+            'recurring_order_items.id',
+            'name',
+            'type',
+            'variety',
+            'price',
+            'recur_day',
+            'qty'
+        )
+        .from('recurring_order_items')
+        .join('customers', 'customer_id', 'customers.id')
+        .join('products', 'product_id', 'products.id')
+        .where('customer_id', id);
+}
+
+function deleteAutoOrder(id) {
+    return knex.from('recurring_order_items').where('id', id).delete();
+}
+
+module.exports = {
+    scheduleOrders: scheduleOrders,
+    getAllAutoOrders: getAllAutoOrders,
+    getCustomerAutoOrders: getCustomerAutoOrders,
+    deleteAutoOrder: deleteAutoOrder
+};
