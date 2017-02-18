@@ -1,4 +1,4 @@
-myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, $http, $window) {
+myApp.controller("productRead", ["$scope", "$http", "$window", "ngDialog", function($scope, $http, $window, ngDialog) {
   var show = false;
   $scope.show = show; //hides the list before fetching(Will remove later)
   console.log("Products page");
@@ -43,6 +43,12 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
       data: delObj
     }).then(function(res) {
       console.log(res);
+      $scope.success = true;
+      $scope.modalBody = 'Product Deleted.';
+      ngDialog.open({
+          template: 'deleteModal',
+          scope: $scope
+      });
       $scope.getProducts();
     }); //end DELETE
   }; //end $scope.deleteProduct
@@ -58,8 +64,14 @@ myApp.controller("productRead", ["$scope", "$http", "$window", function($scope, 
       method: "POST",
       url: "/product",
       data: nObj
-    }).then(function(res) {
-      console.log("Post call response", res);
+    }).then (function successCallback(response)  {
+      console.log("Post call response", response);
+      $scope.success = true;
+      $scope.modalBody = 'Product successfully added.';
+      ngDialog.open({
+          template: 'responseModal',
+          scope: $scope
+      });
       $scope.newName = "";
       $scope.newVariety = "";
       $scope.newPrice = "";
