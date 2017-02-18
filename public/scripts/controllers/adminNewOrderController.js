@@ -51,8 +51,10 @@ myApp.controller('adminNewOrderController', [
             };
             $http.post('/order', newOrder).then(function(response) {
                 console.log('order Post hit');
-                $scope.confirmMessage = 'Your order has been submitted.';
+                $scope.emptyOrder();
+                $scope.confirmMessage = 'This order has been submitted.';
                 $scope.confirmModal();
+
             });
         };
 
@@ -73,11 +75,16 @@ myApp.controller('adminNewOrderController', [
 
             dialog.closePromise.then(function(data) {
                 $scope.selectedCustomer = data.value;
-                $scope.selectedCustomer.products.forEach(function(prod) {
-                    prod.qty = 0;
-                    prod.multi = '1';
-                });
+                $scope.emptyOrder();
             });
+
+        };
+
+        $scope.emptyOrder = function(){
+          $scope.selectedCustomer.products.forEach(function(prod) {
+              prod.qty = 0;
+              prod.multi = '1';
+              });
         };
 
         $scope.recurringOrderModal = function() {
@@ -96,4 +103,5 @@ myApp.controller('adminNewOrderController', [
             ngDialog.close();
         };
     }
+
 ]); //end clientController
