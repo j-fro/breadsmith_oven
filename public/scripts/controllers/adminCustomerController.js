@@ -160,6 +160,13 @@ myApp.controller('adminCustomerController', [
             $scope.customerToEdit.products.splice(index, 1);
         };
 
+        $scope.deleteNewProduct = function(product){
+          console.log('product:', product);
+          var index = $scope.productToBeAdded.indexOf(product);
+          $scope.productToBeAdded.splice(index, 1);
+          //$scope.customerToEdit.products.splice(index, 1);
+        };
+
         $scope.clearCreate = function(){
           $scope.customerName = '';
           $scope.customerAddress = '';
