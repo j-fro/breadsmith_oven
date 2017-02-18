@@ -57,24 +57,25 @@
         <div class="modal-body">
             <p>You will be notified by email when this order has been accepted.</p>
             <!-- <p> Please Note: Submission of this order will be pending confirmation email from Breadsmith</p> -->
-            <table class="container table table-striped">
-                <thead>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Product Description</th>
-                        <th>Product Price</th>
-                        <th>Total Quantity</th>
-                    </tr>
-                </thead>
-                <tr class="table table-striped" ng-repeat="product in customer.products">
-                    <tr class="table table-striped" ng-repeat="product in customer.products" ng-show="product.qty > 0">
-                        <td class="productDisplay">{{product.type}}</td>
-                        <td class="productDisplay">{{product.variety}}</td>
-                        <td class="productDisplay">{{product.price | currency }}</td>
-                        </td>
-                        <td>{{product.qty * product.multi}}</td>
-                    </tr>
-            </table>
+            <div class="table-responsive">
+                <table class="container table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Product Description</th>
+                            <th>Product Price</th>
+                            <th>Total Quantity</th>
+                        </tr>
+                    </thead>
+                        <tr class="table table-striped" ng-repeat="product in customer.products" ng-show="product.qty > 0">
+                            <td class="productDisplay">{{product.type}}</td>
+                            <td class="productDisplay">{{product.variety}}</td>
+                            <td class="productDisplay">{{product.price | currency }}</td>
+                            </td>
+                            <td>{{product.qty * product.multi}}</td>
+                        </tr>
+                </table>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-success" ng-click="ngDialog.close()">Go Back</button>
