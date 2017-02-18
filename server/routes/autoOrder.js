@@ -18,4 +18,32 @@ router.get('/:id', (req, res) => {
         });
 });
 
+router.delete('/:id', (req, res) => {
+    lib
+        .deleteAutoOrder(req.params.id)
+        .then(() => res.sendStatus(200))
+        .catch(err => {
+            console.log(err);
+            res
+                .status(500)
+                .send(
+                    'There was an error deleting automatic order #',
+                    req.params.id
+                );
+        });
+});
+
+router.put('/', (req, res) => {
+    lib.updateAutoOrder(req.body).then(() => res.sendStatus(200)).catch(err => {
+        console.log(err);
+        res
+            .status(500)
+            .send(
+                'Failed to update automatic order#',
+                req.body.id,
+                ': bad data supplied'
+            );
+    });
+});
+
 module.exports = router;

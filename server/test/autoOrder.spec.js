@@ -151,6 +151,66 @@ describe('Automatic order functions', () => {
         });
         afterEach(deleteInfo);
     });
+    describe('Update an order item', () => {
+        beforeEach(createInfo);
+        it('Updates an existing order item', done => {
+            lib
+                .updateAutoOrder({
+                    id: 1,
+                    qty: 17
+                })
+                .then(() => {
+                    knex
+                        .select()
+                        .from('recurring_order_items')
+                        .where('id', 1)
+                        .then(results => {
+                            expect(results.length).to.equal(1);
+                            expect(results).to.deep.include({
+                                id: 1,
+                                customer_id: 1,
+                                product_id: 1,
+                                qty: 17,
+                                recur_day: 'Monday'
+                            });
+                            done();
+                        })
+                        .catch(err => done(err));
+                })
+                .catch(err => done(err));
+        });
+        it('Updates nothing when given a nonexistant item', done => {
+            lib
+                .updateAutoOrder({id: 5, qty: 17})
+                .then(result => {
+                    expect(result).to.equal(0);
+                    done();
+                })
+                .catch(err => done(err));
+        });
+        it('Fails to update with bad data', done => {
+            lib
+                .updateAutoOrder({id: 1, qty: 17, name: 'Test bread 1'})
+                .catch(err => {
+                    knex
+                        .select()
+                        .from('recurring_order_items')
+                        .where('id', 1)
+                        .then(results => {
+                            expect(results).to.deep.include({
+                                id: 1,
+                                customer_id: 1,
+                                product_id: 1,
+                                qty: 5,
+                                recur_day: 'Monday'
+                            });
+                            done();
+                        })
+                        .catch(err => done(err));
+                });
+        });
+        afterEach(deleteInfo);
+    });
 });
 describe('Automatic order router', () => {
     describe('GET /:id', () => {
@@ -216,6 +276,88 @@ describe('Automatic order router', () => {
                 expect(body.length).to.equal(0);
                 done();
             });
+        });
+        afterEach(deleteInfo);
+    });
+    describe('DELETE /:id', () => {
+        beforeEach(createInfo);
+        it('Deletes recurring item 1', done => {
+            request.delete('http://localhost:3001/recurring/1', (
+                err,
+                response
+            ) => {
+                expect(err).to.be.null;
+                expect(response.statusCode).to.equal(200);
+                request('http://localhost:3001/recurring/1', (
+                    err,
+                    response,
+                    body
+                ) => {
+                    body = JSON.parse(body);
+                    expect(body.length).to.equal(3);
+                    expect(body).to.not.deep.include({
+                        id: 1,
+                        name: 'Testaurant',
+                        type: 'Test bread 1',
+                        variety: null,
+                        qty: 5,
+                        recur_day: 'Monday',
+                        price: 1
+                    });
+                    done();
+                });
+            });
+        });
+        it('Does not delete anything if id is not present', done => {
+            request.delete('http://localhost:3001/recurring/3005', (
+                err,
+                response
+            ) => {
+                expect(err).to.be.null;
+                expect(response.statusCode).to.equal(200);
+                knex
+                    .select()
+                    .from('recurring_order_items')
+                    .then(results => {
+                        expect(results.length).to.equal(4);
+                        done();
+                    })
+                    .catch(err => done(err));
+            });
+        });
+        afterEach(deleteInfo);
+    });
+    describe('PUT /', () => {
+        beforeEach(createInfo);
+        it('Updates recurring order 1', done => {
+            request.put(
+                'http://localhost:3001/recurring',
+                {
+                    form: {
+                        id: 1,
+                        qty: 17
+                    }
+                },
+                (err, response) => {
+                    expect(err).to.be.null;
+                    expect(response.statusCode).to.equal(200);
+                    knex
+                        .select()
+                        .from('recurring_order_items')
+                        .where('id', 1)
+                        .then(results => {
+                            expect(results).to.deep.include({
+                                id: 1,
+                                product_id: 1,
+                                customer_id: 1,
+                                qty: 17,
+                                recur_day: 'Monday'
+                            });
+                            done();
+                        })
+                        .catch(err => done(err));
+                }
+            );
         });
         afterEach(deleteInfo);
     });

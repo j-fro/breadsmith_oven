@@ -112,9 +112,17 @@ function deleteAutoOrder(id) {
     return knex.from('recurring_order_items').where('id', id).delete();
 }
 
+function updateAutoOrder(updatedOrder) {
+    return knex
+        .update(updatedOrder)
+        .from('recurring_order_items')
+        .where('id', updatedOrder.id);
+}
+
 module.exports = {
     scheduleOrders: scheduleOrders,
     getAllAutoOrders: getAllAutoOrders,
     getCustomerAutoOrders: getCustomerAutoOrders,
-    deleteAutoOrder: deleteAutoOrder
+    deleteAutoOrder: deleteAutoOrder,
+    updateAutoOrder: updateAutoOrder
 };
