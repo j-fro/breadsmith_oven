@@ -110,7 +110,7 @@
                     <h5> Current Permitted Products </h5>
                     <p class="row" ng-repeat="product in productToBeAdded track by $index">
                         <span class="col-xs-8">{{ product.type }} {{ product.variety }}</span>
-                        <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
+                        <button class="btn btn-danger" ng-click="deleteNewProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
                     </p>
                 </div>
                 <div class="col-xs-12">
