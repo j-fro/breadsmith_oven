@@ -28,6 +28,7 @@ const staffRouter = require('./routes/staff');
 const authRouter = require('./routes/auth');
 const mailRouter = require('./routes/mail');
 const importRouter = require('./routes/import');
+const autoOrderRouter = require('./routes/autoOrder');
 
 //routers
 app.use('/', indexRouter);
@@ -39,3 +40,4 @@ app.use('/staff', staffRouter);
 app.use('/auth', authRouter);
 app.use('/mail', mailRouter);
 app.use('/import', importRouter);
+app.use('/recurring', autoOrderRouter);

@@ -1,3 +1,4 @@
+const request = require('request');
 const expect = require('chai').expect;
 const knex = require('../database/dbConfig');
 const lib = require('../lib/autoOrderLib');
@@ -147,6 +148,74 @@ describe('Automatic order functions', () => {
                         .catch(err => done(err));
                 })
                 .catch(err => done(err));
+        });
+        afterEach(deleteInfo);
+    });
+});
+describe('Automatic order router', () => {
+    describe('GET /:id', () => {
+        beforeEach(createInfo);
+        it('Returns an array of automatic orders for customer 1', done => {
+            request('http://localhost:3001/recurring/1', (
+                err,
+                response,
+                body
+            ) => {
+                body = JSON.parse(body);
+                expect(err).to.be.null;
+                expect(response.statusCode).to.equal(200);
+                expect(body.length).to.equal(4);
+                expect(body).to.deep.include({
+                    id: 1,
+                    name: 'Testaurant',
+                    type: 'Test bread 1',
+                    variety: null,
+                    qty: 5,
+                    recur_day: 'Monday',
+                    price: 1
+                });
+                expect(body).to.deep.include({
+                    id: 2,
+                    name: 'Testaurant',
+                    type: 'Test bread 1',
+                    variety: null,
+                    qty: 5,
+                    recur_day: 'Monday',
+                    price: 1
+                });
+                expect(body).to.deep.include({
+                    id: 3,
+                    name: 'Testaurant',
+                    type: 'Test bread 2',
+                    variety: null,
+                    qty: 7,
+                    recur_day: 'Monday',
+                    price: 1.50
+                });
+                expect(body).to.deep.include({
+                    id: 4,
+                    name: 'Testaurant',
+                    type: 'Test bread 2',
+                    variety: null,
+                    qty: 10,
+                    recur_day: 'Tuesday',
+                    price: 1.50
+                });
+                done();
+            });
+        });
+        it('Returns an empty array for customer 2', done => {
+            request('http://localhost:3001/recurring/2', (
+                err,
+                response,
+                body
+            ) => {
+                body = JSON.parse(body);
+                expect(err).to.be.null;
+                expect(response.statusCode).to.equal(200);
+                expect(body.length).to.equal(0);
+                done();
+            });
         });
         afterEach(deleteInfo);
     });
