@@ -93,9 +93,16 @@
                 <input name="saturday" type="checkbox" class="checkbox" ng-model="recur.Saturday">
                 <label for="saturday">Produce on Saturday (Deliver Sunday)</label>
             </span>
-            <button class="separateButtons btn btn-success" ng-click="setRecurrance()">Submit</button>
+            <button class="separateButtons btn btn-success" ng-click="setRecurrance(); closeDialog()">Submit</button>
             <button class="separateButtons btn btn-warning" ng-click="closeDialog()">Cancel</button>
         </div>
+  
+    <script type="text/ng-template" id="confirmOrder">
+        <div class="modal-header">
+            <h4>Thank you!</h4>
+        </div>
+        <div class="modal-body">
+            <p>{{ recurringMessage }}</p>
         </div>
     </script>
 </section>

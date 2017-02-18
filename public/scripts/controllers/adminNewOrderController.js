@@ -20,17 +20,19 @@ myApp.controller('adminNewOrderController', [
         };
 
         $scope.setRecurrance = function() {
+
             var days = Object.keys($scope.recur).filter(function(key) {
-                return $scope.recur[key];
+            return $scope.recur[key];
+
             });
             $http
                 .post('/order/recurring', {
                     customer_id: $scope.selectedCustomer.id,
                     products: $scope.selectedCustomer.products,
-                    days: days
+                    days: days,
                 })
                 .then(function(response) {
-                    $scope.closeThisDialog();
+                  $scope.closeThisDialog();
                 })
                 .catch(function(err) {
                     console.log(err);
@@ -83,6 +85,10 @@ myApp.controller('adminNewOrderController', [
                 template: 'recurringOrder',
                 controller: 'adminNewOrderController',
                 scope: $scope
+            });
+            dialog.closePromise.then(function() {
+                $scope.recurringMessage = 'Your recurring order has been submitted.';
+                $scope.confirmModal();
             });
         };
 
