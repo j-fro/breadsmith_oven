@@ -68,7 +68,9 @@
                     <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
                 </p>
                 <h5>Add Permitted Products:</h5>
-                <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
+                <div class="addPermittedDiv">
+                  <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
+                </div>
                 <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox | orderBy: 'type'">
                     <span class="col-xs-8">{{product.type}} {{product.variety}} {{product.price | currency}}</span>
                     <button class="btn btn-success" ng-click="editCustomerAddProduct(product)"><i class="glyphicon glyphicon-plus"></i></button>
@@ -112,12 +114,12 @@
                     </p>
                 </div>
                 <div class="col-xs-12">
-                    <div class="row">
+                    <div class="row addPermittedDiv">
                         <h5>Add Permitted Products:</h5>
                         <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
                     </div>
                     <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox | orderBy:'type'">
-                        <span class="col-xs-8">{{product.type}} {{product.variety}}
+                        <span class="col-xs-8 ">{{product.type}} {{product.variety}}
                                   {{product.price | currency}}</span>
                         <button class="btn btn-success" ng-click="newCustomerAddProduct(product)"><i class="glyphicon glyphicon-plus"></i></button>
                     </p>
