@@ -955,5 +955,10 @@ insert into permitted_products (id,   customer_id,   product_id,   regular) valu
 insert into permitted_products (id,   customer_id,   product_id,   regular) values (871, 99, 86,   true);
 insert into permitted_products (id,   customer_id,   product_id,   regular) values (510, 99, 88,   true);
 insert into permitted_products (id,   customer_id,   product_id,   regular) values (941, 99, 94,   true);
+insert into permitted_products (id,   customer_id,   product_id,   regular) values (1001, 101, 41,   true);
+insert into permitted_products (id,   customer_id,   product_id,   regular) values (1002, 101, 105,   true);
+insert into permitted_products (id,   customer_id,   product_id,   regular) values (1003, 101, 101,   true);
+insert into permitted_products (id,   customer_id,   product_id,   regular) values (1004, 101, 123,   true);
+insert into permitted_products (id,   customer_id,   product_id,   regular) values (1005, 101, 160,   true);
 
 SELECT setval('permitted_products_id_seq', (SELECT MAX(id) FROM permitted_products));

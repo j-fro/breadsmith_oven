@@ -166,7 +166,6 @@ function aggregateOrder(results) {
             obj.customer_id = row.customer_id;
             obj.customer_name = row.name;
             obj.customer_address = row.address;
-            obj.customer_phone = row.phone;
             obj.primary_contact_name = row.primary_contact_name;
             obj.secondary_contact_name = row.secondary_contact_name;
             obj.primary_email = row.primary_email;
