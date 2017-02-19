@@ -58,25 +58,15 @@
             </div>
             <!-- need to fix stlye here -->
             <div class="modal-body">
-
-                <div class="col-xs-12">
-                    <div class="row">
-                        <h5> Current Permitted Products: </h5>
-                        <p class="row" ng-repeat="product in customerToEdit.products | orderBy: 'type'">
-                            <span class="col-xs-8">{{ product.type }} {{ product.variety }}</span>
-                            <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12">
-                <div class="row">
-                    <h5>Add Permitted Products:</h5>
-                    <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
-                </div>
+                <h5> Current Permitted Products: </h5>
+                <p class="row" ng-repeat="product in customerToEdit.products | orderBy: 'type'">
+                    <span class="col-xs-8">{{ product.type }} {{ product.variety }}</span>
+                    <button class="btn btn-danger" ng-click="deleteProduct(product)"><i class="glyphicon glyphicon-remove"></i></button>
+                </p>
+                <h5>Add Permitted Products:</h5>
+                <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
                 <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox | orderBy: 'type'">
-                    <span class="col-xs-8">{{product.type}} {{product.variety}}
-                  {{product.price | currency}}</span>
+                    <span class="col-xs-8">{{product.type}} {{product.variety}} {{product.price | currency}}</span>
                     <button class="btn btn-success" ng-click="editCustomerAddProduct(product)"><i class="glyphicon glyphicon-plus"></i></button>
                 </p>
             </div>
