@@ -25,7 +25,7 @@ function($scope, $http, $window, AuthFactory, ngDialog) {
       console.log(response);
       $scope.showStaff();
       $scope.success = true;
-      $scope.modalBody = 'Staff member updated.'
+      $scope.modalBody = 'Staff member updated.';
       ngDialog.open({
           template: 'responseModal',
           scope: $scope
@@ -51,7 +51,7 @@ function($scope, $http, $window, AuthFactory, ngDialog) {
       console.log(response);
       $scope.showStaff();
       $scope.success = true;
-      $scope.modalBody = 'Staff member deleted.'
+      $scope.modalBody = 'Staff member deleted.';
       ngDialog.open({
           template: 'responseModal',
           scope: $scope
@@ -80,7 +80,7 @@ function($scope, $http, $window, AuthFactory, ngDialog) {
       $scope.clearAdd();
       $scope.showStaff();
       $scope.success = true;
-      $scope.modalBody = 'Staff member added.'
+      $scope.modalBody = 'Staff member added.';
       ngDialog.open({
           template: 'responseModal',
           scope: $scope
