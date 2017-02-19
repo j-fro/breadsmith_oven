@@ -26,6 +26,8 @@ myApp.controller('adminCustomerController', [
         $scope.newCustomerAddProduct = function(product) {
             $scope.productToBeAdded.push(product);
             console.log('product added');
+            var index = $scope.permitted_products.indexOf(product);
+            $scope.permitted_products.splice(index, 1);
         };
 
         $scope.editCustomerAddProduct = function(product) {
@@ -69,16 +71,18 @@ myApp.controller('adminCustomerController', [
                 function successCallback(response) {
                     console.log(response);
                     $scope.success = true;
-                    $scope.modalBody = 'Saved customer successfully.'
+                    $scope.modalBody = 'Saved customer successfully.';
                     ngDialog.open({
                         template: 'responseModal',
                         scope: $scope
                     });
+                    $scope.clearCreate();
                     $scope.viewCustomer();
+                    $scope.viewProduct();
                 },
                 function errorCallback(error) {
                     console.log('error', error);
-                    $scope.modalBody = 'Sorry, there was an error. Please try again.'
+                    $scope.modalBody = 'Sorry, there was an error. Please try again.';
                     ngDialog.open({
                         template: 'responseModal',
                         scope: $scope
@@ -86,7 +90,7 @@ myApp.controller('adminCustomerController', [
                     console.log('error', error);
                 }
             );
-        }; //end addNewCustomer
+        }; //end Customer
 
         $scope.editCustomer = function(customer) {
             console.log('customer before', customer);
@@ -105,7 +109,7 @@ myApp.controller('adminCustomerController', [
                 function successCallback(response) {
                     console.log(response);
                     $scope.success = true;
-                    $scope.modalBody = 'Saved customer successfully.'
+                    $scope.modalBody = 'Saved customer successfully.';
                     ngDialog.open({
                         template: 'responseModal',
                         scope: $scope
@@ -114,7 +118,7 @@ myApp.controller('adminCustomerController', [
                 },
                 function errorCallback(error) {
                     $scope.success = false;
-                    $scope.modalBody = 'Sorry, there was an error. Please try again.'
+                    $scope.modalBody = 'Sorry, there was an error. Please try again.';
                     ngDialog.open({
                         template: 'responseModal',
                         scope: $scope
@@ -134,7 +138,7 @@ myApp.controller('adminCustomerController', [
                 function successCallback(response) {
                     console.log(response);
                     $scope.success = true;
-                    $scope.modalBody = 'Customer Deleted.'
+                    $scope.modalBody = 'Customer Deleted.';
                     ngDialog.open({
                         template: 'responseModal',
                         scope: $scope
@@ -143,7 +147,7 @@ myApp.controller('adminCustomerController', [
                 },
                 function errorCallback(error) {
                     console.log('error', error);
-                    $scope.modalBody = 'Sorry, there was an error. Please try again.'
+                    $scope.modalBody = 'Sorry, there was an error. Please try again.';
                     ngDialog.open({
                         template: 'responseModal',
                         scope: $scope
@@ -163,7 +167,7 @@ myApp.controller('adminCustomerController', [
             console.log('product:', product);
             var index = $scope.productToBeAdded.indexOf(product);
             $scope.productToBeAdded.splice(index, 1);
-            //$scope.customerToEdit.products.splice(index, 1);
+            $scope.permitted_products.push(product);
         };
 
         $scope.clearCreate = function() {
@@ -175,6 +179,8 @@ myApp.controller('adminCustomerController', [
             $scope.secondaryContactName = '';
             $scope.secondaryCustomerEmail = '';
             $scope.secondaryCustomerNumber = '';
+            $scope.productToBeAdded = [];
+            $scope.searchProductBox = '';
         }; //end clearData function
 
         $scope.viewRecurringOrders = function(customer) {
@@ -200,7 +206,7 @@ myApp.controller('adminCustomerController', [
                 .then(function() {
                     item.editing = false;
                     $scope.success = true;
-                    $scope.modalBody = 'Updated successfully.'
+                    $scope.modalBody = 'Updated successfully.';
                     ngDialog.open({
                         template: 'responseModal',
                         scope: $scope
@@ -209,7 +215,7 @@ myApp.controller('adminCustomerController', [
                 .catch(function(err) {
                     console.log('error', error);
                     $scope.success = false;
-                    $scope.modalBody = 'Sorry, there was an error. Please try again.'
+                    $scope.modalBody = 'Sorry, there was an error. Please try again.';
                     ngDialog.open({
                         template: 'responseModal',
                         scope: $scope
@@ -222,7 +228,7 @@ myApp.controller('adminCustomerController', [
                 .delete('/recurring/' + item.id)
                 .then(function() {
                     $scope.success = true;
-                    $scope.modalBody = 'Recurring item deleted.'
+                    $scope.modalBody = 'Recurring item deleted.';
                     ngDialog.open({
                         template: 'responseModal',
                         scope: $scope
@@ -232,7 +238,7 @@ myApp.controller('adminCustomerController', [
                 .catch(function(err) {
                     console.log('error', error);
                     $scope.success = false;
-                    $scope.modalBody = 'Sorry, there was an error. Please try again.'
+                    $scope.modalBody = 'Sorry, there was an error. Please try again.';
                     ngDialog.open({
                         template: 'responseModal',
                         scope: $scope

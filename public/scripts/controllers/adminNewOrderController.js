@@ -52,7 +52,7 @@ myApp.controller('adminNewOrderController', [
             $http.post('/order', newOrder).then(function(response) {
                 console.log('order Post hit');
                 $scope.emptyOrder();
-                $scope.confirmMessage = 'This order has been submitted.'
+                $scope.confirmMessage = 'This order has been submitted.';
                 $scope.confirmModal();
 
             });
@@ -94,7 +94,7 @@ myApp.controller('adminNewOrderController', [
                 scope: $scope
             });
             dialog.closePromise.then(function() {
-                $scope.recurringMessage = 'Your recurring order has been submitted.'
+                $scope.recurringMessage = 'Your recurring order has been submitted.';
                 $scope.emptyOrder();
                 $scope.confirmModal();
             });

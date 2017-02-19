@@ -109,7 +109,7 @@
                         <h5>Add Permitted Products:</h5>
                         <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
                     </div>
-                    <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox track by $index">
+                    <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox | orderBy:'type'">
                         <span class="col-xs-8">{{product.type}} {{product.variety}}
                                   {{product.price | currency}}</span>
                         <button class="btn btn-success" ng-click="newCustomerAddProduct(product)"><i class="glyphicon glyphicon-plus"></i></button>
@@ -140,12 +140,9 @@
 </div>
 
 <script type="text/ng-template" id="responseModal">
-<div
-    class="alert confirmAlert"
-    ng-class="{'alert-success': success, 'alert-danger': !success}"
->
+<div class="alert confirmAlert" ng-class="{'alert-success': success, 'alert-danger': !success}">
     <p>{{modalBody}}</p>
-</div>;
+</div>
 </script>
 
 <div class="modal fade" id="recurringOrderModal" role="dialog">
