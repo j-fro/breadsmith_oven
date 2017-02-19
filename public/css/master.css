@@ -1,7 +1,16 @@
-body{
-  background-image: url(../images/babka.jpg);
-  background-repeat: repeat-y;
-  background-size: 100%;
+@media (min-width: 769px) {
+    body {
+      background-image: url(../images/babka.jpg);
+      background-repeat: repeat-y;
+      background-size: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        min-height: 500px;
+        background-color: #f4ecd7 !important;
+    }
 }
 
 header{
@@ -22,11 +31,6 @@ table {
 
 .container{
   text-align: center;
-}
-
-.container-fluid{
-  float: right;
-  margin: -100px 90px 0 0;
 }
 
 .submitOrderButton, .customerLogout{
@@ -59,9 +63,25 @@ main {
     opacity: 0.75;
 }
 
-.custLoginButton{
+div.custLoginButton{
+    margin: auto;
+    text-align: center;
   margin-top: 1em;
-  background-color: rgb(51, 122, 183) !important;
+  width: 191px;
+  height: 46px;
+  background: url(../images/google-sign-in/btn_google_signin_dark_normal_web.png);
+}
+
+div.custLoginButton:hover {
+    cursor: pointer;
+}
+
+div.custLoginButton:focus {
+    background: url(../images/google-sign-in/btn_google_signin_dark_focus_web.png)
+}
+
+div.custLoginButton:active {
+    background: url(../images/google-sign-in/btn_google_signin_dark_pressed_web.png)
 }
 
 .productSearchBar, .customerSearchBar{
@@ -242,3 +262,13 @@ span.form-group {
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+@media (max-width: 768px) {
+    main {
+        padding-top: 0;
+    }
+    .homeBody {
+        margin: 0;
+        padding: 5px;
+        }
+    }
