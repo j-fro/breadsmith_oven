@@ -75,6 +75,7 @@ myApp.controller('adminCustomerController', [
                         scope: $scope
                     });
                     $scope.clearCreate();
+
                     $scope.viewCustomer();
                 },
                 function errorCallback(error) {
@@ -176,6 +177,7 @@ myApp.controller('adminCustomerController', [
             $scope.secondaryContactName = '';
             $scope.secondaryCustomerEmail = '';
             $scope.secondaryCustomerNumber = '';
+            $scope.productToBeAdded = [];
         }; //end clearData function
 
         $scope.viewRecurringOrders = function(customer) {
