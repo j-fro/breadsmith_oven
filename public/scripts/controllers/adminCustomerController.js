@@ -26,6 +26,8 @@ myApp.controller('adminCustomerController', [
         $scope.newCustomerAddProduct = function(product) {
             $scope.productToBeAdded.push(product);
             console.log('product added');
+            var index = $scope.permitted_products.indexOf(product);
+            $scope.permitted_products.splice(index, 1);
         };
 
         $scope.editCustomerAddProduct = function(product) {
@@ -75,8 +77,8 @@ myApp.controller('adminCustomerController', [
                         scope: $scope
                     });
                     $scope.clearCreate();
-
                     $scope.viewCustomer();
+                    $scope.viewProduct();
                 },
                 function errorCallback(error) {
                     console.log('error', error);
@@ -88,7 +90,7 @@ myApp.controller('adminCustomerController', [
                     console.log('error', error);
                 }
             );
-        }; //end addNewCustomer
+        }; //end Customer
 
         $scope.editCustomer = function(customer) {
             console.log('customer before', customer);
@@ -165,7 +167,7 @@ myApp.controller('adminCustomerController', [
             console.log('product:', product);
             var index = $scope.productToBeAdded.indexOf(product);
             $scope.productToBeAdded.splice(index, 1);
-            //$scope.customerToEdit.products.splice(index, 1);
+            $scope.permitted_products.push(product);
         };
 
         $scope.clearCreate = function() {
@@ -178,6 +180,7 @@ myApp.controller('adminCustomerController', [
             $scope.secondaryCustomerEmail = '';
             $scope.secondaryCustomerNumber = '';
             $scope.productToBeAdded = [];
+            $scope.searchProductBox = '';
         }; //end clearData function
 
         $scope.viewRecurringOrders = function(customer) {
