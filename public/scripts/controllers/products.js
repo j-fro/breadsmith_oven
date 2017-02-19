@@ -31,7 +31,7 @@ myApp.controller("productRead", ["$scope", "$http", "$window", "ngDialog", funct
     }).then(function(res) {
       console.log(res);
       $scope.success = true;
-      $scope.modalBody = 'Product updated.';
+      $scope.modalBody = 'Product updated.'
       ngDialog.open({
           template: 'responseModal',
           scope: $scope
@@ -50,7 +50,7 @@ myApp.controller("productRead", ["$scope", "$http", "$window", "ngDialog", funct
     }).then(function(res) {
       console.log(res);
       $scope.success = true;
-      $scope.modalBody = 'Product Deleted.';
+      $scope.modalBody = 'Product Deleted.'
       ngDialog.open({
           template: 'responseModal',
           scope: $scope
@@ -73,7 +73,7 @@ myApp.controller("productRead", ["$scope", "$http", "$window", "ngDialog", funct
     }).then (function successCallback(response)  {
       console.log("Post call response", response);
       $scope.success = true;
-      $scope.modalBody = 'Product successfully added.';
+      $scope.modalBody = 'Product successfully added.'
       ngDialog.open({
           template: 'responseModal',
           scope: $scope
