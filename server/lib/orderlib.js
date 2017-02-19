@@ -123,12 +123,15 @@ function editOrder(order) {
             (sum, prod) => sum + prod.price * prod.qty,
             0
         );
-        order.products = undefined;
-        order.contact_name = undefined;
-        order.email = undefined;
-        order.customer_name = undefined;
-        order.customer_address = undefined;
-        order.customer_phone = undefined;
+        order = {
+            id: order.id,
+            total_cost: order.total_cost,
+            total_qty: order.total_qty,
+            created: order.created,
+            status: order.status,
+            comments: order.comments,
+            customer_id: order.customer_id
+        };
         let update = knex.update(order).from('orders').where('id', order.id);
         Promise.all([delete_items, insert_items, update])
             .then(() => resolve())
