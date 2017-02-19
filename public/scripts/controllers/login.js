@@ -12,7 +12,7 @@ myApp.controller('LoginController', [
             console.log('login button clicked');
             firebase
                 .auth()
-                .signInWithPopup(provider)
+                .signInWithRedirect(provider)
                 .then(function(firebaseUser) {
                     console.log('logged in user:', firebaseUser);
                 })
