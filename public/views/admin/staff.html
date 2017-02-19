@@ -38,7 +38,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" ng-click="updateStaff()" data-dismiss="modal">Submit Changes</button>
+          <button type="button" class="btn btn-success" ng-click="updateStaff()" data-dismiss="modal">Submit</button>
           <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -82,4 +82,10 @@
         </div>
       </div>
     </div>
+
   </div>
+  <script type="text/ng-template" id="responseModal">
+  <div class="alert confirmAlert" ng-class="{'alert-success': success, 'alert-danger': !success}">
+      <p>{{modalBody}}</p>
+  </div>
+  </script>

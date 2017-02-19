@@ -95,6 +95,7 @@ myApp.controller('adminNewOrderController', [
             });
             dialog.closePromise.then(function() {
                 $scope.recurringMessage = 'Your recurring order has been submitted.';
+                $scope.emptyOrder();
                 $scope.confirmModal();
             });
         };

@@ -1,5 +1,5 @@
-myApp.controller('adminStaffController', ['$scope', '$http', '$window', 'AuthFactory',
-function($scope, $http, $window, AuthFactory) {
+myApp.controller('adminStaffController', ['$scope', '$http', '$window', 'AuthFactory', "ngDialog",
+function($scope, $http, $window, AuthFactory, ngDialog) {
   $scope.showStaff = function() {
     $http({
       method: 'GET',
@@ -24,6 +24,12 @@ function($scope, $http, $window, AuthFactory) {
     }).then(function(response) {
       console.log(response);
       $scope.showStaff();
+      $scope.success = true;
+      $scope.modalBody = 'Staff member updated.';
+      ngDialog.open({
+          template: 'responseModal',
+          scope: $scope
+      });
     }).catch(function(error){
       console.log(error);
     });//end PUT
@@ -39,15 +45,23 @@ function($scope, $http, $window, AuthFactory) {
     console.log('deleting:', toDelete);
     $http({
       method: 'DELETE',
-      url: 'staff/' + toDelete,
+      url: '/staff/' + toDelete,
       data: toDelete
     }).then(function(response){
       console.log(response);
       $scope.showStaff();
+      $scope.success = true;
+      $scope.modalBody = 'Staff member deleted.';
+      ngDialog.open({
+          template: 'responseModal',
+          scope: $scope
+      });
+
     }).catch(function(error){
       console.log(error);
     });
   };//end $scope.deleteStaff
+
 
   $scope.addStaff = function(){
     console.log('adding staff');
@@ -65,6 +79,12 @@ function($scope, $http, $window, AuthFactory) {
       console.log(response);
       $scope.clearAdd();
       $scope.showStaff();
+      $scope.success = true;
+      $scope.modalBody = 'Staff member added.';
+      ngDialog.open({
+          template: 'responseModal',
+          scope: $scope
+      });
     }).catch(function(error){
       console.log('problem adding:', error);
     });
