@@ -74,6 +74,7 @@ myApp.controller('adminCustomerController', [
                         template: 'responseModal',
                         scope: $scope
                     });
+                    $scope.clearCreate();
                     $scope.viewCustomer();
                 },
                 function errorCallback(error) {
