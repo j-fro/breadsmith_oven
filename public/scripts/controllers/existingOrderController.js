@@ -140,6 +140,12 @@ myApp.controller('ExistingOrderController', [
             }
         };
 
+        $scope.mailMessage = 'Your order has been confirmed!';
+        $scope.dateSelected = new Date();
+        $scope.getOrders();
+        $scope.popup = {
+            opened: false
+        };
         $scope.toggle = function() {
             $scope.popup.opened = !$scope.popup.opened;
         };
