@@ -33,6 +33,7 @@ myApp.controller('ExistingOrderController', [
         $scope.viewOrder = function(order) {
             $scope.viewedOrder = order;
             $scope.orderEditForm.$setPristine();
+            $scope.isDisabled = false;
         };
 
         $scope.removeProduct = function(product) {
@@ -40,7 +41,11 @@ myApp.controller('ExistingOrderController', [
                 $scope.viewedOrder.products.indexOf(product),
                 1
             );
-        };
+            $scope.isDisabled = true;
+
+          };
+
+
 
         $scope.updateOrder = function() {
             $scope.viewedOrder.include = undefined;

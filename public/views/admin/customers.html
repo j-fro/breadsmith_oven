@@ -4,7 +4,8 @@
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addCustomerModal">Add New Customer <span class="glyphicon glyphicon-plus-sign"></span></button>
     </div>
     <div class="customerSearchDiv">
-        <input type="text" name="searchCustomer" class="customerSearchBar" placeholder="Search Existing Customers" ng-model="searchCustomerBox" />
+        <input type="text" name="searchCustomer" class="customerSearchBar" placeholder="Search Existing Customers" ng-model="searchCustomerBox"
+        />
     </div>
     <table class="table table-striped">
         <tr ng-repeat="customer in customers | orderBy: 'name' | filter: searchCustomerBox track by $index">
@@ -12,8 +13,9 @@
             <td>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#permitedProductsModal" ng-click="editCustomer(customer)">Permitted Products <i class="glyphicon glyphicon-thumbs-up"></i></button>
                 <button type="button" class="btn btn-default" ng-click="viewRecurringOrders(customer)" data-toggle="modal" data-target="#recurringOrderModal">Recurring Orders <i class="glyphicon glyphicon-refresh primary"></i></button>
-                <button type="button" class="btn btn-info glyphicon glyphicon-edit" data-toggle="modal" data-target="#editCustomerModal" ng-click="editCustomer(customer)"></button>
-                <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#delCustModal" ng-click="editCustomer(customer)"></button>
+                <button type="button" class="btn btn-info glyphicon glyphicon-edit" data-toggle="modal" data-target="#editCustomerModal"
+                    ng-click="editCustomer(customer)"></button>
+                    <button type="button" class="btn btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#delCustModal" ng-click="editCustomer(customer)"></button>
             </td>
         </tr>
     </table>
@@ -39,7 +41,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Submit" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid" />
+                <input class="btn btn-success" type="submit" data-toggle="modal" data-target="#editCustomerModal" name="updateCustomer" value="Submit"
+                    ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid" />
                 <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -53,7 +56,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Edit Permitted Products</h1>
-                <input class="btn btn-success" data-dismiss="modal" type="submit" data-toggle="modal" data-target="#editPermittedProductsModal" value="Save" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid" />
+                <input class="btn btn-success" data-dismiss="modal" type="submit" data-toggle="modal" data-target="#editPermittedProductsModal"
+                    value="Save" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid" />
                 <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="clearCreate()">Close</button>
             </div>
             <!-- need to fix stlye here -->
@@ -83,19 +87,24 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Create Customer</h1>
-                <input class="  btn btn-success" type="submit" data-toggle="modal" data-target="#addCustomerModal" value="Save" ng-click="addCustomer()" ng-disabled="createCustomerForm.$invalid" />
-                <button type="button" class="btn btn-danger" ng-click="clearCreate()" data-dismiss="modal">Close</button>
+                <input class="  btn btn-success" type="submit" data-toggle="modal" data-target="#addCustomerModal" value="Save" ng-click="addCustomer()"
+                    ng-disabled="createCustomerForm.$invalid" />
+                <button type="button" class="btn btn-warning" ng-click="clearCreate()" data-dismiss="modal">Close</button>
             </div>
             <div class="modal-body">
                 <form class="form" name="createCustomerForm">
-                    <label>Customer Name (Required): </label><input type="text" class="form-control" ng-model="customerName" required>
-                    <label>Address: </label><input type="text" class="form-control" ng-model="customerAddress">
-                    <label>Primary Contact Name:</label><input type="text" class="form-control" ng-model="primaryContactName">
-                    <label>Primary Contact Phone:</label><input type="text" class="form-control" ng-model="primaryCustomerNumber">
-                    <label>Primary Contact Email (Required):</label><input type="email" class="form-control" ng-model="primaryCustomerEmail" required>
-                    <label>Secondary Contact Name:</label><input type="text" class="form-control" ng-model="secondaryContactName">
-                    <label>Secondary Contact Phone:</label><input type="text" class="form-control" ng-model="secondaryCustomerNumber">
-                    <label>Secondary Contact Email:</label><input type="email" class="form-control" ng-model="secondaryCustomerEmail">
+                    <label>Customer Name (Required): </label>
+                    <input type="text" class="form-control" ng-model="customerName"
+                        required>
+                        <label>Address: </label><input type="text" class="form-control" ng-model="customerAddress">
+                        <label>Primary Contact Name:</label><input type="text" class="form-control" ng-model="primaryContactName">
+                        <label>Primary Contact Phone:</label><input type="text" class="form-control" ng-model="primaryCustomerNumber">
+                        <label>Primary Contact Email (Required):</label>
+                        <input type="email" class="form-control" ng-model="primaryCustomerEmail"
+                            required>
+                            <label>Secondary Contact Name:</label><input type="text" class="form-control" ng-model="secondaryContactName">
+                            <label>Secondary Contact Phone:</label><input type="text" class="form-control" ng-model="secondaryCustomerNumber">
+                            <label>Secondary Contact Email:</label><input type="email" class="form-control" ng-model="secondaryCustomerEmail">
                 </form>
                 <div class="col-xs-12">
                     <h5> Current Permitted Products </h5>
@@ -140,9 +149,9 @@
 </div>
 
 <script type="text/ng-template" id="responseModal">
-<div class="alert confirmAlert" ng-class="{'alert-success': success, 'alert-danger': !success}">
-    <p>{{modalBody}}</p>
-</div>
+    <div class="alert confirmAlert" ng-class="{'alert-success': success, 'alert-danger': !success}">
+        <p>{{modalBody}}</p>
+    </div>
 </script>
 
 <div class="modal fade" id="recurringOrderModal" role="dialog">
@@ -150,7 +159,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4>Recurring Items for {{ recurCustomer.name }}</h4>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
             </div>
             <div class="modal-body">
                 <table class="table table-striped">
