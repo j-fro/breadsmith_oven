@@ -34,6 +34,7 @@ myApp.controller('ExistingOrderController', [
             $scope.viewedOrder = order;
             $scope.orderEditForm.$setPristine();
             $scope.isDisabled = false;
+            $scope.mailMessage = 'Your order has been confirmed!';
         };
 
         $scope.removeProduct = function(product) {
@@ -42,10 +43,7 @@ myApp.controller('ExistingOrderController', [
                 1
             );
             $scope.isDisabled = true;
-
-          };
-
-
+        };
 
         $scope.updateOrder = function() {
             $scope.viewedOrder.include = undefined;
