@@ -98,5 +98,6 @@ insert into customers (id, name, address, last_order_date, primary_email, primar
 insert into customers (id, name, address, last_order_date, primary_email, primary_phone, primary_contact_name) values (98, 'Wunsch-Hoppe', '150 Reinke Trail', null, 'mnelson2p@huffingtonpost.com', null, null);
 insert into customers (id, name, address, last_order_date, primary_email, primary_phone, primary_contact_name) values (99, 'McClure Inc', '12 Cascade Way', '2016-12-01 00:16:17', 'ehernandez2q@bloglines.com', '86-(805)635-0478', 'Earl Hernandez');
 insert into customers (id, name, address, last_order_date, primary_email, primary_phone, primary_contact_name) values (100, 'Kerluke Inc', '923 Moose Road', '2016-07-12 20:33:55', 'cfernandez2r@mozilla.org', '86-(756)629-3351', 'Chris Fernandez');
+insert into customers (id, name, address, last_order_date, primary_email, primary_phone, primary_contact_name) values (101, 'Prime Hotel', '9401 James Avenue S.', null, 'sherrieatprimehotel@gmail.com', null, 'Sherrie Bloomquist');
 
 SELECT setval('customers_id_seq', (SELECT MAX(id) FROM customers));
