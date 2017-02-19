@@ -43,7 +43,7 @@ myApp.controller('adminReportsController', [
                         .post('/import/' + route, results.data)
                         .then(function(response) {
                             $scope.modalHeader = 'Success';
-                            $scope.modalBody = 'Your file has been imported successfully.'
+                            $scope.modalBody = 'Your file has been imported successfully.';
                             ngDialog.open({
                                 template: 'responseModal',
                                 scope: $scope
@@ -52,7 +52,7 @@ myApp.controller('adminReportsController', [
                         .catch(function(err) {
                             console.log(err);
                             $scope.modalHeader = 'Error';
-                            $scope.modalBody = 'There was an error importing your file.'
+                            $scope.modalBody = 'There was an error importing your file.';
                             ngDialog.open({
                                 template: 'responseModal',
                                 scope: $scope
