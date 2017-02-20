@@ -293,3 +293,7 @@ span.form-group {
         transform: rotate(359deg);
     }
 }
+
+.existingOrderButtons{
+  margin-left: 30px;
+}
