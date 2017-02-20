@@ -74,10 +74,13 @@
 </div>
 
 <script type="text/ng-template" id="responseModal">
-<div
-    class="alert"
-    ng-class="{'alert-success': success, 'alert-danger': !success}"
->
+<div class="alert" ng-class="{'alert-success': success, 'alert-danger': !success}">
     <p>{{modalBody}}</p>
 </div>
+</script>
+
+<script type="text/ng-template" id="spinner">
+    <h1 class="text-center">
+        <span class="glyphicon glyphicon-repeat fast-right-spinner"></span>
+    <h1>
 </script>
