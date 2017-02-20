@@ -144,16 +144,17 @@ header a {
     margin-top: 1em !important;
 }
 
-a:hover{
+/*a:hover{
   font-weight: bold;
   text-decoration: underline !important;
   background-color: #f4ecd7 !important;
-}
+}*/
 
-a:focus{
-  background-color:#f4ecd7 !important;
-  text-decoration: underline !important;
-
+a:focus, a:hover, a.selected-nav{
+  background-color: rgb(51, 122, 183) !important;
+  color:#f4ecd7 !important;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
 
 a::selection{
