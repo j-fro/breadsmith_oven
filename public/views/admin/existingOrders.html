@@ -2,8 +2,9 @@
 <div class="homeBody container" id="wrapper" ng-init="init()">
     <h1>Existing Orders</h1>
     <form class="input-group col-md-4 col-md-offset-4">
-        <input type="text" class="form-control" uib-datepicker-popup ng-model="dateSelected" is-open="popup.opened" datepicker-options="options" close-text="Close" ng-change="getOrders()">
-        <span class="input-group-btn">
+        <input type="text" class="form-control" uib-datepicker-popup ng-model="dateSelected" is-open="popup.opened" datepicker-options="options"
+            close-text="Close" ng-change="getOrders()">
+            <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="toggle()"><i class="glyphicon glyphicon-calendar"></i></button>
         </span>
     </form>
@@ -74,13 +75,13 @@
 </div>
 
 <script type="text/ng-template" id="responseModal">
-<div class="alert" ng-class="{'alert-success': success, 'alert-danger': !success}">
-    <p>{{modalBody}}</p>
-</div>
+    <div class="alert" ng-class="{'alert-success': success, 'alert-danger': !success}">
+        <p>{{modalBody}}</p>
+    </div>
 </script>
 
 <script type="text/ng-template" id="spinner">
     <h1 class="text-center">
         <span class="glyphicon glyphicon-repeat fast-right-spinner"></span>
-    <h1>
+        <h1>
 </script>
