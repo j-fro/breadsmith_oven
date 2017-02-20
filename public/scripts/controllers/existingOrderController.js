@@ -83,6 +83,9 @@ myApp.controller('ExistingOrderController', [
         };
 
         $scope.sendMessage = function() {
+            var spinner = ngDialog.open({
+                template: 'spinner'
+            });
             var data = {
                 orderId: $scope.viewedOrder.id,
                 emailTo: [
@@ -105,6 +108,7 @@ myApp.controller('ExistingOrderController', [
                     console.log('Successfully sent');
                     $scope.success = true;
                     $scope.modalBody = 'Your email was sent.';
+                    spinner.close();
                     ngDialog.open({
                         template: 'responseModal',
                         scope: $scope
