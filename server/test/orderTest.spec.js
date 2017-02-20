@@ -92,11 +92,14 @@ describe('Order CRUD functions', () => {
     });
     describe('addOrder', () => {
         it('Adds an order to the DB', done => {
-            lib.addOrder({
-                customer_id: 2,
-                customer_name: 'Test Hotel',
-                created: new Date(2017)
-            });
+            lib
+                .addOrder({
+                    customer_id: 2,
+                    customer_name: 'Test Hotel',
+                    created: new Date(2017)
+                })
+                .then(() => done())
+                .catch(err => done(err));
         });
     });
     // beforeEach(done => {
