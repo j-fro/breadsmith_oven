@@ -59,7 +59,7 @@
                 </form>
 
 
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewOrderDialog" ng-click="updateOrder()" ng-disabled="orderEditForm.$pristine && !isDisabled">Save Changes</button>
+                <button type="button" class="btn btn-success" ng-click="updateOrder()" ng-disabled="orderEditForm.$pristine && !isDisabled">Save Changes</button>
                 <h3 ng-if="viewedOrder.comments.length > 0">Customer comments:</h3>
                 <p>{{ viewedOrder.comments }}</p>
                 <label class="row">Email Message:</label>
@@ -74,7 +74,10 @@
 </div>
 
 <script type="text/ng-template" id="responseModal">
-<div class="alert" ng-class="{'alert-success': success, 'alert-danger': !success}">
+<div
+    class="alert"
+    ng-class="{'alert-success': success, 'alert-danger': !success}"
+>
     <p>{{modalBody}}</p>
-</div>
+</div>;
 </script>
