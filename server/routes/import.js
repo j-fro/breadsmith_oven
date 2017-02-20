@@ -33,6 +33,7 @@ router.post('/customer', (req, res) => {
 });
 
 /*
+ * POST route for importing products
  * @data params: [
  *     Array: {
  *         'Product Name': [string],
