@@ -6,6 +6,12 @@ const lib = require('../lib/reportlib');
 
 let router = express.Router();
 
+/*
+ * GET route to get a production order
+ * @url params: /:date [ISO 8601 date string] // Date to generate report for
+ *     /:filename (optional)[string] // Filename for export
+ * @response: [CSV File] (success) || [string] (failure)
+ */
 router.get('/production/:date/:filename?', (req, res) => {
     console.log('Hit production report route');
     lib
@@ -28,6 +34,13 @@ router.get('/production/:date/:filename?', (req, res) => {
         .catch(err => res.send('No complete orders found'));
 });
 
+/*
+ * GET route to get an invoice order
+ * @url params: /:startDate [ISO 8601 date string] // Date to start report
+ *     /:endDate [ISO 8601 date string] // Date to end report
+ *     /:filename (optional)[string] // Filename for export
+ * @response: [CSV File] (success) || [string] (failure)
+ */
 router.get('/invoice/:startDate/:endDate/:filename?', (req, res) => {
     console.log(req.params.startDate);
     lib
