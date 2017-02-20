@@ -1,3 +1,4 @@
+/** @module lib/autoOrderLib */
 const moment = require('moment');
 const schedule = require('node-schedule');
 const knex = require('../database/dbConfig');
