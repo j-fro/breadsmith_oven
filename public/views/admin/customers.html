@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <div class="homeBody container col-md-8 col-md-offset-2 col-s-12" id="wrapper" ng-init="viewCustomer(); viewProduct()">
-<h1>Customers</h1>
+    <h1>Customers</h1>
     <div class="addCustomerButtonDiv">
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addCustomerModal">Add New Customer <span class="glyphicon glyphicon-plus-sign"></span></button>
     </div>
@@ -57,9 +57,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title">Edit Permitted Products</h1>
-                <input class="btn btn-success" data-dismiss="modal" type="submit" data-toggle="modal" data-target="#editPermittedProductsModal"
+                <<<<<<< HEAD <input class="btn btn-success" data-dismiss="modal" type="submit" data-toggle="modal" data-target="#editPermittedProductsModal"
                     value="Save" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid" />
-                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="clearCreate()">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="clearCreate()">Close</button>                =======
+                <input class="btn btn-success" data-dismiss="modal" type="submit" data-toggle="modal" data-target="#editPermittedProductsModal"
+                    value="Submit" ng-click="updateCustomer()" ng-disabled="editCustomerForm.$invalid" />
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button> >>>>>>> f4a299d294667fd4a55a902b1f166512a678eea3
             </div>
             <!-- need to fix stlye here -->
             <div class="modal-body">
@@ -70,7 +73,7 @@
                 </p>
                 <h5>Add Permitted Products:</h5>
                 <div class="addPermittedDiv">
-                  <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
+                    <input type="text" name="searchProduct" class="form-control" placeholder="Search Product" ng-model="searchProductBox" />
                 </div>
                 <p class="row" ng-repeat="product in permitted_products|filter: searchProductBox | orderBy: 'type'">
                     <span class="col-xs-8">{{product.type}} {{product.variety}} {{product.price | currency}}</span>
@@ -150,9 +153,14 @@
 </div>
 
 <script type="text/ng-template" id="responseModal">
-    <div class="alert confirmAlert" ng-class="{'alert-success': success, 'alert-danger': !success}">
+    <<<<<<< HEAD <div class="alert confirmAlert" ng-class="{'alert-success': success, 'alert-danger': !success}">
         <p>{{modalBody}}</p>
-    </div>
+        </div>
+        =======
+        <div class="alert confirmAlert" ng-class="{'alert-success': success, 'alert-danger': !success}">
+            <p>{{modalBody}}</p>
+        </div>
+        >>>>>>> f4a299d294667fd4a55a902b1f166512a678eea3
 </script>
 
 <div class="modal fade" id="recurringOrderModal" role="dialog">
