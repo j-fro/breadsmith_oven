@@ -14,6 +14,7 @@ function getOrdersAndExport(filename, beginDate, endDate) {
             .join('customers', 'orders.customer_id', 'customers.id')
             .where('created', '>', beginDate.format('YYYY-MM-DD'))
             .andWhere('created', '<', endDate.format('YYYY-MM-DD'))
+            .andWhere('status', true)
             .then(result =>
                 exportCsv(result, filename)
                     .then(resolve())
@@ -27,7 +28,7 @@ function exportCsv(orders, filename) {
     return new Promise((resolve, reject) => {
         if (orders[0]) {
             let fields = Object.keys(orders[0]);
-            let csv = json2csv({data: orders, fields: fields});
+            let csv = json2csv({ data: orders, fields: fields });
             fs.writeFileSync(
                 path.join(
                     __dirname,
