@@ -46,12 +46,11 @@ myApp.controller('CustomerController', [
                 controller: 'CustomerController',
                 scope: $scope
             });
-
         };
         $scope.ngDialog = ngDialog;
 
         $scope.onTimeOrder = function() {
-          return moment().hours() < 14;
+            return moment().hours() < 14;
         };
 
         $scope.callForOrder = function() {

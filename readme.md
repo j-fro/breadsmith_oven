@@ -31,6 +31,19 @@ The O.V.E.N. requires a version of Node.js that supports ES6 promises and arrow 
     * `MAIL_SERVICE` (e.g. `'gmail'`), `MAIL_USER`, `MAIL_PASS` to send emails
 4. `npm start` to run the app on port 3000 or the environment variable `PORT` if present
 
+* _NOTE_: The server *must* be running to generate automatic orders. By default this happens at 9 A.M. each day.
+
+---
+## Customization:
+Certain configurations are contained in the code:
+* To change the times that order warnings are displayed to the customer, see:
+    * `line 53 ($scope.onTimeOrder)`
+    * `line 57 ($scope.callForOrder)`
+    * `line 61 ($scope.placeForTomorrow)`
+    * in `public/scripts/controllers/customerController.js`
+* To change the time when automatic orders are generated, see:
+    * `line 111 (function scheduleOrders)` in `server/lib/autoOrderLib.js`
+    
 ---
 ## Technologies Used:
 * AngularJS
